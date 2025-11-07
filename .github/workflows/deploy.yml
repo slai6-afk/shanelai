@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install patch-package manually
+        run: npm install patch-package --save-dev
+
       - name: Install dependencies (include dev)
         run: npm install --include=dev
 
@@ -42,4 +45,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
