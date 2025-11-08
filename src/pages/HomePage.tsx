@@ -69,7 +69,7 @@ export function HomePage() {
                 style={{ fontSize: '16px', fontWeight: 400, color: '#000000' }}
               >
                 <Mail size={20} />
-                <span>Get in touch</span>
+                <span>Get in touch:shanshanlai160402@gmail.com</span>
               </motion.a>
             </motion.div>
           </motion.div>
