@@ -15,12 +15,12 @@ export function HomePage() {
       link: '/case-study/memory-navigator'
     },
     {
-      title: 'Talkie',
-      description: 'AI voice companion for truck drivers designed through empathy-driven research',
+      title: 'Huuuuu',
+      description: 'A breath-activated wearable that transforms personal warmth into collective empowerment',
       image: 'https://images.unsplash.com/photo-1579120632007-f493373daed0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cnVjayUyMGRyaXZlciUyMHZvaWNlfGVufDF8fHx8MTc2MTkzNjI3M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['AI', 'Voice', 'Research'],
+      tags: ['Arduino · Wearable · IoT', 'Interaction Designer', 'Design'],
       type: 'research' as const,
-      link: '/case-study/talkie'
+      link: '/case-study/Huuuuu'
     },
     {
       title: 'FunFitLand (UFit)',
