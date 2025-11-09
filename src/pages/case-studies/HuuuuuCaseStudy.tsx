@@ -466,6 +466,12 @@ export function HuuuuuCaseStudy() {
                     src={systemDiagramImage}
                     alt="System diagram showing breath detection, Bluetooth connection, and mobile app integration"
                     caption="System flow: exhale into glove → sensor detects humidity → heating activates → data syncs to phone"
+                    imgStyle={{
+                      '@media (max-width: 991px)': {
+                        backgroundColor: 'rgba(255, 255, 255, 1)',
+                        paddingTop: '36px'
+                      }
+                    }}
                   />
                 </motion.div>
 
@@ -652,19 +658,7 @@ export function HuuuuuCaseStudy() {
                     What I Learned
                   </h3>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '720px' }}>
-                    <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                      Through this project, I learned how emotional discomfort—something as small as cold hands—can reveal systemic design inequities. What began as an observation about office temperature became an exploration of whose bodies are centered in "universal" standards.
-                    </p>
-                    
-                    <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                      Designing Huuuuu! was not only about building a device but translating empathy into tangible, measurable interactions. It required moving between emotional sensitivity and technical precision—understanding that code, sensors, and data can serve affective goals, not just functional purposes.
-                    </p>
-                    
-                    <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                      Working between physical computing and social inquiry taught me that inclusive design begins with listening—to the body, the context, and each other. The most meaningful interactions emerge when technology responds to natural human gestures rather than forcing adaptation.
-                    </p>
-                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '720px' }} />
                 </motion.div>
 
                 {/* Skill Growth Visualization */}
@@ -784,7 +778,7 @@ export function HuuuuuCaseStudy() {
                       </p>
                       
                       <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                        In future projects, I aim to continue bridging body-based sensing, data visualization, and collective experience—creating interfaces that feel intuitive because they honor how people already move, breathe, and connect.
+                        In future projects, I aim to continue bridging body-based sensing, data visualization, and collective experience: creating interfaces that feel intuitive because they honor how people already move, breathe, and connect.
                       </p>
                       
                       <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9', fontStyle: 'italic', color: '#666666' }}>
