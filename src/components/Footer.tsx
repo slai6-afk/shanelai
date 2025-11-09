@@ -3,9 +3,8 @@ import { Mail, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
   const socialLinks = [
-    { icon: Mail, label: 'Email', href: 'mailto:shanshan.lai@pratt.edu' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/shanshan-lai' },
-    { icon: Twitter, label: 'Twitter', href: '#' }
+    { icon: Mail, label: 'Email', href: 'mailto:shanshanlai160402@gmail.com' },
+    { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/shane-lai' }
   ];
 
   return (
