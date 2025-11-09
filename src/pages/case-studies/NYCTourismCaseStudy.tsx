@@ -616,7 +616,8 @@ export function NYCTourismCaseStudy() {
                     lineHeight: '1.8',
                     marginBottom: '20px'
                   }}>
-                    <strong style={{ color: '#000000' }}>Team:</strong> Shane Lai (Lead Researcher), Maya Chen (Product Manager), Jordan Kim (Content Strategist), Alex Rivera (UX Designer)
+                    <strong style={{ color: '#000000' }}>Team:</strong>
+                    <p>Shane Lai, Harsh Pendse, Robert Rivera</p>
                   </p>
 
                   <p style={{
@@ -626,18 +627,12 @@ export function NYCTourismCaseStudy() {
                     lineHeight: '1.8',
                     marginBottom: '20px'
                   }}>
-                    <strong style={{ color: '#000000' }}>Consent & Privacy:</strong> All participants provided informed consent via digital form. Data anonymized; no PII stored. Recruited via university partnerships with $25 Amazon gift card incentive. Study approved by internal ethics review.
+                    <strong style={{ color: '#000000' }}>Consent & Privacy:</strong>
+                    <p>
+                      All participants provided informed consent via digital form. Data anonymized; no PII stored. Study approved by internal ethics review.
+                    </p>
                   </p>
 
-                  <p style={{
-                    color: '#666666',
-                    fontSize: '15px',
-                    fontWeight: 400,
-                    lineHeight: '1.8',
-                    margin: 0
-                  }}>
-                    <strong style={{ color: '#000000' }}>Acknowledgments:</strong> Special thanks to NYU and Columbia international student offices for recruitment support, and to the 80 students who participated across both studies.
-                  </p>
                 </motion.div>
               </div>
             </div>
