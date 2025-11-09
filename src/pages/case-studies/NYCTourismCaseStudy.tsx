@@ -303,9 +303,9 @@ export function NYCTourismCaseStudy() {
                 />
 
                 <FigureWithCaption
-                  src="https://images.unsplash.com/photo-1664526937033-fe2c11f1be25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmZvcm1hdGlvbiUyMGFyY2hpdGVjdHVyZSUyMGRpYWdyYW18ZW58MXx8fHwxNzYxOTM3MzMxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F16b3e088cf8c45a580b69e54618ff54c"
                   alt="IA comparison diagram"
-                  caption="Side-by-side comparison of IA v1 (category-first) and IA v2 (intent-first) structures tested"
+                  caption="Conduct persona spectrum for better design"
                 />
               </div>
 
@@ -364,6 +364,16 @@ export function NYCTourismCaseStudy() {
                     content="The first version made me feel stupid. I don't know where SoHo is. The second version let me browse by what I actually wanted to do."
                     source="P22, International Student from Beijing"
                     index={3}
+                  />
+
+                  <img
+                    alt="Redesigned navigation menu"
+                    loading="lazy"
+                    src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F3d3f40b893bd4e7781a89c6932dea299"
+                    style={{
+                      display: 'block',
+                      width: '100%'
+                    }}
                   />
                 </div>
               </div>
@@ -427,7 +437,7 @@ export function NYCTourismCaseStudy() {
                 </motion.div>
 
                 <FigureWithCaption
-                  src="https://images.unsplash.com/photo-1570817094181-5e45f8be47a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwbmF2aWdhdGlvbiUyMG1lbnV8ZW58MXx8fHwxNzYxODk4NzU3fDA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F8d3835f471d341d9901d8a4bdf2a373f"
                   alt="Redesigned navigation menu"
                   caption="Final navigation design implementing IA v2 intent-first structure"
                 />
@@ -606,7 +616,8 @@ export function NYCTourismCaseStudy() {
                     lineHeight: '1.8',
                     marginBottom: '20px'
                   }}>
-                    <strong style={{ color: '#000000' }}>Team:</strong> Shane Lai (Lead Researcher), Maya Chen (Product Manager), Jordan Kim (Content Strategist), Alex Rivera (UX Designer)
+                    <strong style={{ color: '#000000' }}>Team:</strong>
+                    <p>Shane Lai, Harsh Pendse, Robert Rivera</p>
                   </p>
 
                   <p style={{
@@ -616,18 +627,12 @@ export function NYCTourismCaseStudy() {
                     lineHeight: '1.8',
                     marginBottom: '20px'
                   }}>
-                    <strong style={{ color: '#000000' }}>Consent & Privacy:</strong> All participants provided informed consent via digital form. Data anonymized; no PII stored. Recruited via university partnerships with $25 Amazon gift card incentive. Study approved by internal ethics review.
+                    <strong style={{ color: '#000000' }}>Consent & Privacy:</strong>
+                    <p>
+                      All participants provided informed consent via digital form. Data anonymized; no PII stored. Study approved by internal ethics review.
+                    </p>
                   </p>
 
-                  <p style={{
-                    color: '#666666',
-                    fontSize: '15px',
-                    fontWeight: 400,
-                    lineHeight: '1.8',
-                    margin: 0
-                  }}>
-                    <strong style={{ color: '#000000' }}>Acknowledgments:</strong> Special thanks to NYU and Columbia international student offices for recruitment support, and to the 80 students who participated across both studies.
-                  </p>
                 </motion.div>
               </div>
             </div>

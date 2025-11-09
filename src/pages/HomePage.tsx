@@ -9,15 +9,15 @@ export function HomePage() {
     {
       title: 'Memory Navigator',
       description: 'AR cognitive training system for elderly users with real-time spatial guidance',
-      image: 'https://images.unsplash.com/photo-1740908900846-271f4f021b6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBUiUyMG1lbW9yeSUyMGNvZ25pdGl2ZXxlbnwxfHx8fDE3NjE5MzYyNzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd3d7c1c3590b47178dabf39dc0bd330a',
       tags: ['AR', 'HoloLens', 'Design'],
       type: 'design' as const,
       link: '/case-study/memory-navigator'
     },
     {
       title: 'Huuuuu',
-      description: 'A breath-activated wearable that transforms personal warmth into collective empowerment',
-      image: 'https://images.unsplash.com/photo-1579120632007-f493373daed0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cnVjayUyMGRyaXZlciUyMHZvaWNlfGVufDF8fHx8MTc2MTkzNjI3M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      description: 'Breath-activated wearable that transforms personal warmth into collective empowerment',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fca07cfe232474fd98a425e6157eb83f4',
       tags: ['Arduino · Wearable · IoT', 'Interaction Designer', 'Design'],
       type: 'research' as const,
       link: '/case-study/Huuuuu'
@@ -25,7 +25,7 @@ export function HomePage() {
     {
       title: 'FunFitLand (UFit)',
       description: 'VR fitness experience designed for accessibility and inclusive movement',
-      image: 'https://images.unsplash.com/photo-1646496496941-3cd864ab1f30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxWUiUyMGZpdG5lc3MlMjBnYW1lfGVufDF8fHx8MTc2MTkzNjI3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Ff9363af89837426eac1bacac49533375',
       tags: ['VR', 'Accessibility', 'Design'],
       type: 'design' as const,
       link: '/case-study/funfitland'
@@ -92,7 +92,7 @@ export function HomePage() {
 
 
       {/* Selected Works Section */}
-      <section className="md:py-28 px-6 md:px-12 lg:px-16 py-[30px] px-[48px] py-[40px]">
+      <section className="md:py-28 px-6 md:px-12 lg:px-16 py-[30px] px-[48px] py-[40px] selected-works-section">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-10">
             <motion.h2

@@ -6,9 +6,10 @@ interface FigureWithCaptionProps {
   alt: string;
   caption: string;
   index?: number;
+  imgStyle?: React.CSSProperties;
 }
 
-export function FigureWithCaption({ src, alt, caption, index = 0 }: FigureWithCaptionProps) {
+export function FigureWithCaption({ src, alt, caption, index = 0, imgStyle }: FigureWithCaptionProps) {
   return (
     <motion.figure
       initial={{ opacity: 0, y: 30 }}
@@ -28,7 +29,8 @@ export function FigureWithCaption({ src, alt, caption, index = 0 }: FigureWithCa
           style={{
             width: '100%',
             height: 'auto',
-            display: 'block'
+            display: 'block',
+            ...imgStyle
           }}
         />
       </div>

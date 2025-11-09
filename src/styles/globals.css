@@ -259,6 +259,17 @@ html {
   }
 }
 
+/* Selected Works Section Responsive Styles */
+.selected-works-section {
+  padding-top: 40px;
+}
+
+@media (max-width: 991px) {
+  .selected-works-section {
+    padding-top: 10px;
+  }
+}
+
 /* Hide default cursor */
 * {
   cursor: none !important;

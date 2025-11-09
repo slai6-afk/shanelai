@@ -9,8 +9,8 @@ export function PreviousWorkPage() {
   const carouselSlides = [
     {
       title: 'Temu',
-      role: 'Product Designer Intern',
-      description: 'Improved AI custom service user experience (under NDA). Focused on interaction efficiency and service usability for AI chat platforms serving global e-commerce users.',
+      role: 'Product Designer(current)',
+      description: 'Improved AI-embaded custom service user experience (under NDA). Focused on interaction efficiency and service usability for AI chat platforms serving global e-commerce users.',
       image: 'https://images.unsplash.com/photo-1643906226799-59eab234e41d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBtb2JpbGUlMjBhcHB8ZW58MXx8fHwxNzYxODk5MDIzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
       link: '#',
       category: 'Internship',
@@ -109,21 +109,22 @@ export function PreviousWorkPage() {
             Previous Work
           </motion.h1>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             className="mb-20 max-w-2xl"
-            style={{ 
-              color: '#666666', 
+            style={{
+              color: '#666666',
               fontSize: '18px',
               fontWeight: 400,
               lineHeight: '1.8'
             }}
           >
-            A curated collection of internships, research projects, and personal explorations 
-            in UX design, AI product development, and creative technology.
-          </motion.p>
+            <p>What I do in my internships, research projects.</p>
+            <p>&</p>
+            <p>Personal explorations in AI-powered design, and creative technology.</p>
+          </motion.div>
 
           {/* Project Carousel */}
           <motion.div

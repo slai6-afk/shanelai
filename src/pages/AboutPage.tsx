@@ -9,19 +9,13 @@ export function AboutPage() {
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      url: 'https://linkedin.com/in/shanshan-lai',
+      url: 'https://linkedin.com/in/shane-lai',
       description: 'Professional network'
-    },
-    {
-      icon: ExternalLink,
-      label: 'Portfolio',
-      url: 'https://shaneportfolio.webflow.io',
-      description: 'View full portfolio'
     },
     {
       icon: FileText,
       label: 'Resume',
-      url: '#',
+      url: 'https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.fly.dev/about?reload=1762709569492#',
       description: 'Download CV'
     }
   ];
@@ -68,7 +62,7 @@ export function AboutPage() {
               letterSpacing: '-0.02em'
             }}
           >
-            UX Designer.<br />Product Designer.<br />Code-Driven Thinker.
+            Design with Data.<br />Think in Systems.<br />Build for Humans.
           </motion.h1>
 
           {/* Two Column Layout */}
@@ -80,11 +74,30 @@ export function AboutPage() {
               transition={{ duration: 1, delay: 0.2 }}
               className="lg:col-span-5"
             >
-              <div className="aspect-[3/4] bg-[#e5e5e5] overflow-hidden mb-8">
+              <div
+                className="aspect-[3/4] bg-[#e5e5e5] overflow-hidden mb-8"
+                style={{
+                  '@media (max-width: 991px)': {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'stretch',
+                    backgroundColor: 'rgba(229, 229, 229, 0)',
+                  }
+                }}
+              >
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1706824258534-c3740a1ae96b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMHN0dWRpb3xlbnwxfHx8fDE3NjE4MzA5MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                  src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd00b64aacbda4fc48b6735b3025538b0"
                   alt="Shane Lai"
                   className="w-full h-full object-cover"
+                  style={{
+                    '@media (max-width: 991px)': {
+                      maxWidth: '500px',
+                      width: '100%',
+                      alignSelf: 'stretch',
+                      height: 'auto',
+                      flexGrow: '0',
+                    }
+                  }}
                 />
               </div>
 
@@ -99,7 +112,10 @@ export function AboutPage() {
                   UX Designer / Product Designer
                   <br />New York City, NY
                   <br />English / Mandarin
-                  <br />shanshan.lai@pratt.edu
+                  <br />
+                  <div style={{ pointerEvents: 'auto', display: 'flex' }}>
+                    <p>shanshanlai160402@gmail.com</p>
+                  </div>
                 </p>
               </div>
             </motion.div>
@@ -122,20 +138,15 @@ export function AboutPage() {
                 >
                   Background
                 </h3>
-                <div 
+                <div
                   className="space-y-6"
                   style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8' }}
                 >
                   <p>
-                    A UX Designer who turns complex ideas into intuitive, human-centered 
-                    experiences. My design approach balances system thinking and emotion—bridging 
-                    technology and human needs through clarity, elegance, and a touch of 
-                    code-driven precision.
+                    I'm a UX Designer who moves fluidly between research, strategy, and execution. My experience ranges from designing AI-enhanced e-commerce systems at Temu to analyzing user data and leading design decisions grounded in evidence.
                   </p>
                   <p>
-                    Currently pursuing my Master's at Pratt Institute while exploring how 
-                    thoughtful design can make AI and emerging technologies more accessible 
-                    and meaningful in everyday life.
+                    I see design as a bridge between human behavior, data, and technology, where empathy informs structure and analytics guide creativity. Currently pursuing my Master's at Pratt Institute, I aim to design intelligent and inclusive systems that scale meaningfully across global contexts.
                   </p>
                 </div>
               </div>
@@ -235,19 +246,24 @@ export function AboutPage() {
                 >
                   Design Philosophy
                 </h3>
-                <div 
+                <div
                   className="space-y-6"
                   style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8' }}
                 >
                   <p>
-                    My approach centers on human-centered thinking and clarity over complexity. 
-                    I believe great design is a hybrid discipline—merging systematic thinking 
-                    with emotional intelligence, and balancing technical precision with intuitive simplicity.
+                    <strong>
+                      I see design as a data-informed process that bridges human intuition and system logic.
+                    </strong>
                   </p>
+                  <div>
+                    <p>
+                      My approach integrates quantitative analysis, behavioral insights, and creative exploration to craft experiences that are both evidence-based and emotionally resonant.
+                    </p>
+                  </div>
                   <p>
-                    I'm drawn to subtle motion, data-driven storytelling, and clean visual 
-                    hierarchies that let content breathe. The work should feel precise, 
-                    reflective, and quietly modern.
+                    <span style={{ fontSize: '14px', '@media (max-width: 991px)': { fontSize: '16px' } }}>
+                      I believe that data doesn't replace empathy. It refines it, allowing design to scale with clarity, integrity, and measurable impact.
+                    </span>
                   </p>
                 </div>
               </div>

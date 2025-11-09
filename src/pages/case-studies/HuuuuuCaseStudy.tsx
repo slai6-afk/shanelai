@@ -7,7 +7,7 @@ import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { HowMightWeCard } from '../../components/case-study/HowMightWeCard';
 import { FigureWithCaption } from '../../components/case-study/FigureWithCaption';
 import { AlertCircle, Lightbulb, Heart, Wind } from 'lucide-react';
-import heroImage from 'figma:asset/acd2c7b7df432b2ee0f2a21c13aa522a4a491b87.png';
+const heroImage = 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Febad1e3d1c1241e789cd0daeabbe07d6';
 import contextImage from 'figma:asset/d4bf212ef865fe4182e7ced9ce71b8bf36c22642.png';
 import journeyImage from 'figma:asset/cc6bc14b9d6434396b8eb07e9faa8762d280941f.png';
 import sketchImage from 'figma:asset/d1e347e43af72a40623246a4fee6da3508a68413.png';
@@ -93,7 +93,7 @@ export function HuuuuuCaseStudy() {
                     lineHeight: '1.7',
                     maxWidth: '760px'
                   }}>
-                    Exploring the intersection of comfort, empathy, and gender bias through a breath-sensing glove that brings warmth to cold office spaces — and transforms a private experience into a shared statement.
+                    Exploring the intersection of comfort, empathy, and gender bias through a breath-sensing glove that brings warmth to cold office spaces & transforms a private experience into a shared statement.
                   </p>
                 </div>
 
@@ -186,7 +186,7 @@ export function HuuuuuCaseStudy() {
                   </p>
 
                   <p style={{ fontSize: '16px', color: '#666666', lineHeight: '1.8', marginBottom: '24px' }}>
-                    This isn't just about thermal comfort — it's about whose bodies are centered in "universal" design. Women bring cardigans, blankets, and space heaters to work. They avoid speaking up to prevent being labeled "too sensitive." They internalize systemic bias as personal failure.
+                    This isn't just about thermal comfort. It's about whose bodies are centered in "universal" design. Women bring cardigans, blankets, and space heaters to work. They avoid speaking up to prevent being labeled "too sensitive." They internalize systemic bias as personal failure.
                   </p>
 
                   <p style={{ fontSize: '16px', color: '#666666', lineHeight: '1.8' }}>
@@ -466,6 +466,11 @@ export function HuuuuuCaseStudy() {
                     src={systemDiagramImage}
                     alt="System diagram showing breath detection, Bluetooth connection, and mobile app integration"
                     caption="System flow: exhale into glove → sensor detects humidity → heating activates → data syncs to phone"
+                    imgStyle={{
+                      '@media (max-width: 991px)': {
+                        backgroundColor: 'rgba(255, 255, 255, 1)'
+                      }
+                    }}
                   />
                 </motion.div>
 
@@ -652,19 +657,7 @@ export function HuuuuuCaseStudy() {
                     What I Learned
                   </h3>
                   
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '720px' }}>
-                    <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                      Through this project, I learned how emotional discomfort—something as small as cold hands—can reveal systemic design inequities. What began as an observation about office temperature became an exploration of whose bodies are centered in "universal" standards.
-                    </p>
-                    
-                    <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                      Designing Huuuuu! was not only about building a device but translating empathy into tangible, measurable interactions. It required moving between emotional sensitivity and technical precision—understanding that code, sensors, and data can serve affective goals, not just functional purposes.
-                    </p>
-                    
-                    <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                      Working between physical computing and social inquiry taught me that inclusive design begins with listening—to the body, the context, and each other. The most meaningful interactions emerge when technology responds to natural human gestures rather than forcing adaptation.
-                    </p>
-                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: '720px' }} />
                 </motion.div>
 
                 {/* Skill Growth Visualization */}
@@ -784,7 +777,7 @@ export function HuuuuuCaseStudy() {
                       </p>
                       
                       <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9' }}>
-                        In future projects, I aim to continue bridging body-based sensing, data visualization, and collective experience—creating interfaces that feel intuitive because they honor how people already move, breathe, and connect.
+                        In future projects, I aim to continue bridging body-based sensing, data visualization, and collective experience: creating interfaces that feel intuitive because they honor how people already move, breathe, and connect.
                       </p>
                       
                       <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9', fontStyle: 'italic', color: '#666666' }}>
