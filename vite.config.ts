@@ -4,7 +4,7 @@ import path from 'path';
 
 // ✅ Shane final fixed version
 export default defineConfig({
-  base: './', // 使用相对路径，支持自定义域名 shanelai.com
+  base: '', // 使用相对路径，支持自定义域名 shanelai.com
   plugins: [react()],
   resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
