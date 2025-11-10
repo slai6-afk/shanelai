@@ -40,7 +40,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
     if (!isHovered && filteredSlides.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % filteredSlides.length);
-      }, 6000);
+      }, 4000);
       return () => clearInterval(interval);
     }
   }, [isHovered, filteredSlides.length]);
