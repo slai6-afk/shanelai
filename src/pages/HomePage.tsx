@@ -107,7 +107,7 @@ export function HomePage() {
                 lineHeight: '1.3'
               }}
             >
-              Selected Works
+              Selected Works<ArrowDown size={16} />
             </motion.h2>
             
             <motion.div
