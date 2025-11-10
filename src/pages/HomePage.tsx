@@ -54,7 +54,7 @@ export function HomePage() {
                 letterSpacing: '-0.02em'
               }}
             >
-              Turning data, systems, and human behavior into meaningful design
+            Turning data, systems, and human behavior into meaningful design
             </h1>
 
             <motion.div
