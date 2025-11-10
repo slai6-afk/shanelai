@@ -20,11 +20,10 @@ export function PreviousWorkPage() {
       title: 'Minimax',
       role: 'AI Product Intern(APM)',
       description: 'Defined and developed AI voice companion features; optimized long-duration voice interactions, boosting feature retention by 23%. Refined gamified card collection mechanics, increasing daily active users by 12% within three months.',
-      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Faa652ef658fd455f8e6bab9f5b88a05b',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F717db487d74d47828363ddbef4c1b71e',
       imgStyle: {
         '@media (max-width: 991px)': {
           backgroundColor: 'rgba(255, 255, 255, 1)',
-          padding: '85px 0'
         }
       },
       link: '#',
@@ -35,7 +34,7 @@ export function PreviousWorkPage() {
       title: 'CastChat',
       role: 'UX Designer Intern',
       description: 'Conducted competitive research and proposed practical design solutions. Collaborated with product managers and UI designers to improve leaderboard interaction and user flow for social AI platform.',
-      image: 'https://images.unsplash.com/photo-1689872330350-87e38c591b4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMGFwcCUyMGRlc2lnbnxlbnwxfHx8fDE3NjE5MzUwMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fce938746fb44488b97f7c9c2929ae6ff',
       link: '#',
       category: 'Internship',
       clientName: 'CastChat'
