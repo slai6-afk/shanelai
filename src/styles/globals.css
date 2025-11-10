@@ -274,3 +274,64 @@ html {
 * {
   cursor: none !important;
 }
+
+/* Hero Title Responsive Styles */
+.hero-title-line {
+  font-weight: 400;
+}
+
+.hero-title-line.line-1 {
+  @media (max-width: 991px) {
+    line-height: 6px;
+  }
+}
+
+.hero-title-line.line-2 {
+  @media (max-width: 991px) {
+    line-height: 60px;
+    font-size: 58px;
+    letter-spacing: -1.5px;
+  }
+}
+
+.hero-title-line.line-3 {
+  @media (max-width: 991px) {
+    line-height: 6px;
+  }
+}
+
+.hero-title-text {
+  display: inline;
+  font-weight: 400;
+}
+
+.hero-title-text.text-1 {
+  @media (max-width: 991px) {
+    font-size: 58px;
+    line-height: 60px;
+    letter-spacing: -1.5px;
+  }
+}
+
+.hero-title-text.text-2 {
+  @media (max-width: 991px) {
+    font-size: 56px;
+    line-height: 60px;
+  }
+}
+
+.hero-title-text.text-3 {
+  @media (max-width: 991px) {
+    font-size: 58px;
+    line-height: 60px;
+    letter-spacing: -1.5px;
+  }
+}
+
+.hero-title-text.text-4 {
+  @media (max-width: 991px) {
+    font-size: 58px;
+    line-height: 60px;
+    letter-spacing: -1.5px;
+  }
+}
