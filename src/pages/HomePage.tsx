@@ -107,8 +107,6 @@ export function HomePage() {
                 lineHeight: '1.3'
               }}
             >
-            <ArrowDown size={16} />
-              <span>Scroll down</span>
               Selected Works
             </motion.h2>
             
@@ -124,7 +122,8 @@ export function HomePage() {
                 fontWeight: 400
               }}
             >
-
+<ArrowDown size={16} />
+              <span>Scroll down</span>
             </motion.div>
           </div>
 
