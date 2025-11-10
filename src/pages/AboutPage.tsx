@@ -76,28 +76,12 @@ export function AboutPage() {
             >
               <div
                 className="aspect-[3/4] bg-[#e5e5e5] overflow-hidden mb-8"
-                style={{
-                  '@media (max-width: 991px)': {
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'stretch',
-                    backgroundColor: 'rgba(229, 229, 229, 0)',
-                  }
-                }}
               >
                 <ImageWithFallback
                   src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd00b64aacbda4fc48b6735b3025538b0"
                   alt="Shane Lai"
                   className="w-full h-full object-cover"
-                  style={{
-                    '@media (max-width: 991px)': {
-                      maxWidth: '500px',
-                      width: '100%',
-                      alignSelf: 'stretch',
-                      height: 'auto',
-                      flexGrow: '0',
-                    }
-                  }}
+                  className="w-full h-full object-cover"
                 />
               </div>
 
@@ -108,14 +92,13 @@ export function AboutPage() {
                 <p style={{ color: '#666666', fontSize: '14px', fontWeight: 400, lineHeight: '1.6', marginBottom: '8px' }}>
                   Shanshan Lai
                 </p>
-                <p style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.6' }}>
+                <p style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.6', marginBottom: '12px' }}>
                   UX Designer / Product Designer
                   <br />New York City, NY
                   <br />English / Mandarin
-                  <br />
-                  <div style={{ pointerEvents: 'auto', display: 'flex' }}>
-                    <p>shanshanlai160402@gmail.com</p>
-                  </div>
+                </p>
+                <p style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.6' }}>
+                  shanshanlai160402@gmail.com
                 </p>
               </div>
             </motion.div>
@@ -257,13 +240,11 @@ export function AboutPage() {
                   </p>
                   <div>
                     <p>
-                      My approach integrates quantitative analysis, behavioral insights, and creative exploration to craft experiences that are both evidence-based and emotionally resonant.
-                    </p>
+                    My approach integrates quantitative analysis, behavioral insights, and creative exploration to craft experiences that are both evidence-based and emotionally resonant.
+                  </p>
                   </div>
                   <p>
-                    <span style={{ fontSize: '14px', '@media (max-width: 991px)': { fontSize: '16px' } }}>
-                      I believe that data doesn't replace empathy. It refines it, allowing design to scale with clarity, integrity, and measurable impact.
-                    </span>
+                    I believe that data doesn't replace empathy. It refines it, allowing design to scale with clarity, integrity, and measurable impact.
                   </p>
                 </div>
               </div>
