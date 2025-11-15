@@ -1,8 +1,8 @@
-app = "shanelai"
+app = "shane-lai"
 primary_region = "lax"
 
 [build]
-  image = "shanelai:deployment"
+  image = "shane-lai:deployment"
 
 [env]
   PORT = "8080"
