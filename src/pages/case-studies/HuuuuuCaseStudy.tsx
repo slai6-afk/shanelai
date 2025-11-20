@@ -780,7 +780,7 @@ export function HuuuuuCaseStudy() {
                         In future projects, I aim to continue bridging body-based sensing, data visualization, and collective experience: creating interfaces that feel intuitive because they honor how people already move, breathe, and connect.
                       </p>
                       
-                      <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9', fontStyle: 'italic', color: '#666666' }}>
+                      <p style={{ fontSize: '16px', color: '#666666', lineHeight: '1.9', fontStyle: 'italic' }}>
                         Warmth, after all, was never just about temperature. It was about being seen, heard, and designed for.
                       </p>
                     </div>
