@@ -81,7 +81,6 @@ export function AboutPage() {
                   src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd00b64aacbda4fc48b6735b3025538b0"
                   alt="Shane Lai"
                   className="w-full h-full object-cover"
-                  className="w-full h-full object-cover"
                 />
               </div>
 
