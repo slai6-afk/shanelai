@@ -1480,9 +1480,6 @@ html {
   }
 }
 
-* {
-  cursor: none !important;
-}
 
 @property --tw-scale-x {
   syntax: "*";
