@@ -270,10 +270,6 @@ html {
   }
 }
 
-/* Hide default cursor */
-* {
-  cursor: none !important;
-}
 
 /* Hero Title Responsive Styles */
 .hero-title-line {
