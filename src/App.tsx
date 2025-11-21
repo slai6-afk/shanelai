@@ -159,8 +159,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="antialiased" style={{ cursor: 'none' }}>
-        <CustomCursor />
+      <div className="antialiased">
         <AnimatedRoutes />
       </div>
     </Router>
