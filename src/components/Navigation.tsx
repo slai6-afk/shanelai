@@ -5,7 +5,7 @@ export function Navigation() {
   const location = useLocation();
 
   const navItems = [
-    { name: 'About', path: '/about' },
+    { name: 'About Me', path: '/about' },
     { name: 'Projects', path: '/projects' },
     { name: 'Previous Work', path: '/previous-work' }
   ];

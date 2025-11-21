@@ -10,7 +10,7 @@ export function HomePage() {
       title: 'Memory Navigator',
       description: 'AR cognitive training system for elderly users with real-time spatial guidance',
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd3d7c1c3590b47178dabf39dc0bd330a',
-      tags: ['AR', 'HoloLens', 'Design'],
+      tags: ['AR', 'HoloLens'],
       type: 'design' as const,
       link: '/case-study/memory-navigator'
     },
@@ -18,7 +18,7 @@ export function HomePage() {
       title: 'Huuuuu',
       description: 'Breath-activated wearable that transforms personal warmth into collective empowerment',
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fca07cfe232474fd98a425e6157eb83f4',
-      tags: ['Arduino · Wearable · IoT', 'Interaction Designer', 'Design'],
+      tags: ['Arduino', 'Wearable'],
       type: 'research' as const,
       link: '/case-study/Huuuuu'
     },
