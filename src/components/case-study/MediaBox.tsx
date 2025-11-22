@@ -56,3 +56,5 @@ export function MediaBoxResponsive({
     </div>
   );
 }
+
+export const MediaBox = MediaBoxResponsive;
