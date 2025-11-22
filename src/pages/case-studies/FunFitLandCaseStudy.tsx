@@ -102,7 +102,7 @@ export function FunFitLandCaseStudy() {
               lineHeight: '1.2',
               marginBottom: '16px'
             }}>
-              <p>FunFitLand VR Game</p>
+              <p>FunFitLand</p>
             </h1>
 
             <p style={{
