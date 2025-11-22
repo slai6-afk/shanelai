@@ -267,9 +267,8 @@ html {
 }
 
 .media-box-inner {
-  width: 80%;
+  width: 100%;
   position: relative;
-  margin: 0 auto;
 }
 
 .media-box-video-wrapper {
@@ -306,6 +305,25 @@ html {
 .case-study-hero-content-wrapper {
   margin-top: -120px;
   padding-top: 0;
+}
+
+.video-wrapper {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .video-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: var(--nav-height, 72px);
+    margin-bottom: 0 !important;
+  }
+
+  .video-wrapper .media-box-video,
+  .video-wrapper video,
+  .video-wrapper img {
+    margin: 0 !important;
+  }
 }
 
 @media (max-width: 991px) {

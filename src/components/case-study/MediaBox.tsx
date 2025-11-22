@@ -13,7 +13,7 @@ interface MediaBoxProps {
   };
 }
 
-export function MediaBox({ 
+export function MediaBoxResponsive({ 
   src, 
   type, 
   alt = 'Media content',
@@ -27,7 +27,7 @@ export function MediaBox({
 }: MediaBoxProps) {
   return (
     <div className="media-box-container">
-      <div className="media-box-inner">
+      <div className="media-box-inner video-wrapper">
         {type === 'video' ? (
           <div className="media-box-video-wrapper">
             <video
