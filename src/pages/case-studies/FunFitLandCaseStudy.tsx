@@ -61,7 +61,7 @@ export function FunFitLandCaseStudy() {
               lineHeight: '1.2',
               marginBottom: '16px'
             }}>
-              FunFitLand (UFit)
+              <p>FunFitLand VR Game</p>
             </h1>
 
             <p style={{
