@@ -131,7 +131,7 @@ export function FunFitLandCaseStudy() {
                 borderRadius: '8px',
                 boxShadow: 'var(--shadow-xs)'
               }}>
-                VR · Accessibility · User Research
+                <p>Accessibility</p>
               </span>
               <span style={{
                 padding: '8px 16px',
@@ -144,7 +144,20 @@ export function FunFitLandCaseStudy() {
                 borderRadius: '8px',
                 boxShadow: 'var(--shadow-xs)'
               }}>
-                12 Weeks · Startup Project
+                <p>Startup</p>
+              </span>
+              <span style={{
+                padding: '8px 16px',
+                backgroundColor: '#FFFFFF',
+                color: '#000000',
+                fontSize: '12px',
+                fontWeight: 500,
+                letterSpacing: '0.02em',
+                border: '1px solid rgba(0, 0, 0, 0.2)',
+                borderRadius: '8px',
+                boxShadow: 'var(--shadow-xs)'
+              }}>
+                <p>VR/MR</p>
               </span>
             </div>
 
