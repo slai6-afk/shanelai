@@ -17,7 +17,7 @@ export function Navigation() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 bg-[#f5f5f5]/95 backdrop-blur-sm"
     >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-6 md:py-8 flex justify-between items-center pb-5 lg:pb-8">
+      <div className="nav-inner max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-6 md:py-8 flex justify-between items-center">
         <Link to="/">
           <motion.div
             className="flex items-baseline gap-1"
