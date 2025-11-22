@@ -161,11 +161,6 @@ export function FunFitLandCaseStudy() {
               </span>
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              <DecisionPill text="Personalized calibration for all body types" index={0} />
-              <DecisionPill text="Evidence-based problem definition" index={1} />
-              <DecisionPill text="Accessibility as a design principle" index={2} />
-            </div>
           </motion.div>
         </div>
       </section>
