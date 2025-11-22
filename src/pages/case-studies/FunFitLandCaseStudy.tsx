@@ -58,6 +58,7 @@ export function FunFitLandCaseStudy() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            style={{ marginTop: '10px' }}
           >
             <h1 style={{
               color: '#000000',
