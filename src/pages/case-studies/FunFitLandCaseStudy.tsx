@@ -55,7 +55,7 @@ export function FunFitLandCaseStudy() {
         mediaSrc="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
         descriptionLink={{
           href: "https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland",
-          label: "Calibration system design in VR that fits users with diverse physical mobilities."
+          label: "Calibration system design in VR that fits users with diverse physical mobilities. Providing users with different motion range and targets size."
         }}
         visitLink={{
           href: "https://www.funfitland.com",

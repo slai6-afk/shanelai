@@ -100,7 +100,7 @@ export function CaseStudyHero({
                     target="_blank"
                     style={{ fontSize: '16px' }}
                   >
-                    {descriptionLink.label}
+                    <p>{descriptionLink.label}</p>
                   </a>
                 </p>
                 <p>
