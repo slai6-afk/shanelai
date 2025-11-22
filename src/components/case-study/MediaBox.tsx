@@ -26,58 +26,30 @@ export function MediaBox({
   }
 }: MediaBoxProps) {
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      width: '100%'
-    }}>
-      <div style={{
-        width: '50%',
-        position: 'relative'
-      }}>
+    <div className="media-box-container">
+      <div className="media-box-inner">
         {type === 'video' ? (
-          <div className="media-box-video-wrapper" style={{ position: 'relative' }}>
+          <div className="media-box-video-wrapper">
             <video
+              className="media-box-video"
               autoPlay={videoProps.autoPlay}
               muted={videoProps.muted}
               controls={videoProps.controls}
               playsInline={videoProps.playsInline}
               loop={videoProps.loop}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                borderRadius: '8px',
-                position: 'relative',
-                display: 'flex',
-                flexDirection: 'column',
-                minHeight: '60px',
-                minWidth: '20px',
-              }}
             >
               <source
                 type="video/mp4"
                 src={src}
               />
             </video>
-            <div style={{
-              width: '100%',
-              paddingTop: '31%',
-              pointerEvents: 'none',
-              fontSize: '0'
-            }} />
+            <div className="media-box-aspect-spacer" />
           </div>
         ) : (
           <img
+            className="media-box-image"
             src={src}
             alt={alt}
-            style={{
-              width: '100%',
-              height: 'auto',
-              borderRadius: '8px',
-              display: 'block'
-            }}
           />
         )}
       </div>
