@@ -147,54 +147,6 @@ export function FunFitLandCaseStudy() {
         </div>
       </section>
 
-      {/* Solution Preview Section */}
-      <section className="pb-20 px-6 md:px-12 lg:px-16">
-        <div className="max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <h2 style={{
-              color: '#ED964F',
-              fontSize: 'clamp(20px, 3vw, 24px)',
-              fontWeight: 600,
-              marginBottom: '32px',
-              textAlign: 'center'
-            }}>
-              The Solution: Personalized Calibration System
-            </h2>
-            
-            <div style={{
-              backgroundColor: '#1a1f2e',
-              padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-              marginBottom: '24px',
-              borderRadius: '14px',
-              boxShadow: 'var(--shadow-md)'
-            }}>
-              <div style={{ 
-                maxWidth: '800px', 
-                margin: '0 auto',
-                position: 'relative',
-                minHeight: '300px'
-              }}>
-                <Frame3465176 />
-              </div>
-            </div>
-            
-            <p style={{
-              color: '#666666',
-              fontSize: 'clamp(14px, 1.5vw, 16px)',
-              lineHeight: '1.8',
-              textAlign: 'center',
-              maxWidth: '800px',
-              margin: '0 auto'
-            }}>
-              A personalized system that measures each user's comfortable reach and automatically adjusts target placement, making VR fitness accessible for users of all heights, ages, and mobility levels.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       <section className="pb-32 px-6 md:px-12 lg:px-16">
         <div className="max-w-[1600px] mx-auto">
