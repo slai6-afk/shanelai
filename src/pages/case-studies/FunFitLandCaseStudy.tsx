@@ -113,17 +113,26 @@ export function FunFitLandCaseStudy() {
               marginBottom: '32px',
               maxWidth: '800px'
             }}>
-              <a
-                href="/case-study/memory-navigator"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontSize: '16px',
-                  color: 'inherit'
-                }}
-              >
-                A MR game system for seniors with cognitive issue, to identify the symptoms earlier and acknowledge specialists imformatively.
-              </a>
+              <div style={{
+                display: 'inline',
+                fontSize: '16px',
+                fontWeight: 400,
+                lineHeight: '1.6'
+              }}>
+                <p>
+                  <a
+                    href="https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    style={{ fontSize: '16px' }}
+                  >
+                    Calibration system design in VR that fits users with diverse physical mobilities.
+                  </a>
+                </p>
+                <p>
+                  <br />
+                </p>
+              </div>
             </p>
 
             <div style={{ marginBottom: '32px' }}>
