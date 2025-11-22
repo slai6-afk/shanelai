@@ -36,7 +36,7 @@ export function MediaBox({
         position: 'relative'
       }}>
         {type === 'video' ? (
-          <div style={{ position: 'relative' }}>
+          <div className="media-box-video-wrapper" style={{ position: 'relative' }}>
             <video
               autoPlay={videoProps.autoPlay}
               muted={videoProps.muted}
