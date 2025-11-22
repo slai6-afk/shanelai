@@ -10,7 +10,7 @@ import { NextSteps } from '../../components/case-study/NextSteps';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { SkillChart } from '../../components/case-study/SkillChart';
 import { AccessibilityDiagram } from '../../components/case-study/AccessibilityDiagram';
-import { MediaBox } from '../../components/case-study/MediaBox';
+import { CaseStudyHero } from '../../components/case-study/CaseStudyHero';
 import { AlertCircle, Target, TrendingUp, Palette, Gamepad2, Users } from 'lucide-react';
 import imgUserReportIssues from 'figma:asset/a8276e897fcf9fa38bd1bea21da5d7a60fda47d0.png';
 import imgTwoModes from 'figma:asset/f2dd88065c1de01d1bbadd5728203917f47d848a.png';
