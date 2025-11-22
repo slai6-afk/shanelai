@@ -8,7 +8,7 @@ export function HomePage() {
   const highlightedWorks = [
     {
       title: 'Memory Navigator',
-      description: 'AR cognitive training system for elderly users with real-time spatial guidance',
+      description: 'A MR game system for seniors with cognitive issue, to identify the symptoms earlier and acknowledge specialists better.',
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd3d7c1c3590b47178dabf39dc0bd330a',
       tags: ['AR', 'HoloLens'],
       type: 'design' as const,
@@ -16,7 +16,7 @@ export function HomePage() {
     },
     {
       title: 'Huuuuu',
-      description: 'Breath-activated wearable that transforms personal warmth into collective empowerment',
+      description: 'Using gloves with breath-sensors and heating knit to empower women in cold work fields.',
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fca07cfe232474fd98a425e6157eb83f4',
       tags: ['Arduino', 'Wearable'],
       type: 'research' as const,
@@ -24,7 +24,7 @@ export function HomePage() {
     },
     {
       title: 'FunFitLand (UFit)',
-      description: 'VR fitness experience designed for accessibility and inclusive movement',
+      description: 'Calibration system design in VR that fits users with diverse physical mobilities.',
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Ff9363af89837426eac1bacac49533375',
       tags: ['VR', 'Accessibility', 'Design'],
       type: 'design' as const,
@@ -37,7 +37,7 @@ export function HomePage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-[160px] pb-[0px] px-6 md:px-12 lg:px-16 pr-[48px] pl-[48px]">
+      <section className="pt-[150px] pb-[0px] px-6 md:px-12 lg:px-16 pr-[48px] pl-[48px]">
         <div className="max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -56,16 +56,18 @@ export function HomePage() {
             >
               <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
                 <span className="hero-title-text text-1" style={{ fontSize: '54.9px' }}>
-                  Turning Data,&nbsp;&nbsp;
+                  Turning{' '}
+                  <span style={{ color: 'rgb(254, 115, 1)' }}>Data</span>
+                  ,&nbsp;&nbsp;
                 </span>
               </div>
               <div className="hero-title-line line-2" style={{ lineHeight: '70px' }}>
-                <span className="hero-title-text text-2" style={{ fontSize: '54.9px' }}>
+                <span className="hero-title-text text-2" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
                   Systems,&nbsp;&nbsp;
                 </span>
               </div>
               <div className="hero-title-line line-3" style={{ lineHeight: '70px' }}>
-                <span className="hero-title-text text-3" style={{ fontSize: '54.9px' }}>
+                <span className="hero-title-text text-3" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
                   Human Behavior&nbsp;&nbsp;
                 </span>
               </div>
@@ -85,7 +87,7 @@ export function HomePage() {
                 href="mailto:shanshanlai160402@gmail.com"
                 whileHover={{ opacity: 0.6 }}
                 className="inline-flex items-center gap-3"
-                style={{ fontSize: '16px', fontWeight: 400, color: '#000000' }}
+                style={{ fontSize: '16px', fontWeight: 400, color: 'rgb(254, 115, 1)' }}
               >
                 <Mail size={20} />
                 <span>Get in touch</span>
