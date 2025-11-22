@@ -48,6 +48,47 @@ export function FunFitLandCaseStudy() {
       <Navigation />
 
       <section className="pt-40 pb-20 px-6 md:px-12 lg:px-16">
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          minHeight: '60px',
+          minWidth: '20px',
+          width: '100%'
+        }}>
+          <div style={{ position: 'relative' }}>
+            <video
+              autoPlay
+              muted
+              controls={false}
+              playsInline
+              loop
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center',
+                borderRadius: '8px',
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '60px',
+                minWidth: '20px',
+              }}
+            >
+              <source
+                type="video/mp4"
+                src="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
+              />
+            </video>
+            <div style={{
+              width: '100%',
+              paddingTop: '31%',
+              pointerEvents: 'none',
+              fontSize: '0'
+            }} />
+          </div>
+        </div>
         <div className="max-w-[1200px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
