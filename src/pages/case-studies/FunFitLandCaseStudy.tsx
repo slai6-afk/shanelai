@@ -53,7 +53,7 @@ export function FunFitLandCaseStudy() {
           type="video"
           src="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
         />
-        <div className="max-w-[1200px] mx-auto" style={{ marginTop: 0, paddingTop: 0 }}>
+        <div className="max-w-[1200px] mx-auto" style={{ marginTop: '-120px', paddingTop: 0 }}>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
