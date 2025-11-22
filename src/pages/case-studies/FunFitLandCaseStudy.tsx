@@ -48,7 +48,7 @@ export function FunFitLandCaseStudy() {
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
 
-      <section className="pt-40 pb-20 px-6 md:px-12 lg:px-16">
+      <section className="funfitland-hero-section pt-40 pb-20 px-6 md:px-12 lg:px-16">
         <MediaBox
           type="video"
           src="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
