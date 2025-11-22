@@ -37,7 +37,7 @@ export function HomePage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-[150px] pb-[0px] px-6 md:px-12 lg:px-16 pr-[48px] pl-[48px]">
+      <section className="pb-[0px] px-6 md:px-12 lg:px-16 pr-[48px] pl-[48px]">
         <div className="max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
