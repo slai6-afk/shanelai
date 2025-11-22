@@ -32,7 +32,7 @@ export function MediaBox({
       width: '100%'
     }}>
       <div style={{
-        width: '50%',
+        width: '80%',
         position: 'relative'
       }}>
         {type === 'video' ? (
