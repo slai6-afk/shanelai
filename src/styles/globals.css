@@ -267,8 +267,9 @@ html {
 }
 
 .media-box-inner {
-  width: 50%;
+  width: 80%;
   position: relative;
+  margin: 0 auto;
 }
 
 .media-box-video-wrapper {
