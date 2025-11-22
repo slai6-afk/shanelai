@@ -65,6 +65,7 @@ export function FunFitLandCaseStudy() {
               fontSize: 'clamp(36px, 5vw, 56px)',
               fontWeight: 400,
               lineHeight: '1.2',
+              marginTop: 0,
               marginBottom: '16px'
             }}>
               <p>FunFitLand</p>
