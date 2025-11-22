@@ -48,151 +48,27 @@ export function FunFitLandCaseStudy() {
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
 
-      <section className="funfitland-hero-section pt-40 pb-20 px-6 md:px-12 lg:px-16">
-        <MediaBox
-          type="video"
-          src="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
-        />
-        <div className="max-w-[1200px] mx-auto" style={{ marginTop: '-120px', paddingTop: 0 }}>
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ marginTop: '10px' }}
-          >
-            <h1 style={{
-              color: '#000000',
-              fontSize: 'clamp(36px, 5vw, 56px)',
-              fontWeight: 400,
-              lineHeight: '1.2',
-              marginTop: 0,
-              marginBottom: '16px'
-            }}>
-              <p>FunFitLand</p>
-            </h1>
-
-            <p style={{
-              color: '#666666',
-              fontSize: 'clamp(16px, 2vw, 20px)',
-              fontWeight: 400,
-              lineHeight: '1.6',
-              marginBottom: '32px',
-              maxWidth: '800px'
-            }}>
-              <div style={{
-                display: 'inline',
-                fontSize: '16px',
-                fontWeight: 400,
-                lineHeight: '1.6'
-              }}>
-                <p>
-                  <a
-                    href="https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    style={{ fontSize: '16px' }}
-                  >
-                    Calibration system design in VR that fits users with diverse physical mobilities.
-                  </a>
-                </p>
-                <p>
-                  <br />
-                </p>
-              </div>
-            </p>
-
-            <div style={{ marginBottom: '32px' }}>
-              <a 
-                href="https://www.funfitland.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{
-                  color: '#ED964F',
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  textDecoration: 'none',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  transition: 'opacity 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-              >
-                Visit FunFitLand.com →
-              </a>
-            </div>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFA789',
-                color: '#FFFFFF',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                textTransform: 'uppercase',
-                borderRadius: '8px'
-              }}>
-                Product Design
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)',
-                borderRadius: '8px',
-                boxShadow: 'var(--shadow-xs)'
-              }}>
-                <p>Accessibility</p>
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)',
-                borderRadius: '8px',
-                boxShadow: 'var(--shadow-xs)'
-              }}>
-                <p>Startup</p>
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)',
-                borderRadius: '8px',
-                boxShadow: 'var(--shadow-xs)'
-              }}>
-                <p>VR/MR</p>
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)',
-                borderRadius: '8px',
-                boxShadow: 'var(--shadow-xs)'
-              }}>
-                <p>15weeks Internship</p>
-              </span>
-            </div>
-
-          </motion.div>
-        </div>
-      </section>
+      <CaseStudyHero
+        title="FunFitLand"
+        description=""
+        mediaType="video"
+        mediaSrc="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
+        descriptionLink={{
+          href: "https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland",
+          label: "Calibration system design in VR that fits users with diverse physical mobilities."
+        }}
+        visitLink={{
+          href: "https://www.funfitland.com",
+          label: "Visit FunFitLand.com"
+        }}
+        tags={[
+          { label: 'Product Design', variant: 'primary' },
+          { label: 'Accessibility', variant: 'secondary' },
+          { label: 'Startup', variant: 'secondary' },
+          { label: 'VR/MR', variant: 'secondary' },
+          { label: '15weeks Internship', variant: 'secondary' }
+        ]}
+      />
 
 
       <section className="pb-32 px-6 md:px-12 lg:px-16">
