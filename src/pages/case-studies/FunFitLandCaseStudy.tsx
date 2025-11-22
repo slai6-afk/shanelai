@@ -72,7 +72,17 @@ export function FunFitLandCaseStudy() {
               marginBottom: '32px',
               maxWidth: '800px'
             }}>
-              When 40 users said "I can't reach that target," I learned that listening is just as important as designing.
+              <a
+                href="/case-study/memory-navigator"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: '16px',
+                  color: 'inherit'
+                }}
+              >
+                A MR game system for seniors with cognitive issue, to identify the symptoms earlier and acknowledge specialists imformatively.
+              </a>
             </p>
 
             <div style={{ marginBottom: '32px' }}>
