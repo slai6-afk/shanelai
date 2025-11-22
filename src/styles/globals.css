@@ -312,23 +312,17 @@ html {
 }
 
 @media (max-width: 1024px) {
-  .video-wrapper {
+  .media-box-inner.video-wrapper {
     width: 80%;
     margin: 0 auto;
     padding-top: var(--nav-height, 72px);
     margin-bottom: 0 !important;
   }
 
-  .video-wrapper .media-box-video,
-  .video-wrapper video,
-  .video-wrapper img {
+  .media-box-inner.video-wrapper .media-box-video,
+  .media-box-inner.video-wrapper video,
+  .media-box-inner.video-wrapper img {
     margin: 0 !important;
-  }
-}
-
-@media (max-width: 991px) {
-  .media-box-inner {
-    width: 100%;
   }
 
   .media-box-aspect-spacer {
