@@ -264,7 +264,6 @@ html {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 20%;
 }
 
 .media-box-inner {
@@ -282,6 +281,7 @@ html {
   object-position: center;
   border-radius: 8px;
   display: block;
+  margin-top: auto;
   margin-left: auto;
   margin-right: auto;
 }
