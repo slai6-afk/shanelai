@@ -87,8 +87,8 @@ export function HomePage() {
               <motion.a
                 href="mailto:shanshanlai160402@gmail.com"
                 whileHover={{ opacity: 0.6 }}
-                className="inline-flex items-center gap-3"
-                style={{ fontSize: '16px', fontWeight: 400, color: 'rgb(254, 115, 1)' }}
+                className="inline-flex items-center gap-3 home-email-link"
+                style={{ fontSize: '16px', fontWeight: 400 }}
               >
                 <Mail size={20} />
                 <span>Get in touch</span>
