@@ -37,27 +37,22 @@ export function StickyTOC({ items }: StickyTOCProps) {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.preventDefault();
-    
+
     const element = document.getElementById(id);
     if (!element) {
       console.warn(`Element with id "${id}" not found`);
       return;
     }
-    
+
     setActiveId(id);
-    
-    element.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'start'
+
+    // Scroll to element with offset to account for sticky nav
+    const offsetPosition = element.offsetTop - 80;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
     });
-    
-    setTimeout(() => {
-      const currentScrollY = window.scrollY;
-      window.scrollTo({
-        top: currentScrollY - 100,
-        behavior: 'smooth'
-      });
-    }, 0);
   };
 
   return (
