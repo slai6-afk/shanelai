@@ -302,9 +302,7 @@ html {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 0 !important;
-    margin-top: 24px;
-    /* 可选，给视频和 nav 一点缓冲 */
+    padding-top: 0;
   }
 
   .media-box-aspect-spacer {
