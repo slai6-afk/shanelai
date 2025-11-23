@@ -275,24 +275,22 @@ html {
   position: relative;
 }
 
+/* ---------- DESKTOP (≥1024px) ---------- */
 .media-box-video {
-  width: 50%;
-  height: 50%;
+  width: 50%;              /* Desktop = 50% */
+  height: auto;
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 60px;
-  min-width: 20px;
-  margin-left: auto;   /* ← 关键 */
-  margin-right: auto;  /* ← 关键 */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Spacer — disable it unless needed */
 .media-box-aspect-spacer {
   width: 100%;
-  padding-top: 10%;
+  padding-top: 0;
   pointer-events: none;
   font-size: 0;
 }
@@ -304,31 +302,17 @@ html {
   display: block;
 }
 
-.case-study-hero-content-wrapper {
-  margin-top: -100px;
-  padding-top: 0;
-}
-
-.video-wrapper {
-  width: 100%;
-}
-
+/* ---------- MOBILE + TABLET (<1024px) ---------- */
 @media (max-width: 1024px) {
-  .media-box-inner.video-wrapper {
-    width: 100%;
-    margin: 0 auto;
-    padding-top: var(--nav-height, 10px);
-    margin-bottom: 0 !important;
-  }
-
-  .media-box-inner.video-wrapper .media-box-video,
-  .media-box-inner.video-wrapper video,
-  .media-box-inner.video-wrapper img {
-    margin: 0 !important;
+  .media-box-video {
+    width: 100%;          /* Mobile/iPad = 100% width */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: var(--nav-height, 80px); /* ← 防止被导航栏遮住 */
   }
 
   .media-box-aspect-spacer {
-    padding-top: 0%;
+    padding-top: 0;
   }
 
   .case-study-hero-content-wrapper {
