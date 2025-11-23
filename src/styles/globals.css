@@ -255,6 +255,7 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   html {
+    margin-top: 10px;
     scroll-behavior: auto;
   }
 }
