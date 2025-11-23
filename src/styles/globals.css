@@ -324,6 +324,13 @@ html {
   width: 100%;
 }
 
+@media (min-width: 1024px) {
+  .sticky-toc-nav {
+    position: fixed;
+    left: max(64px, calc((100vw - 1600px) / 2 + 64px));
+  }
+}
+
 .case-toc-title {
   color: #555555;
   font-size: 11px;
