@@ -78,7 +78,7 @@ export function FunFitLandCaseStudy() {
               <StickyTOC items={tocItems} />
             </div>
 
-            <div className="max-w-[900px] w-full">
+            <div className="case-study-content-wrapper max-w-[900px] w-full">
               {/* Overview */}
               <div id="tldr" style={{ marginBottom: '80px' }}>
                 <motion.h2

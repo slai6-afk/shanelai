@@ -12,6 +12,7 @@ interface StickyTOCProps {
 
 export function StickyTOC({ items }: StickyTOCProps) {
   const [activeId, setActiveId] = useState<string>('');
+  const [isHeroPast, setIsHeroPast] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,6 +36,22 @@ export function StickyTOC({ items }: StickyTOCProps) {
     return () => observer.disconnect();
   }, [items]);
 
+  useEffect(() => {
+    const heroElement = document.querySelector('.case-study-hero-section');
+    if (!heroElement) return;
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroPast(!entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+
+    heroObserver.observe(heroElement);
+
+    return () => heroObserver.disconnect();
+  }, []);
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.preventDefault();
 
@@ -56,12 +73,14 @@ export function StickyTOC({ items }: StickyTOCProps) {
     });
   };
 
+  const navClassName = `sticky-toc-nav ${isHeroPast ? 'sticky-toc-fixed' : 'sticky-toc-inline'}`;
+
   return (
     <motion.nav
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="sticky-toc-nav"
+      className={navClassName}
     >
       <p className="case-toc-title">Contents</p>
 
