@@ -88,9 +88,6 @@ export function AboutPage() {
                 <h2 style={{ color: '#000000', fontSize: '24px', fontWeight: 500, marginBottom: '8px' }}>
                   Shane Lai
                 </h2>
-                <p style={{ color: '#666666', fontSize: '14px', fontWeight: 400, lineHeight: '1.6', marginBottom: '8px' }}>
-                  Shanshan Lai
-                </p>
                 <p style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.6', marginBottom: '12px' }}>
                   UX Designer / Product Designer
                   <br />New York City, NY
@@ -111,6 +108,12 @@ export function AboutPage() {
             >
               {/* External Links */}
               <div>
+                <p style={{ marginBottom: '24px' }}>
+                  <strong style={{ fontWeight: 700, color: 'rgba(0, 0, 0, 1)' }}>
+                    I see design as a data-informed process that bridges human intuition and system logic.
+                  </strong>
+                </p>
+
                 <h3
                   className="mb-12"
                   style={{
@@ -165,7 +168,7 @@ export function AboutPage() {
                     fontWeight: 500
                   }}
                 >
-                  Background
+                  <p>Who I Am</p>
                 </h3>
                 <div
                   className="space-y-6"
@@ -175,75 +178,16 @@ export function AboutPage() {
                     I'm a UX Designer who moves fluidly between research, strategy, and execution. My experience ranges from designing AI-enhanced e-commerce systems at Temu to analyzing user data and leading design decisions grounded in evidence.
                   </p>
                   <p>
-                    I see design as a bridge between human behavior, data, and technology, where empathy informs structure and analytics guide creativity. Currently pursuing my Master's at Pratt Institute, I aim to design intelligent and inclusive systems that scale meaningfully across global contexts.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mb-12"></div>
-
-              <div className="mb-12"></div>
-
-              <div>
-                <h3 
-                  className="mb-6"
-                  style={{ 
-                    color: '#000000', 
-                    fontSize: '20px',
-                    fontWeight: 500
-                  }}
-                >
-                  Design Philosophy
-                </h3>
-                <div
-                  className="space-y-6"
-                  style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8' }}
-                >
-                  <p>
-                    <strong>
-                      I see design as a data-informed process that bridges human intuition and system logic.
-                    </strong>
-                  </p>
-                  <div>
                     <p>
-                    My approach integrates quantitative analysis, behavioral insights, and creative exploration to craft experiences that are both evidence-based and emotionally resonant.
-                  </p>
-                  </div>
-                  <p>
-                    I believe that data doesn't replace empathy. It refines it, allowing design to scale with clarity, integrity, and measurable impact.
+                      Currently pursuing my Master's at Pratt Institute, I aim to design intelligent and inclusive systems that scale meaningfully across global contexts.
+                    </p>
                   </p>
                 </div>
               </div>
 
-              <div>
-                <h3 
-                  className="mb-6"
-                  style={{ 
-                    color: '#000000', 
-                    fontSize: '20px',
-                    fontWeight: 500
-                  }}
-                >
-                  Skills & Tools
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {expertise.map((skill, index) => (
-                    <motion.div
-                      key={skill}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
-                      style={{ 
-                        color: '#000000',
-                        fontSize: '16px',
-                        fontWeight: 400
-                      }}
-                    >
-                      {skill}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+              <div className="mb-12"></div>
+
+              <div className="mb-12"></div>
             </motion.div>
           </div>
         </div>
