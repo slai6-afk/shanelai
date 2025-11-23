@@ -261,7 +261,6 @@ html {
 
 /* MediaBox layout styles */
 .media-box-container {
-  margin-top: 100px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -312,7 +311,7 @@ html {
 
   .case-study-hero-content-wrapper {
   margin-top: 0px ;
-  padding-top: 30px ;
+  padding-top: 60px ;
   }
 }
 
