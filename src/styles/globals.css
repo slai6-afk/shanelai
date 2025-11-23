@@ -313,7 +313,7 @@ html {
 
 @media (max-width: 1024px) {
   .media-box-inner.video-wrapper {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     padding-top: var(--nav-height, 72px);
     margin-bottom: 0 !important;
