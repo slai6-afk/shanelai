@@ -109,12 +109,6 @@ export function AboutPage() {
             >
               {/* External Links */}
               <div>
-                <p style={{ fontWeight: 500, marginBottom: '100px', paddingBottom: '40px' }}>
-                  <strong style={{ fontWeight: 700, color: 'rgba(0, 0, 0, 1)', marginBottom: '40px' }}>
-                    I see design as a data-informed process that bridges human intuition and system logic.
-                  </strong>
-                </p>
-
                 <h3
                   style={{
                     color: '#000000',
