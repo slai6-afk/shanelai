@@ -55,7 +55,7 @@ export function CaseStudyHero({
   };
 
   return (
-    <section className="case-study-hero-section pb-40 px-6 md:px-12 lg:px-16">
+    <section className="case-study-hero-section pb-20 px-6 md:px-40 lg:px-16">
       <MediaBox
         type={mediaType}
         src={mediaSrc}
