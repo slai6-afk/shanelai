@@ -276,8 +276,8 @@ html {
 }
 
 .media-box-video {
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 50%;
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
