@@ -36,7 +36,7 @@ export function FunFitLandResearchCaseStudy() {
       </section>
       <section className="pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-8">
             <div className="hidden lg:block"><StickyTOC items={tocItems} /></div>
             <div className="max-w-[900px]">
               <div id="tldr" style={{ marginBottom: '80px' }}>
