@@ -255,13 +255,13 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    margin-top: 100px;
     scroll-behavior: auto;
   }
 }
 
 /* MediaBox layout styles */
 .media-box-container {
+  margin-top: 100px;
   display: flex;
   justify-content: center;
   width: 100%;
