@@ -250,7 +250,7 @@ html {
 
 /* Smooth scroll behavior */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -313,6 +313,11 @@ html {
   margin-top: 0px ;
   padding-top: 0px ;
   }
+}
+
+/* Sticky TOC hover animation */
+.toc-item:hover {
+  transform: translateX(2px);
 }
 
 /* Selected Works Section Responsive Styles */

@@ -36,7 +36,6 @@ export function StickyTOC({ items }: StickyTOCProps) {
   }, [items]);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    // Prevent any default behavior
     e.preventDefault();
     
     const element = document.getElementById(id);
@@ -45,17 +44,13 @@ export function StickyTOC({ items }: StickyTOCProps) {
       return;
     }
     
-    // Immediately update active state
     setActiveId(id);
     
-    // Scroll to the element smoothly
     element.scrollIntoView({ 
       behavior: 'smooth', 
       block: 'start'
     });
     
-    // Adjust for fixed header (100px offset to match IntersectionObserver rootMargin)
-    // We need a small timeout to let scrollIntoView start, then adjust
     setTimeout(() => {
       const currentScrollY = window.scrollY;
       window.scrollTo({
@@ -70,22 +65,19 @@ export function StickyTOC({ items }: StickyTOCProps) {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
+      className="sticky-toc-nav"
       style={{
         position: 'sticky',
         top: '120px',
         alignSelf: 'flex-start',
-        padding: '24px',
-        backgroundColor: '#FFFFFF',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
-        borderRadius: '4px',
-        maxHeight: 'calc(100vh - 200px)',
-        overflowY: 'auto'
+        maxWidth: '180px',
+        width: '100%'
       }}
     >
       <p style={{
-        color: '#000000',
-        fontSize: '12px',
-        fontWeight: 500,
+        color: '#555555',
+        fontSize: '11px',
+        fontWeight: 400,
         textTransform: 'uppercase',
         letterSpacing: '0.05em',
         marginBottom: '16px'
@@ -99,21 +91,25 @@ export function StickyTOC({ items }: StickyTOCProps) {
         listStyle: 'none' 
       }}>
         {items.map((item) => (
-          <li key={item.id} style={{ marginBottom: '8px' }}>
+          <li key={item.id} style={{ marginBottom: '6px' }}>
             <button
               onClick={(e) => handleClick(e, item.id)}
+              className="toc-item"
+              data-active={activeId === item.id}
               style={{
                 background: 'none',
                 border: 'none',
-                padding: '6px 12px',
+                padding: '6px 0',
                 width: '100%',
                 textAlign: 'left',
-                color: activeId === item.id ? '#000000' : '#666666',
-                fontSize: '13px',
-                fontWeight: activeId === item.id ? 500 : 400,
-                transition: 'all 0.2s ease',
-                borderLeft: activeId === item.id ? '2px solid #f97316' : '2px solid transparent',
-                cursor: 'pointer'
+                color: activeId === item.id ? '#000000' : '#555555',
+                fontSize: '14px',
+                fontWeight: activeId === item.id ? 400 : 300,
+                transition: 'all 0.25s ease',
+                borderLeft: activeId === item.id ? '2px solid #ED964F' : '2px solid transparent',
+                paddingLeft: '12px',
+                cursor: 'pointer',
+                display: 'block'
               }}
             >
               {item.label}
