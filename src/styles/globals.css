@@ -275,7 +275,7 @@ html {
   position: relative;
 }
 .media-box-video {
-  width: 50%;      
+  width: 100%;      
   height: auto;
   object-fit: cover;
   object-position: center;
