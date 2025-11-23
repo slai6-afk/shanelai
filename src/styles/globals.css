@@ -327,7 +327,7 @@ html {
 
 /* Home email link responsive color */
 .home-email-link {
-  color: rgb(254, 115, 1);
+  color: rgb(0, 0, 0);
 }
 
 @media (max-width: 991px) {
