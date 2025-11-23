@@ -274,8 +274,6 @@ html {
 .media-box-video-wrapper {
   position: relative;
 }
-
-/* ---------- DESKTOP (≥1024px) ---------- */
 .media-box-video {
   width: 50%;              /* Desktop = 50% */
   height: auto;
@@ -286,8 +284,6 @@ html {
   margin-left: auto;
   margin-right: auto;
 }
-
-/* Spacer — disable it unless needed */
 .media-box-aspect-spacer {
   width: 100%;
   padding-top: 0;
@@ -301,8 +297,6 @@ html {
   border-radius: 8px;
   display: block;
 }
-
-/* ---------- MOBILE + TABLET (<1024px) ---------- */
 @media (max-width: 1024px) {
   .media-box-video {
     width: 100%;          /* Mobile/iPad = 100% width */
@@ -356,7 +350,7 @@ html {
   }
 
   .case-study-hero-section {
-    padding-top: 100px;
+    padding-top: 10px;
   }
 }
 
