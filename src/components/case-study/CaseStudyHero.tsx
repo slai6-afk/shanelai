@@ -55,12 +55,12 @@ export function CaseStudyHero({
   };
 
   return (
-    <section className="case-study-hero-section pb-20 px-6 md:px-12 lg:px-16">
+    <section className="case-study-hero-section pb-40 px-6 md:px-12 lg:px-16">
       <MediaBox
         type={mediaType}
         src={mediaSrc}
       />
-      <div className="max-w-[1440px] mx-auto case-study-hero-content-wrapper">
+      <div className="max-w-[1200px] mx-auto case-study-hero-content-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
