@@ -281,7 +281,7 @@ html {
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
-  position: relative;
+  position: center;
   display: flex;
   flex-direction: column;
   min-height: 60px;
