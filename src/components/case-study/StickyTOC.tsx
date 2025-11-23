@@ -22,7 +22,7 @@ export function StickyTOC({ items }: StickyTOCProps) {
           }
         });
       },
-      { rootMargin: '-100px 0px -80% 0px' }
+      { rootMargin: '-80px 0px -80% 0px' }
     );
 
     items.forEach((item) => {

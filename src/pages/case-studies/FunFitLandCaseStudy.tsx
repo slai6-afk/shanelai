@@ -73,7 +73,7 @@ export function FunFitLandCaseStudy() {
 
       <section className="pb-32 px-6 md:px-12 lg:px-16">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block">
               <StickyTOC items={tocItems} />
             </div>
