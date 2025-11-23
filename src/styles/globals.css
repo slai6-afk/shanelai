@@ -268,11 +268,11 @@ html {
 
 .media-box-inner {
   width: 80%;
-  position: relative;
+  position: center;
 }
 
 .media-box-video-wrapper {
-  position: relative;
+  position: center;
 }
 
 .media-box-video {
