@@ -267,6 +267,7 @@ html {
 }
 
 .media-box-inner {
+  margin-top: 100px;
   width: 80%;
   position: relative;
 }
