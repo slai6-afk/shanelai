@@ -83,8 +83,10 @@ export function CaseStudyHero({
             fontSize: 'clamp(16px, 2vw, 20px)',
             fontWeight: 400,
             lineHeight: '1.6',
-            marginBottom: '32px',
-            maxWidth: '800px'
+            marginBottom: '10px',
+            maxWidth: '800px',
+            display: 'flex',
+            flexDirection: 'row'
           }}>
             {descriptionLink ? (
               <>
@@ -92,7 +94,9 @@ export function CaseStudyHero({
                   fontSize: '16px',
                   fontWeight: 400,
                   lineHeight: '1.6',
-                  margin: 0
+                  margin: 0,
+                  display: 'flex',
+                  flexDirection: 'row'
                 }}>
                   <a
                     href={descriptionLink.href}
