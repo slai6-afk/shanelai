@@ -261,6 +261,7 @@ html {
 
 /* MediaBox layout styles */
 .media-box-container {
+  margin-top: 0px;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -284,7 +285,6 @@ html {
   margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 30px;
 }
 .media-box-aspect-spacer {
   width: 100%;
@@ -312,7 +312,7 @@ html {
 
   .case-study-hero-content-wrapper {
   margin-top: 0px ;
-  padding-top: 20px ;
+  padding-top: 30px ;
   }
 }
 
