@@ -147,7 +147,7 @@ export function CaseStudyHero({
                     ...getTagStyle(tag.variant)
                   }}
                 >
-                  <p style={{ margin: 0 }}>{tag.label}</p>
+                  {tag.label}
                 </span>
               ))}
             </div>
