@@ -299,10 +299,12 @@ html {
 }
 @media (max-width: 1024px) {
   .media-box-video {
-    width: 100%;          /* Mobile/iPad = 100% width */
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: var(--nav-height, 80px); /* ← 防止被导航栏遮住 */
+    padding-top: 0 !important;
+    margin-top: 24px;
+    /* 可选，给视频和 nav 一点缓冲 */
   }
 
   .media-box-aspect-spacer {
