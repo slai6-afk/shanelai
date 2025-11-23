@@ -55,7 +55,7 @@ export function FunFitLandCaseStudy() {
         mediaSrc="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
         descriptionLink={{
           href: "https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland",
-          label: "Calibration system design in VR that fits users with diverse physical mobilities. Providing users with different motion range and targets size."
+          label: "I designed calibration system in VR games that fits users with diverse physical mobilities, providing users with different motion range and targets size."
         }}
         visitLink={{
           href: "https://www.funfitland.com",
@@ -98,19 +98,19 @@ export function FunFitLandCaseStudy() {
                   <TLDRCard
                     icon={AlertCircle}
                     title="Challenge"
-                    content="40 users reported they couldn't reach targets in our VR fitness game. My first instinct? Assume it was their devices. That assumption nearly cost us our most vulnerable users."
+                    content="About 40 users reported they couldn't reach targets in our VR fitness game. Our rates went down from 4.6 to 4.1"
                     index={0}
                   />
                   <TLDRCard
                     icon={Target}
                     title="Approach"
-                    content="I moved beyond assumptions and directly engaged with users by interviewing those who reported problems, running controlled experiments, and using data to validate what users told me."
+                    content="I used gameplay log analysis and user pattern insights to define the root cause, then translated findings into UX directions and engineering requirements."
                     index={1}
                   />
                   <TLDRCard
                     icon={TrendingUp}
                     title="Impact"
-                    content="Designed a personalized calibration system that adapts targets to each user's physical capabilities. This transformed accessibility from an afterthought into a core product feature."
+                    content="We improved our rating from 4.1 to 4.7, and users stopped reporting issues about not being able to hit the targets. Older users also told us they enjoy the experience much more now."
                     index={2}
                   />
                 </div>
@@ -906,7 +906,7 @@ export function FunFitLandCaseStudy() {
                       My Role
                     </h3>
                     <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
-                      Product Team Member (Product Manager, Designer, Data Analyst) - Led user research, problem definition, prototyping, and calibration system design
+                      Product Intern (Product Manager, Designer, Data Analyst)
                     </p>
                   </div>
 
@@ -915,7 +915,7 @@ export function FunFitLandCaseStudy() {
                       Team
                     </h3>
                     <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
-                      30-person startup team including product managers, engineers, and game designers
+                      30-person startup team including CEO, product managers, engineers, and game designers
                     </p>
                   </div>
 
@@ -924,7 +924,7 @@ export function FunFitLandCaseStudy() {
                       Timeline & Company
                     </h3>
                     <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6', marginBottom: '8px' }}>
-                      12 weeks (2023)
+                      15 weeks (2023)
                     </p>
                     <a 
                       href="https://www.funfitland.com" 
