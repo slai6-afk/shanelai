@@ -278,10 +278,11 @@ html {
 .media-box-video {
   width: 100%;
   height: auto;
-  max-height: 480px;
-  object-fit: contain;
-  min-height: 60px;
-  min-width: 20px;
+  max-height: 70vh;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 8px;
+  display: block;
 }
 
 .media-box-aspect-spacer {
