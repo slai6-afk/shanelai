@@ -287,7 +287,6 @@ html {
 }
 .media-box-aspect-spacer {
   width: 100%;
-  margin-top: 100px;
   padding-top: 0px;
   pointer-events: none;
   font-size: 0;
@@ -303,7 +302,7 @@ html {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
+    padding-top: 0px;
   }
 
   .media-box-aspect-spacer {
