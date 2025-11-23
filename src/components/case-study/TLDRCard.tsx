@@ -49,14 +49,15 @@ export function TLDRCard({ icon: Icon, title, content, index = 0 }: TLDRCardProp
         {title}
       </h3>
 
-      <p style={{
-        color: '#666666',
-        fontSize: '14px',
-        fontWeight: 400,
-        lineHeight: '1.7'
-      }}>
-        {content}
-      </p>
+      <p
+        style={{
+          color: '#666666',
+          fontSize: '14px',
+          fontWeight: 400,
+          lineHeight: '1.7'
+        }}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </motion.div>
   );
 }

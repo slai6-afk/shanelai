@@ -98,19 +98,19 @@ export function FunFitLandCaseStudy() {
                   <TLDRCard
                     icon={AlertCircle}
                     title="Challenge"
-                    content="About 40 users reported they couldn't reach targets in our VR fitness game. Our rates went down from 4.6 to 4.1"
+                    content="About 40 users reported they couldn't reach targets in our VR fitness game. Our rates went down from <strong>4.6</strong> to <strong>4.1</strong>"
                     index={0}
                   />
                   <TLDRCard
                     icon={Target}
                     title="Approach"
-                    content="I used gameplay log analysis and user pattern insights to define the root cause, then translated findings into UX directions and engineering requirements."
+                    content="I used gameplay <strong>log analysis</strong> and <strong>user pattern insights</strong> to define the root cause, then translated findings into UX directions and engineering requirements."
                     index={1}
                   />
                   <TLDRCard
                     icon={TrendingUp}
                     title="Impact"
-                    content="We improved our rating from 4.1 to 4.7, and users stopped reporting issues about not being able to hit the targets. Older users also told us they enjoy the experience much more now."
+                    content="We improved our rating from <strong>4.1 to 4.7</strong>, and users stopped reporting issues about not being able to hit the targets. <strong>Older users</strong> also told us they enjoy the experience much more now."
                     index={2}
                   />
                 </div>
