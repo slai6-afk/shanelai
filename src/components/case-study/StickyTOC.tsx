@@ -44,13 +44,14 @@ export function StickyTOC({ items }: StickyTOCProps) {
       return;
     }
 
+    const rect = element.getBoundingClientRect();
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const targetOffset = scrollTop + rect.top - 80;
+
     setActiveId(id);
 
-    // Scroll to element with offset to account for sticky nav
-    const offsetPosition = element.offsetTop - 80;
-
     window.scrollTo({
-      top: offsetPosition,
+      top: targetOffset,
       behavior: 'smooth'
     });
   };
@@ -61,51 +62,16 @@ export function StickyTOC({ items }: StickyTOCProps) {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
       className="sticky-toc-nav"
-      style={{
-        position: 'sticky',
-        top: '80px',
-        alignSelf: 'flex-start',
-        maxWidth: '180px',
-        width: '100%'
-      }}
     >
-      <p style={{
-        color: '#555555',
-        fontSize: '11px',
-        fontWeight: 400,
-        textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        marginBottom: '16px'
-      }}>
-        Contents
-      </p>
+      <p className="case-toc-title">Contents</p>
 
-      <ul style={{ 
-        margin: 0, 
-        padding: 0, 
-        listStyle: 'none' 
-      }}>
+      <ul className="case-toc-list">
         {items.map((item) => (
-          <li key={item.id} style={{ marginBottom: '6px' }}>
+          <li key={item.id} className="case-toc-list-item">
             <button
               onClick={(e) => handleClick(e, item.id)}
               className="toc-item"
               data-active={activeId === item.id}
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: '6px 0',
-                width: '100%',
-                textAlign: 'left',
-                color: activeId === item.id ? '#000000' : '#555555',
-                fontSize: '14px',
-                fontWeight: activeId === item.id ? 400 : 300,
-                transition: 'all 0.25s ease',
-                borderLeft: activeId === item.id ? '2px solid #ED964F' : '2px solid transparent',
-                paddingLeft: '12px',
-                cursor: 'pointer',
-                display: 'block'
-              }}
             >
               {item.label}
             </button>
