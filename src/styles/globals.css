@@ -315,7 +315,7 @@ html {
   .media-box-inner.video-wrapper {
     width: 100%;
     margin: 0 auto;
-    padding-top: var(--nav-height, 60px);
+    padding-top: var(--nav-height, 20px);
     margin-bottom: 0 !important;
   }
 
