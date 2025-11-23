@@ -84,7 +84,6 @@ export function CaseStudyHero({
             fontWeight: 400,
             lineHeight: '1.6',
             marginBottom: '10px',
-            maxWidth: '800px',
             display: 'flex',
             flexDirection: 'row'
           }}>
