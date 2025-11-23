@@ -72,7 +72,7 @@ export function CaseStudyHero({
             fontSize: 'clamp(36px, 5vw, 56px)',
             fontWeight: 400,
             lineHeight: '1.2',
-            marginTop: 0,
+            marginTop: 100px,
             marginBottom: '16px'
           }}>
             {title}
