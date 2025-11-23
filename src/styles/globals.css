@@ -267,7 +267,6 @@ html {
 }
 
 .media-box-inner {
-  margin-top: 100px;
   width: 80%;
   position: relative;
 }
@@ -303,7 +302,7 @@ html {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 80px;
+    padding-top: 10px;
   }
 
   .media-box-aspect-spacer {
