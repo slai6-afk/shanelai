@@ -295,11 +295,11 @@ html {
 .media-box-image {
   width: 100%;
   height: auto;
-  border-radius: 8px;
   display: block;
 }
 @media (max-width: 1024px) {
   .media-box-video {
+    border-radius: 8px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
