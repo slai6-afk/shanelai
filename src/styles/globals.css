@@ -272,7 +272,6 @@ html {
 }
 
 .media-box-video-wrapper {
-  margin-top: 100px;
   position: relative;
 }
 .media-box-video {
@@ -303,7 +302,7 @@ html {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
+    padding-top: 10px;
   }
 
   .media-box-aspect-spacer {
