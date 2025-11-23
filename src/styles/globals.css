@@ -268,11 +268,11 @@ html {
 
 .media-box-inner {
   width: 80%;
-  position: center;
+  position: relative;
 }
 
 .media-box-video-wrapper {
-  position: center;
+  position: relative;
 }
 
 .media-box-video {
@@ -281,7 +281,7 @@ html {
   object-fit: cover;
   object-position: center;
   border-radius: 8px;
-  position: center;
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 60px;
