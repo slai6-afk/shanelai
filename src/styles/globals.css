@@ -326,6 +326,12 @@ html {
 }
 
 @media (max-width: 991px) {
+  .tldr-card {
+    flex-grow: 0;
+    height: auto;
+    min-height: 200px;
+  }
+
   .home-email-link {
     color: rgba(0, 0, 0, 1);
   }

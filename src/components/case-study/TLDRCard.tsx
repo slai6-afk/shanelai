@@ -15,6 +15,7 @@ export function TLDRCard({ icon: Icon, title, content, index = 0 }: TLDRCardProp
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
+      className="tldr-card"
       style={{
         backgroundColor: '#FFFFFF',
         border: '1px solid rgba(0, 0, 0, 0.08)',
