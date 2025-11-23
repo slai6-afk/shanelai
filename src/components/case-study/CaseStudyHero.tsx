@@ -60,7 +60,7 @@ export function CaseStudyHero({
         type={mediaType}
         src={mediaSrc}
       />
-      <div className="max-w-[1200px] mx-auto case-study-hero-content-wrapper">
+      <div className="max-w-[1440px] mx-auto case-study-hero-content-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
