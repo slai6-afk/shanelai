@@ -273,6 +273,8 @@ html {
 
 .media-box-video-wrapper {
   position: relative;
+  width: 80%;
+  padding-top: 56.25%;
 }
 
 .media-box-video {
