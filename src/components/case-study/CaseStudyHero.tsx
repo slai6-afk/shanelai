@@ -75,10 +75,10 @@ export function CaseStudyHero({
             marginTop: 0,
             marginBottom: '16px'
           }}>
-            <p>{title}</p>
+            {title}
           </h1>
 
-          <p style={{
+          <div style={{
             color: '#666666',
             fontSize: 'clamp(16px, 2vw, 20px)',
             fontWeight: 400,
@@ -87,30 +87,28 @@ export function CaseStudyHero({
             maxWidth: '800px'
           }}>
             {descriptionLink ? (
-              <div style={{
-                display: 'inline',
-                fontSize: '16px',
-                fontWeight: 400,
-                lineHeight: '1.6'
-              }}>
-                <p>
+              <>
+                <p style={{
+                  fontSize: '16px',
+                  fontWeight: 400,
+                  lineHeight: '1.6',
+                  margin: 0
+                }}>
                   <a
                     href={descriptionLink.href}
                     rel="noopener noreferrer"
                     target="_blank"
                     style={{ fontSize: '16px' }}
                   >
-                    <p>{descriptionLink.label}</p>
+                    {descriptionLink.label}
                   </a>
                 </p>
-                <p>
-                  <br />
-                </p>
-              </div>
+                <br />
+              </>
             ) : (
-              description
+              <p style={{ margin: 0 }}>{description}</p>
             )}
-          </p>
+          </div>
 
           {visitLink && (
             <div style={{ fontWeight: 400, marginBottom: '32px' }}>
