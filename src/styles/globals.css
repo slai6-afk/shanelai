@@ -276,16 +276,21 @@ html {
 }
 
 .media-box-video {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center top;
-    border-radius: 8px;
-    display: block;
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  min-height: 60px;
+  min-width: 20px;
 }
+
 .media-box-aspect-spacer {
-    padding-top: 0 !important;
+  width: 100%;
+  padding-top: 10%;
+  pointer-events: none;
+  font-size: 0;
 }
+
 .media-box-image {
   width: 100%;
   height: auto;
