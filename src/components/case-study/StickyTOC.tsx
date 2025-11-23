@@ -63,7 +63,7 @@ export function StickyTOC({ items }: StickyTOCProps) {
       className="sticky-toc-nav"
       style={{
         position: 'sticky',
-        top: '120px',
+        top: '80px',
         alignSelf: 'flex-start',
         maxWidth: '180px',
         width: '100%'
