@@ -73,6 +73,7 @@ export function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
               className="lg:col-span-5"
+              style={{ paddingRight: '100px' }}
             >
               <div
                 className="aspect-[3/4] bg-[#e5e5e5] overflow-hidden mb-8"
@@ -108,18 +109,18 @@ export function AboutPage() {
             >
               {/* External Links */}
               <div>
-                <p style={{ marginBottom: '24px' }}>
-                  <strong style={{ fontWeight: 700, color: 'rgba(0, 0, 0, 1)' }}>
+                <p style={{ fontWeight: 500, marginBottom: '100px', paddingBottom: '40px' }}>
+                  <strong style={{ fontWeight: 700, color: 'rgba(0, 0, 0, 1)', marginBottom: '40px' }}>
                     I see design as a data-informed process that bridges human intuition and system logic.
                   </strong>
                 </p>
 
                 <h3
-                  className="mb-12"
                   style={{
                     color: '#000000',
                     fontSize: '24px',
-                    fontWeight: 500
+                    fontWeight: 500,
+                    marginBottom: '30px'
                   }}
                 >
                   Connect
@@ -159,7 +160,7 @@ export function AboutPage() {
                 </div>
               </div>
 
-              <div>
+              <div style={{ marginBottom: '30px' }}>
                 <h3
                   className="mb-6"
                   style={{
