@@ -51,12 +51,13 @@ export function FunFitLandCaseStudy() {
         mediaType="video"
         mediaSrc="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
         descriptionLink={{
-          href: "https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland",
-          label: "I designed calibration system in VR games that fits users with diverse physical mobilities, providing users with different motion range and targets size."
+          href: 'https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland',
+          label:
+            'I designed calibration system in VR games that fits users with diverse physical mobilities, providing users with different motion range and targets size.'
         }}
         visitLink={{
-          href: "https://www.funfitland.com",
-          label: "Visit FunFitLand.com"
+          href: 'https://www.funfitland.com',
+          label: 'Visit FunFitLand.com'
         }}
         tags={[
           { label: 'Product Design', variant: 'primary' },
@@ -67,7 +68,6 @@ export function FunFitLandCaseStudy() {
         ]}
       />
 
-
       <section className="pb-32 px-6 md:px-12 lg:px-16">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
@@ -77,49 +77,32 @@ export function FunFitLandCaseStudy() {
 
             <div className="case-study-content-wrapper max-w-[900px] w-full">
               {/* Overview */}
-              <div id="tldr" style={{ marginBottom: '80px' }}>
+              <div id="tldr" className="funfit-section funfit-overview-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '32px' }}
+                  className="funfit-section-title funfit-section-title--overview"
                 >
                   Overview
                 </motion.h2>
 
-                <div
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    padding: '32px',
-                    borderRadius: '20px',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    boxShadow: 'var(--shadow-sm)',
-                    marginBottom: '32px'
-                  }}
-                >
-                  <div style={{ marginBottom: '24px' }}>
-                    <h3 style={{ fontWeight: 600, marginBottom: '8px', color: '#000000', fontSize: '16px' }}>
-                      My Role
-                    </h3>
-                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                <div className="funfit-overview-meta-card">
+                  <div className="funfit-overview-meta-group">
+                    <h3 className="funfit-meta-heading">My Role</h3>
+                    <p className="funfit-meta-text">
                       Product Intern (Product Manager, Designer, Data Analyst)
                     </p>
                   </div>
                   <div>
-                    <h3 style={{ fontWeight: 600, marginBottom: '8px', color: '#000000', fontSize: '16px' }}>
-                      Team
-                    </h3>
-                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                    <h3 className="funfit-meta-heading">Team</h3>
+                    <p className="funfit-meta-text">
                       30-person startup team including CEO, product managers, engineers, and game designers
                     </p>
                   </div>
                 </div>
 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-                  gap: '20px'
-                }}>
+                <div className="funfit-tldr-grid">
                   <TLDRCard
                     icon={AlertCircle}
                     title="Challenge"
@@ -142,12 +125,12 @@ export function FunFitLandCaseStudy() {
               </div>
 
               {/* Context Section */}
-              <div id="context" style={{ marginBottom: '80px' }}>
+              <div id="context" className="funfit-section funfit-context-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
+                  className="funfit-section-title funfit-section-title--standard"
                 >
                   Context: What is FunFitLand?
                 </motion.h2>
@@ -156,9 +139,9 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8', marginBottom: '40px' }}
+                  className="funfit-context-intro"
                 >
-                  <p style={{ marginBottom: '20px' }}>
+                  <p className="funfit-context-paragraph">
                     FunFitLand is a VR fitness platform for Meta Quest that combines exercise with immersive environments. The <strong>DanceFit mode</strong> challenges users to <strong>hit floating targets</strong> in sync with music, an experience designed to make fitness feel like play.
                   </p>
                 </motion.div>
@@ -167,12 +150,12 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginBottom: '40px' }}
+                  className="funfit-subsection"
                 >
-                  <h3 style={{ color: '#ED964F', fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>
+                  <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--md">
                     How It Works
                   </h3>
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '24px' }}>
+                  <p className="funfit-body-text funfit-body-text--spaced-md">
                     Users see targets floating in a 39-inch (100cm) radius around them. To score points, they must reach out and hit targets, combining cardio with coordination.
                   </p>
                 </motion.div>
@@ -181,24 +164,12 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ 
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-                    marginBottom: '40px',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-md)',
-                    maxWidth: '100%'
-                  }}
+                  className="funfit-dark-panel"
                 >
-                  <img 
-                    src={imgPOVFunfitland} 
+                  <img
+                    src={imgPOVFunfitland}
                     alt="First-person view of user reaching for floating targets in VR environment"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      borderRadius: '12px'
-                    }}
+                    className="funfit-image-full"
                   />
                 </motion.div>
 
@@ -206,38 +177,22 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ 
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-                    gap: 'clamp(24px, 4vw, 40px)',
-                    alignItems: 'center',
-                    marginBottom: '40px'
-                  }}
+                  className="funfit-context-grid"
                 >
-                  <div style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8' }}>
-                    <h3 style={{ color: '#ED964F', fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>
+                  <div className="funfit-context-text-block">
+                    <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--md">
                       Multi-Modal Feedback
                     </h3>
-                    <p>
+                    <p className="funfit-body-text">
                       Targets use both sound and visuals to guide players. Since humans process audio faster than visuals, sound cues have a larger trigger radius, creating more intuitive interactions.
                     </p>
                   </div>
 
-                  <div style={{ 
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(20px, 4vw, 32px)',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-sm)'
-                  }}>
-                    <img 
-                      src={imgTargetInteraction} 
+                  <div className="funfit-dark-panel funfit-dark-panel--compact">
+                    <img
+                      src={imgTargetInteraction}
                       alt="Diagram showing audio radius (200cm) vs visual radius (70cm)"
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                        borderRadius: '12px'
-                      }}
+                      className="funfit-image-full"
                     />
                   </div>
                 </motion.div>
@@ -246,35 +201,23 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ 
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-                    marginBottom: '40px',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-md)',
-                    maxWidth: '100%'
-                  }}
+                  className="funfit-dark-panel"
                 >
-                  <img 
-                    src={imgProductOverview} 
+                  <img
+                    src={imgProductOverview}
                     alt="Circular target layout showing 100cm radius and shoulder span considerations"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      borderRadius: '12px'
-                    }}
+                    className="funfit-image-full"
                   />
                 </motion.div>
               </div>
 
               {/* Problem Section */}
-              <div id="problem" style={{ marginBottom: '80px' }}>
+              <div id="problem" className="funfit-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
+                  className="funfit-section-title funfit-section-title--standard"
                 >
                   The Problem
                 </motion.h2>
@@ -283,24 +226,24 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '32px' }}
+                  className="funfit-body-text funfit-body-text--spaced-lg"
                 >
-                  <p style={{ marginBottom: '20px' }}>
+                  <p className="funfit-body-paragraph">
                     Over three months, we received reports from <strong>47</strong> users saying they <strong>couldn't reach targets</strong>. We thought it is an equipment issue, like maybe their device calibration was off, or they were using broken controllers.
                   </p>
-                  <p>
+                  <p className="funfit-body-paragraph">
                     <strong>I was wrong. So we have to dig into it...</strong> It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we assumed.
                   </p>
                 </motion.div>
               </div>
 
               {/* Research & Discovery Section */}
-              <div id="research" style={{ marginBottom: '80px' }}>
+              <div id="research" className="funfit-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
+                  className="funfit-section-title funfit-section-title--standard"
                 >
                   Research & Discovery
                 </motion.h2>
@@ -309,7 +252,7 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8', marginBottom: '32px' }}
+                  className="funfit-body-text funfit-body-text--spaced-md"
                 >
                   <p>
                     To understand why users consistently failed to reach targets, I pulled <strong>two weeks of historical gameplay logs</strong> from the product backend. I sampled <strong>around 200 users</strong> and extracted their <strong>headset and controller telemetry.</strong>
@@ -333,23 +276,15 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    marginTop: '24px',
-                    marginBottom: '24px'
-                  }}
+                  className="funfit-research-summary"
                 >
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '16px' }}>
+                  <p className="funfit-research-caption">
                     Here is how I used these data to find where the real problem is:
                   </p>
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F9f65e5ddb46b489bb44fa304a78eda89"
                     alt="Visualization of gameplay log analysis showing target reach patterns and user clusters"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      borderRadius: '12px'
-                    }}
+                    className="funfit-image-full"
                   />
                 </motion.div>
 
@@ -357,17 +292,12 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginTop: '40px' }}
+                  className="funfit-subsection funfit-subsection--with-top"
                 >
-                  <h3 style={{
-                    color: '#ED964F',
-                    fontSize: '20px',
-                    fontWeight: 600,
-                    marginBottom: '16px'
-                  }}>
+                  <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">
                     Testing Hypotheses
                   </h3>
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '32px' }}>
+                  <p className="funfit-body-text funfit-body-text--spaced-lg">
                     With all the data, we could now systematically test each hypothesis from the product team.
                   </p>
                 </motion.div>
@@ -376,52 +306,31 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-                    marginBottom: '40px',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-md)'
-                  }}
+                  className="funfit-dark-panel"
                 >
                   <img
                     src={imgExperiments}
                     alt="Three experiments: rhythm perception, reach capability, and mobility testing"
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      borderRadius: '12px'
-                    }}
+                    className="funfit-image-full"
                   />
                 </motion.div>
 
-                <div
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    padding: '24px',
-                    borderRadius: '20px',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    boxShadow: 'var(--shadow-sm)',
-                    marginBottom: '32px'
-                  }}
-                >
-                  <p className="hypothesis-callout" style={{ color: '#ED964F', fontSize: '15px', lineHeight: '1.7' }}>
+                <div className="funfit-hypothesis-card">
+                  <p className="hypothesis-callout">
                     <em>
                       Bang!!! It is the hypothesis 3. So people with mobility issues and older age "feel" they can't hit it.
                     </em>
                   </p>
                 </div>
-
               </div>
 
               {/* Solution Section */}
-              <div id="solution" style={{ marginBottom: '80px' }}>
+              <div id="solution" className="funfit-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
+                  className="funfit-section-title funfit-section-title--standard"
                 >
                   The Solution: Personalized Calibration
                 </motion.h2>
@@ -430,12 +339,12 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '48px' }}
+                  className="funfit-body-text funfit-solution-intro"
                 >
-                  <p style={{ marginBottom: '20px' }}>
+                  <p className="funfit-body-paragraph">
                     Instead of assuming one-size-fits-all, I designed a personalized calibration system that adapts to each user's unique reach and comfort level.
                   </p>
-                  <p>
+                  <p className="funfit-body-paragraph">
                     The system measures three reach zones: comfortable reach, mid-stretch, and maximum stretch. Users can calibrate their experience based on their current energy, mobility, and fitness goals.
                   </p>
                 </motion.div>
@@ -444,38 +353,19 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginBottom: '48px' }}
+                  className="funfit-solution-subsection"
                 >
-                  <h3 style={{
-                    color: '#ED964F',
-                    fontSize: '20px',
-                    fontWeight: 600,
-                    marginBottom: '24px'
-                  }}>
+                  <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">
                     Calibration Experience
                   </h3>
 
-                  <div style={{
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-                    marginBottom: '32px',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-md)'
-                  }}>
-                    <div style={{ 
-                      maxWidth: '900px', 
-                      margin: '0 auto',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      overflow: 'visible',
-                      width: '100%'
-                    }}>
+                  <div className="funfit-calibration-visual">
+                    <div className="funfit-calibration-frame">
                       <Frame3465176 />
                     </div>
                   </div>
 
-                  <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.8', fontStyle: 'italic' }}>
+                  <p className="funfit-body-note">
                     New users are guided through a brief calibration flow where they reach in different directions to establish their personal comfort zones.
                   </p>
                 </motion.div>
@@ -484,83 +374,42 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginBottom: '48px' }}
+                  className="funfit-solution-subsection"
                 >
-                  <h3 style={{
-                    color: '#ED964F',
-                    fontSize: '20px',
-                    fontWeight: 600,
-                    marginBottom: '24px'
-                  }}>
+                  <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">
                     Adjustable Difficulty System
                   </h3>
 
-                  <div style={{
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(24px, 4vw, 40px)',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-md)'
-                  }}>
-                    <div style={{ marginBottom: '32px' }}>
-                      <p style={{
-                        color: '#ED964F',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        marginBottom: '12px'
-                      }}>
-                        What's New Updates:
-                      </p>
-                      <img 
-                        src={imgWhatsNewUpdates} 
+                  <div className="funfit-difficulty-panel">
+                    <div className="funfit-difficulty-group">
+                      <p className="funfit-difficulty-label">What's New Updates:</p>
+                      <img
+                        src={imgWhatsNewUpdates}
                         alt="Feature announcement for calibration system"
-                        style={{ width: '100%', height: 'auto', marginBottom: '16px', borderRadius: '12px' }}
+                        className="funfit-image-full funfit-image-with-margin"
                       />
-                      <p style={{
-                        color: '#CCCCCC',
-                        fontSize: '14px',
-                        lineHeight: '1.6'
-                      }}>
+                      <p className="funfit-difficulty-text">
                         Introducing personalized reach calibration, adapting the game to your body, not forcing your body to adapt to the game.
                       </p>
                     </div>
 
-                    <div style={{ marginBottom: '32px' }}>
-                      <p style={{
-                        color: '#ED964F',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        marginBottom: '12px'
-                      }}>
-                        Calibration Settings:
-                      </p>
-                      <img 
-                        src={imgCalibrationSettings} 
+                    <div className="funfit-difficulty-group">
+                      <p className="funfit-difficulty-label">Calibration Settings:</p>
+                      <img
+                        src={imgCalibrationSettings}
                         alt="User interface for calibration settings"
-                        style={{ width: '100%', height: 'auto', marginBottom: '16px', borderRadius: '12px' }}
+                        className="funfit-image-full funfit-image-with-margin"
                       />
                     </div>
 
                     <div>
-                      <p style={{
-                        color: '#ED964F',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        marginBottom: '12px'
-                      }}>
-                        Difficulty Adjustment:
-                      </p>
-                      <img 
-                        src={imgCalibrationDemo} 
+                      <p className="funfit-difficulty-label">Difficulty Adjustment:</p>
+                      <img
+                        src={imgCalibrationDemo}
                         alt="Visual demonstration of Easy, Medium, and Hard difficulty ranges"
-                        style={{ width: '100%', height: 'auto', borderRadius: '12px' }}
+                        className="funfit-image-full"
                       />
-                      <p style={{
-                        color: '#CCCCCC',
-                        fontSize: '13px',
-                        lineHeight: '1.6',
-                        marginTop: '12px',
-                        fontStyle: 'italic'
-                      }}>
+                      <p className="funfit-difficulty-note">
                         Easy mode keeps targets within comfortable reach. Medium adds gentle stretching. Hard pushes to maximum range for intense workouts.
                       </p>
                     </div>
@@ -572,60 +421,29 @@ export function FunFitLandCaseStudy() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                 >
-                  <h3 style={{
-                    color: '#000000',
-                    fontSize: '20px',
-                    fontWeight: 600,
-                    marginBottom: '16px'
-                  }}>
-                    How It Works
-                  </h3>
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '24px' }}>
+                  <h3 className="funfit-section-subtitle-neutral">How It Works</h3>
+                  <p className="funfit-body-text funfit-body-text--spaced-md">
                     The calibration creates three personalized zones based on the user's actual reach:
                   </p>
 
-                  <div style={{ display: 'grid', gap: '16px' }}>
-                    <div style={{ 
-                      backgroundColor: '#FFFFFF',
-                      padding: '24px',
-                      borderRadius: '20px',
-                      border: '1px solid rgba(0, 0, 0, 0.08)',
-                      boxShadow: 'var(--shadow-sm)'
-                    }}>
-                      <h4 style={{ color: '#ED964F', fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                        Zone 1: Comfortable Reach
-                      </h4>
-                      <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                  <div className="funfit-zones-grid">
+                    <div className="funfit-zone-card">
+                      <h4 className="funfit-zone-title">Zone 1: Comfortable Reach</h4>
+                      <p className="funfit-zone-text">
                         Targets placed where users can reach without strain. Ideal for warm-ups and accessibility.
                       </p>
                     </div>
 
-                    <div style={{ 
-                      backgroundColor: '#FFFFFF',
-                      padding: '24px',
-                      borderRadius: '20px',
-                      border: '1px solid rgba(0, 0, 0, 0.08)',
-                      boxShadow: 'var(--shadow-sm)'
-                    }}>
-                      <h4 style={{ color: '#ED964F', fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                        Zone 2: Mid-Stretch
-                      </h4>
-                      <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                    <div className="funfit-zone-card">
+                      <h4 className="funfit-zone-title">Zone 2: Mid-Stretch</h4>
+                      <p className="funfit-zone-text">
                         Requires gentle stretching. Balances challenge and comfort for most gameplay.
                       </p>
                     </div>
 
-                    <div style={{ 
-                      backgroundColor: '#FFFFFF',
-                      padding: '24px',
-                      borderRadius: '20px',
-                      border: '1px solid rgba(0, 0, 0, 0.08)',
-                      boxShadow: 'var(--shadow-sm)'
-                    }}>
-                      <h4 style={{ color: '#ED964F', fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                        Zone 3: Maximum Stretch
-                      </h4>
-                      <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                    <div className="funfit-zone-card">
+                      <h4 className="funfit-zone-title">Zone 3: Maximum Stretch</h4>
+                      <p className="funfit-zone-text">
                         Pushes to the user's physical limits. Used sparingly for intense workouts.
                       </p>
                     </div>
@@ -634,12 +452,12 @@ export function FunFitLandCaseStudy() {
               </div>
 
               {/* Impact Section */}
-              <div id="impact" style={{ marginBottom: '80px' }}>
+              <div id="impact" className="funfit-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
+                  className="funfit-section-title funfit-section-title--standard"
                 >
                   Impact
                 </motion.h2>
@@ -648,100 +466,40 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginBottom: '40px' }}
+                  className="funfit-impact-stats-block"
                 >
-                  <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
-                    gap: '28px',
-                    marginBottom: '40px'
-                  }}>
-                    <div style={{
-                      backgroundColor: '#FFFFFF',
-                      padding: '40px 28px',
-                      borderRadius: '20px',
-                      textAlign: 'center',
-                      border: '2px solid #ED964F',
-                      boxShadow: '0 8px 24px rgba(237, 150, 79, 0.15)',
-                      transition: 'transform 0.2s ease'
-                    }}>
-                      <div style={{ 
-                        fontSize: 'clamp(48px, 6vw, 64px)', 
-                        fontWeight: 700, 
-                        color: '#ED964F', 
-                        marginBottom: '12px',
-                        lineHeight: '1'
-                      }}>
-                        85%
-                      </div>
-                      <div style={{ fontSize: '15px', color: '#666666', lineHeight: '1.5', fontWeight: 500 }}>
-                        Reduction in "can't reach" complaints
-                      </div>
+                  <div className="funfit-impact-grid">
+                    <div className="funfit-impact-card">
+                      <div className="funfit-impact-value">85%</div>
+                      <div className="funfit-impact-label">Reduction in "can't reach" complaints</div>
                     </div>
 
-                    <div style={{
-                      backgroundColor: '#FFFFFF',
-                      padding: '40px 28px',
-                      borderRadius: '20px',
-                      textAlign: 'center',
-                      border: '2px solid #ED964F',
-                      boxShadow: '0 8px 24px rgba(237, 150, 79, 0.15)',
-                      transition: 'transform 0.2s ease'
-                    }}>
-                      <div style={{ 
-                        fontSize: 'clamp(48px, 6vw, 64px)', 
-                        fontWeight: 700, 
-                        color: '#ED964F', 
-                        marginBottom: '12px',
-                        lineHeight: '1',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '8px'
-                      }}>
+                    <div className="funfit-impact-card">
+                      <div className="funfit-impact-value funfit-impact-value-range">
                         <span>4.2</span>
-                        <span style={{ fontSize: '32px', color: '#999' }}>→</span>
+                        <span className="funfit-impact-arrow">
+                          e
+                        </span>
                         <span>4.6</span>
                       </div>
-                      <div style={{ fontSize: '15px', color: '#666666', lineHeight: '1.5', fontWeight: 500 }}>
-                        Star rating improvement
-                      </div>
+                      <div className="funfit-impact-label">Star rating improvement</div>
                     </div>
 
-                    <div style={{
-                      backgroundColor: '#FFFFFF',
-                      padding: '40px 28px',
-                      borderRadius: '20px',
-                      textAlign: 'center',
-                      border: '2px solid #ED964F',
-                      boxShadow: '0 8px 24px rgba(237, 150, 79, 0.15)',
-                      transition: 'transform 0.2s ease'
-                    }}>
-                      <div style={{ 
-                        fontSize: 'clamp(48px, 6vw, 64px)', 
-                        fontWeight: 700, 
-                        color: '#ED964F', 
-                        marginBottom: '12px',
-                        lineHeight: '1'
-                      }}>
-                        100%
-                      </div>
-                      <div style={{ fontSize: '15px', color: '#666666', lineHeight: '1.5', fontWeight: 500 }}>
-                        Of new users complete calibration
-                      </div>
+                    <div className="funfit-impact-card">
+                      <div className="funfit-impact-value">100%</div>
+                      <div className="funfit-impact-label">Of new users complete calibration</div>
                     </div>
                   </div>
-
                 </motion.div>
               </div>
 
               {/* Reflection Section */}
-              <div id="reflection" style={{ marginBottom: '80px' }}>
+              <div id="reflection" className="funfit-section">
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
+                  className="funfit-section-title funfit-section-title--standard"
                 >
                   Reflection
                 </motion.h2>
@@ -750,22 +508,11 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginBottom: '48px' }}
+                  className="funfit-reflection-block"
                 >
-                  <h3 style={{ color: '#000000', fontSize: '20px', fontWeight: 400, marginBottom: '20px' }}>
-                    What I Learned
-                  </h3>
+                  <h3 className="funfit-reflection-heading">What I Learned</h3>
 
-                  <blockquote style={{ 
-                    color: '#333333', 
-                    fontSize: '18px', 
-                    fontWeight: 400, 
-                    lineHeight: '1.6',
-                    fontStyle: 'italic',
-                    marginBottom: '32px',
-                    paddingLeft: '24px',
-                    borderLeft: '3px solid #000000'
-                  }}>
+                  <blockquote className="funfit-reflection-quote">
                     "I've grown from designing interfaces to designing the systems that make those interfaces accessible to everyone."
                   </blockquote>
 
@@ -776,36 +523,23 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ marginBottom: '48px' }}
+                  className="funfit-reflection-block"
                 >
-                  <h3 style={{ color: '#000000', fontSize: '20px', fontWeight: 400, marginBottom: '16px' }}>
-                    The Power of Listening
-                  </h3>
-                  <p style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8', marginBottom: '32px' }}>
+                  <h3 className="funfit-reflection-subheading">The Power of Listening</h3>
+                  <p className="funfit-reflection-text">
                     This project taught me that inclusive design isn't about accommodating edge cases; it's about respecting the full diversity of human experience. When 40 users say something isn't working, the problem isn't with them.
                   </p>
-                  
+
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    style={{ 
-                      backgroundColor: '#1a1f2e',
-                      padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-                      borderRadius: '14px',
-                      boxShadow: 'var(--shadow-md)',
-                      maxWidth: '100%'
-                    }}
+                    className="funfit-reflection-panel"
                   >
-                    <img 
-                      src={imgUserFeedback} 
+                    <img
+                      src={imgUserFeedback}
                       alt="User feedback from global community"
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                        borderRadius: '12px'
-                      }}
+                      className="funfit-image-full"
                     />
                   </motion.div>
                 </motion.div>
@@ -815,19 +549,16 @@ export function FunFitLandCaseStudy() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                 >
-                  <h3 style={{ color: '#000000', fontSize: '20px', fontWeight: 400, marginBottom: '16px' }}>
-                    Looking Forward
-                  </h3>
+                  <h3 className="funfit-looking-forward-heading">Looking Forward</h3>
                   <NextSteps
                     steps={[
-                      "Expand calibration to other game modes beyond DanceFit",
-                      "Research additional accessibility needs (colorblind modes, audio alternatives)",
-                      "Develop adaptive difficulty that learns from player performance over time"
+                      'Expand calibration to other game modes beyond DanceFit',
+                      'Research additional accessibility needs (colorblind modes, audio alternatives)',
+                      'Develop adaptive difficulty that learns from player performance over time'
                     ]}
                   />
                 </motion.div>
               </div>
-
             </div>
           </div>
         </div>

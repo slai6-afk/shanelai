@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'motion/react';
 import { MediaBox } from './MediaBox';
 
@@ -31,78 +30,38 @@ export function CaseStudyHero({
   visitLink,
   tags = []
 }: CaseStudyHeroProps) {
-  const getTagStyle = (variant?: string) => {
+  const getTagVariantClass = (variant?: Tag['variant']) => {
     switch (variant) {
       case 'primary':
-        return {
-          backgroundColor: '#ED964F',
-          color: '#FFFFFF'
-        };
-      case 'secondary':
-        return {
-          backgroundColor: '#FFFFFF',
-          color: '#000000',
-          border: '1px solid rgba(0, 0, 0, 0.2)'
-        };
+        return 'case-hero-tag--primary';
       case 'tertiary':
+      case 'secondary':
       default:
-        return {
-          backgroundColor: '#FFFFFF',
-          color: '#000000',
-          border: '1px solid rgba(0, 0, 0, 0.2)'
-        };
+        return 'case-hero-tag--secondary';
     }
   };
 
   return (
     <section className="case-study-hero-section pb-20 px-10 md:px-12 lg:px-16">
-      <MediaBox
-        type={mediaType}
-        src={mediaSrc}
-      />
+      <MediaBox type={mediaType} src={mediaSrc} />
       <div className="max-w-[1200px] mx-auto case-study-hero-content-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          style={{ marginTop: '10px' }}
+          className="case-hero-header-block"
         >
-          <h1 style={{
-            color: '#000000',
-            fontSize: 'clamp(36px, 5vw, 56px)',
-            fontWeight: 400,
-            lineHeight: '1.2',
-            marginTop: 0,
-            marginBottom: '16px'
-          }}>
-            {title}
-          </h1>
+          <h1 className="case-hero-title">{title}</h1>
 
-          <div style={{
-            color: '#666666',
-            fontSize: 'clamp(16px, 2vw, 20px)',
-            fontWeight: 400,
-            lineHeight: '1.6',
-            marginBottom: '10px',
-            display: 'flex',
-            flexDirection: 'row'
-          }}>
+          <div className="case-hero-description">
             {descriptionLink ? (
               <>
-                <p style={{
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.6',
-                  margin: 0,
-                  display: 'flex',
-                  flexDirection: 'row'
-                }}>
+                <p className="case-hero-description-text">
                   <a
                     href={descriptionLink.href}
                     rel="noopener noreferrer"
                     target="_blank"
                     className="hero-description-link"
-                    style={{ fontSize: '16px', fontWeight: 400 }}
                   >
                     <strong>{descriptionLink.label}</strong>
                   </a>
@@ -110,46 +69,29 @@ export function CaseStudyHero({
                 <br />
               </>
             ) : (
-              <p style={{ margin: 0 }}>{description}</p>
+              <p className="case-hero-description-text">{description}</p>
             )}
           </div>
 
           {visitLink && (
-            <div style={{ fontWeight: 400, marginBottom: '32px' }}>
+            <div className="case-hero-visit-link-wrapper">
               <a
                 href={visitLink.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  color: '#ED964F',
-                  fontWeight: 500,
-                  textDecoration: 'none',
-                  transition: 'opacity 0.2s'
-                }}
+                className="case-hero-visit-link"
               >
-                {visitLink.label} →
+                {visitLink.label} a
               </a>
             </div>
           )}
 
           {tags.length > 0 && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+            <div className="case-hero-tag-list">
               {tags.map((tag, index) => (
                 <span
                   key={index}
-                  style={{
-                    display: 'block',
-                    padding: '8px 16px',
-                    fontSize: '12px',
-                    fontWeight: 500,
-                    letterSpacing: '0.02em',
-                    borderRadius: '8px',
-                    textTransform: 'capitalize',
-                    ...getTagStyle(tag.variant)
-                  }}
+                  className={`case-hero-tag ${getTagVariantClass(tag.variant)}`}
                 >
                   {tag.label}
                 </span>
