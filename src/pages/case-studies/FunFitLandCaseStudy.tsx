@@ -20,7 +20,6 @@ import imgMidStretch from 'figma:asset/1c8f78cebe8e96a24b2fd05589454b12672f5299.
 import imgMaxStretch from 'figma:asset/52fa7b0eec6a86ab15ae54e14ea0ae2fb3e415c1.png';
 import imgPersonalCalibrationHero from 'figma:asset/89118d14ba53305ac06c41d50a99f512aef426bd.png';
 import imgWhatsNewUpdates from 'figma:asset/a387fbe921a65dbef16af07dc1bdb09361da6a31.png';
-import imgCalibrationSettings from 'figma:asset/a62b9f9ef7257c612bb8133a2cabb925087fad8f.png';
 import imgCalibrationDemo from 'figma:asset/597981600c26243de56b615582f112500328f872.png';
 import Frame3465176 from '../../imports/Frame3465176-57-479';
 import imgExperiments from 'figma:asset/c427a35dab302ee2bcc37d79da015483ff4a9d32.png';
@@ -396,7 +395,7 @@ export function FunFitLandCaseStudy() {
                     <div className="funfit-difficulty-group">
                       <p className="funfit-difficulty-label">Calibration Settings:</p>
                       <img
-                        src={imgCalibrationSettings}
+                        src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F3a0ca8791c8244acb354439fdbcca760"
                         alt="User interface for calibration settings"
                         className="funfit-image-full funfit-image-with-margin"
                       />
