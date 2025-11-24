@@ -3,7 +3,6 @@ import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { DecisionPill } from '../../components/case-study/DecisionPill';
 import { TLDRCard } from '../../components/case-study/TLDRCard';
-import { InsightCard } from '../../components/case-study/InsightCard';
 import { MethodBlock } from '../../components/case-study/MethodBlock';
 import { FigureWithCaption } from '../../components/case-study/FigureWithCaption';
 import { NextSteps } from '../../components/case-study/NextSteps';
@@ -37,11 +36,9 @@ export function FunFitLandCaseStudy() {
     { id: 'context', label: 'Context' },
     { id: 'problem', label: 'The Problem' },
     { id: 'research', label: 'Research & Discovery' },
-    { id: 'insights', label: 'Key Insights' },
     { id: 'solution', label: 'The Solution' },
     { id: 'impact', label: 'Impact' },
-    { id: 'reflection', label: 'Reflection' },
-    { id: 'credits', label: 'Credits' }
+    { id: 'reflection', label: 'Reflection' }
   ];
 
   return (
@@ -416,42 +413,6 @@ export function FunFitLandCaseStudy() {
                   </p>
                 </div>
 
-              </div>
-
-              {/* Key Insights Section */}
-              <div id="insights" style={{ marginBottom: '80px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '32px' }}
-                >
-                  Key Insights
-                </motion.h2>
-
-                <div style={{ 
-                  display: 'grid', 
-                  gap: '24px' 
-                }}>
-                  <InsightCard
-                    number="01"
-                    title="The 'Average User' Doesn't Exist"
-                    content="Designing for a hypothetical average user meant excluding real users. Shoulder reach varies by up to 12 inches (30cm) between adults, a massive difference in VR."
-                    index={0}
-                  />
-                  <InsightCard
-                    number="02"
-                    title="Accessibility Isn't Edge Cases"
-                    content="40 users isn't a small number. This wasn't about rare outliers; it was about a diverse user base we weren't serving."
-                    index={1}
-                  />
-                  <InsightCard
-                    number="03"
-                    title="Physical Design Requires Physical Testing"
-                    content="You can't simulate body diversity from a desk. Real testing with real users revealed problems we'd never have caught otherwise."
-                    index={2}
-                  />
-                </div>
               </div>
 
               {/* Solution Section */}
