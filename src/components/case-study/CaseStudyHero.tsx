@@ -57,14 +57,9 @@ export function CaseStudyHero({
             {descriptionLink ? (
               <>
                 <p className="case-hero-description-text">
-                  <a
-                    href={descriptionLink.href}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="hero-description-link"
-                  >
+                  <div className="hero-description-link">
                     <strong>{descriptionLink.label}</strong>
-                  </a>
+                  </div>
                 </p>
                 <br />
               </>
