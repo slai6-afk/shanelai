@@ -478,7 +478,7 @@ export function FunFitLandCaseStudy() {
                       <div className="funfit-impact-value funfit-impact-value-range">
                         <span>4.2</span>
                         <span className="funfit-impact-arrow">
-                          
+                           
                         </span>
                         <span>4.6</span>
                       </div>
