@@ -292,6 +292,20 @@ html {
   font-size: 0;
 }
 
+.media-box-caption {
+  margin-top: 20px;
+  color: rgba(74, 74, 74, 1);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+@media (max-width: 991px) {
+  .media-box-caption {
+    font-size: 12px;
+    font-weight: 200;
+  }
+}
+
 .media-box-image {
   width: 100%;
   height: auto;

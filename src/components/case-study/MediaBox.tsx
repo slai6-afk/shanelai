@@ -43,6 +43,9 @@ export function MediaBoxResponsive({
                 src={src}
               />
             </video>
+            <p className="media-box-caption">
+              Gameplay capture from FunFitLand's DanceFit mode, showing target reach calibration in action.
+            </p>
             <div className="media-box-aspect-spacer" />
           </div>
         ) : (

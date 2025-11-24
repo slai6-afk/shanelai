@@ -867,33 +867,10 @@ export function FunFitLandCaseStudy() {
                 </motion.div>
               </div>
 
-              {/* Credits Section */}
-              <div id="credits" style={{ marginBottom: '40px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: 'clamp(24px, 3vw, 32px)', fontWeight: 400, marginBottom: '24px' }}
-                >
-                  Credits
-                </motion.h2>
-              </div>
             </div>
           </div>
         </div>
       </section>
-
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F72c80f114dc149019051b6852a9e3b7a"
-        alt="FunFitLand product screenshot grid"
-        style={{
-          width: '100%',
-          height: 'auto',
-          objectFit: 'cover',
-          objectPosition: 'center',
-          marginTop: '20px'
-        }}
-      />
 
       <Footer />
     </div>
