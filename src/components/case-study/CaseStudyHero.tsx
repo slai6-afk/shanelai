@@ -104,7 +104,7 @@ export function CaseStudyHero({
                     className="hero-description-link"
                     style={{ fontSize: '16px', fontWeight: 400 }}
                   >
-                    {descriptionLink.label}
+                    <strong>{descriptionLink.label}</strong>
                   </a>
                 </p>
                 <br />
