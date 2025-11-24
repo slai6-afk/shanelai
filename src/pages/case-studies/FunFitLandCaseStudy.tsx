@@ -409,7 +409,7 @@ export function FunFitLandCaseStudy() {
                     marginBottom: '32px'
                   }}
                 >
-                  <p style={{ color: '#ED964F', fontSize: '15px', lineHeight: '1.7' }}>
+                  <p className="hypothesis-callout" style={{ color: '#ED964F', fontSize: '15px', lineHeight: '1.7' }}>
                     <em>
                       Bang!!! It is the hypothesis 3. So people with mobility issues and older age "feel" they can't hit it.
                     </em>

@@ -397,6 +397,21 @@ html {
   padding-top: 40px;
 }
 
+.hero-description-link {
+  font-weight: 400;
+}
+
+.hypothesis-callout {
+  font-weight: 400;
+}
+
+@media (max-width: 991px) {
+  .hero-description-link,
+  .hypothesis-callout {
+    font-weight: 600;
+  }
+}
+
 /* Home email link responsive color */
 .home-email-link {
   color: rgb(0, 0, 0);

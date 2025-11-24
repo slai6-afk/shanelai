@@ -101,7 +101,8 @@ export function CaseStudyHero({
                     href={descriptionLink.href}
                     rel="noopener noreferrer"
                     target="_blank"
-                    style={{ fontSize: '16px' }}
+                    className="hero-description-link"
+                    style={{ fontSize: '16px', fontWeight: 400 }}
                   >
                     {descriptionLink.label}
                   </a>
