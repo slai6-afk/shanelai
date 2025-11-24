@@ -343,7 +343,7 @@ export function FunFitLandCaseStudy() {
                     Testing Hypotheses
                   </h3>
                   <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '32px' }}>
-                    Rather than jump to solutions, I designed three experiments to systematically test why users struggled.
+                    With all the data, we could now systematically test each hypothesis from the product team.
                   </p>
                 </motion.div>
 
@@ -371,37 +371,6 @@ export function FunFitLandCaseStudy() {
                   />
                 </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{ 
-                    color: '#666666', 
-                    fontSize: '15px', 
-                    fontWeight: 400, 
-                    lineHeight: '1.8',
-                    backgroundColor: '#FFFFFF',
-                    padding: 'clamp(24px, 4vw, 32px)',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    borderRadius: '20px',
-                    boxShadow: 'var(--shadow-sm)'
-                  }}
-                >
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#ED964F' }}>Hypothesis 1: Rhythm Perception</strong><br />
-                    Maybe players perceived timing differently? Testing revealed this wasn't a significant factor; users could identify when targets appeared, they just couldn't reach them.
-                  </p>
-
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#ED964F' }}>Hypothesis 2: Physical Reach Limitations</strong><br />
-                    This was the key insight. Users had different maximum reach distances based on height, arm length, and mobility. Our fixed 39-inch (100cm) radius simply wasn't universal.
-                  </p>
-
-                  <p>
-                    <strong style={{ color: '#ED964F' }}>Hypothesis 3: Movement Speed & Mobility</strong><br />
-                    Some users moved more slowly due to age or physical conditions. Testing showed this compounded the reach issue: if a target was already at the edge of reach, slower movement made it impossible.
-                  </p>
-                </motion.div>
               </div>
 
               {/* Key Insights Section */}
