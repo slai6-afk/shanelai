@@ -118,6 +118,34 @@ export function FunFitLandCaseStudy() {
 
               {/* Context Section */}
               <div id="context" style={{ marginBottom: '80px' }}>
+                <div
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    padding: '32px',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(0, 0, 0, 0.08)',
+                    boxShadow: 'var(--shadow-sm)',
+                    marginBottom: '32px'
+                  }}
+                >
+                  <div style={{ marginBottom: '24px' }}>
+                    <h3 style={{ fontWeight: 600, marginBottom: '8px', color: '#000000', fontSize: '16px' }}>
+                      My Role
+                    </h3>
+                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                      Product Intern (Product Manager, Designer, Data Analyst)
+                    </p>
+                  </div>
+                  <div>
+                    <h3 style={{ fontWeight: 600, marginBottom: '8px', color: '#000000', fontSize: '16px' }}>
+                      Team
+                    </h3>
+                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
+                      30-person startup team including CEO, product managers, engineers, and game designers
+                    </p>
+                  </div>
+                </div>
+
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -351,7 +379,7 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ 
+                  style={{
                     backgroundColor: '#1a1f2e',
                     padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
                     marginBottom: '40px',
@@ -359,8 +387,8 @@ export function FunFitLandCaseStudy() {
                     boxShadow: 'var(--shadow-md)'
                   }}
                 >
-                  <img 
-                    src={imgExperiments} 
+                  <img
+                    src={imgExperiments}
                     alt="Three experiments: rhythm perception, reach capability, and mobility testing"
                     style={{
                       width: '100%',
@@ -370,6 +398,23 @@ export function FunFitLandCaseStudy() {
                     }}
                   />
                 </motion.div>
+
+                <div
+                  style={{
+                    backgroundColor: '#FFFFFF',
+                    padding: '24px',
+                    borderRadius: '20px',
+                    border: '1px solid rgba(0, 0, 0, 0.08)',
+                    boxShadow: 'var(--shadow-sm)',
+                    marginBottom: '32px'
+                  }}
+                >
+                  <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.7' }}>
+                    <em>
+                      Bang!!! It is the hypothesis 3. So people with mobility issues and older age "feel" they can't hit it.
+                    </em>
+                  </p>
+                </div>
 
               </div>
 
@@ -726,9 +771,6 @@ export function FunFitLandCaseStudy() {
                     </div>
                   </div>
 
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8' }}>
-                    The calibration system became a core feature, not an afterthought. It demonstrated that accessibility improvements benefit all users, not just those who initially reported problems.
-                  </p>
                 </motion.div>
               </div>
 
@@ -835,57 +877,6 @@ export function FunFitLandCaseStudy() {
                 >
                   Credits
                 </motion.h2>
-
-                <div style={{ 
-                  backgroundColor: '#FFFFFF',
-                  padding: 'clamp(24px, 4vw, 32px)',
-                  borderRadius: '20px',
-                  border: '1px solid rgba(0, 0, 0, 0.08)',
-                  boxShadow: 'var(--shadow-sm)'
-                }}>
-                  <div style={{ marginBottom: '24px' }}>
-                    <h3 style={{ color: '#000000', fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                      My Role
-                    </h3>
-                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
-                      Product Intern (Product Manager, Designer, Data Analyst)
-                    </p>
-                  </div>
-
-                  <div style={{ marginBottom: '24px' }}>
-                    <h3 style={{ color: '#000000', fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                      Team
-                    </h3>
-                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6' }}>
-                      30-person startup team including CEO, product managers, engineers, and game designers
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 style={{ color: '#000000', fontSize: '16px', fontWeight: 600, marginBottom: '8px' }}>
-                      Timeline & Company
-                    </h3>
-                    <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.6', marginBottom: '8px' }}>
-                      15 weeks (2023)
-                    </p>
-                    <a 
-                      href="https://www.funfitland.com" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      style={{
-                        color: '#ED964F',
-                        fontSize: '15px',
-                        fontWeight: 500,
-                        textDecoration: 'none',
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px'
-                      }}
-                    >
-                      FunFitLand.com →
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
