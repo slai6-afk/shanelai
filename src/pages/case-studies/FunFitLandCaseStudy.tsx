@@ -134,10 +134,7 @@ export function FunFitLandCaseStudy() {
                   style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8', marginBottom: '40px' }}
                 >
                   <p style={{ marginBottom: '20px' }}>
-                    FunFitLand is a VR fitness platform for Meta Quest that combines rhythm-based exercise with immersive environments. The DanceFit mode challenges users to hit floating targets in sync with music, an experience designed to make fitness feel like play.
-                  </p>
-                  <p>
-                    As part of the product team at a 30-person startup, I wore multiple hats: product manager, designer, and sometimes data analyst. What started as a routine bug investigation became a transformative lesson in accessibility and inclusive design.
+                    FunFitLand is a VR fitness platform for Meta Quest that combines exercise with immersive environments. The <strong>DanceFit mode</strong> challenges users to <strong>hit floating targets</strong> in sync with music, an experience designed to make fitness feel like play.
                   </p>
                 </motion.div>
 
@@ -151,7 +148,7 @@ export function FunFitLandCaseStudy() {
                     How It Works
                   </h3>
                   <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '24px' }}>
-                    Users see targets floating in a 39-inch (100cm) radius around them. To score points, they must reach out and hit targets as they appear, combining cardio with coordination.
+                    Users see targets floating in a 39-inch (100cm) radius around them. To score points, they must reach out and hit targets, combining cardio with coordination.
                   </p>
                 </motion.div>
 
@@ -197,7 +194,7 @@ export function FunFitLandCaseStudy() {
                       Multi-Modal Feedback
                     </h3>
                     <p>
-                      Targets use both sound and visuals to guide players. Since humans process audio faster than visuals, sound cues have a larger trigger radius (79 inches/200cm vs 28 inches/70cm), creating smoother, more intuitive interactions.
+                      Targets use both sound and visuals to guide players. Since humans process audio faster than visuals, sound cues have a larger trigger radius, creating more intuitive interactions.
                     </p>
                   </div>
 
@@ -264,35 +261,10 @@ export function FunFitLandCaseStudy() {
                   style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '32px' }}
                 >
                   <p style={{ marginBottom: '20px' }}>
-                    Over three months, we received reports from <strong style={{ color: '#000000' }}>40 users</strong> saying they couldn't reach targets. My initial assumption? Equipment issues, like maybe their device calibration was off, or they were using broken controllers.
+                    Over three months, we received reports from <strong>47</strong> users saying they <strong>couldn't reach targets</strong>. We thought it is an equipment issue, like maybe their device calibration was off, or they were using broken controllers.
                   </p>
                   <p>
-                    <strong style={{ color: '#000000' }}>I was wrong.</strong> It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we designed for.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{ 
-                    backgroundColor: '#FFF4F0',
-                    padding: 'clamp(24px, 4vw, 32px)',
-                    borderRadius: '20px',
-                    marginBottom: '40px',
-                    border: '1px solid rgba(237, 150, 79, 0.2)',
-                    boxShadow: 'var(--shadow-sm)'
-                  }}
-                >
-                  <h3 style={{ color: '#ED964F', fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>
-                    The Real Issue
-                  </h3>
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8' }}>
-                    Our game placed targets in a fixed 39-inch (100cm) radius, comfortable for an average-height adult male, but unreachable for:<br />
-                    • Users under 5'2" (157cm) or over 6'2" (188cm)<br />
-                    • Users with limited shoulder mobility<br />
-                    • Older adults and children<br />
-                    • Users with physical disabilities
+                    <strong>I was wrong. So we have to dig into it...</strong> It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we assumed.
                   </p>
                 </motion.div>
               </div>
@@ -315,26 +287,38 @@ export function FunFitLandCaseStudy() {
                   style={{ color: '#666666', fontSize: '16px', fontWeight: 400, lineHeight: '1.8', marginBottom: '32px' }}
                 >
                   <p>
-                    I needed to move beyond assumptions. Instead of defending our design, I went directly to the users who reported problems and listened.
+                    To understand why users consistently failed to reach targets, I pulled <strong>two weeks of historical gameplay logs</strong> from the product backend. I sampled <strong>around 200 users</strong> and extracted their <strong>headset and controller telemetry.</strong>
                   </p>
                 </motion.div>
+
+                <MethodBlock
+                  icon={Users}
+                  title="User logs data analysis"
+                  description="I analyzed backend gameplay logs to diagnose why users failed to reach targets."
+                  details={[
+                    '3D positional data (x, y, z)',
+                    'Hand velocity and movement vectors',
+                    'Target hit and miss events',
+                    'Session context (time, game mode, difficulty)',
+                    'User attributes (gender, age group)'
+                  ]}
+                />
 
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ 
-                    backgroundColor: '#1a1f2e',
-                    padding: 'clamp(24px, 5vw, 48px) clamp(20px, 4vw, 40px)',
-                    marginBottom: '40px',
-                    borderRadius: '14px',
-                    boxShadow: 'var(--shadow-md)',
-                    maxWidth: '100%'
+                  style={{
+                    marginTop: '24px',
+                    marginBottom: '24px'
                   }}
                 >
-                  <img 
-                    src={imgDesignProcess} 
-                    alt="Research process: user reports → interviews → data analysis → problem definition → solution"
+                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '16px' }}>
+                    Here is how I used these data to find where the real problem is:
+                  </p>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F9f65e5ddb46b489bb44fa304a78eda89"
+                    alt="Visualization of gameplay log analysis showing target reach patterns and user clusters"
                     style={{
                       width: '100%',
                       height: 'auto',
@@ -343,17 +327,6 @@ export function FunFitLandCaseStudy() {
                     }}
                   />
                 </motion.div>
-
-                <MethodBlock
-                  icon={Users}
-                  title="User Interviews"
-                  description="I reached out to users who reported difficulties and conducted remote interviews to understand their actual experiences."
-                  details={[
-                    "Connected with users across different age groups and body types",
-                    "Asked open-ended questions about their physical experience",
-                    "Validated that the problem wasn't equipment but design"
-                  ]}
-                />
 
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -949,6 +922,18 @@ export function FunFitLandCaseStudy() {
           </div>
         </div>
       </section>
+
+      <img
+        src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F72c80f114dc149019051b6852a9e3b7a"
+        alt="FunFitLand product screenshot grid"
+        style={{
+          width: '100%',
+          height: 'auto',
+          objectFit: 'cover',
+          objectPosition: 'center',
+          marginTop: '20px'
+        }}
+      />
 
       <Footer />
     </div>
