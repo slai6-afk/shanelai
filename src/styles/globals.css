@@ -369,7 +369,8 @@ html {
   transition: color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
 }
 
-.toc-item[data-active="true"] {
+.toc-item[data-active="true"],
+.toc-item.active {
   color: #000000;
   font-weight: 400;
   border-left-color: #ED964F;

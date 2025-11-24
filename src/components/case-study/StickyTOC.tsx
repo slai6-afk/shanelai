@@ -14,6 +14,21 @@ export function StickyTOC({ items }: StickyTOCProps) {
   const [activeId, setActiveId] = useState<string>('');
   const [isHeroPast, setIsHeroPast] = useState(false);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) {
+      console.warn(`Element with id "${id}" not found`);
+      return;
+    }
+
+    const y = element.getBoundingClientRect().top + window.scrollY - 80;
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -23,7 +38,7 @@ export function StickyTOC({ items }: StickyTOCProps) {
           }
         });
       },
-      { rootMargin: '-80px 0px -80% 0px' }
+      { rootMargin: '-80px 0px -60% 0px' }
     );
 
     items.forEach((item) => {
@@ -55,22 +70,8 @@ export function StickyTOC({ items }: StickyTOCProps) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.preventDefault();
 
-    const element = document.getElementById(id);
-    if (!element) {
-      console.warn(`Element with id "${id}" not found`);
-      return;
-    }
-
-    const rect = element.getBoundingClientRect();
-    const scrollTop = window.scrollY || window.pageYOffset;
-    const targetOffset = scrollTop + rect.top - 80;
-
     setActiveId(id);
-
-    window.scrollTo({
-      top: targetOffset,
-      behavior: 'smooth'
-    });
+    scrollToSection(id);
   };
 
   const navClassName = `sticky-toc-nav ${isHeroPast ? 'sticky-toc-fixed' : 'sticky-toc-inline'}`;
@@ -89,7 +90,7 @@ export function StickyTOC({ items }: StickyTOCProps) {
           <li key={item.id} className="case-toc-list-item">
             <button
               onClick={(e) => handleClick(e, item.id)}
-              className="toc-item"
+              className={`toc-item ${activeId === item.id ? 'active' : ''}`}
               data-active={activeId === item.id}
             >
               {item.label}
