@@ -81,7 +81,7 @@ export function CaseStudyHero({
                 rel="noopener noreferrer"
                 className="case-hero-visit-link"
               >
-                {visitLink.label} 
+                {visitLink.label} →
               </a>
             </div>
           )}
