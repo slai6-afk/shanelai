@@ -3,7 +3,6 @@ import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { DecisionPill } from '../../components/case-study/DecisionPill';
 import { TLDRCard } from '../../components/case-study/TLDRCard';
-import { MethodBlock } from '../../components/case-study/MethodBlock';
 import { FigureWithCaption } from '../../components/case-study/FigureWithCaption';
 import { NextSteps } from '../../components/case-study/NextSteps';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
@@ -235,33 +234,74 @@ export function FunFitLandCaseStudy() {
                   Research & Discovery
                 </motion.h2>
 
-                <p className="funfit-research-lede">
-                  We were wrong. So we had to dig into it — through data analysis and user interviews.
-                </p>
-
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="funfit-body-text funfit-body-text--spaced-md"
+                  className="funfit-body-text funfit-body-text--spaced-md funfit-research-intro-block"
                 >
-                  <p>
+                  <p className="funfit-body-paragraph">
                     To understand why users consistently failed to reach targets, I pulled <strong>two weeks of historical gameplay logs</strong> from the product backend. I sampled <strong>around 200 users</strong> and extracted their <strong>headset and controller telemetry.</strong>
+                  </p>
+                  <p className="funfit-research-lede">
+                    We were wrong. So we had to dig into it — through data analysis and user interviews.
                   </p>
                 </motion.div>
 
-                <MethodBlock
-                  icon={Users}
-                  title="User logs data analysis"
-                  description="I analyzed backend gameplay logs to diagnose why users failed to reach targets."
-                  details={[
-                    '3D positional data (x, y, z)',
-                    'Hand velocity and movement vectors',
-                    'Target hit and miss events',
-                    'Session context (time, game mode, difficulty)',
-                    'User attributes (gender, age group)'
-                  ]}
-                />
+                <div className="funfit-research-methods-grid">
+                  <div className="funfit-method-card">
+                    <div className="funfit-method-header">
+                      <div className="funfit-method-icon-circle">
+                        <Users size={24} className="funfit-method-icon" />
+                      </div>
+                      <div className="funfit-method-title-block">
+                        <h3 className="funfit-method-title">User logs data analysis</h3>
+                        <p className="funfit-method-description">
+                          I analyzed backend gameplay logs to diagnose why users failed to reach targets.
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="funfit-method-list">
+                      <li className="funfit-method-list-item">3D positional data (x, y, z)</li>
+                      <li className="funfit-method-list-item">Hand velocity and movement vectors</li>
+                      <li className="funfit-method-list-item">Target hit and miss events</li>
+                      <li className="funfit-method-list-item">Session context (time, game mode, difficulty)</li>
+                      <li className="funfit-method-list-item">User attributes (gender, age group)</li>
+                    </ul>
+
+                    <div className="funfit-method-preview">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F8c5de033fb8a48a4ba52e2ba839681d9"
+                        alt="Sample slices of gameplay log data"
+                        className="funfit-method-preview-image"
+                      />
+                      <p className="funfit-method-preview-caption">What do these logs look like?</p>
+                    </div>
+                  </div>
+
+                  <div className="funfit-method-card">
+                    <div className="funfit-method-header">
+                      <div className="funfit-method-icon-circle">
+                        <Target size={20} className="funfit-method-icon" />
+                      </div>
+                      <div className="funfit-method-title-block">
+                        <h3 className="funfit-method-title">3D reach envelope</h3>
+                        <p className="funfit-method-description">
+                          I reconstructed the 3D space users could physically reach. Missed targets consistently sat outside this envelope.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="funfit-method-preview">
+                      <img
+                        src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F65136106253a45f499ad3e017791a865"
+                        alt="Diagram of users' 3D reach envelope in VR"
+                        className="funfit-method-preview-image"
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 <motion.div
                   initial={{ opacity: 0 }}
