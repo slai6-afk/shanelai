@@ -225,14 +225,24 @@ export function FunFitLandCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="funfit-body-text funfit-body-text--spaced-lg"
+                  className="funfit-problem-grid"
                 >
-                  <p className="funfit-body-paragraph">
-                    Over three months, we received reports from <strong>47</strong> users saying they <strong>couldn't reach targets</strong>. We thought it is an equipment issue, like maybe their device calibration was off, or they were using broken controllers.
-                  </p>
-                  <p className="funfit-body-paragraph">
-                    <strong>I was wrong. So we have to dig into it...</strong> It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we assumed.
-                  </p>
+                  <div className="funfit-problem-text-block funfit-body-text">
+                    <p className="funfit-body-paragraph">
+                      Over three months, we received reports from <strong>47</strong> users saying they <strong>couldn't reach targets</strong>. We thought it is an equipment issue, like maybe their device calibration was off, or they were using broken controllers.
+                    </p>
+                    <p className="funfit-body-paragraph funfit-problem-secondary-paragraph">
+                      <strong>I was wrong. So we have to dig into it...</strong> It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we assumed.
+                    </p>
+                  </div>
+
+                  <div className="funfit-dark-panel funfit-dark-panel--compact">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F8b7d2da35c8445b8ae26ebf464b8631f"
+                      alt="Diagram showing audio radius (200cm) vs visual radius (70cm)"
+                      className="funfit-image-full"
+                    />
+                  </div>
                 </motion.div>
               </div>
 
