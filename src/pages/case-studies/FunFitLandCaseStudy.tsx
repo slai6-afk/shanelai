@@ -159,8 +159,8 @@ export function FunFitLandCaseStudy() {
 
                   <div className="funfit-dark-panel funfit-dark-panel--compact">
                     <img
-                      src={imgTargetInteraction}
-                      alt="Diagram showing audio radius (200cm) vs visual radius (70cm)"
+                      src={imgProductOverview}
+                      alt="Circular target layout showing 100cm radius and shoulder span considerations"
                       className="funfit-image-full"
                     />
                   </div>
@@ -183,8 +183,8 @@ export function FunFitLandCaseStudy() {
 
                   <div className="funfit-dark-panel">
                     <img
-                      src={imgProductOverview}
-                      alt="Circular target layout showing 100cm radius and shoulder span considerations"
+                      src={imgTargetInteraction}
+                      alt="Diagram showing audio radius (200cm) vs visual radius (70cm)"
                       className="funfit-image-full"
                     />
                   </div>
