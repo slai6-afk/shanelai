@@ -30,7 +30,7 @@ import imgUserFeedback from 'figma:asset/bc8f2e00e443eba4f1f54b820dc44fc838b9f23
 
 export function FunFitLandCaseStudy() {
   const tocItems = [
-    { id: 'tldr', label: 'Overview' },
+    { id: 'tldr', label: 'Overview (TL;DR)' },
     { id: 'context', label: 'Context' },
     { id: 'problem', label: 'The Problem' },
     { id: 'research', label: 'Research & Discovery' },
@@ -104,7 +104,7 @@ export function FunFitLandCaseStudy() {
                   <TLDRCard
                     icon={AlertCircle}
                     title="Challenge"
-                    content="About 40 users reported they couldn't reach targets in our VR fitness game. Our rates went down from <strong>4.6</strong> to <strong>4.1</strong>"
+                    content="About 40 users reported they couldn't reach targets in our VR fitness game. Our rates went down from 4.5 to 4.1."
                     index={0}
                   />
                   <TLDRCard
@@ -116,7 +116,7 @@ export function FunFitLandCaseStudy() {
                   <TLDRCard
                     icon={TrendingUp}
                     title="Impact"
-                    content="We improved our rating from <strong>4.1 to 4.7</strong>, and users stopped reporting issues about not being able to hit the targets. <strong>Older users</strong> also told us they enjoy the experience much more now."
+                    content="We improved our rating from <strong>4.1</strong> to <strong>4.6</strong>, and users stopped reporting issues about not being able to hit the targets. <strong>Older users</strong> also told us they enjoy the experience much more now."
                     index={2}
                   />
                 </div>
@@ -154,7 +154,7 @@ export function FunFitLandCaseStudy() {
                     How It Works
                   </h3>
                   <p className="funfit-body-text funfit-body-text--spaced-md">
-                    Users see targets floating in a 39-inch (100cm) radius around them. To score points, they must reach out and hit targets, combining cardio with coordination.
+                    Users see targets floating in a 39-inch (100cm) radius around them. To score points, they must reach out their arms and hit targets, combining cardio with coordination.
                   </p>
 
                   <div className="funfit-dark-panel funfit-dark-panel--compact">
