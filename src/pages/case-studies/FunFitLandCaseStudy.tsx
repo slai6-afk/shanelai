@@ -241,7 +241,7 @@ export function FunFitLandCaseStudy() {
                   className="funfit-body-text funfit-body-text--spaced-md funfit-research-intro-block"
                 >
                   <p className="funfit-body-paragraph">
-                    To understand why users consistently failed to reach targets, I pulled <strong>two weeks of historical gameplay logs</strong> from the product backend. I sampled <strong>around 200 users</strong> and extracted their <strong>headset and controller telemetry.</strong>
+                    We added some FAQ in our social media channels to notify users to re-calibrate the devices and change batteries of controllers. But the reports kept going on from new users.
                   </p>
                   <p className="funfit-research-lede">
                     We were wrong. So we had to dig into it — through data analysis and user interviews.
