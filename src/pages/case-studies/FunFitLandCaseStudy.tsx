@@ -82,7 +82,7 @@ export function FunFitLandCaseStudy() {
                   viewport={{ once: true }}
                   className="funfit-section-title funfit-section-title--overview"
                 >
-                  Overview
+                  TL;DR
                 </motion.h2>
 
                 <div className="funfit-overview-meta-card">
@@ -212,9 +212,6 @@ export function FunFitLandCaseStudy() {
                     <p className="funfit-body-paragraph">
                       Over three months, we received reports from <strong>47</strong> users saying they <strong>couldn't reach targets</strong>. We thought it is an equipment issue, like maybe their device calibration was off, or they were using broken controllers.
                     </p>
-                    <p className="funfit-body-paragraph funfit-problem-secondary-paragraph">
-                      <strong>I was wrong. So we have to dig into it...</strong> It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we assumed.
-                    </p>
                   </div>
 
                   <div className="funfit-dark-panel funfit-dark-panel--compact">
@@ -237,6 +234,10 @@ export function FunFitLandCaseStudy() {
                 >
                   Research & Discovery
                 </motion.h2>
+
+                <p className="funfit-research-lede">
+                  We were wrong. So we had to dig into it — through data analysis and user interviews.
+                </p>
 
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -312,6 +313,10 @@ export function FunFitLandCaseStudy() {
                     </em>
                   </p>
                 </div>
+
+                <p className="funfit-research-people-note">
+                  It wasn't about technology. It was about people, specifically people whose bodies didn't match the "average user" we assumed.
+                </p>
               </div>
 
               {/* Solution Section */}

@@ -840,6 +840,29 @@ html {
   margin-bottom: 16px;
 }
 
+.funfit-research-lede {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.funfit-research-people-note {
+  color: #666666;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  margin: 30px 0 20px;
+}
+
+@media (max-width: 991px) {
+  .funfit-research-lede,
+  .funfit-research-people-note {
+    color: rgba(74, 74, 74, 1);
+  }
+}
+
 .funfit-hypothesis-card {
   background-color: #FFFFFF;
   padding: 24px;
