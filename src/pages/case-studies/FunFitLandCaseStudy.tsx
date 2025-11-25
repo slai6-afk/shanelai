@@ -25,7 +25,6 @@ import Frame3465176 from '../../imports/Frame3465176-57-479';
 import imgExperiments from 'figma:asset/c427a35dab302ee2bcc37d79da015483ff4a9d32.png';
 import imgProductOverview from 'figma:asset/bebbc88443fdebed4e56ae9980488dadc3739961.png';
 import imgTargetInteraction from 'figma:asset/e90cc5d1053e7b5bd2df1638fbb42ebdcffaed63.png';
-import imgPOVFunfitland from 'figma:asset/e97e7566dbb21b415eacbe0aec448a177ae1a78e.png';
 import imgDesignProcess from 'figma:asset/7889a6fa0f2d5f342230a3de8bdf0bdbd4446c9f.png';
 import imgUserFeedback from 'figma:asset/bc8f2e00e443eba4f1f54b820dc44fc838b9f23e.png';
 
@@ -157,19 +156,14 @@ export function FunFitLandCaseStudy() {
                   <p className="funfit-body-text funfit-body-text--spaced-md">
                     Users see targets floating in a 39-inch (100cm) radius around them. To score points, they must reach out and hit targets, combining cardio with coordination.
                   </p>
-                </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-dark-panel"
-                >
-                  <img
-                    src={imgPOVFunfitland}
-                    alt="First-person view of user reaching for floating targets in VR environment"
-                    className="funfit-image-full"
-                  />
+                  <div className="funfit-dark-panel funfit-dark-panel--compact">
+                    <img
+                      src={imgTargetInteraction}
+                      alt="Diagram showing audio radius (200cm) vs visual radius (70cm)"
+                      className="funfit-image-full"
+                    />
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -187,26 +181,13 @@ export function FunFitLandCaseStudy() {
                     </p>
                   </div>
 
-                  <div className="funfit-dark-panel funfit-dark-panel--compact">
+                  <div className="funfit-dark-panel">
                     <img
-                      src={imgTargetInteraction}
-                      alt="Diagram showing audio radius (200cm) vs visual radius (70cm)"
+                      src={imgProductOverview}
+                      alt="Circular target layout showing 100cm radius and shoulder span considerations"
                       className="funfit-image-full"
                     />
                   </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-dark-panel"
-                >
-                  <img
-                    src={imgProductOverview}
-                    alt="Circular target layout showing 100cm radius and shoulder span considerations"
-                    className="funfit-image-full"
-                  />
                 </motion.div>
               </div>
 
