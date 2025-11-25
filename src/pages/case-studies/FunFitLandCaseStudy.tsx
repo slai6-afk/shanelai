@@ -104,7 +104,7 @@ export function FunFitLandCaseStudy() {
                   <TLDRCard
                     icon={AlertCircle}
                     title="Challenge"
-                    content="About 40 users reported they couldn't reach targets in our VR fitness game. Our rates went down from 4.5 to 4.1."
+                    content="<p>About 40 users reported they couldn't reach targets in our VR fitness game.</p><p>Final challenge is how to improve accessibility in VR games.</p>"
                     index={0}
                   />
                   <TLDRCard
