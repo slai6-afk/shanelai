@@ -525,6 +525,65 @@ html {
   color: rgb(0, 0, 0);
 }
 
+.hero-section {
+  padding-top: 0;
+  padding-bottom: 20px;
+}
+
+.hero-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.hero-text-wrapper,
+.hero-card-wrapper {
+  width: 50%;
+}
+
+.hero-title {
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: clamp(40px, 7vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.hero-line {
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-line--final {
+  margin-top: 6px;
+}
+
+.hero-accent {
+  color: rgb(255, 115, 0);
+}
+
+.hero-card-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-card-inner {
+  margin-left: 24px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.selected-works-section {
+  padding-top: 40px;
+  padding-bottom: 112px;
+}
+
 @media (max-width: 991px) {
   .tldr-card {
     flex-grow: 0;
@@ -538,6 +597,7 @@ html {
 
   .selected-works-section {
     padding-top: 10px;
+    padding-bottom: 32px;
   }
 
   .nav-inner {
@@ -557,6 +617,29 @@ html {
 
   .case-study-hero-section {
     padding-top: 1-px;
+  }
+
+  .hero-section {
+    padding-top: 0;
+  }
+
+  .hero-grid {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .hero-text-wrapper,
+  .hero-card-wrapper {
+    width: 100%;
+  }
+
+  .hero-title {
+    gap: 6px;
+    line-height: 1.08;
+  }
+
+  .hero-card-inner {
+    margin-left: 0;
   }
 }
 
