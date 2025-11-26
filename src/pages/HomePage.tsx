@@ -44,7 +44,7 @@ export function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col gap-10 pt-16 md:pt-[115px]"
+            className="flex flex-col gap-8 md:gap-10 pt-10 md:pt-[115px]"
           >
             <div className="hero-grid">
               <div className="hero-text-wrapper">
