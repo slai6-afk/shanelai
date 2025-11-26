@@ -48,7 +48,7 @@ export function HomePage() {
             className="flex flex-col lg:flex-row lg:items-start lg:gap-12"
           >
             {/* Desktop Chat Card (Left) */}
-            <div className="hidden lg:block flex-shrink-0 mt-2">
+            <div className="hidden lg:block flex-shrink-0 mt-2" style={{ marginRight: '48px' }}>
               <ChatIntroCard />
             </div>
 
