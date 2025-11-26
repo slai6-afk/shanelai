@@ -109,6 +109,12 @@
   font-family: 'Inter', sans-serif;
 }
 
+@media (max-width: 991px) {
+  .chat-intro-card {
+    height: 173px;
+  }
+}
+
 @media (min-width: 1024px) {
   .chat-intro-card {
     width: 280px;
