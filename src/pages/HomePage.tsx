@@ -88,9 +88,7 @@ export function HomePage() {
               </h1>
 
               {/* Mobile Chat Card (Below H1) */}
-              <div className="block lg:hidden mb-8 mt-4">
-                <ChatIntroCard />
-              </div>
+              <div className="block lg:hidden mb-8 mt-4" />
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
