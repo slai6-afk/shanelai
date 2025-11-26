@@ -47,48 +47,56 @@ export function HomePage() {
             style={{ paddingTop: '115px' }}
             className="flex flex-col"
           >
-            <div className="flex flex-col lg:flex-row gap-5">
-              <div className="w-full lg:w-1/2 flex flex-col">
-                <h1
-                  className="mb-8 lg:mb-[32px] max-w-[1024px] mx-auto"
-                  style={{
-                    color: '#000000',
-                    fontSize: '72px',
-                    fontWeight: 400,
-                    lineHeight: '86.4px',
-                    letterSpacing: '-1.44px'
-                  }}
-                >
-                  <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
-                    <span className="hero-title-text text-1" style={{ fontSize: '54.9px' }}>
-                      Turning{' '}
-                      <span style={{ color: 'rgb(254, 115, 1)' }}>Data</span>
-                      ,&nbsp;&nbsp;
-                    </span>
-                  </div>
-                  <div className="hero-title-line line-2" style={{ lineHeight: '70px' }}>
-                    <span className="hero-title-text text-2" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
-                      Systems,&nbsp;&nbsp;
-                    </span>
-                  </div>
-                  <div className="hero-title-line line-3" style={{ lineHeight: '70px' }}>
-                    <span className="hero-title-text text-3" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
-                      Human Behavior&nbsp;&nbsp;
-                    </span>
-                  </div>
-                  <div className="hero-title-line" style={{ lineHeight: '70px' }}>
-                    <span className="hero-title-text text-4" style={{ fontSize: '54.9px' }}>
-                      Into Meaningful Design.
-                    </span>
-                  </div>
-                </h1>
+            <div style={{ display: 'flex', gap: '20px', flexDirection: 'row', '@media (max-width: 991px)': { flexDirection: 'column', alignItems: 'stretch', gap: '0px' } }} className="max-md:flex-col">
+              <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }} className="max-md:w-full">
+                <div style={{ display: 'flex', flexDirection: 'column', fontWeight: 400 }}>
+                  <h1
+                    style={{
+                      color: '#000000',
+                      fontSize: '72px',
+                      fontWeight: 400,
+                      lineHeight: '86.4px',
+                      letterSpacing: '-1.44px',
+                      margin: '0 auto 32px'
+                    }}
+                  >
+                    <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
+                      <span className="hero-title-text text-1" style={{ fontSize: '54.9px', display: 'inline', fontWeight: 400 }}>
+                        Turning{' '}
+                        <div style={{ display: 'inline', color: 'rgb(254, 115, 1)', fontWeight: 400, textDecoration: 'rgb(254, 115, 1)' }}>
+                          Data
+                        </div>
+                        ,&nbsp;&nbsp;
+                      </span>
+                    </div>
+                    <div className="hero-title-line line-2" style={{ lineHeight: '70px' }}>
+                      <div style={{ display: 'inline', color: 'rgb(255, 115, 0)', fontSize: '54.9px', fontWeight: 400, textDecoration: 'rgb(255, 115, 0)' }}>
+                        Systems,&nbsp;&nbsp;
+                      </div>
+                    </div>
+                    <div className="hero-title-line line-3" style={{ lineHeight: '70px' }}>
+                      <div style={{ display: 'inline', color: 'rgb(255, 115, 0)', fontSize: '54.9px', fontWeight: 400, textDecoration: 'rgb(255, 115, 0)' }}>
+                        Human Behavior&nbsp;&nbsp;
+                      </div>
+                    </div>
+                    <div className="hero-title-line" style={{ lineHeight: '70px' }}>
+                      <div style={{ display: 'inline', fontSize: '54.9px', fontWeight: 400 }}>
+                        Into Meaningful Design.
+                      </div>
+                    </div>
+                  </h1>
+                </div>
               </div>
 
-              <div className="w-full lg:w-1/2 flex flex-col lg:ml-5">
-                <div className="mb-8 lg:mb-[32px] lg:ml-[44px]">
+              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', marginLeft: '20px' }} className="max-md:w-full max-md:ml-0">
+                <div style={{ fontWeight: 400, marginBottom: '32px', marginLeft: '44px' }} className="max-md:ml-0">
                   <ChatIntroCard />
                 </div>
               </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', fontWeight: 400, width: '100%' }}>
+              <div style={{ fontWeight: 400, marginBottom: '32px' }} />
             </div>
 
             <motion.div
