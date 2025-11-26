@@ -49,7 +49,7 @@ export function HomePage() {
           >
             <div style={{ display: 'flex', flexDirection: 'row', '@media (max-width: 991px)': { flexDirection: 'column', alignItems: 'stretch', gap: '0px' } }} className="max-md:flex-col">
               <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }} className="max-md:w-full">
-                <div style={{ display: 'flex', flexDirection: 'column', fontWeight: 400 }}>
+                <div style={{ display: 'flex', flexDirection: 'row', fontWeight: 400, marginRight: 'auto' }}>
                   <h1
                     style={{
                       color: '#000000',
