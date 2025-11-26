@@ -47,7 +47,7 @@ export function HomePage() {
             style={{ paddingTop: '115px' }}
             className="flex flex-col"
           >
-            <div style={{ display: 'flex', gap: '20px', flexDirection: 'row', '@media (max-width: 991px)': { flexDirection: 'column', alignItems: 'stretch', gap: '0px' } }} className="max-md:flex-col">
+            <div style={{ display: 'flex', flexDirection: 'row', '@media (max-width: 991px)': { flexDirection: 'column', alignItems: 'stretch', gap: '0px' } }} className="max-md:flex-col">
               <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }} className="max-md:w-full">
                 <div style={{ display: 'flex', flexDirection: 'column', fontWeight: 400 }}>
                   <h1
@@ -62,7 +62,9 @@ export function HomePage() {
                   >
                     <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
                       <span className="hero-title-text text-1" style={{ fontSize: '54.9px', display: 'inline', fontWeight: 400 }}>
-                        Turning{' '}
+                        <div style={{ paddingRight: '7px' }}>
+                          Turning
+                        </div>
                         <div style={{ display: 'inline', color: 'rgb(254, 115, 1)', fontWeight: 400, textDecoration: 'rgb(254, 115, 1)' }}>
                           Data
                         </div>
@@ -90,7 +92,9 @@ export function HomePage() {
 
               <div style={{ display: 'flex', flexDirection: 'column', width: '50%', marginLeft: '20px' }} className="max-md:w-full max-md:ml-0">
                 <div style={{ fontWeight: 400, marginBottom: '32px', marginLeft: '44px' }} className="max-md:ml-0">
-                  <ChatIntroCard />
+                  <div style={{ marginTop: '45px' }}>
+                    <ChatIntroCard />
+                  </div>
                 </div>
               </div>
             </div>
