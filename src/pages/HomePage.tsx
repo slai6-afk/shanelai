@@ -45,16 +45,11 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             style={{ paddingTop: '115px' }}
-            className="flex flex-col lg:flex-row lg:items-start lg:gap-12"
+            className="flex flex-col lg:flex-row lg:items-start lg:gap-8"
           >
-            {/* Desktop Chat Card (Left) */}
-            <div className="hidden lg:block flex-shrink-0 mt-2" style={{ marginRight: '48px' }}>
-              <ChatIntroCard />
-            </div>
-
             <div className="flex-1">
               <h1
-                className="mb-8 lg:mb-12 max-w-5xl"
+                className="mb-8 lg:mb-12 max-w-5xl mx-auto"
                 style={{
                   color: '#000000',
                   fontSize: 'clamp(40px, 6vw, 80px)',
@@ -88,7 +83,9 @@ export function HomePage() {
               </h1>
 
               {/* Mobile Chat Card (Below H1) */}
-              <div className="block lg:hidden mb-8 mt-4" />
+              <div className="block lg:hidden mb-8 mt-4">
+                <ChatIntroCard />
+              </div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -118,6 +115,11 @@ export function HomePage() {
                   <div>Base: NYC, New York</div>
                 </div>
               </motion.div>
+            </div>
+
+            {/* Desktop Chat Card (Right) */}
+            <div className="hidden lg:block flex-shrink-0 mt-2">
+              <ChatIntroCard />
             </div>
           </motion.div>
         </div>
