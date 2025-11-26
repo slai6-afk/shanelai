@@ -45,82 +45,80 @@ export function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             style={{ paddingTop: '115px' }}
-            className="flex flex-col lg:flex-row lg:items-start lg:gap-8"
+            className="flex flex-col"
           >
-            <div className="flex-1">
-              <h1
-                className="mb-8 lg:mb-12 max-w-5xl mx-auto"
-                style={{
-                  color: '#000000',
-                  fontSize: 'clamp(40px, 6vw, 80px)',
-                  fontWeight: 400,
-                  lineHeight: '1.2',
-                  letterSpacing: '-0.02em'
-                }}
-              >
-                <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
-                  <span className="hero-title-text text-1" style={{ fontSize: '54.9px' }}>
-                    Turning{' '}
-                    <span style={{ color: 'rgb(254, 115, 1)' }}>Data</span>
-                    ,&nbsp;&nbsp;
-                  </span>
-                </div>
-                <div className="hero-title-line line-2" style={{ lineHeight: '70px' }}>
-                  <span className="hero-title-text text-2" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
-                    Systems,&nbsp;&nbsp;
-                  </span>
-                </div>
-                <div className="hero-title-line line-3" style={{ lineHeight: '70px' }}>
-                  <span className="hero-title-text text-3" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
-                    Human Behavior&nbsp;&nbsp;
-                  </span>
-                </div>
-                <div className="hero-title-line" style={{ lineHeight: '70px' }}>
-                  <span className="hero-title-text text-4" style={{ fontSize: '54.9px' }}>
-                    Into Meaningful Design.
-                  </span>
-                </div>
-              </h1>
-
-              {/* Mobile Chat Card (Below H1) */}
-              <div className="block lg:hidden mb-8 mt-4">
-                <ChatIntroCard />
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <motion.a
-                  href="mailto:shanshanlai160402@gmail.com"
-                  whileHover={{ opacity: 0.6 }}
-                  className="inline-flex items-center gap-3 home-email-link"
-                  style={{ fontSize: '16px', fontWeight: 400 }}
-                >
-                  <Mail size={20} />
-                  <span>Get in touch</span>
-                </motion.a>
-
-                <div
+            <div className="flex flex-col lg:flex-row gap-5">
+              <div className="w-full lg:w-1/2 flex flex-col">
+                <h1
+                  className="mb-8 lg:mb-[32px] max-w-[1024px] mx-auto"
                   style={{
-                    marginTop: '8px',
-                    fontSize: '16px',
-                    fontWeight: 400,
                     color: '#000000',
-                    lineHeight: '1.6',
+                    fontSize: '72px',
+                    fontWeight: 400,
+                    lineHeight: '86.4px',
+                    letterSpacing: '-1.44px'
                   }}
                 >
-                  <div>Mobile: 929-420-7656</div>
-                  <div>Base: NYC, New York</div>
+                  <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
+                    <span className="hero-title-text text-1" style={{ fontSize: '54.9px' }}>
+                      Turning{' '}
+                      <span style={{ color: 'rgb(254, 115, 1)' }}>Data</span>
+                      ,&nbsp;&nbsp;
+                    </span>
+                  </div>
+                  <div className="hero-title-line line-2" style={{ lineHeight: '70px' }}>
+                    <span className="hero-title-text text-2" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
+                      Systems,&nbsp;&nbsp;
+                    </span>
+                  </div>
+                  <div className="hero-title-line line-3" style={{ lineHeight: '70px' }}>
+                    <span className="hero-title-text text-3" style={{ fontSize: '54.9px', color: 'rgba(255, 115, 0, 1)' }}>
+                      Human Behavior&nbsp;&nbsp;
+                    </span>
+                  </div>
+                  <div className="hero-title-line" style={{ lineHeight: '70px' }}>
+                    <span className="hero-title-text text-4" style={{ fontSize: '54.9px' }}>
+                      Into Meaningful Design.
+                    </span>
+                  </div>
+                </h1>
+              </div>
+
+              <div className="w-full lg:w-1/2 flex flex-col lg:ml-5">
+                <div className="mb-8 lg:mb-[32px] lg:ml-[44px]">
+                  <ChatIntroCard />
                 </div>
-              </motion.div>
+              </div>
             </div>
 
-            {/* Desktop Chat Card (Right) */}
-            <div className="hidden lg:block flex-shrink-0 mt-2">
-              <ChatIntroCard />
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.a
+                href="mailto:shanshanlai160402@gmail.com"
+                whileHover={{ opacity: 0.6 }}
+                className="inline-flex items-center gap-3 home-email-link"
+                style={{ fontSize: '16px', fontWeight: 400 }}
+              >
+                <Mail size={20} />
+                <span>Get in touch</span>
+              </motion.a>
+
+              <div
+                style={{
+                  marginTop: '8px',
+                  fontSize: '16px',
+                  fontWeight: 400,
+                  color: '#000000',
+                  lineHeight: '1.6',
+                }}
+              >
+                <div>Mobile: 929-420-7656</div>
+                <div>Base: NYC, New York</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
