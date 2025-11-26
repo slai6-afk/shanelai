@@ -1,1 +1,6 @@
+node_modules
+npm-debug.log*
+dist
+.vscode
+.DS_Store
 vite.config.ts.save
