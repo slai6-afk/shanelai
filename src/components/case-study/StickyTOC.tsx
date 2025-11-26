@@ -12,6 +12,22 @@ interface StickyTOCProps {
 
 export function StickyTOC({ items }: StickyTOCProps) {
   const [activeId, setActiveId] = useState<string>('');
+  const [isHeroPast, setIsHeroPast] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (!element) {
+      console.warn(`Element with id "${id}" not found`);
+      return;
+    }
+
+    const y = element.getBoundingClientRect().top + window.scrollY - 80;
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,7 +38,7 @@ export function StickyTOC({ items }: StickyTOCProps) {
           }
         });
       },
-      { rootMargin: '-100px 0px -80% 0px' }
+      { rootMargin: '-80px 0px -60% 0px' }
     );
 
     items.forEach((item) => {
@@ -35,86 +51,47 @@ export function StickyTOC({ items }: StickyTOCProps) {
     return () => observer.disconnect();
   }, [items]);
 
+  useEffect(() => {
+    const heroElement = document.querySelector('.case-study-hero-section');
+    if (!heroElement) return;
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroPast(!entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+
+    heroObserver.observe(heroElement);
+
+    return () => heroObserver.disconnect();
+  }, []);
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    // Prevent any default behavior
     e.preventDefault();
-    
-    const element = document.getElementById(id);
-    if (!element) {
-      console.warn(`Element with id "${id}" not found`);
-      return;
-    }
-    
-    // Immediately update active state
+
     setActiveId(id);
-    
-    // Scroll to the element smoothly
-    element.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'start'
-    });
-    
-    // Adjust for fixed header (100px offset to match IntersectionObserver rootMargin)
-    // We need a small timeout to let scrollIntoView start, then adjust
-    setTimeout(() => {
-      const currentScrollY = window.scrollY;
-      window.scrollTo({
-        top: currentScrollY - 100,
-        behavior: 'smooth'
-      });
-    }, 0);
+    scrollToSection(id);
   };
+
+  const navClassName = `sticky-toc-nav ${isHeroPast ? 'sticky-toc-fixed' : 'sticky-toc-inline'}`;
 
   return (
     <motion.nav
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      style={{
-        position: 'sticky',
-        top: '120px',
-        alignSelf: 'flex-start',
-        padding: '24px',
-        backgroundColor: '#FFFFFF',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
-        borderRadius: '4px',
-        maxHeight: 'calc(100vh - 200px)',
-        overflowY: 'auto'
-      }}
+      className={navClassName}
     >
-      <p style={{
-        color: '#000000',
-        fontSize: '12px',
-        fontWeight: 500,
-        textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        marginBottom: '16px'
-      }}>
-        Contents
-      </p>
+      <p className="case-toc-title">Contents</p>
 
-      <ul style={{ 
-        margin: 0, 
-        padding: 0, 
-        listStyle: 'none' 
-      }}>
+      <ul className="case-toc-list">
         {items.map((item) => (
-          <li key={item.id} style={{ marginBottom: '8px' }}>
+          <li key={item.id} className="case-toc-list-item">
             <button
               onClick={(e) => handleClick(e, item.id)}
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: '6px 12px',
-                width: '100%',
-                textAlign: 'left',
-                color: activeId === item.id ? '#000000' : '#666666',
-                fontSize: '13px',
-                fontWeight: activeId === item.id ? 500 : 400,
-                transition: 'all 0.2s ease',
-                borderLeft: activeId === item.id ? '2px solid #f97316' : '2px solid transparent',
-                cursor: 'pointer'
-              }}
+              className={`toc-item ${activeId === item.id ? 'active' : ''}`}
+              data-active={activeId === item.id}
             >
               {item.label}
             </button>

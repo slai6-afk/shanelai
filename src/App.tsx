@@ -10,7 +10,6 @@ import { MemoryNavigatorCaseStudy } from './pages/case-studies/MemoryNavigatorCa
 import { HuuuuuCaseStudy } from './pages/case-studies/HuuuuuCaseStudy';
 import { TalkieCaseStudy } from './pages/case-studies/TalkieCaseStudy';
 import { FunFitLandResearchCaseStudy } from './pages/case-studies/FunFitLandResearchCaseStudy';
-import { CustomCursor } from './components/CustomCursor';
 import { ScrollToTop } from './components/ScrollToTop';
 
 function AnimatedRoutes() {
@@ -160,8 +159,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="antialiased" style={{ cursor: 'none' }}>
-        <CustomCursor />
+      <div className="antialiased">
         <AnimatedRoutes />
       </div>
     </Router>

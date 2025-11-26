@@ -32,7 +32,7 @@ export function HuuuuuCaseStudy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
         <div className="max-w-[1200px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <h1 style={{ color: '#000000', fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
@@ -63,10 +63,10 @@ export function HuuuuuCaseStudy() {
       {/* Main Content */}
       <section className="pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block"><StickyTOC items={tocItems} /></div>
 
-            <div className="max-w-[900px]">
+            <div className="case-study-content-wrapper max-w-[900px] w-full">
               {/* Section 1 — TL;DR + Visual Introduction */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -780,7 +780,7 @@ export function HuuuuuCaseStudy() {
                         In future projects, I aim to continue bridging body-based sensing, data visualization, and collective experience: creating interfaces that feel intuitive because they honor how people already move, breathe, and connect.
                       </p>
                       
-                      <p style={{ fontSize: '16px', color: '#333333', lineHeight: '1.9', fontStyle: 'italic', color: '#666666' }}>
+                      <p style={{ fontSize: '16px', color: '#666666', lineHeight: '1.9', fontStyle: 'italic' }}>
                         Warmth, after all, was never just about temperature. It was about being seen, heard, and designed for.
                       </p>
                     </div>

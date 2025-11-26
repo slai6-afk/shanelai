@@ -15,47 +15,18 @@ export function TLDRCard({ icon: Icon, title, content, index = 0 }: TLDRCardProp
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.15 }}
-      style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
-        padding: '28px',
-        borderRadius: '20px',
-        height: '100%',
-        boxShadow: 'var(--shadow-sm)'
-      }}
+      className="tldr-card tldr-card-surface"
     >
-      <div style={{
-        width: '40px',
-        height: '40px',
-        backgroundColor: '#000000',
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: '16px'
-      }}>
-        <Icon size={20} style={{ color: '#FFFFFF' }} />
+      <div className="tldr-icon-circle">
+        <Icon size={20} className="tldr-icon" />
       </div>
 
-      <h3 style={{
-        color: '#000000',
-        fontSize: '16px',
-        fontWeight: 500,
-        marginBottom: '12px',
-        textTransform: 'uppercase',
-        letterSpacing: '0.02em'
-      }}>
-        {title}
-      </h3>
+      <h3 className="tldr-title">{title}</h3>
 
-      <p style={{
-        color: '#666666',
-        fontSize: '14px',
-        fontWeight: 400,
-        lineHeight: '1.7'
-      }}>
-        {content}
-      </p>
+      <p
+        className="tldr-content"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </motion.div>
   );
 }

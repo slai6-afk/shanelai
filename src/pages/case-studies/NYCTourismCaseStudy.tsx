@@ -28,7 +28,7 @@ export function NYCTourismCaseStudy() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
         <div className="max-w-[1200px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -150,14 +150,14 @@ export function NYCTourismCaseStudy() {
       {/* Main Content with TOC */}
       <section className="pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             {/* Sticky TOC */}
             <div className="hidden lg:block">
               <StickyTOC items={tocItems} />
             </div>
 
             {/* Content */}
-            <div className="max-w-[900px]">
+            <div className="case-study-content-wrapper max-w-[900px] w-full">
               {/* TL;DR Section */}
               <div id="tldr" style={{ marginBottom: '80px' }}>
                 <motion.h2

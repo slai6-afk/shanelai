@@ -65,7 +65,7 @@ export function MemoryNavigatorCaseStudy() {
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
 
-      <section className="pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
         <div className="max-w-[1200px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <h1 style={{ color: '#000000', fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
@@ -95,10 +95,10 @@ export function MemoryNavigatorCaseStudy() {
 
       <section className="pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block"><StickyTOC items={tocItems} /></div>
 
-            <div className="max-w-[900px]">
+            <div className="case-study-content-wrapper max-w-[900px] w-full">
               {/* Hero Introduction Section */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
