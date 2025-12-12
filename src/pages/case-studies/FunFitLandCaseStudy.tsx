@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { DecisionPill } from '../../components/case-study/DecisionPill';
@@ -28,6 +29,9 @@ import imgDesignProcess from 'figma:asset/7889a6fa0f2d5f342230a3de8bdf0bdbd4446c
 import imgUserFeedback from 'figma:asset/bc8f2e00e443eba4f1f54b820dc44fc838b9f23e.png';
 
 export function FunFitLandCaseStudy() {
+  const tocTriggerRef = useRef<HTMLDivElement>(null);
+  const [tocVisible, setTocVisible] = useState(false);
+
   const tocItems = [
     { id: 'tldr', label: 'Overview (TL;DR)' },
     { id: 'context', label: 'Context' },
@@ -37,6 +41,20 @@ export function FunFitLandCaseStudy() {
     { id: 'impact', label: 'Impact' },
     { id: 'reflection', label: 'Reflection' }
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (tocTriggerRef.current) {
+        const triggerRect = tocTriggerRef.current.getBoundingClientRect();
+        const activationOffset = 120;
+        setTocVisible(triggerRect.top <= activationOffset);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
@@ -69,10 +87,11 @@ export function FunFitLandCaseStudy() {
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} />
+              <StickyTOC items={tocItems} isVisible={tocVisible} />
             </div>
 
             <div className="case-study-content-wrapper max-w-[900px] w-full">
+              <div ref={tocTriggerRef} style={{ height: 1 }} />
               {/* Overview */}
               <div id="tldr" className="funfit-section funfit-overview-section">
                 <motion.h2

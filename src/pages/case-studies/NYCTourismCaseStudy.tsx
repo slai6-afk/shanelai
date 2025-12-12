@@ -1,639 +1,1442 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
-import { DecisionPill } from '../../components/case-study/DecisionPill';
-import { TLDRCard } from '../../components/case-study/TLDRCard';
-import { InsightCard } from '../../components/case-study/InsightCard';
-import { EvidenceBlock } from '../../components/case-study/EvidenceBlock';
-import { MethodBlock } from '../../components/case-study/MethodBlock';
-import { FigureWithCaption } from '../../components/case-study/FigureWithCaption';
-import { NextSteps } from '../../components/case-study/NextSteps';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
-import { AlertCircle, Target, TrendingUp, Users, FileText, Search, BarChart3 } from 'lucide-react';
+import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
+
+import heroComposite from '../../assets/desktop_homepage.png';
+import tldrBackground from '../../assets/tlnrbg.png';
+import hookStreet from '../../assets/f47027c6a37e29d17d2cc9b1d3f48fff.jpg';
+import oldHomepage from '../../assets/oldweb1.png';
+import oldDeepPage from '../../assets/oldweb2.png';
+import oldCluttered from '../../assets/Screenshot 2025-12-11 at 1.20.38 PM.png';
+import similarityMatrix from '../../assets/similirity metrix.png';
+import personaSpectrum from '../../assets/persona.png';
+import cardSortBoard from '../../assets/Things to Do-2.png';
+import treeTestResult from '../../assets/Things to Do-1.png';
+import sketchImage from '../../assets/sketch.png';
+import iaImage from '../../assets/IA.png';
+import mapNotationImage from '../../assets/mapnotation.png';
+import homepageVideo from '../../assets/Screen Recording 2025-12-12 at 11.50.30 PM.mov';
+import cardComparison from '../../assets/cardcompareson.png';
+import mobileMapVideo from '../../assets/mapvideo.mov';
+import mapComparisons from '../../assets/3maps.png';
+import explorationFlowVideo from '../../assets/mobilevideo.mov';
 
 export function NYCTourismCaseStudy() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const tocTriggerRef = useRef<HTMLDivElement>(null);
+  const [tocVisible, setTocVisible] = useState(false);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start']
+  });
+  const heroBgY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (tocTriggerRef.current) {
+        const triggerRect = tocTriggerRef.current.getBoundingClientRect();
+        const activationOffset = 120;
+        const shouldShow = triggerRect.top <= activationOffset;
+        setTocVisible((prev) => (prev === shouldShow ? prev : shouldShow));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const tocItems = [
+    { id: 'hero', label: 'Hero' },
     { id: 'tldr', label: 'TL;DR' },
-    { id: 'background', label: 'Background & Objectives' },
-    { id: 'methodology', label: 'Methodology' },
-    { id: 'findings', label: 'Findings & Insights' },
-    { id: 'influence', label: 'Influence & Decisions' },
-    { id: 'iterations', label: 'Iterations & Limitations' },
-    { id: 'outcomes', label: 'Outcomes & Next Steps' },
-    { id: 'credits', label: 'Credits & Ethics' }
+    { id: 'hook', label: 'Hook' },
+    { id: 'problem', label: 'Problem' },
+    { id: 'research', label: 'Research' }
+  ];
+
+  const researchSteps = [
+    { step: 'Step 01', title: 'Interviews', outcome: 'Captured decision anxiety and planning habits', evidenceIndex: 0 },
+    { step: 'Step 02', title: 'Card sorting', outcome: 'Revealed grouping by vibe, effort, and context', evidenceIndex: 1 },
+    { step: 'Step 03', title: 'Data analysis', outcome: 'Confirmed clusters through a similarity matrix', evidenceIndex: 2 },
+    { step: 'Step 04', title: 'Tree testing', outcome: 'Exposed where labels and paths broke', evidenceIndex: 3 },
+    { step: 'Step 05', title: 'Insights', outcome: 'Reduced uncertainty became the north star', evidenceIndex: 4 }
+  ];
+
+  const researchEvidence = [
+    { src: sketchImage, alt: 'sketch', caption: 'Early notes turned confusion into concrete behaviors', type: 'sketch' },
+    { src: iaImage, alt: 'IA', caption: 'Category logic failed when users thought in situations', type: 'ia' },
+    { src: similarityMatrix, alt: 'Similarity matrix', caption: 'Clusters emerged beyond intuition', type: 'matrix' },
+    { src: iaImage, alt: 'IA tree', caption: 'Validation showed where navigation collapsed', type: 'tree' },
+    { src: personaSpectrum, alt: 'persona', caption: 'Persona spectrum aligned the system to city familiarity', type: 'persona' }
   ];
 
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16" id="hero" ref={heroRef}>
         <div className="max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 style={{
-              color: '#000000',
-              fontSize: 'clamp(36px, 5vw, 56px)',
-              fontWeight: 400,
-              lineHeight: '1.2',
-              marginBottom: '16px'
-            }}>
-              NYC Tourism IA Redesign
+          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              style={{
+                marginBottom: '32px',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                maxWidth: '60%',
+                margin: '0 auto 32px'
+              }}
+            >
+              <motion.div style={{ y: heroBgY }}>
+                <ImageWithFallback
+                  src={heroComposite}
+                  alt="NYC redesign map"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '16 / 9',
+                    display: 'block',
+                    objectFit: 'cover',
+                    objectPosition: 'top',
+                    opacity: 1
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+
+            <h1
+              style={{
+                color: '#000000',
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                fontWeight: 400,
+                lineHeight: '1.2',
+                marginBottom: '16px'
+              }}
+            >
+              Reimagining discovery for young people navigating NYC
             </h1>
 
-            <p style={{
-              color: '#666666',
-              fontSize: '20px',
-              fontWeight: 400,
-              lineHeight: '1.6',
-              marginBottom: '32px',
-              maxWidth: '800px'
-            }}>
-              Improving content findability by 30% through evidence-based information architecture redesign
+            <p
+              style={{
+                color: '#666666',
+                fontSize: '20px',
+                fontWeight: 400,
+                lineHeight: '1.6',
+                marginBottom: '32px',
+                maxWidth: '800px'
+              }}
+            >
+              Helping students and recent arrivals turn the city into a place that feels livable, not overwhelming
             </p>
-
-            {/* Label Pills */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '24px' }}>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#1D0024',
-                color: '#FFFFFF',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                textTransform: 'uppercase'
-              }}>
-                Research
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)'
-              }}>
-                Information Architecture
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)'
-              }}>
-                Card Sorting · Tree Testing
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)'
-              }}>
-                UX Researcher
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)'
-              }}>
-                8 Weeks
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)'
-              }}>
-                NYC Tourism Board
-              </span>
-              <span style={{
-                padding: '8px 16px',
-                backgroundColor: '#FFFFFF',
-                color: '#000000',
-                fontSize: '12px',
-                fontWeight: 500,
-                letterSpacing: '0.02em',
-                border: '1px solid rgba(0, 0, 0, 0.2)'
-              }}>
-                Research Report · IA Prototype
-              </span>
-            </div>
-
-            {/* Decision Pills */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              <DecisionPill text="Prioritized IA v2 over v1" index={0} />
-              <DecisionPill text="Validated 'Things to Do' as primary category" index={1} />
-              <DecisionPill text="Reduced navigation depth from 4 to 3 levels" index={2} />
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content with TOC */}
+      {/* TL;DR full-bleed (Memory Navigator style) */}
+      <section className="px-0">
+        <div
+          id="tldr"
+          className="tldr-hero-fullbleed case-full-bleed"
+          style={{
+            position: 'relative',
+            height: '100vh',
+            minHeight: '720px',
+            marginBottom: '200px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            overflow: 'hidden'
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.0, ease: 'easeOut' }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 0,
+              overflow: 'hidden'
+            }}
+          >
+            <ImageWithFallback
+              src={tldrBackground}
+              alt="NYC TL;DR background"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', filter: 'brightness(0.9)' }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.55) 40%)'
+              }}
+            />
+          </motion.div>
+
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 1,
+              width: '100%',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: '0 40px'
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '28px',
+                color: '#FFFFFF',
+                opacity: 0.92
+              }}
+            >
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                style={{
+                  fontSize: '14px',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  margin: 0,
+                  color: 'rgba(255,255,255,0.8)'
+                }}
+              >
+                TL;DR
+              </motion.p>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                  gap: '16px',
+                  alignItems: 'stretch'
+                }}
+              >
+                {[
+                  {
+                    title: 'What I built',
+                    body: 'A redesigned discovery experience that helps students explore NYC with confidence, not cognitive overload.'
+                  },
+                  {
+                    title: 'Research foundation',
+                    body: '• In-depth interviews\n• Card sorting and tree testing\n• Behavioral analysis of planning and decision-making'
+                  },
+                  {
+                    title: 'What improved',
+                    body: '• Exploring neighborhoods\n• Finding and saving places\n• Planning outings through wishlists'
+                  }
+                ].map((card, idx) => (
+                  <motion.div
+                    key={card.title}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.9, ease: 'easeOut', delay: 0.08 + idx * 0.06 }}
+                    style={{
+                      backgroundColor: 'rgba(0,0,0,0.35)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      borderRadius: '12px',
+                      padding: '18px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px',
+                      backdropFilter: 'blur(4px)'
+                    }}
+                  >
+                    <p style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}>{card.title}</p>
+                    <p style={{ margin: 0, fontSize: '15px', lineHeight: 1.6, color: 'rgba(255,255,255,0.9)', whiteSpace: 'pre-line' }}>
+                      {card.body}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: 'easeOut', delay: 0.22 }}
+                style={{
+                  fontSize: '12px',
+                  color: 'rgba(255,255,255,0.65)',
+                  margin: 0
+                }}
+              >
+                Team project. I led research synthesis and information architecture decisions.
+              </motion.p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <section className="pb-32 px-8 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
-            {/* Sticky TOC */}
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-4">
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} />
+              <StickyTOC items={tocItems} isVisible={tocVisible} />
             </div>
 
-            {/* Content */}
-            <div className="case-study-content-wrapper max-w-[900px] w-full">
-              {/* TL;DR Section */}
-              <div id="tldr" style={{ marginBottom: '80px' }}>
+            <div className="case-study-content-wrapper max-w-[1200px] w-full" style={{ position: 'relative' }}>
+              <div ref={tocTriggerRef} style={{ height: 1 }} />
+
+              <div id="hook" style={{ marginBottom: '200px', position: 'relative' }}>
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '32px'
-                  }}
+                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '60px' }}
                 >
-                  TL;DR
-                </motion.h2>
-
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                  gap: '20px' 
-                }}>
-                  <TLDRCard
-                    icon={AlertCircle}
-                    title="Problem"
-                    content="International students struggled to find events and attractions on nyctourism.com due to unclear categorization and excessive navigation depth. Task completion rate was below 60%."
-                    index={0}
-                  />
-                  <TLDRCard
-                    icon={Target}
-                    title="Approach"
-                    content="Conducted hybrid card sorting (n=42) to understand mental models, followed by tree testing (n=38) to validate two IA prototypes. Selected methods balance qualitative insight with quantitative validation."
-                    index={1}
-                  />
-                  <TLDRCard
-                    icon={TrendingUp}
-                    title="Impact"
-                    content="IA v2 improved task success by 30% and reduced average clicks from 4.2 to 2.8. Findings directly informed Q2 redesign roadmap and influenced mobile navigation patterns."
-                    index={2}
-                  />
-                </div>
-              </div>
-
-              {/* Background & Objectives */}
-              <div id="background" style={{ marginBottom: '80px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '24px'
-                  }}
-                >
-                  Background & Objectives
+                  Hook
                 </motion.h2>
 
                 <motion.div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '80vh',
+                    minHeight: '620px',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    marginBottom: '160px'
+                  }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    color: '#666666',
-                    fontSize: '16px',
-                    fontWeight: 400,
-                    lineHeight: '1.8'
-                  }}
+                  transition={{ duration: 1.1 }}
                 >
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#000000' }}>Product Context:</strong> NYC Tourism's website serves over 5M monthly visitors, with international students representing 18% of traffic. Analytics showed high bounce rates (62%) and low task completion on event discovery pages.
-                  </p>
+                  <div style={{ width: '100%', height: '100%' }}>
+                    <ImageWithFallback
+                      src={hookStreet}
+                      alt="NYC street photo"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'blur(6px) brightness(0.95)' }}
+                    />
+                  </div>
 
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#000000' }}>Target Users:</strong> International students (18-28 years old) new to NYC, seeking cultural events, affordable activities, and orientation resources. Secondary audience includes families and business travelers.
-                  </p>
-
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#000000' }}>Research Questions:</strong>
-                  </p>
-                  <ul style={{ marginBottom: '20px', paddingLeft: '24px' }}>
-                    <li>How do users mentally categorize NYC tourist content?</li>
-                    <li>What labeling resonates with international students?</li>
-                    <li>Can we reduce navigation depth without sacrificing discoverability?</li>
-                  </ul>
-
-                  <p style={{ marginBottom: '0' }}>
-                    <strong style={{ color: '#000000' }}>Success Criteria:</strong> Achieve &gt;75% task success rate in tree testing, reduce average path length by 25%, and gain stakeholder buy-in for Q2 implementation.
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Methodology */}
-              <div id="methodology" style={{ marginBottom: '80px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '24px'
-                  }}
-                >
-                  Methodology
-                </motion.h2>
-
-                <MethodBlock
-                  icon={Users}
-                  title="Hybrid Card Sorting"
-                  description="Recruited 42 international students (68% remote, 32% moderated) to categorize 65 content items. Chose hybrid approach to balance user mental models with business constraints."
-                  details={[
-                    "Phase 1: Open card sort (n=20) to discover organic categories",
-                    "Phase 2: Closed card sort (n=22) to validate top 8 categories",
-                    "Tools: OptimalSort for remote sessions, physical cards for in-person"
-                  ]}
-                  index={0}
-                />
-
-                <MethodBlock
-                  icon={Search}
-                  title="Tree Testing"
-                  description="Tested two IA prototypes with 38 participants across 12 findability tasks. Measured success rate, directness, and time-on-task to compare structures."
-                  details={[
-                    "IA v1: Category-first (e.g., Museums → By Neighborhood)",
-                    "IA v2: Intent-first (e.g., Things to Do → Museums)",
-                    "Each participant completed 6 tasks per structure (randomized order)"
-                  ]}
-                  index={1}
-                />
-
-                <MethodBlock
-                  icon={BarChart3}
-                  title="Data Analysis"
-                  description="Combined quantitative metrics with qualitative feedback. Used dendrogram analysis for card sort data and success rate + directness score for tree testing."
-                  details={[
-                    "Analyzed category agreement using standardized scores",
-                    "Identified paths with <60% success for redesign priority",
-                    "Cross-referenced analytics data to validate pain points"
-                  ]}
-                  index={2}
-                />
-
-                <FigureWithCaption
-                  src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F16b3e088cf8c45a580b69e54618ff54c"
-                  alt="IA comparison diagram"
-                  caption="Conduct persona spectrum for better design"
-                />
-              </div>
-
-              {/* Findings & Insights */}
-              <div id="findings" style={{ marginBottom: '80px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '32px'
-                  }}
-                >
-                  Findings → Insights → Recommendations
-                </motion.h2>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                  <InsightCard
-                    title="Users think by activity intent, not category type"
-                    evidence="I don't care if it's a museum or gallery, I just want something cultural to do this weekend that's not too expensive. — P14, Tree Testing"
-                    recommendation="Reorganize top-level navigation around user intents ('Things to Do', 'Plan Your Visit', 'NYC Basics') rather than content types ('Museums', 'Galleries', 'Events')."
-                    impact="IA v2 showed 30% higher success rate (82% vs 63%) and 35% fewer mis-clicks on intent-driven tasks."
-                    confidence="High"
-                    effort="Medium"
-                    impactLevel="High"
-                    index={0}
-                  />
-
-                  <InsightCard
-                    title="'Events' label caused confusion with 'Things to Do'"
-                    evidence="Card sort data showed 'Events' scattered across 3 categories with only 42% agreement. Post-test interviews revealed users conflate recurring activities with one-time events."
-                    recommendation="Merge 'Events' into 'Things to Do' with a time-based filter (Today, This Week, Year-Round). Use 'Happenings' for limited-time content."
-                    impact="Reduced category ambiguity and improved scannability. Expected 15% decrease in support tickets related to event finding."
-                    confidence="High"
-                    effort="Low"
-                    impactLevel="Medium"
-                    index={1}
-                  />
-
-                  <InsightCard
-                    title="Neighborhood-based navigation underperformed for new users"
-                    evidence="Tree testing showed 58% failure rate when tasks required neighborhood knowledge. Users unfamiliar with NYC geography abandoned or guessed randomly."
-                    recommendation="Demote neighborhood navigation to secondary level. Provide map-based exploration as alternative. Add 'Popular Areas' quick-start guide."
-                    impact="Aligns with personas (international students lack NYC geography knowledge). Tree test v2 improved success to 76% with adjusted structure."
-                    confidence="Medium"
-                    effort="Medium"
-                    impactLevel="High"
-                    index={2}
-                  />
-
-                  <EvidenceBlock
-                    type="quote"
-                    content="The first version made me feel stupid. I don't know where SoHo is. The second version let me browse by what I actually wanted to do."
-                    source="P22, International Student from Beijing"
-                    index={3}
-                  />
-
-                  <img
-                    alt="Redesigned navigation menu"
-                    loading="lazy"
-                    src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F3d3f40b893bd4e7781a89c6932dea299"
+                  <div
                     style={{
-                      display: 'block',
-                      width: '100%'
+                      position: 'absolute',
+                      inset: 0,
+                      background:
+                        'linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.35) 100%)',
+                      mixBlendMode: 'multiply',
+                      zIndex: 1
                     }}
                   />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 2,
+                      backgroundImage: 'radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0)',
+                      backgroundSize: '24px 24px',
+                      opacity: 0.4,
+                      pointerEvents: 'none'
+                    }}
+                  />
+
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 3,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      padding: '48px'
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
+                      style={{
+                        maxWidth: '760px',
+                        textAlign: 'left',
+                        color: '#FFFFFF',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '20px',
+                        filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.35))'
+                      }}
+                    >
+                      <p style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em' }}>
+                        When you first arrive in New York, the city feels unreadable.
+                      </p>
+                      <p style={{ fontSize: 'clamp(20px, 2.6vw, 24px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em' }}>
+                        Students told us the same story.
+                      </p>
+                      <div style={{ borderLeft: '2px solid rgba(255,255,255,0.35)', paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
+                          “I want to explore but I do not know where to begin.”
+                        </p>
+                        <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
+                          “Everything is scattered across apps.”
+                        </p>
+                        <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
+                          “I do not want to waste my one free evening.”
+                        </p>
+                      </div>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.35 }}
+                        style={{ fontSize: 'clamp(20px, 2.6vw, 24px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em', margin: 0 }}
+                      >
+                        They were not looking for a tourism site.
+                        <br />
+                        They were looking for orientation.
+                      </motion.p>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </div>
+
+              <div id="problem" style={{ marginBottom: '200px' }}>
+                <motion.h2
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '60px' }}
+                >
+                  Problem
+                </motion.h2>
+
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                    gap: '24px',
+                    marginBottom: '120px'
+                  }}
+                >
+                  {[
+                    {
+                      label: 'Discovery',
+                      title: 'Fragmented experience',
+                      body: 'Students switched between TikTok, Instagram, Maps, and screenshots to plan anything.',
+                      image: oldHomepage
+                    },
+                    {
+                      label: 'Structure',
+                      title: 'Unclear information architecture',
+                      body: 'Category labels overlapped and buried important content.',
+                      image: oldDeepPage
+                    },
+                    {
+                      label: 'Emotion',
+                      title: 'High decision risk',
+                      body: 'One bad outing feels expensive in time and energy.',
+                      image: oldCluttered
+                    }
+                  ].map((card, index) => (
+                    <motion.div
+                      key={card.title}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.55, delay: index * 0.12, ease: 'easeOut' }}
+                      style={{
+                        backgroundColor: '#FFFFFF',
+                        padding: '28px',
+                        borderRadius: '16px',
+                        border: '1px solid rgba(0,0,0,0.06)',
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '16px',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '12px',
+                          right: '12px',
+                          width: '36px',
+                          height: '36px',
+                          borderRadius: '50%',
+                          border: '1px dashed rgba(235,73,73,0.7)',
+                          opacity: 0.4,
+                          pointerEvents: 'none'
+                        }}
+                      />
+                      <div
+                        style={{
+                          borderRadius: '12px',
+                          overflow: 'hidden',
+                          border: '1px solid rgba(0,0,0,0.06)',
+                          aspectRatio: '4 / 3',
+                          backgroundColor: '#F7F7F7',
+                          position: 'relative'
+                        }}
+                      >
+                        <ImageWithFallback
+                          src={card.image}
+                          alt={card.title}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 0.9 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.15 + index * 0.1 }}
+                          style={{
+                            position: 'absolute',
+                            inset: 0,
+                            background:
+                              'radial-gradient(circle at 22% 32%, rgba(235,73,73,0.14), transparent 28%), radial-gradient(circle at 68% 58%, rgba(235,73,73,0.12), transparent 32%)',
+                            pointerEvents: 'none'
+                          }}
+                        />
+                      </div>
+                      <span style={{ fontSize: '12px', letterSpacing: '0.06em', color: '#B22222', textTransform: 'uppercase' }}>
+                        {card.label}
+                      </span>
+                      <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#111', margin: 0 }}>{card.title}</h3>
+                      <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#4B4B4B', margin: 0 }}>{card.body}</p>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
 
-              {/* Influence & Decisions */}
-              <div id="influence" style={{ marginBottom: '80px' }}>
+              <div id="research" style={{ marginBottom: '160px' }}>
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '24px'
-                  }}
+                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '12px' }}
                 >
-                  Influence & Decisions
+                  Research Overview
                 </motion.h2>
-
-                <motion.div
+                <motion.p
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    padding: '32px',
-                    marginBottom: '24px'
-                  }}
+                  transition={{ duration: 0.6 }}
+                  style={{ marginBottom: '32px', color: '#666', fontSize: '14px', letterSpacing: '0.05em', textTransform: 'uppercase' }}
                 >
-                  <h3 style={{ 
-                    color: '#000000', 
-                    fontSize: '18px',
-                    fontWeight: 500,
-                    marginBottom: '16px'
-                  }}>
-                    Product Impact
-                  </h3>
+                  From interviews to insights
+                </motion.p>
 
-                  <ul style={{ 
-                    margin: 0, 
-                    paddingLeft: '24px',
-                    color: '#666666',
-                    fontSize: '15px',
-                    lineHeight: '1.8'
-                  }}>
-                    <li style={{ marginBottom: '12px' }}>
-                      <strong style={{ color: '#000000' }}>Roadmap Change:</strong> Findings moved IA redesign from Q3 to Q2 priority. PM allocated 2 sprints for implementation.
-                    </li>
-                    <li style={{ marginBottom: '12px' }}>
-                      <strong style={{ color: '#000000' }}>Scope Adjustment:</strong> Recommendation to deprioritize neighborhood-first navigation influenced mobile app v3.0 navigation pattern.
-                    </li>
-                    <li style={{ marginBottom: '12px' }}>
-                      <strong style={{ color: '#000000' }}>Stakeholder Alignment:</strong> Presented to Marketing, Content, and Engineering leads. 95% vote to proceed with IA v2.
-                    </li>
-                    <li>
-                      <strong style={{ color: '#000000' }}>Documentation:</strong> Research integrated into PRD-2024-Q2-Navigation (internal), with links to Figma prototypes and JIRA tickets (WEB-4521, WEB-4522).
-                    </li>
-                  </ul>
-                </motion.div>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'minmax(200px, 260px) minmax(0, 1fr)',
+                    gap: '16px',
+                    alignItems: 'start'
+                  }}
+                  className="lg:grid md:grid sm:block"
+                >
+                  {/* Left selector */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', maxWidth: '260px' }}>
+                    {[
+                      { step: 'Step 01', title: 'Interviews' },
+                      { step: 'Step 02', title: 'Card sorting' },
+                      { step: 'Step 03', title: 'Data analysis' },
+                      { step: 'Step 04', title: 'Tree testing' },
+                      { step: 'Step 05', title: 'Key insight' }
+                    ].map((item, idx) => (
+                      <motion.button
+                        key={item.step}
+                        type="button"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.45, delay: 0.05 * idx, ease: 'easeOut' }}
+                        onClick={() => setActiveStep(idx)}
+                        style={{
+                          border: '1px solid rgba(0,0,0,0.08)',
+                          borderRadius: '12px',
+                          padding: '12px 14px',
+                          backgroundColor: activeStep === idx ? 'rgba(0,0,0,0.04)' : '#FFFFFF',
+                          boxShadow: activeStep === idx ? '0 10px 24px rgba(0,0,0,0.06)' : '0 2px 10px rgba(0,0,0,0.03)',
+                          transform: activeStep === idx ? 'translateY(-1px) scale(1.005)' : 'translateY(0) scale(1)',
+                          transition: 'all 0.2s ease',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            borderRadius: '50%',
+                            backgroundColor: ['#FF7A00', '#FFB347', '#7D9FFF', '#5CC6C3', '#AC8BFF'][idx],
+                            flexShrink: 0
+                          }}
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
+                          <span style={{ fontSize: '11px', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>{item.step}</span>
+                          <span style={{ fontSize: '15px', fontWeight: 600, color: '#111' }}>{item.title}</span>
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
 
-                <FigureWithCaption
-                  src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F8d3835f471d341d9901d8a4bdf2a373f"
-                  alt="Redesigned navigation menu"
-                  caption="Final navigation design implementing IA v2 intent-first structure"
-                />
+                  {/* Right content */}
+                  <div
+                    style={{
+                      position: 'relative',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      backgroundColor: '#FFFFFF',
+                      minHeight: '420px',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.06)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      padding: '12px'
+                    }}
+                  >
+                    {[
+                      {
+                        title: 'STEP 01 — Interviews',
+                        headline: 'Captured decision anxiety and planning under constraints',
+                        body: null,
+                        data: [
+                          { value: '6', label: 'Users' },
+                          { value: '20–28', label: 'Ages' },
+                          { value: '≤ 1 year', label: 'Time living in NYC' }
+                        ],
+                        caption: 'Early notes turned confusion into concrete behaviors',
+                        image: null,
+                        type: 'data'
+                      },
+                      {
+                        title: 'STEP 02 — Card sorting',
+                        headline: 'Students organized content by context, not topic',
+                        bullets: [
+                          'Groupings reflected intention, situation, and emotional state',
+                          '“What am I doing, with whom, and when?” mattered more than categories',
+                          'Topic-based navigation consistently broke down'
+                        ],
+                        viz: [
+                          { label: 'Intention', color: '#FFB347' },
+                          { label: 'Vibe', color: '#7D9FFF' },
+                          { label: 'Situation', color: '#5CC6C3' }
+                        ],
+                        caption: null,
+                        image: null,
+                        type: 'context'
+                      },
+                      {
+                        title: 'STEP 03 — Data analysis',
+                        headline: 'Quantitative analysis revealed hidden structural patterns',
+                        bullets: [
+                          'Participant groupings were translated into co-occurrence percentages',
+                          'The matrix was reordered to highlight clustering patterns',
+                          'Clusters emerged that were not visible through qualitative review alone'
+                        ],
+                        caption: 'Clusters emerged beyond intuition',
+                        image: similarityMatrix,
+                        type: 'matrix'
+                      },
+                      {
+                        title: 'STEP 04 — Tree testing',
+                        headline: 'Validation exposed where navigation failed',
+                        bullets: [
+                          'Tree testing showed where label ambiguity and hierarchy caused hesitation, backtracking, and path confusion.'
+                        ],
+                        caption: 'Validation confirmed where mental models and structure diverged',
+                        image: iaImage,
+                        type: 'tree'
+                      },
+                      {
+                        title: 'STEP 05 — Key insight',
+                        headline: 'Exploration is intention-driven, not category-driven',
+                        bullets: ['Students do not explore cities by category. They explore by intention, vibe, and situation.'],
+                        caption: null,
+                        image: null,
+                        type: 'insight'
+                      }
+                    ].map((item, idx) => (
+                      <motion.div
+                        key={item.title}
+                        initial={{ opacity: 0, x: 8 }}
+                        animate={{ opacity: activeStep === idx ? 1 : 0, x: activeStep === idx ? 0 : 8 }}
+                        transition={{ duration: 0.4, ease: 'easeOut' }}
+                        style={{
+                          position: activeStep === idx ? 'relative' : 'absolute',
+                          inset: 0,
+                          pointerEvents: activeStep === idx ? 'auto' : 'none',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '12px'
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 4px 0' }}>
+                          <span
+                            style={{
+                              width: '10px',
+                              height: '10px',
+                              borderRadius: '50%',
+                              backgroundColor: ['#FF7A00', '#FFB347', '#7D9FFF', '#5CC6C3', '#AC8BFF'][idx],
+                              flexShrink: 0
+                            }}
+                          />
+                          <div>
+                            <p style={{ margin: 0, fontSize: '12px', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>
+                              {item.title}
+                            </p>
+                            <p style={{ margin: 0, fontSize: '18px', fontWeight: 600, color: '#111' }}>{item.headline}</p>
+                          </div>
+                        </div>
+
+                        {item.data && (
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '10px', padding: '4px' }}>
+                            {item.data.map((d) => (
+                              <div
+                                key={d.label}
+                                style={{
+                                  border: '1px solid rgba(0,0,0,0.06)',
+                                  borderRadius: '10px',
+                                  padding: '12px',
+                                  backgroundColor: '#fafafa'
+                                }}
+                              >
+                                <p style={{ margin: 0, fontSize: '22px', fontWeight: 600, color: '#111' }}>{d.value}</p>
+                                <p style={{ margin: 0, fontSize: '12px', letterSpacing: '0.05em', color: '#666', textTransform: 'uppercase' }}>{d.label}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {item.viz && (
+                          <div style={{ display: 'flex', gap: '10px', padding: '4px' }}>
+                            {item.viz.map((v) => (
+                              <div
+                                key={v.label}
+                                style={{
+                                  flex: 1,
+                                  borderRadius: '10px',
+                                  backgroundColor: v.color,
+                                  padding: '12px',
+                                  color: '#111',
+                                  fontWeight: 600,
+                                  textAlign: 'center'
+                                }}
+                              >
+                                {v.label}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {item.bullets && (
+                          <ul style={{ padding: '0 16px', margin: 0, display: 'flex', flexDirection: 'column', gap: '6px', color: '#444', fontSize: '15px', lineHeight: 1.6 }}>
+                            {item.bullets.map((b) => (
+                              <li key={b} style={{ listStyle: 'disc' }}>
+                                {b}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+
+                        {item.image && (
+                          <motion.div
+                            initial={item.type === 'matrix' ? { opacity: 0.5, filter: 'grayscale(1)' } : { opacity: 0.95 }}
+                            animate={
+                              item.type === 'matrix'
+                                ? { opacity: activeStep === idx ? 1 : 0.5, filter: activeStep === idx ? 'grayscale(0)' : 'grayscale(1)' }
+                                : { opacity: activeStep === idx ? 1 : 0.95 }
+                            }
+                            transition={{ duration: item.type === 'matrix' ? 0.8 : 0.5, ease: 'easeOut' }}
+                            style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)', flex: 1, minHeight: '320px' }}
+                          >
+                            <ImageWithFallback
+                              src={item.image}
+                              alt={item.title}
+                              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                            />
+                          </motion.div>
+                        )}
+
+                        {item.type === 'insight' && (
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '10px', padding: '4px' }}>
+                            {['Wishlist', 'Curated information', 'Geo-based search'].map((label, i) => (
+                              <div
+                                key={label}
+                                style={{
+                                  border: '1px solid rgba(0,0,0,0.08)',
+                                  borderRadius: '10px',
+                                  padding: '12px',
+                                  backgroundColor: ['#FFF4E6', '#F3F0FF', '#E6FAF8'][i],
+                                  color: '#222',
+                                  fontWeight: 600,
+                                  textAlign: 'center'
+                                }}
+                              >
+                                {label}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {item.caption && (
+                          <p style={{ margin: '4px', fontSize: '14px', lineHeight: 1.5, color: '#444' }}>{item.caption}</p>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Iterations & Limitations */}
-              <div id="iterations" style={{ marginBottom: '80px' }}>
+              {/* From behaviors to a spectrum */}
+              <div style={{ marginBottom: '160px' }}>
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '24px'
-                  }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}
                 >
-                  Iterations & Limitations
+                  From scattered behaviors to a shared spectrum
                 </motion.h2>
 
                 <motion.div
+                  initial={{ opacity: 0, x: -12, filter: 'blur(6px)' }}
+                  whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  style={{ display: 'flex', justifyContent: 'center' }}
+                >
+                  <ImageWithFallback
+                    src={personaSpectrum}
+                    alt="Persona spectrum"
+                    style={{
+                      width: '100%',
+                      maxWidth: '900px',
+                      height: 'auto',
+                      display: 'block'
+                    }}
+                  />
+                </motion.div>
+
+                <motion.p
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                   style={{
-                    color: '#666666',
-                    fontSize: '15px',
-                    fontWeight: 400,
-                    lineHeight: '1.8'
+                    marginTop: '12px',
+                    textAlign: 'center',
+                    color: '#666',
+                    fontSize: '14px'
                   }}
                 >
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#000000' }}>Unexpected Results:</strong> Initial card sort showed "Food & Dining" split between "Things to Do" and standalone category. Iteration added clarifying instructions distinguishing experiences (food tours) from directories (restaurant lists).
-                  </p>
+                  Different familiarity levels revealed different exploration needs
+                </motion.p>
+              </div>
 
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#000000' }}>Study Limitations:</strong>
-                  </p>
-                  <ul style={{ marginBottom: '20px', paddingLeft: '24px' }}>
-                    <li>Sample skewed toward younger users (18-28); limited validation for 40+ travelers</li>
-                    <li>Remote testing prevented observation of emotional reactions during confusion</li>
-                    <li>Did not test mobile-specific patterns; findings assume desktop mental model transfers</li>
-                  </ul>
+              {/* Translating the spectrum into structure */}
+              <div style={{ marginBottom: '160px' }}>
+                <motion.h2
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}
+                >
+                  Designing for intention, not categories
+                </motion.h2>
 
-                  <p style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: '#000000' }}>Risk Mitigation:</strong> Recommended phased rollout (A/B test IA v2 with 20% traffic before full deploy). Proposed follow-up usability testing post-launch to catch edge cases.
-                  </p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  style={{ color: '#555', fontSize: '15px', lineHeight: 1.6, marginBottom: '16px' }}
+                >
+                  —
+                </motion.p>
 
-                  <p style={{ marginBottom: '0' }}>
-                    <strong style={{ color: '#000000' }}>Next Study:</strong> Plan moderated usability sessions (n=8) to evaluate mobile navigation and gather qualitative feedback on visual design execution.
-                  </p>
+                <motion.div
+                  initial={{ opacity: 0, filter: 'blur(6px)' }}
+                  whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  style={{
+                    position: 'relative',
+                    borderRadius: '14px',
+                    overflow: 'hidden',
+                    border: '1px solid rgba(0,0,0,0.06)',
+                    backgroundColor: '#FFF',
+                    padding: '12px'
+                  }}
+                >
+                  <ImageWithFallback
+                    src={iaImage}
+                    alt="IA diagram"
+                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '10px' }}
+                  />
+
+                  {/* Animated dots along paths */}
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3, repeat: Infinity, repeatType: 'mirror', repeatDelay: 1 }}
+                    style={{
+                      position: 'absolute',
+                      top: '28%',
+                      left: '12%',
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      backgroundColor: '#FF7A00',
+                      boxShadow: '0 0 8px rgba(255,122,0,0.5)'
+                    }}
+                  />
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.5, repeat: Infinity, repeatType: 'mirror', repeatDelay: 1 }}
+                    style={{
+                      position: 'absolute',
+                      top: '48%',
+                      left: '32%',
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      backgroundColor: '#5CC6C3',
+                      boxShadow: '0 0 8px rgba(92,198,195,0.5)'
+                    }}
+                  />
                 </motion.div>
               </div>
 
-              {/* Outcomes & Next Steps */}
-              <div id="outcomes" style={{ marginBottom: '80px' }}>
+              {/* What this unlocked */}
+              <div style={{ marginBottom: '140px' }}>
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '24px'
-                  }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '16px' }}
                 >
-                  Outcomes & Next Steps
+                  What the structure made possible
                 </motion.h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    padding: '32px',
-                    marginBottom: '24px'
-                  }}
-                >
-                  <h3 style={{
-                    color: '#000000',
-                    fontSize: '18px',
-                    fontWeight: 500,
-                    marginBottom: '16px'
-                  }}>
-                    Product Decisions Made
-                  </h3>
-                  <ul style={{ 
-                    margin: 0, 
-                    paddingLeft: '24px',
-                    color: '#666666',
-                    fontSize: '15px',
-                    lineHeight: '1.8'
-                  }}>
-                    <li>Adopted IA v2 as official structure for Q2 redesign</li>
-                    <li>Consolidated "Events" into "Things to Do" with time filters</li>
-                    <li>Moved neighborhood navigation to secondary/tertiary levels</li>
-                    <li>Greenlit map-based exploration feature for Q3</li>
-                  </ul>
-
-                  <h3 style={{
-                    color: '#000000',
-                    fontSize: '18px',
-                    fontWeight: 500,
-                    marginTop: '24px',
-                    marginBottom: '16px'
-                  }}>
-                    KPI Movement (Projected)
-                  </h3>
-                  <ul style={{ 
-                    margin: 0, 
-                    paddingLeft: '24px',
-                    color: '#666666',
-                    fontSize: '15px',
-                    lineHeight: '1.8'
-                  }}>
-                    <li>Task success rate: 63% → 82% (tree test validation)</li>
-                    <li>Average clicks to content: 4.2 → 2.8 (-33%)</li>
-                    <li>Bounce rate: Expected 10-15% reduction based on similar IA changes</li>
-                    <li>Support tickets (navigation): Projected 15% decrease in first 3 months</li>
-                  </ul>
-                </motion.div>
-
-                <h3 style={{
-                  color: '#000000',
-                  fontSize: '18px',
-                  fontWeight: 500,
-                  marginBottom: '16px'
-                }}>
-                  Follow-Up Plan
-                </h3>
-
-                <NextSteps
-                  steps={[
-                    "Conduct post-launch usability testing (n=8 moderated sessions) within 30 days of deploy",
-                    "Monitor analytics weekly for first month: track bounce rate, task completion, heatmaps",
-                    "Run follow-up tree test with family travelers segment to validate across personas",
-                    "Document learnings in UX research repository for future IA projects"
-                  ]}
-                />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {[
+                    '1. multiple entry points for filter',
+                    '2. clear layout',
+                    '3. Geo-location Driven'
+                  ].map((line, idx) => (
+                    <motion.div
+                      key={line}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: idx * 0.1, ease: 'easeOut' }}
+                      style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#222', fontSize: '16px' }}
+                    >
+                      <span
+                        style={{
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          backgroundColor: '#7D9FFF',
+                          flexShrink: 0
+                        }}
+                      />
+                      <span
+                        style={{
+                          width: '1px',
+                          height: '18px',
+                          backgroundColor: 'rgba(0,0,0,0.15)'
+                        }}
+                      />
+                      <span>{line}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
 
-              {/* Credits & Ethics */}
-              <div id="credits" style={{ marginBottom: '40px' }}>
+              {/* Solution — Designing for Exploration, Not Planning */}
+              <div style={{ marginBottom: '240px' }}>
                 <motion.h2
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{
-                    color: '#000000',
-                    fontSize: '32px',
-                    fontWeight: 400,
-                    marginBottom: '24px'
-                  }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: '#000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}
                 >
-                  Credits & Ethics
+                  Solution — Designing for Exploration, Not Planning
                 </motion.h2>
-
+                {/* User scenario intro */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
                   style={{
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                    padding: '32px'
+                    marginBottom: '60px',
+                    padding: '48px',
+                    borderRadius: '18px',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    background: 'linear-gradient(135deg, rgba(12,12,12,0.9), rgba(26,26,26,0.85))'
                   }}
                 >
-                  <p style={{
-                    color: '#666666',
-                    fontSize: '15px',
-                    fontWeight: 400,
-                    lineHeight: '1.8',
-                    marginBottom: '20px'
-                  }}>
-                    <strong style={{ color: '#000000' }}>Team:</strong>
-                    <p>Shane Lai, Harsh Pendse, Robert Rivera</p>
-                  </p>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundImage: `url(${mapNotationImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      filter: 'blur(12px)',
+                      opacity: 0.18,
+                      transform: 'scale(1.04)'
+                    }}
+                  />
+                  <div style={{ position: 'relative', zIndex: 1, color: '#F5F5F5', display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '900px' }}>
+                    <motion.p
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3 }}
+                      style={{ fontSize: '15px', letterSpacing: '0.08em', textTransform: 'uppercase', margin: 0 }}
+                    >
+                      EXPLORATION STARTS BEFORE PLANNING
+                    </motion.p>
 
-                  <p style={{
-                    color: '#666666',
-                    fontSize: '15px',
-                    fontWeight: 400,
-                    lineHeight: '1.8',
-                    marginBottom: '20px'
-                  }}>
-                    <strong style={{ color: '#000000' }}>Consent & Privacy:</strong>
-                    <p>
-                      All participants provided informed consent via digital form. Data anonymized; no PII stored. Study approved by internal ethics review.
-                    </p>
-                  </p>
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: 0.5 }}
+                      style={{ margin: 0, fontSize: '20px', fontWeight: 600 }}
+                    >
+                      You are walking in Brooklyn.
+                    </motion.p>
 
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 0.6, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: 0.62 }}
+                      style={{ margin: 0, fontSize: '17px', color: 'rgba(245,245,245,0.75)' }}
+                    >
+                      No plan.
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: 0.95 }}
+                      style={{ margin: 0, fontSize: '18px', color: 'rgba(245,245,245,0.9)' }}
+                    >
+                      One free evening.
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: 1.25 }}
+                      style={{ margin: 0, fontSize: '18px', color: 'rgba(245,245,245,0.9)' }}
+                    >
+                      Limited energy.
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 0.5, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: 1.6 }}
+                      style={{ margin: 0, fontSize: '14px', color: 'rgba(245,245,245,0.65)' }}
+                    >
+                      I do not want to compare ten tabs.
+                    </motion.p>
+
+                    <motion.p
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 2.0 }}
+                      style={{
+                        margin: 0,
+                        fontSize: '21px',
+                        fontWeight: 600,
+                        color: '#FFFFFF',
+                        textShadow: '0 0 10px rgba(255,255,255,0.15)'
+                      }}
+                    >
+                      Just tell me where to go next.
+                    </motion.p>
+                  </div>
                 </motion.div>
+
+                {/* Subsection 01 */}
+              <div style={{ marginBottom: '200px' }}>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                  >
+                    From guides to places worth discovering.
+                  </motion.h3>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    style={{ position: 'relative', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)' }}
+                  >
+                    <motion.div
+                      initial={{ scale: 1.02 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.2, ease: 'easeOut' }}
+                    >
+                      <video
+                        src={homepageVideo}
+                        autoPlay
+                        muted
+                        playsInline
+                        loop
+                        controls={false}
+                        style={{ width: '100%', display: 'block', objectFit: 'cover' }}
+                      />
+                    </motion.div>
+                  </motion.div>
+                </div>
+
+                {/* Subsection 02 */}
+              <div style={{ marginBottom: '120px' }}>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                  >
+                    Designed for short attention and high information density.
+                  </motion.h3>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
+                    {['TikTok', 'Maps', 'Screenshots', 'Location', 'Vibe', 'Distance', 'Context'].map((tag, i) => (
+                      <span
+                        key={tag}
+                        style={{
+                          padding: '6px 10px',
+                          borderRadius: '999px',
+                          backgroundColor: ['#FFF3E6', '#E8F0FF', '#EAF9F6', '#FFF3E6', '#E8F0FF', '#EAF9F6', '#F3E8FF'][i % 7],
+                          fontSize: '13px',
+                          color: '#333'
+                        }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    style={{ borderRadius: '12px', overflow: 'hidden' }}
+                  >
+                    <ImageWithFallback
+                      src={cardComparison}
+                      alt="Annotated comparison"
+                      style={{ width: '100%', height: 'auto', display: 'block' }}
+                    />
+                  </motion.div>
+                </div>
+
+  
+
+                {/* Subsection 04 */}
+              <div style={{ marginBottom: '120px' }}>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                  >
+                    Existing maps solve navigation. They do not solve exploration.
+                  </motion.h3>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '24px', alignItems: 'center' }}>
+                    <motion.div
+                      initial={{ opacity: 0, x: 8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      style={{ overflow: 'hidden', borderRadius: '12px' }}
+                    >
+                      <video
+                        src={mobileMapVideo}
+                        autoPlay
+                        muted
+                        playsInline
+                        loop
+                        controls={false}
+                        style={{ width: '100%', maxWidth: '620px', display: 'block', objectFit: 'cover', borderRadius: '50px' }}
+                      />
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, x: -8 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.05 }}
+                      style={{ overflow: 'hidden', borderRadius: '12px' }}
+                    >
+                      <ImageWithFallback
+                        src={mapComparisons}
+                        alt="Map comparisons"
+                        style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }}
+                      />
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Subsection 05 */}
+                <div style={{ marginBottom: '120px' }}>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                  >
+                    A flow built for curiosity, not commitment.
+                  </motion.h3>
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '20px' }}>
+                    {['See what is nearby.', 'Notice what fits the moment.', 'Save only when it feels right.', 'Exploration stays lightweight until intent becomes clear.'].map((line, idx) => (
+                      <span
+                        key={line}
+                        style={{
+                          padding: '8px 10px',
+                          borderRadius: '999px',
+                          backgroundColor: ['#E8F0FF', '#EAF9F6', '#FFF3E6', '#F3E8FF'][idx % 4],
+                          color: '#333',
+                          fontSize: '14px'
+                        }}
+                      >
+                        {line}
+                      </span>
+                    ))}
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    style={{ display: 'flex', justifyContent: 'center' }}
+                  >
+                    <video
+                      src={explorationFlowVideo}
+                      autoPlay
+                      muted
+                      playsInline
+                      loop={false}
+                      controls
+                      style={{ width: '50%', maxWidth: '500px', display: 'block', objectFit: 'cover', borderRadius: '50px' }}
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Measuring better exploration */}
+                <div style={{ marginBottom: '160px' }}>
+                  <motion.h3
+                    initial={{ opacity: 0, y: 6 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '10px' }}
+                  >
+                    How we measure better exploration
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.05 }}
+                    style={{ color: '#666', fontSize: '14px', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '24px' }}
+                  >
+                    beyond click-through
+                  </motion.p>
+
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                      gap: '16px',
+                      background: '#f7f7f7',
+                      borderRadius: '16px',
+                      padding: '20px'
+                    }}
+                  >
+                    {[
+                      {
+                        title: 'Faster Discovery',
+                        label: 'Time to first confident choice',
+                        accent: '#FF7A00',
+                        visual: (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <div style={{ height: '6px', borderRadius: '999px', background: 'rgba(255,122,0,0.25)', flex: 1 }} />
+                            <div style={{ height: '6px', borderRadius: '999px', background: '#FF7A00', width: '35%' }} />
+                          </div>
+                        )
+                      },
+                      {
+                        title: 'Higher Confidence',
+                        label: 'Decision confidence and vibe clarity',
+                        accent: '#7D9FFF',
+                        visual: (
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '6px' }}>
+                            <div style={{ height: '6px', background: 'rgba(125,159,255,0.25)', borderRadius: '999px' }} />
+                            <div style={{ height: '6px', background: '#7D9FFF', borderRadius: '999px' }} />
+                            <div style={{ height: '6px', background: 'rgba(125,159,255,0.25)', borderRadius: '999px' }} />
+                            <div style={{ height: '6px', background: '#7D9FFF', borderRadius: '999px', width: '80%', justifySelf: 'end' }} />
+                          </div>
+                        )
+                      },
+                      {
+                        title: 'Deeper Exploration',
+                        label: 'Exploration depth and wishlist saves',
+                        accent: '#5CC6C3',
+                        visual: (
+                          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                            {[8, 14, 18, 26].map((h, i) => (
+                              <span
+                                key={h}
+                                style={{
+                                  width: '10px',
+                                  height: `${h}px`,
+                                  borderRadius: '6px',
+                                  background: i === 3 ? '#5CC6C3' : 'rgba(92,198,195,0.4)',
+                                  display: 'inline-block'
+                                }}
+                              />
+                            ))}
+                          </div>
+                        )
+                      },
+                      {
+                        title: 'Local Engagement',
+                        label: 'Repeat exploration and local focus',
+                        accent: '#AC8BFF',
+                        visual: (
+                          <div style={{ position: 'relative', width: '100%', height: '56px' }}>
+                            <div
+                              style={{
+                                position: 'absolute',
+                                inset: '8px 12px',
+                                border: '1px dashed rgba(172,139,255,0.5)',
+                                borderRadius: '10px'
+                              }}
+                            />
+                            <motion.span
+                              initial={{ opacity: 0.4, scale: 0.9 }}
+                              animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.9, 1, 0.9] }}
+                              transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
+                              style={{
+                                position: 'absolute',
+                                top: '18px',
+                                left: '30%',
+                                width: '12px',
+                                height: '12px',
+                                borderRadius: '50%',
+                                background: '#AC8BFF',
+                                boxShadow: '0 0 12px rgba(172,139,255,0.6)'
+                              }}
+                            />
+                            <motion.span
+                              initial={{ opacity: 0.3, scale: 0.85 }}
+                              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.85, 1, 0.85] }}
+                              transition={{ duration: 1.6, delay: 0.3, repeat: Infinity, ease: 'easeInOut' }}
+                              style={{
+                                position: 'absolute',
+                                bottom: '12px',
+                                right: '28%',
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                background: '#AC8BFF'
+                              }}
+                            />
+                          </div>
+                        )
+                      }
+                    ].map((item) => (
+                      <motion.div
+                        key={item.title}
+                        initial={{ opacity: 0, y: 8 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.45, ease: 'easeOut' }}
+                        style={{
+                          background: '#FFFFFF',
+                          borderRadius: '12px',
+                          padding: '14px',
+                          border: '1px solid rgba(0,0,0,0.05)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '10px'
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span
+                            style={{
+                              width: '10px',
+                              height: '10px',
+                              borderRadius: '50%',
+                              backgroundColor: item.accent,
+                              flexShrink: 0
+                            }}
+                          />
+                          <p style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: '#111' }}>{item.title}</p>
+                        </div>
+                        <div>{item.visual}</div>
+                        <p style={{ margin: 0, fontSize: '13px', color: '#555' }}>{item.label}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    style={{ marginTop: '18px', color: '#666', fontSize: '14px' }}
+                  >
+                    Better exploration feels lighter, faster, and more confident. These signals help us see it.
+                  </motion.p>
+                </div>
               </div>
             </div>
           </div>

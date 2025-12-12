@@ -4,6 +4,9 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { ProjectCard } from '../components/ProjectCard';
 import { ChatIntroCard } from '../components/ChatIntroCard';
+import { HeroCurvedLine } from '../components/HeroCurvedLine';
+import solidStar from '../assets/streamline_star-2-solid.svg';
+import outlinedStar from '../assets/Vector.svg';
 
 export function HomePage() {
   const highlightedWorks = [
@@ -47,8 +50,10 @@ export function HomePage() {
             style={{ paddingTop: '115px' }}
             className="flex flex-col"
           >
-            <div style={{ display: 'flex', flexDirection: 'row', '@media (max-width: 991px)': { flexDirection: 'column', alignItems: 'stretch', gap: '0px' } }} className="max-md:flex-col">
-              <div style={{ display: 'flex', flexDirection: 'column', width: '50%' }} className="max-md:w-full">
+            <div style={{ display: 'flex', flexDirection: 'row', position: 'relative', '@media (max-width: 991px)': { flexDirection: 'column', alignItems: 'stretch', gap: '0px' } }} className="max-md:flex-col hero-layout-container">
+              <HeroCurvedLine />
+              
+              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', position: 'relative', zIndex: 2 }} className="max-md:w-full hero-headline-wrapper">
                 <div style={{ display: 'flex', flexDirection: 'row', fontWeight: 400, marginRight: 'auto' }}>
                   <h1
                     style={{
@@ -62,8 +67,37 @@ export function HomePage() {
                   >
                     <div className="hero-title-line line-1" style={{ lineHeight: '70px' }}>
                       <span className="hero-title-text text-1" style={{ fontSize: '54.9px', display: 'inline', fontWeight: 400 }}>
-                        <div style={{ paddingRight: '7px' }}>
+                        <div style={{ paddingRight: '7px', display: 'inline-flex', alignItems: 'center' }}>
                           Turning
+                          <div 
+                            className="hero-floating-stars" 
+                            style={{ 
+                              display: 'flex', 
+                              flexDirection: 'column', 
+                              gap: '6px', 
+                              marginLeft: '12px',
+                              transform: 'translateY(-8px)'
+                            }}
+                          >
+                            <img
+                              src={solidStar}
+                              alt=""
+                              style={{
+                                width: '24px',
+                                height: '24px',
+                                display: 'block'
+                              }}
+                            />
+                            <img
+                              src={outlinedStar}
+                              alt=""
+                              style={{
+                                width: '24px',
+                                height: '24px',
+                                display: 'block'
+                              }}
+                            />
+                          </div>
                         </div>
                         <div style={{ display: 'inline', color: 'rgb(254, 115, 1)', fontWeight: 400, textDecoration: 'rgb(254, 115, 1)' }}>
                           Data
@@ -90,9 +124,9 @@ export function HomePage() {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', marginLeft: '20px' }} className="max-md:w-full max-md:ml-0">
-                <div style={{ fontWeight: 400, marginBottom: '32px', marginLeft: '44px' }} className="max-md:ml-0">
-                  <div style={{ marginTop: '45px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', marginLeft: '20px', position: 'relative', zIndex: 2 }} className="max-md:w-full max-md:ml-0 hero-chat-card-wrapper">
+                <div style={{ fontWeight: 400, marginBottom: '32px', marginLeft: '44px' }} className="max-md:ml-0 desktop-chat-margin">
+                  <div style={{ marginTop: '45px' }} className="desktop-chat-top-margin">
                     <ChatIntroCard />
                   </div>
                 </div>

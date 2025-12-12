@@ -55,6 +55,9 @@
   --sidebar-accent-foreground: #000000;
   --sidebar-border: rgba(0, 0, 0, 0.1);
   --sidebar-ring: #000000;
+  --case-toc-width: 0px;
+  --case-toc-gap: 0px;
+  --case-toc-offset: 0px;
 }
 
 .dark {
@@ -92,6 +95,14 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --case-toc-width: 280px;
+    --case-toc-gap: 16px;
+    --case-toc-offset: calc(var(--case-toc-width) + var(--case-toc-gap));
+  }
 }
 
 /* Chat Intro Card Styles */
@@ -428,10 +439,29 @@ html {
   align-self: flex-start;
   max-width: 180px;
   width: 100%;
+  position: relative;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.sticky-toc-inline {
+.sticky-toc-nav.sticky-toc-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.case-full-bleed {
   position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  left: 50%;
+  right: auto;
+  margin: 0;
+  transform: translateX(-50%);
+  display: block;
 }
 
 @media (min-width: 1024px) {
@@ -439,6 +469,7 @@ html {
     position: fixed;
     top: 80px;
     left: max(64px, calc((100vw - 1600px) / 2 + 64px));
+    z-index: 60;
   }
 }
 
@@ -560,6 +591,200 @@ html {
   }
 }
 
+
+/* Hero Curved Line Container */
+.hero-curved-line-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  padding-right: 80px;
+}
+
+.hero-curved-line-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Animated curved path drawing */
+.hero-curved-path {
+  animation: curvedPathDraw 1.8s ease-out 0.3s forwards, curvedPathIdle 7s ease-in-out 2.1s infinite;
+  filter: drop-shadow(0 1px 2px rgba(255, 122, 0, 0.3));
+}
+
+.hero-curved-arrow {
+  animation: curvedArrowFade 1.8s ease-out 1.5s forwards, curvedPathIdle 7s ease-in-out 2.1s infinite;
+  opacity: 0;
+}
+
+.hero-sparkle {
+  animation: sparkleFade 1.8s ease-out 1.8s forwards, sparkleTwinkle 3s ease-in-out 3.6s infinite;
+  opacity: 0;
+}
+
+/* Decorative stars at the end of the curve */
+.hero-end-star-1 {
+  animation: starFade 1.8s ease-out 1.8s forwards, starFloat 4s ease-in-out 3.6s infinite;
+  opacity: 0;
+  filter: brightness(0) saturate(100%) invert(48%) sepia(93%) saturate(1352%) hue-rotate(1deg) brightness(101%) contrast(101%);
+}
+
+.hero-end-star-2 {
+  animation: starFade 1.8s ease-out 2s forwards, starFloat 4s ease-in-out 3.8s infinite;
+  opacity: 0;
+  filter: brightness(0);
+}
+
+@keyframes starFade {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes starFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+@keyframes sparkleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sparkleTwinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+@keyframes curvedPathDraw {
+  from {
+    stroke-dashoffset: var(--path-length, 200);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes curvedArrowFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes curvedPathIdle {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(1px, -1px) rotate(0.2deg);
+    opacity: 0.98;
+  }
+  50% {
+    transform: translate(-1px, 1px) rotate(-0.2deg);
+    opacity: 0.96;
+  }
+  75% {
+    transform: translate(1px, 1px) rotate(0.3deg);
+    opacity: 0.98;
+  }
+}
+
+/* Hero Floating Stars */
+.hero-floating-stars {
+  animation: starsFloat 4s ease-in-out infinite;
+}
+
+@keyframes starsFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.9;
+  }
+}
+
+/* Hero Layout Container */
+.hero-layout-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Headline Wrapper */
+.hero-headline-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero Chat Card Wrapper */
+.hero-chat-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.desktop-chat-margin {
+  margin-left: 44px;
+}
+
+.desktop-chat-top-margin {
+  margin-top: 45px;
+}
+
+/* Hero Curved Line Responsive */
+@media (max-width: 768px) {
+  .hero-curved-line-container {
+    opacity: 0.6;
+  }
+
+  /* Simplify animation on mobile for performance */
+  .hero-curved-path {
+    animation: curvedPathDraw 1.8s ease-out 0.3s forwards;
+  }
+
+  .hero-curved-arrow {
+    animation: curvedArrowFade 1.8s ease-out 1.5s forwards;
+  }
+}
 
 /* Hero Title Responsive Styles */
 .hero-title-line {
@@ -1251,8 +1476,124 @@ html {
   margin-bottom: 16px;
 }
 
+/* ===========================================
+   TL;DR Hero Full-bleed Styles
+   =========================================== */
+
+.tldr-hero-fullbleed {
+  position: relative;
+}
+
+/* Gradient overlay for TL;DR hero - darker top/bottom, lighter middle */
+.tldr-hero-fullbleed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0.15) 60%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  z-index: 1;
+}
+
+/* Glassmorphism stat cards */
+.tldr-stat-card {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+/* ===========================================
+   HMW Hero Full-bleed Styles
+   =========================================== */
+
+.hmw-hero-fullbleed {
+  position: relative;
+}
+
+/* Gradient overlay for HMW hero - same as TL;DR */
+.hmw-hero-fullbleed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 35%,
+    rgba(0, 0, 0, 0.15) 60%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  z-index: 1;
+}
+
+/* Legacy full-width-hmw-hero class (for backwards compat) */
+.full-width-hmw-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* ===========================================
+   TOC Dark Mode Switching
+   =========================================== */
+
+/* When TOC is over dark hero sections */
+.sticky-toc-nav.toc--on-dark {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.sticky-toc-nav.toc--on-dark .case-toc-title {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.sticky-toc-nav.toc--on-dark .toc-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.sticky-toc-nav.toc--on-dark .toc-item:hover {
+  color: #FFFFFF !important;
+}
+
+.sticky-toc-nav.toc--on-dark .toc-item.active {
+  color: #FF7A00 !important;
+}
+
+/* Transition for smooth color switching */
+.sticky-toc-nav,
+.sticky-toc-nav .case-toc-title,
+.sticky-toc-nav .toc-item {
+  transition: color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
 @media (max-width: 991px) {
   .funfit-section {
     margin-bottom: 64px;
+  }
+
+  .why-matters-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+
+  .full-width-hmw-hero {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+  
+  .tldr-stat-card {
+    padding: 24px 20px;
   }
 }
