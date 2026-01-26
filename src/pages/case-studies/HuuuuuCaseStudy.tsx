@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
+import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { ArrowRight, Thermometer, Wind, Heart, Zap, Users, Activity, Layers, MessageCircle, AlertCircle, Lightbulb } from 'lucide-react';
 
@@ -15,10 +16,14 @@ import systemImage from 'figma:asset/937b2153b646a9476356596579ddfbe49fa07e32.pn
 import systemDiagramImage from 'figma:asset/45ae3828a113ea2be8e5fad5040574f18c5648f7.png';
 import appInterfaceImage from 'figma:asset/45f782885666d298edfc7a7b70d28e62bf047b5e.png';
 import skillGrowthImage from 'figma:asset/76a71ff5aecddb8a8cf62925eb5d54b265006070.png';
+import iPhoneMockup from '../../assets/iPhone 15 Pro.png';
+import screen497 from '../../assets/image 497.png';
+import screen498 from '../../assets/image 498.png';
+import screen499 from '../../assets/image 499.png';
 
 export function HuuuuuCaseStudy() {
   const tocTriggerRef = useRef<HTMLDivElement>(null);
-  const [tocVisible, setTocVisible] = useState(false);
+  const [tocFixed, setTocFixed] = useState(false);
 
   const tocItems = [
     { id: 'tldr', label: 'TL;DR' },
@@ -30,17 +35,18 @@ export function HuuuuuCaseStudy() {
     { id: 'reflection', label: 'Reflection' }
   ];
 
-  // Parallax hooks
+  // Parallax hooks (performance optimized)
   const { scrollY } = useScroll();
   const heroParallax = useTransform(scrollY, [0, 600], [0, 50]);
   const systemParallax = useTransform(scrollY, [2000, 3000], [0, -30]);
 
+  // Progressive sticky TOC (same as NYC Tourism & Memory Navigator)
   useEffect(() => {
     const handleScroll = () => {
       if (tocTriggerRef.current) {
         const triggerRect = tocTriggerRef.current.getBoundingClientRect();
         const activationOffset = 120;
-        setTocVisible(triggerRect.top <= activationOffset);
+        setTocFixed(triggerRect.top <= activationOffset);
       }
     };
 
@@ -105,7 +111,7 @@ export function HuuuuuCaseStudy() {
     <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #FAF8F4 0%, #FFFFFF 100%)' }}>
       <Navigation />
 
-      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-24 md:pb-32 px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="max-w-[1200px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             {/* Hero Image Container */}
@@ -137,11 +143,11 @@ export function HuuuuuCaseStudy() {
               Huuuuu!
             </h1>
 
-            <p style={{ color: '#666666', fontSize: '20px', fontWeight: 400, lineHeight: '1.6', marginBottom: '32px', maxWidth: '800px' }}>
+            <p style={{ color: '#666666', fontSize: '20px', fontWeight: 400, lineHeight: '1.6', marginBottom: '40px', maxWidth: '800px' }}>
               A breath-powered glove that turns a private gesture into warmth, agency, and a shared reminder that comfort is not neutral.
             </p>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '32px' }}>
               <span style={{ padding: '8px 16px', backgroundColor: '#B3B2FF', color: '#FFFFFF', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Design</span>
               <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Arduino · Wearable · IoT</span>
               <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Interaction Designer</span>
@@ -152,12 +158,15 @@ export function HuuuuuCaseStudy() {
         </div>
       </section>
 
+      {/* Mobile TOC */}
+      <MobileTOC items={tocItems} />
+
       {/* MAIN CONTENT */}
-      <section className="pb-32 px-8 md:px-16 lg:px-24">
+      <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24 pt-8 sm:pt-12 md:pt-16">
         <div className="max-w-[1200px] mx-auto"> {/* Matched max-width */}
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-8"> {/* Matched gap */}
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} isVisible={tocVisible} />
+              <StickyTOC items={tocItems} isFixed={tocFixed} />
                 </div>
 
             <div className="case-study-content-wrapper max-w-[900px] w-full" style={{ position: 'relative' }}>
@@ -462,15 +471,270 @@ export function HuuuuuCaseStudy() {
                     </div>
                   </motion.div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-                    <motion.div whileHover={{ y: -4 }} style={styles.floatingCard}>
-                      <ImageWithFallback src={appInterfaceImage} alt="App UI" style={{ borderRadius: '8px' }} />
+                  {/* App Showcase - iPhone with Interactive Backgrounds */}
+                  <div className="mb-20" style={{ marginTop: '60px' }}>
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: '12px', 
+                        marginBottom: '40px' 
+                      }}
+                    >
+                      <div style={{
+                        width: '4px',
+                        height: '28px',
+                        background: 'linear-gradient(180deg, #B3B2FF 0%, #8B7FFF 100%)',
+                        borderRadius: '2px',
+                        boxShadow: '0 2px 8px rgba(179, 178, 255, 0.3)'
+                      }}></div>
+                      <h3 style={{ ...styles.headingH3, marginBottom: 0, fontSize: '28px' }}>App Showcase</h3>
                     </motion.div>
-                    <div className="flex flex-col justify-center">
-                      <h3 style={styles.headingH3}>App UI</h3>
-                      <p style={styles.bodyText}>A quiet interface showing when, where, and how often you needed warmth.</p>
-                      <p style={styles.bodyText}>Not to compare bodies—only to understand environments.</p>
+
+                    {/* iPhone Mockup Showcase */}
+                    {(() => {
+                      const [selectedImage, setSelectedImage] = React.useState<string | null>(null);
+                      
+                      const backgroundScreens = [
+                        { src: screen497, alt: 'Map View', position: { top: '10%', left: '5%' }, delay: 0.2 },
+                        { src: screen499, alt: 'User Profile', position: { top: '15%', right: '8%' }, delay: 0.4 },
+                        { src: screen498, alt: 'Temperature Data', position: { bottom: '15%', left: '10%' }, delay: 0.6 }
+                      ];
+
+                      return (
+                        <>
+                          {/* Main Showcase Container */}
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            style={{
+                              position: 'relative',
+                              minHeight: '700px',
+                              background: 'radial-gradient(circle at 50% 30%, #F8F7FF 0%, #FAFAFF 50%, #FFFFFF 100%)',
+                              borderRadius: '32px',
+                              padding: '80px 40px',
+                              overflow: 'hidden',
+                              boxShadow: '0 20px 60px rgba(179, 178, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.8)',
+                              border: '1px solid rgba(179, 178, 255, 0.1)'
+                            }}
+                          >
+                            {/* Floating Background Screens */}
+                            {backgroundScreens.map((screen, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: screen.delay }}
+                                whileHover={{ scale: 1.05, zIndex: 10 }}
+                                onClick={() => setSelectedImage(screen.src)}
+                                tabIndex={0}
+                                role="button"
+                                aria-label={`View ${screen.alt} in full screen`}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    setSelectedImage(screen.src);
+                                  }
+                                }}
+                                style={{
+                                  position: 'absolute',
+                                  ...screen.position,
+                                  width: '220px',
+                                  cursor: 'pointer',
+                                  borderRadius: '16px',
+                                  overflow: 'hidden',
+                                  boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                                  transition: 'all 0.3s ease',
+                                  border: '2px solid rgba(255,255,255,0.8)',
+                                  backdropFilter: 'blur(8px)'
+                                }}
+                              >
+                                <img
+                                  src={screen.src}
+                                  alt={screen.alt}
+                                  style={{
+                                    width: '100%',
+                                    height: 'auto',
+                                    display: 'block',
+                                    opacity: 0.8,
+                                    transition: 'opacity 0.3s ease'
+                                  }}
+                                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+                                />
+                              </motion.div>
+                            ))}
+
+                            {/* Main iPhone Mockup */}
+                            <motion.div
+                              initial={{ opacity: 0, y: 40, rotateY: -15 }}
+                              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                              style={{
+                                position: 'relative',
+                                zIndex: 5,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                perspective: '1000px'
+                              }}
+                            >
+                              <motion.div
+                                whileHover={{ 
+                                  scale: 1.02,
+                                  rotateY: 5,
+                                  rotateX: -2
+                                }}
+                                transition={{ duration: 0.4, ease: 'easeOut' }}
+                                style={{
+                                  transformStyle: 'preserve-3d',
+                                  filter: 'drop-shadow(0 30px 60px rgba(139, 127, 255, 0.3))'
+                                }}
+                              >
+                                <img
+                                  src={iPhoneMockup}
+                                  alt="Huuuuu! App on iPhone 15 Pro"
+                                  style={{
+                                    width: '100%',
+                                    maxWidth: '400px',
+                                    height: 'auto',
+                                    display: 'block'
+                                  }}
+                                />
+                              </motion.div>
+                            </motion.div>
+
+                            {/* Ambient Light Effect */}
+                            <div
+                              style={{
+                                position: 'absolute',
+                                top: '20%',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '500px',
+                                height: '500px',
+                                background: 'radial-gradient(circle, rgba(179, 178, 255, 0.15) 0%, transparent 70%)',
+                                pointerEvents: 'none',
+                                filter: 'blur(60px)'
+                              }}
+                            />
+                          </motion.div>
+
+                          {/* Image Lightbox Modal */}
+                          <AnimatePresence>
+                            {selectedImage && (
+                              <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setSelectedImage(null)}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Escape') {
+                                    setSelectedImage(null);
+                                  }
+                                }}
+                                tabIndex={0}
+                                role="dialog"
+                                aria-label="Image preview"
+                                aria-modal="true"
+                                style={{
+                                  position: 'fixed',
+                                  top: 0,
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 0,
+                                  backgroundColor: 'rgba(0,0,0,0.9)',
+                                  zIndex: 1000,
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  padding: '40px',
+                                  cursor: 'zoom-out'
+                                }}
+                              >
+                                <motion.img
+                                  src={selectedImage}
+                                  alt="Full screen preview"
+                                  initial={{ scale: 0.8 }}
+                                  animate={{ scale: 1 }}
+                                  exit={{ scale: 0.8 }}
+                                  transition={{ duration: 0.3 }}
+                                  style={{
+                                    maxWidth: '90%',
+                                    maxHeight: '90%',
+                                    borderRadius: '12px',
+                                    boxShadow: '0 20px 80px rgba(0,0,0,0.5)'
+                                  }}
+                                  onClick={(e) => e.stopPropagation()}
+                                />
+                                <button
+                                  onClick={() => setSelectedImage(null)}
+                                  aria-label="Close preview"
+                                  style={{
+                                    position: 'absolute',
+                                    top: '20px',
+                                    right: '20px',
+                                    background: 'rgba(255,255,255,0.9)',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    width: '40px',
+                                    height: '40px',
+                                    fontSize: '24px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                                  }}
+                                >
+                                  ×
+                                </button>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+
+                          {/* Feature Tags */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            style={{
+                              marginTop: '32px',
+                              display: 'flex',
+                              flexWrap: 'wrap',
+                              gap: '12px',
+                              justifyContent: 'center'
+                            }}
+                          >
+                            {['Real-time Sensing', 'Social Connection', 'Environment Mapping'].map((feature, idx) => (
+                              <div
+                                key={idx}
+                                style={{
+                                  padding: '10px 20px',
+                                  background: 'linear-gradient(135deg, rgba(179, 178, 255, 0.1) 0%, rgba(139, 127, 255, 0.05) 100%)',
+                                  borderRadius: '20px',
+                                  border: '1px solid rgba(179, 178, 255, 0.2)',
+                                  fontSize: '14px',
+                                  color: '#666',
+                                  fontWeight: 500
+                                }}
+                              >
+                                {feature}
                     </div>
+                            ))}
+                          </motion.div>
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* Solidarity Ladder */}
@@ -497,38 +761,21 @@ export function HuuuuuCaseStudy() {
               {/* REFLECTION */}
               <div id="reflection" style={{ marginBottom: '160px' }}>
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-                  <h2 style={styles.headingH2}>Reflection & Impact</h2>
-                  <div className="max-w-[700px] mb-12">
-                    <p style={{ fontSize: '24px', fontWeight: 500, color: '#1A1A1A' }}>Warmth is never just temperature.</p>
-                    <p style={{ fontSize: '24px', color: '#666' }}>It is acknowledgment.</p>
-                      </div>
+                  <h2 style={styles.headingH2}>Reflection</h2>
 
-                  {/* Impact Cards */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                    {[
-                      { title: 'Individual', text: 'Reclaiming comfort without shame.' },
-                      { title: 'Community', text: 'Seeing shared patterns of discomfort.' },
-                      { title: 'System', text: 'Turning personal data into a case for better design.' }
-                    ].map((card, i) => (
-                      <motion.div
-                        key={i}
-                        whileHover={{ y: -4 }}
-                        style={styles.cardSurface}
-                      >
-                        <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '12px', color: '#B3B2FF' }}>{card.title}</h4>
-                        <p style={{ ...styles.bodyText, fontSize: '15px', marginBottom: 0 }}>{card.text}</p>
-                      </motion.div>
-                    ))}
-                      </div>
-
-                  <div className="max-w-[720px] mx-auto border-t border-gray-100 pt-12">
-                    <h3 style={styles.headingH3}>Reflection</h3>
-                    <p style={styles.bodyText}>Design can carry emotional and political weight.</p>
-                    <p style={styles.bodyText}>A simple breath became a way to question why certain bodies are considered default—and why others learn to endure.</p>
+                  <div style={{ ...styles.cardSurface, padding: '32px', marginBottom: '32px' }}>
+                    <h3 style={styles.headingH3}>Growth & Learning</h3>
+                    <p style={styles.bodyText}>
+                      This project taught me that interaction design isn't just about interfaces — it's about reimagining how technology can reshape social norms. By designing a system that makes thermal discomfort discussable, I learned how to translate an invisible social issue into a tangible, shared experience.
+                    </p>
+                    <img
+                      src={skillGrowthImage}
+                      alt="Skill growth visualization"
+                      style={{ width: '100%', marginTop: '24px', borderRadius: '12px' }}
+                    />
                   </div>
                 </motion.div>
               </div>
-
             </div>
           </div>
         </div>

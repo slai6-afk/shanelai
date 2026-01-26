@@ -7,6 +7,7 @@ import { TLDRCard } from '../../components/case-study/TLDRCard';
 import { FigureWithCaption } from '../../components/case-study/FigureWithCaption';
 import { NextSteps } from '../../components/case-study/NextSteps';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
+import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { SkillChart } from '../../components/case-study/SkillChart';
 import { AccessibilityDiagram } from '../../components/case-study/AccessibilityDiagram';
 import { CaseStudyHero } from '../../components/case-study/CaseStudyHero';
@@ -30,7 +31,7 @@ import imgUserFeedback from 'figma:asset/bc8f2e00e443eba4f1f54b820dc44fc838b9f23
 
 export function FunFitLandCaseStudy() {
   const tocTriggerRef = useRef<HTMLDivElement>(null);
-  const [tocVisible, setTocVisible] = useState(false);
+  const [tocFixed, setTocFixed] = useState(false);
 
   const tocItems = [
     { id: 'tldr', label: 'Overview (TL;DR)' },
@@ -42,12 +43,16 @@ export function FunFitLandCaseStudy() {
     { id: 'reflection', label: 'Reflection' }
   ];
 
+  // Simplified animation config
+  const simpleTransition = { duration: 0.3, ease: [0.4, 0, 0.2, 1] };
+  const viewportConfig = { once: true, margin: "-50px" };
+
   useEffect(() => {
     const handleScroll = () => {
       if (tocTriggerRef.current) {
         const triggerRect = tocTriggerRef.current.getBoundingClientRect();
         const activationOffset = 120;
-        setTocVisible(triggerRect.top <= activationOffset);
+        setTocFixed(triggerRect.top <= activationOffset);
       }
     };
 
@@ -83,25 +88,23 @@ export function FunFitLandCaseStudy() {
         ]}
       />
 
-      <section className="pb-32 px-6 md:px-12 lg:px-16">
+      {/* Mobile TOC */}
+      <MobileTOC items={tocItems} />
+
+      <section className="pb-32 px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} isVisible={tocVisible} />
+              <StickyTOC items={tocItems} isFixed={tocFixed} />
             </div>
 
             <div className="case-study-content-wrapper max-w-[900px] w-full">
               <div ref={tocTriggerRef} style={{ height: 1 }} />
               {/* Overview */}
               <div id="tldr" className="funfit-section funfit-overview-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--overview"
-                >
+                <h2 className="funfit-section-title funfit-section-title--overview">
                   TL;DR
-                </motion.h2>
+                </h2>
 
                 <div className="funfit-overview-meta-card">
                   <div className="funfit-overview-meta-group">
@@ -142,32 +145,17 @@ export function FunFitLandCaseStudy() {
 
               {/* Context Section */}
               <div id="context" className="funfit-section funfit-context-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--standard"
-                >
+                <h2 className="funfit-section-title funfit-section-title--standard">
                   Context: What is FunFitLand?
-                </motion.h2>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-context-intro"
-                >
+                <div className="funfit-context-intro">
                   <p className="funfit-context-paragraph">
                     FunFitLand is a VR fitness platform for Meta Quest that combines exercise with immersive environments. The <strong>DanceFit mode</strong> challenges users to <strong>hit floating targets</strong> in sync with music, an experience designed to make fitness feel like play.
                   </p>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-subsection"
-                >
+                <div className="funfit-subsection">
                   <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--md">
                     How It Works
                   </h3>
@@ -182,14 +170,9 @@ export function FunFitLandCaseStudy() {
                       className="funfit-image-full"
                     />
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-context-grid"
-                >
+                <div className="funfit-context-grid">
                   <div className="funfit-context-text-block">
                     <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--md">
                       Multi-Modal Feedback
@@ -206,26 +189,16 @@ export function FunFitLandCaseStudy() {
                       className="funfit-image-full"
                     />
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Problem Section */}
               <div id="problem" className="funfit-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--standard"
-                >
+                <h2 className="funfit-section-title funfit-section-title--standard">
                   The Problem
-                </motion.h2>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-problem-grid"
-                >
+                <div className="funfit-problem-grid">
                   <div className="funfit-problem-text-block funfit-body-text">
                     <p className="funfit-body-paragraph">
                       Over three months, we received reports from <strong>47</strong> users saying they <strong>couldn't reach targets</strong>. We thought it is an equipment issue, like maybe their device calibration was off, or they were using broken controllers.
@@ -239,33 +212,23 @@ export function FunFitLandCaseStudy() {
                       className="funfit-image-full"
                     />
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Research & Discovery Section */}
               <div id="research" className="funfit-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--standard"
-                >
+                <h2 className="funfit-section-title funfit-section-title--standard">
                   Research & Discovery
-                </motion.h2>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-body-text funfit-body-text--spaced-md funfit-research-intro-block"
-                >
+                <div className="funfit-body-text funfit-body-text--spaced-md funfit-research-intro-block">
                   <p className="funfit-body-paragraph">
                     We added some FAQ in our social media channels to notify users to re-calibrate the devices and change batteries of controllers. But the reports kept going on from new users.
                   </p>
                   <p className="funfit-research-lede">
                     We were wrong. So we had to dig into it — through data analysis and user interviews.
                   </p>
-                </motion.div>
+                </div>
 
                 <div className="funfit-research-methods-grid">
                   <div className="funfit-method-card">
@@ -322,12 +285,7 @@ export function FunFitLandCaseStudy() {
                   </div>
                 </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-research-summary"
-                >
+                <div className="funfit-research-summary">
                   <p className="funfit-research-caption">
                     Here is how I used these data to find where the real problem is:
                   </p>
@@ -336,34 +294,24 @@ export function FunFitLandCaseStudy() {
                     alt="Visualization of gameplay log analysis showing target reach patterns and user clusters"
                     className="funfit-image-full"
                   />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-subsection funfit-subsection--with-top"
-                >
+                <div className="funfit-subsection funfit-subsection--with-top">
                   <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">
                     Testing Hypotheses
                   </h3>
                   <p className="funfit-body-text funfit-body-text--spaced-lg">
                     With all the data, we could now systematically test each hypothesis from the product team.
                   </p>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-dark-panel"
-                >
+                <div className="funfit-dark-panel">
                   <img
                     src={imgExperiments}
                     alt="Three experiments: rhythm perception, reach capability, and mobility testing"
                     className="funfit-image-full"
                   />
-                </motion.div>
+                </div>
 
                 <div className="funfit-hypothesis-card">
                   <p className="hypothesis-callout">
@@ -380,35 +328,20 @@ export function FunFitLandCaseStudy() {
 
               {/* Solution Section */}
               <div id="solution" className="funfit-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--standard"
-                >
+                <h2 className="funfit-section-title funfit-section-title--standard">
                   The Solution: Personalized Calibration
-                </motion.h2>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-body-text funfit-solution-intro"
-                >
+                <div className="funfit-body-text funfit-solution-intro">
                   <p className="funfit-body-paragraph">
                     Instead of assuming one-size-fits-all, I designed a personalized calibration system that adapts to each user's unique reach and comfort level.
                   </p>
                   <p className="funfit-body-paragraph">
                     The system measures three reach zones: comfortable reach, mid-stretch, and maximum stretch. Users can calibrate their experience based on their current energy, mobility, and fitness goals.
                   </p>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-solution-subsection"
-                >
+                <div className="funfit-solution-subsection">
                   <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">
                     Calibration Experience
                   </h3>
@@ -422,14 +355,9 @@ export function FunFitLandCaseStudy() {
                   <p className="funfit-body-note">
                     New users are guided through a brief calibration flow where they reach in different directions to establish their personal comfort zones.
                   </p>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-solution-subsection"
-                >
+                <div className="funfit-solution-subsection">
                   <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">
                     Adjustable Difficulty System
                   </h3>
@@ -468,13 +396,9 @@ export function FunFitLandCaseStudy() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                >
+                <div>
                   <h3 className="funfit-section-subtitle-neutral">How It Works</h3>
                   <p className="funfit-body-text funfit-body-text--spaced-md">
                     The calibration creates three personalized zones based on the user's actual reach:
@@ -502,26 +426,16 @@ export function FunFitLandCaseStudy() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Impact Section */}
               <div id="impact" className="funfit-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--standard"
-                >
+                <h2 className="funfit-section-title funfit-section-title--standard">
                   Impact
-                </motion.h2>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-impact-stats-block"
-                >
+                <div className="funfit-impact-stats-block">
                   <div className="funfit-impact-grid">
                     <div className="funfit-impact-card">
                       <div className="funfit-impact-value">85%</div>
@@ -544,26 +458,16 @@ export function FunFitLandCaseStudy() {
                       <div className="funfit-impact-label">Of new users complete calibration</div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
               {/* Reflection Section */}
               <div id="reflection" className="funfit-section">
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-section-title funfit-section-title--standard"
-                >
+                <h2 className="funfit-section-title funfit-section-title--standard">
                   Reflection
-                </motion.h2>
+                </h2>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-reflection-block"
-                >
+                <div className="funfit-reflection-block">
                   <h3 className="funfit-reflection-heading">What I Learned</h3>
 
                   <blockquote className="funfit-reflection-quote">
@@ -571,38 +475,24 @@ export function FunFitLandCaseStudy() {
                   </blockquote>
 
                   <SkillChart />
-                </motion.div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="funfit-reflection-block"
-                >
+                <div className="funfit-reflection-block">
                   <h3 className="funfit-reflection-subheading">The Power of Listening</h3>
                   <p className="funfit-reflection-text">
                     This project taught me that inclusive design isn't about accommodating edge cases; it's about respecting the full diversity of human experience. When 40 users say something isn't working, the problem isn't with them.
                   </p>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="funfit-reflection-panel"
-                  >
+                  <div className="funfit-reflection-panel">
                     <img
                       src={imgUserFeedback}
                       alt="User feedback from global community"
                       className="funfit-image-full"
                     />
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                >
+                <div>
                   <h3 className="funfit-looking-forward-heading">Looking Forward</h3>
                   <NextSteps
                     steps={[
@@ -611,7 +501,7 @@ export function FunFitLandCaseStudy() {
                       'Develop adaptive difficulty that learns from player performance over time'
                     ]}
                   />
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>

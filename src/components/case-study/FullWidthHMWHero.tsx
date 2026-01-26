@@ -8,7 +8,6 @@ interface FullWidthHMWHeroProps {
   heading?: string;
   question: string;
   overlayOpacity?: number;
-  parallaxY?: number;
 }
 
 export const FullWidthHMWHero = forwardRef<HTMLElement, FullWidthHMWHeroProps>(({
@@ -16,8 +15,7 @@ export const FullWidthHMWHero = forwardRef<HTMLElement, FullWidthHMWHeroProps>((
   imageAlt,
   heading = 'How Might We…',
   question,
-  overlayOpacity = 0.4,
-  parallaxY = 0
+  overlayOpacity = 0.4
 }, ref) => {
   return (
     <motion.section
@@ -49,9 +47,7 @@ export const FullWidthHMWHero = forwardRef<HTMLElement, FullWidthHMWHeroProps>((
           left: 0,
           width: '100%',
           height: '100%',
-          zIndex: 0,
-          transform: `translateY(${parallaxY}px)`,
-          transition: 'transform 0.3s ease-out'
+          zIndex: 0
         }}
       >
         <ImageWithFallback

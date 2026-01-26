@@ -8,10 +8,10 @@ interface TOCItem {
 
 interface StickyTOCProps {
   items: TOCItem[];
-  isVisible?: boolean;
+  isFixed?: boolean;
 }
 
-export function StickyTOC({ items, isVisible = false }: StickyTOCProps) {
+export function StickyTOC({ items, isFixed = false }: StickyTOCProps) {
   const [activeId, setActiveId] = useState<string>('');
 
   const scrollToSection = (id: string) => {
@@ -58,12 +58,12 @@ export function StickyTOC({ items, isVisible = false }: StickyTOCProps) {
     scrollToSection(id);
   };
 
-  const navClassName = `sticky-toc-nav sticky-toc-fixed ${isVisible ? 'sticky-toc-visible' : ''}`;
+  const navClassName = `sticky-toc-nav ${isFixed ? 'sticky-toc-fixed' : 'sticky-toc-static'}`;
 
   return (
     <motion.nav
-      initial={{ x: -20 }}
-      animate={{ x: 0 }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
       className={navClassName}
     >

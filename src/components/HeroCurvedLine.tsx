@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import { useRef, memo } from 'react';
 import { motion } from 'motion/react';
 import solidStar from '../assets/streamline_star-2-solid.svg';
 import outlinedStar from '../assets/Vector.svg';
 
-export function HeroCurvedLine() {
+export const HeroCurvedLine = memo(function HeroCurvedLine() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // New SVG path provided by user is a Shape (Outline), not a Stroke.
@@ -59,5 +59,5 @@ export function HeroCurvedLine() {
       </svg>
     </div>
   );
-}
+});
 

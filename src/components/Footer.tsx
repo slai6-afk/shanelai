@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
 import { Mail, Linkedin, ArrowUp } from 'lucide-react';
+import { memo } from 'react';
 
-export function Footer() {
+export const Footer = memo(function Footer() {
   const socialLinks = [
     { icon: Mail, label: 'Email', href: 'mailto:shanshanlai160402@gmail.com' },
     { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/shanshan-lai' }
@@ -91,4 +92,4 @@ export function Footer() {
       </div>
     </footer>
   );
-}
+});

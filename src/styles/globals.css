@@ -1,5 +1,12 @@
 @custom-variant dark (&:is(.dark *));
 
+/* Performance: Spinner animation for page loading */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 :root {
   --font-size: 16px;
   --background: #f5f5f5;
@@ -441,16 +448,25 @@ html {
   width: 100%;
   position: relative;
   z-index: 60;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(16px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.sticky-toc-nav.sticky-toc-visible {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Static state - TOC starts here, scrolling with content */
+.sticky-toc-nav.sticky-toc-static {
+  position: relative;
+  top: 0;
+}
+
+/* Fixed state - TOC locks into fixed position */
+@media (min-width: 1024px) {
+  .sticky-toc-nav.sticky-toc-fixed {
+    position: fixed;
+    top: 120px;
+    left: max(64px, calc((100vw - 1600px) / 2 + 64px));
+    z-index: 60;
+  }
 }
 
 .case-full-bleed {
@@ -462,15 +478,6 @@ html {
   margin: 0;
   transform: translateX(-50%);
   display: block;
-}
-
-@media (min-width: 1024px) {
-  .sticky-toc-fixed {
-    position: fixed;
-    top: 80px;
-    left: max(64px, calc((100vw - 1600px) / 2 + 64px));
-    z-index: 60;
-  }
 }
 
 .case-toc-title {
@@ -1595,5 +1602,219 @@ html {
   
   .tldr-stat-card {
     padding: 24px 20px;
+  }
+}
+
+/* Terminal Card Scrollbar Styles */
+.terminal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 3px;
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 115, 0, 0.3);
+  border-radius: 3px;
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 115, 0, 0.5);
+}
+
+/* For Firefox */
+.terminal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 115, 0, 0.3) rgba(0, 0, 0, 0.02);
+}
+
+/* Mobile Responsive Utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Performance-optimized animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile Typography Adjustments */
+@media (max-width: 768px) {
+  .case-study-hero-section h1 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+
+  .case-study-hero-section h2 {
+    font-size: 18px !important;
+  }
+
+  .case-study-content-wrapper h3 {
+    font-size: 22px !important;
+  }
+
+  .case-study-content-wrapper h4 {
+    font-size: 16px !important;
+  }
+
+  .case-study-content-wrapper p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* Tablet Adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .case-study-hero-section h1 {
+    font-size: 40px !important;
+  }
+}
+
+/* Research Grid Layout - Simple flex for all screens */
+.research-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Accordion for Research Steps - All screens */
+.research-accordion-item {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-accordion-item:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.research-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.research-accordion-header:hover {
+  background: rgba(0,0,0,0.02);
+}
+
+.research-accordion-header.active {
+  background: rgba(0,0,0,0.04);
+}
+
+/* Smooth accordion animation */
+.research-accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: grid-template-rows;
+}
+
+.research-accordion-content.open {
+  grid-template-rows: 1fr;
+}
+
+.research-accordion-content > div {
+  overflow: hidden;
+}
+
+.research-accordion-content.open > div {
+  padding: 16px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Desktop: wider and more spacious */
+@media (min-width: 768px) {
+  .research-accordion-item {
+    padding: 4px;
+  }
+  
+  .research-accordion-header {
+    padding: 18px 20px;
+  }
+  
+  .research-accordion-content.open > div {
+    padding: 20px;
+  }
+}
+
+/* Video/Map Grid Layout */
+.video-map-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .video-map-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+/* Homepage Hero Layout - Mobile Optimization */
+@media (max-width: 767px) {
+  .hero-headline-wrapper {
+    width: 100% !important;
+    padding-right: 0 !important;
+  }
+  
+  /* Hide Terminal Card on mobile */
+  .terminal-card-wrapper {
+    display: none !important;
   }
 }

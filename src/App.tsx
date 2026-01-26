@@ -1,154 +1,72 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ProjectsPage } from './pages/ProjectsPage';
-import { PreviousWorkPage } from './pages/PreviousWorkPage';
-import { NYCTourismCaseStudy } from './pages/case-studies/NYCTourismCaseStudy';
-import { FunFitLandCaseStudy } from './pages/case-studies/FunFitLandCaseStudy';
-import { MemoryNavigatorCaseStudy } from './pages/case-studies/MemoryNavigatorCaseStudy';
-import { HuuuuuCaseStudy } from './pages/case-studies/HuuuuuCaseStudy';
-import { TalkieCaseStudy } from './pages/case-studies/TalkieCaseStudy';
-import { FunFitLandResearchCaseStudy } from './pages/case-studies/FunFitLandResearchCaseStudy';
+import { lazy, Suspense } from 'react';
 import { ScrollToTop } from './components/ScrollToTop';
+
+// Lazy load all pages for code splitting
+const HomePage = lazy(() => import('./pages/HomePage').then(m => ({ default: m.HomePage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage').then(m => ({ default: m.ProjectsPage })));
+const PreviousWorkPage = lazy(() => import('./pages/PreviousWorkPage').then(m => ({ default: m.PreviousWorkPage })));
+const NYCTourismCaseStudy = lazy(() => import('./pages/case-studies/NYCTourismCaseStudy').then(m => ({ default: m.NYCTourismCaseStudy })));
+const FunFitLandCaseStudy = lazy(() => import('./pages/case-studies/FunFitLandCaseStudy').then(m => ({ default: m.FunFitLandCaseStudy })));
+const MemoryNavigatorCaseStudy = lazy(() => import('./pages/case-studies/MemoryNavigatorCaseStudy').then(m => ({ default: m.MemoryNavigatorCaseStudy })));
+const HuuuuuCaseStudy = lazy(() => import('./pages/case-studies/HuuuuuCaseStudy').then(m => ({ default: m.HuuuuuCaseStudy })));
+const TalkieCaseStudy = lazy(() => import('./pages/case-studies/TalkieCaseStudy').then(m => ({ default: m.TalkieCaseStudy })));
+const FunFitLandResearchCaseStudy = lazy(() => import('./pages/case-studies/FunFitLandResearchCaseStudy').then(m => ({ default: m.FunFitLandResearchCaseStudy })));
+
+// Loading component for Suspense fallback
+function PageLoader() {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      backgroundColor: '#f5f5f5'
+    }}>
+      <div style={{
+        width: '40px',
+        height: '40px',
+        border: '3px solid rgba(255, 115, 0, 0.2)',
+        borderTop: '3px solid #FF7300',
+        borderRadius: '50%',
+        animation: 'spin 0.8s linear infinite'
+      }} />
+    </div>
+  );
+}
 
 function AnimatedRoutes() {
   const location = useLocation();
 
+  // Simplified page transition wrapper
+  const PageWrapper = ({ children }: { children: React.ReactNode }) => (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+    >
+      <Suspense fallback={<PageLoader />}>
+        {children}
+      </Suspense>
+    </motion.div>
+  );
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route
-          path="/"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <HomePage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <AboutPage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <ProjectsPage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/previous-work"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <PreviousWorkPage />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-study/nyc-tourism"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <NYCTourismCaseStudy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-study/funfitland"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <FunFitLandCaseStudy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-study/memory-navigator"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <MemoryNavigatorCaseStudy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-study/huuuuu"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <HuuuuuCaseStudy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-study/talkie"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <TalkieCaseStudy />
-            </motion.div>
-          }
-        />
-        <Route
-          path="/case-study/funfitland-research"
-          element={
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-            >
-              <FunFitLandResearchCaseStudy />
-            </motion.div>
-          }
-        />
-        {/* Catch-all route for preview and unmatched paths */}
+        <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+        <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
+        <Route path="/projects" element={<PageWrapper><ProjectsPage /></PageWrapper>} />
+        <Route path="/previous-work" element={<PageWrapper><PreviousWorkPage /></PageWrapper>} />
+        <Route path="/case-study/nyc-tourism" element={<PageWrapper><NYCTourismCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/funfitland" element={<PageWrapper><FunFitLandCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/memory-navigator" element={<PageWrapper><MemoryNavigatorCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/huuuuu" element={<PageWrapper><HuuuuuCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/talkie" element={<PageWrapper><TalkieCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/funfitland-research" element={<PageWrapper><FunFitLandResearchCaseStudy /></PageWrapper>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>

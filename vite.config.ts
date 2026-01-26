@@ -2,10 +2,20 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
-// ✅ Shane final fixed version
+// ✅ Shane final fixed version - Performance optimized
 export default defineConfig({
   base: './', // 使用相对路径，支持自定义域名 shanelai.com
-  plugins: [react()],
+  plugins: [
+    react({
+      // Enable React Fast Refresh
+      fastRefresh: true,
+    })
+  ],
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', 'motion', 'lucide-react'],
+    exclude: []
+  },
   resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -139,8 +149,35 @@ export default defineConfig({
     },
 build: {
   target: 'esnext',
-  outDir: 'dist',   // ✅ 改成 dist
-  emptyOutDir: true // 可选：构建前清空
+  outDir: 'dist',
+  emptyOutDir: true,
+  // Performance optimizations
+  minify: 'terser',
+  terserOptions: {
+    compress: {
+      drop_console: true, // Remove console.log in production
+      drop_debugger: true,
+      pure_funcs: ['console.log', 'console.info', 'console.debug']
+    }
+  },
+  rollupOptions: {
+    output: {
+      // Manual chunk splitting for better caching
+      manualChunks: {
+        'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+        'motion-vendor': ['motion'],
+        'icons': ['lucide-react']
+      },
+      // Optimize chunk file names
+      chunkFileNames: 'assets/js/[name]-[hash].js',
+      entryFileNames: 'assets/js/[name]-[hash].js',
+      assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+    }
+  },
+  // Chunk size warning limit
+  chunkSizeWarningLimit: 1000,
+  // Enable CSS code splitting
+  cssCodeSplit: true
 },
     server: {
       port: 3000,

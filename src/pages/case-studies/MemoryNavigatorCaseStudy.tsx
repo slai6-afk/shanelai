@@ -6,6 +6,7 @@ import { TLDRCard } from '../../components/case-study/TLDRCard';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { NextSteps } from '../../components/case-study/NextSteps';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
+import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { ProblemStatement } from '../../components/case-study/ProblemStatement';
 import { ProblemFramework } from '../../components/case-study/ProblemFramework';
 import { DesignPointsGrid } from '../../components/case-study/DesignPointsGrid';
@@ -52,14 +53,16 @@ import lisaCard from '../../components/case-study/LT.png';
 import drBakerCard from '../../components/case-study/DJB.png';
 import defineBackground from './Screenshot 2024-09-09 at 08.39.31 1.png';
 
+// Performance-optimized animation configs (same as NYC Tourism)
+const simpleTransition = { duration: 0.3, ease: [0.4, 0, 0.2, 1] };
+const viewportConfig = { once: true, margin: "-50px" };
+
 export function MemoryNavigatorCaseStudy() {
   const tldrHeroRef = useRef<HTMLDivElement>(null);
   const hmwHeroRef = useRef<HTMLElement>(null);
   const tocTriggerRef = useRef<HTMLDivElement>(null);
   const [tocOnDark, setTocOnDark] = useState(false);
-  const [tldrParallaxY, setTldrParallaxY] = useState(0);
-  const [hmwParallaxY, setHmwParallaxY] = useState(0);
-  const [tocVisible, setTocVisible] = useState(false);
+  const [tocFixed, setTocFixed] = useState(false); // Changed from tocVisible to tocFixed
   const [activePersona, setActivePersona] = useState(0);
 
   const personas = [
@@ -86,7 +89,7 @@ export function MemoryNavigatorCaseStudy() {
     }
   ];
 
-  // Intersection observer for TOC color switching
+  // Progressive sticky TOC (same as NYC Tourism)
   useEffect(() => {
     const handleScroll = () => {
       const toc = document.querySelector('.sticky-toc-nav');
@@ -114,29 +117,13 @@ export function MemoryNavigatorCaseStudy() {
       
       setTocOnDark(isOnDark);
       
-      // Parallax for TLDR
-      if (tldrHeroRef.current) {
-        const rect = tldrHeroRef.current.getBoundingClientRect();
-        const scrollProgress = Math.max(0, Math.min(1, -rect.top / rect.height));
-        setTldrParallaxY(scrollProgress * 2);
-      }
-      
-      // Parallax for HMW
-      if (hmwHeroRef.current) {
-        const rect = hmwHeroRef.current.getBoundingClientRect();
-        const scrollProgress = Math.max(0, Math.min(1, -rect.top / rect.height));
-        setHmwParallaxY(scrollProgress * 2);
-      }
-
-      // Toggle TOC visibility once past TL;DR hero
-      let shouldShowToc = false;
+      // Progressive sticky TOC (removed parallax effects for performance)
       if (tocTriggerRef.current) {
         const triggerRect = tocTriggerRef.current.getBoundingClientRect();
-        const activationOffset = 120;
-        shouldShowToc = triggerRect.top <= activationOffset;
+        const activationOffset = 80; // Reduced for smoother transition
+        const shouldBeFixed = triggerRect.top <= activationOffset;
+        setTocFixed((prev) => (prev === shouldBeFixed ? prev : shouldBeFixed));
       }
-
-      setTocVisible((prev) => (prev === shouldShowToc ? prev : shouldShowToc));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -170,14 +157,11 @@ export function MemoryNavigatorCaseStudy() {
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
 
-      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-24 md:pb-32 px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="max-w-[1200px] mx-auto">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             {/* Hero Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
+            <div
               style={{
                 marginBottom: '32px',
                 borderRadius: '8px',
@@ -195,7 +179,7 @@ export function MemoryNavigatorCaseStudy() {
                   display: 'block'
                 }}
               />
-            </motion.div>
+            </div>
 
             <h1 style={{ color: '#000000', fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
               Memory Navigator
@@ -212,12 +196,12 @@ export function MemoryNavigatorCaseStudy() {
               <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>10 Weeks</span>
               <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Unity Prototype · Clinical Trial Ready</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* TL;DR full-bleed hero */}
-      <section className="px-0">
+      <section className="px-0 mt-16 sm:mt-20 md:mt-24">
         <div 
           ref={tldrHeroRef}
           id="tldr" 
@@ -234,7 +218,7 @@ export function MemoryNavigatorCaseStudy() {
             overflow: 'hidden'
           }}
         >
-          {/* Background Image with Parallax */}
+          {/* Background Image (parallax removed for performance) */}
           <div
             style={{
               position: 'absolute',
@@ -242,9 +226,7 @@ export function MemoryNavigatorCaseStudy() {
               left: 0,
               width: '100%',
               height: '100%',
-              zIndex: 0,
-              transform: `translateY(${tldrParallaxY}px)`,
-              transition: 'transform 0.3s ease-out'
+              zIndex: 0
             }}
           >
             <ImageWithFallback
@@ -441,11 +423,14 @@ export function MemoryNavigatorCaseStudy() {
         </div>
       </section>
 
-      <section className="pb-32 px-8 md:px-16 lg:px-24">
+      {/* Mobile TOC */}
+      <MobileTOC items={tocItems} />
+
+      <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
           {/* Reduced left column width from 280px to 160px (~60% of original) */}
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-8">
-            <div className="hidden lg:block"><StickyTOC items={tocItems} isVisible={tocVisible} /></div>
+            <div className="hidden lg:block"><StickyTOC items={tocItems} isFixed={tocFixed} /></div>
 
             <div className="case-study-content-wrapper max-w-[900px] w-full" style={{ position: 'relative' }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
@@ -659,7 +644,6 @@ export function MemoryNavigatorCaseStudy() {
                   heading="How Might We…"
                   question="How might we help seniors navigate daily spaces with clarity and confidence—without feeling medical?"
                   overlayOpacity={0.7}
-                  parallaxY={hmwParallaxY}
                 />
 
                 {/* REFACTORED PERSONA SECTION */}

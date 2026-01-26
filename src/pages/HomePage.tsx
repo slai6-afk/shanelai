@@ -9,15 +9,30 @@ import minimaxLogo from '../assets/minimax-ai-models-1024x532.jpg';
 import castboxLogo from '../assets/castchatlogo.png';
 import shaneAvatar from '../assets/shane-avatar.jpg';
 import nycCover from '../assets/cover.png';
-import { useState, useEffect } from 'react';
+import tsinghuaLogo from '../assets/Tsinghua_University_Logo.svg.png';
+import prattLogo from '../assets/Pratt_Institute_Logo.svg.png';
+import { useState, useEffect, useRef, memo } from 'react';
 
-// Terminal Typing Effect Component
-function TerminalCard() {
+// Terminal Typing Effect Component - Optimized
+const TerminalCard = memo(function TerminalCard() {
   const lines = [
-    { text: '> Initializing Shane…', delay: 800 },
-    { text: '> Ready.', delay: 500 },
-    { text: '> Specializing in Data-driven UX and AI interaction design.', delay: 700 },
-    { text: '> Scroll to explore my work ↓', delay: 0 }
+    { text: '> Initializing Shanshan (Shane) Lai…', delay: 200 },
+    { text: '> Status: Online.', delay: 300 },
+    { text: '', delay: 100 },
+    { text: '> origin.location = central_china.small_city', delay: 150 },
+    { text: '', delay: 100 },
+    { text: '> education.loaded = interaction_design @tsinghua (2020)', delay: 150 },
+    { text: '', delay: 100 },
+    { text: '> module.vr_mr = shipped (0→1)', delay: 150 },
+    { text: '', delay: 100 },
+    { text: '> module.agi_avatar = active', delay: 100 },
+    { text: '> note: humans still confusing', delay: 250 },
+    { text: '', delay: 100 },
+    { text: '> ✈️ new_york (2025)', delay: 150 },
+    { text: '> program = pratt_ixd', delay: 250 },
+    { text: '', delay: 100 },
+    { text: '> current.task = ai_customer_support @temu', delay: 150 },
+    { text: '> goal: make help feel less robotic', delay: 0 }
   ];
 
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
@@ -25,6 +40,12 @@ function TerminalCard() {
   const [currentText, setCurrentText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  
+  // Check if tsinghua or pratt has been typed
+  const allText = displayedLines.join(' ') + ' ' + currentText;
+  const showTsinghua = allText.includes('tsinghua');
+  const showPratt = allText.includes('pratt');
 
   // Start typing after initial card animation
   useEffect(() => {
@@ -34,7 +55,7 @@ function TerminalCard() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Typing effect for current line
+  // Typing effect for current line - Optimized
   useEffect(() => {
     if (!isTyping || currentLineIndex >= lines.length) return;
 
@@ -43,7 +64,7 @@ function TerminalCard() {
     if (currentText.length < targetText.length) {
       const timer = setTimeout(() => {
         setCurrentText(targetText.slice(0, currentText.length + 1));
-      }, 35); // Typing speed (35ms per character)
+      }, 30); // Slightly faster typing for better performance
       return () => clearTimeout(timer);
     } else {
       // Line complete, move to next after delay
@@ -63,6 +84,13 @@ function TerminalCard() {
     }, 530);
     return () => clearInterval(interval);
   }, []);
+
+  // Auto scroll to bottom when content updates
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [displayedLines, currentText]);
 
   return (
     <motion.div
@@ -85,35 +113,105 @@ function TerminalCard() {
         alignSelf: 'flex-start',
         marginTop: '45px',
         border: '1px solid rgba(0, 0, 0, 0.04)',
-        minHeight: '180px'
+        height: '216px'
       }}
-      className="max-md:w-full max-md:ml-0"
+      className="terminal-card-wrapper"
     >
-      <div style={{ 
-        fontSize: '15px', 
-        fontFamily: 'monospace', 
-        color: '#1a1a1a', 
-        lineHeight: '1.8', 
-        fontWeight: 400 
-      }}>
+      <div 
+        ref={scrollRef}
+        style={{ 
+          fontSize: '15px', 
+          fontFamily: 'monospace', 
+          color: '#1a1a1a', 
+          lineHeight: '1.8', 
+          fontWeight: 400,
+          overflowY: 'auto',
+          height: '100%',
+          paddingRight: '8px',
+          scrollBehavior: 'smooth',
+          position: 'relative'
+        }}
+        className="terminal-scroll"
+      >
+        {/* Tsinghua Logo Background - appears when typing tsinghua */}
+        {showTsinghua && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 0.7, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            style={{
+              position: 'absolute',
+              top: '80px',
+              right: '-20px',
+              width: '130px',
+              height: '130px',
+              pointerEvents: 'none',
+              zIndex: 0
+            }}
+          >
+            <img 
+              src={tsinghuaLogo} 
+              alt="" 
+              loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          </motion.div>
+        )}
+        
+        {/* Pratt Logo Background - appears when typing pratt */}
+        {showPratt && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+            animate={{ opacity: 0.7, scale: 1, rotate: -8 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            style={{
+              position: 'absolute',
+              top: '200px',
+              width: '130px',
+              height: '130px',
+              pointerEvents: 'none',
+              zIndex: 0,
+              transform: 'rotate(-8deg)'
+            }}
+          >
+            <img 
+              src={prattLogo} 
+              alt="" 
+              loading="lazy"
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          </motion.div>
+        )}
+        
         {displayedLines.map((line, index) => (
           <div 
             key={index} 
             style={{ 
-              marginBottom: index === 0 ? '4px' : index === 1 ? '12px' : '8px',
-              color: index === 3 ? '#999999' : index === 2 ? '#333333' : '#1a1a1a'
+              marginBottom: line === '' ? '0px' : '4px',
+              color: line.includes('note:') ? '#666666' : 
+                     line.includes('goal:') ? '#666666' : 
+                     index <= 1 ? '#1a1a1a' : '#333333',
+              fontSize: line === '' ? '8px' : '15px',
+              lineHeight: line === '' ? '0.5' : '1.8',
+              position: 'relative',
+              zIndex: 1
             }}
           >
-            {line}
+            {line || '\u00A0'}
           </div>
         ))}
         {currentLineIndex < lines.length && (
           <div style={{ 
-            color: currentLineIndex === 2 ? '#333333' : 
-                   currentLineIndex === 3 ? '#999999' : '#1a1a1a',
-            fontSize: currentLineIndex === 3 ? '14px' : '15px'
+            color: currentText.includes('note:') ? '#666666' : 
+                   currentText.includes('goal:') ? '#666666' : 
+                   currentLineIndex <= 1 ? '#1a1a1a' : '#333333',
+            fontSize: currentText === '' ? '8px' : '15px',
+            lineHeight: currentText === '' ? '0.5' : '1.8',
+            marginBottom: currentText === '' ? '0px' : '4px',
+            position: 'relative',
+            zIndex: 1
           }}>
-            {currentText}
+            {currentText || '\u00A0'}
             <span style={{ 
               color: '#FF7300', 
               opacity: showCursor ? 1 : 0,
@@ -126,7 +224,7 @@ function TerminalCard() {
       </div>
     </motion.div>
   );
-}
+});
 
 export function HomePage() {
   const highlightedWorks = [
@@ -169,14 +267,14 @@ export function HomePage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pb-[0px] px-6 md:px-12 lg:px-16 pr-[48px] pl-[48px]">
+      <section className="pb-0 px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
           <div style={{ paddingTop: '115px' }} className="flex flex-col">
             <div style={{ display: 'flex', flexDirection: 'row', position: 'relative' }} className="max-md:flex-col hero-layout-container">
               <HeroCurvedLine />
               
               {/* Left Column */}
-              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', position: 'relative', zIndex: 2, paddingRight: '40px' }} className="max-md:w-full hero-headline-wrapper">
+              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', position: 'relative', zIndex: 2, paddingRight: '40px' }} className="max-md:!w-full max-md:!pr-0 hero-headline-wrapper">
                 {/* Name with Avatar Tooltip */}
                 <motion.div
                   style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', width: 'fit-content' }}
@@ -253,6 +351,7 @@ export function HomePage() {
                         <img
                           src={shaneAvatar}
                           alt="Shane"
+                          loading="eager"
                           style={{
                             width: '100%',
                             height: '100%',
@@ -355,7 +454,7 @@ export function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
                   style={{
-                    fontSize: 'clamp(26px, 3vw, 36px)',
+                    fontSize: 'clamp(20px, 5vw, 36px)',
                     fontWeight: 400,
                     lineHeight: '1.4',
                     color: '#000000',
@@ -394,6 +493,7 @@ export function HomePage() {
                     <motion.img
                       src={temuLogo}
                       alt="TEMU"
+                      loading="eager"
                       variants={{
                         rest: { y: 0, scale: 1 },
                         hover: { y: -3, scale: 1.03 }
@@ -509,6 +609,7 @@ export function HomePage() {
                     <motion.img
                       src={minimaxLogo}
                       alt="MiniMax"
+                      loading="eager"
                       variants={{
                         rest: { y: 0, scale: 1 },
                         hover: { y: -3, scale: 1.03 }
@@ -624,6 +725,7 @@ export function HomePage() {
                     <motion.img
                       src={castboxLogo}
                       alt="CastChat"
+                      loading="eager"
                       variants={{
                         rest: { y: 0, scale: 1 },
                         hover: { y: -3, scale: 1.03 }
@@ -817,7 +919,7 @@ export function HomePage() {
 
 
       {/* Selected Works Section */}
-      <section className="md:py-28 px-6 md:px-12 lg:px-16 py-[30px] px-[48px] py-[40px] selected-works-section">
+      <section className="py-12 sm:py-16 md:py-28 px-4 sm:px-6 md:px-12 lg:px-16 selected-works-section">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-10">
             <motion.h2
@@ -934,10 +1036,13 @@ export function HomePage() {
         padding: '80px 48px 60px', 
         background: '#1a1a1a',
         position: 'relative',
-        overflow: 'hidden'
-      }}>
-        {/* Animated background particles */}
-        {[...Array(15)].map((_, i) => (
+        overflow: 'hidden',
+        marginTop: '60px'
+      }}
+      className="sm:mt-20 md:mt-24"
+      >
+        {/* Reduced background particles for better performance */}
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
             animate={{
@@ -958,7 +1063,8 @@ export function HomePage() {
               height: `${4 + Math.random() * 8}px`,
               borderRadius: '50%',
               background: '#FF7300',
-              filter: 'blur(2px)'
+              filter: 'blur(2px)',
+              willChange: 'transform, opacity'
             }}
           />
         ))}

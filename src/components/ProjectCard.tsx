@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ExternalLink, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { memo } from 'react';
 
 interface ProjectCardProps {
   title: string;
@@ -13,7 +14,7 @@ interface ProjectCardProps {
   index: number;
 }
 
-export function ProjectCard({ 
+export const ProjectCard = memo(function ProjectCard({ 
   title, 
   description, 
   image, 
@@ -183,4 +184,4 @@ export function ProjectCard({
   }
 
   return cardContent;
-}
+});

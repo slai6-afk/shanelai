@@ -5,6 +5,7 @@ import { DecisionPill } from '../../components/case-study/DecisionPill';
 import { TLDRCard } from '../../components/case-study/TLDRCard';
 import { InsightCard } from '../../components/case-study/InsightCard';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
+import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { AlertCircle, Target, TrendingUp } from 'lucide-react';
 
 export function FunFitLandResearchCaseStudy() {
@@ -18,7 +19,7 @@ export function FunFitLandResearchCaseStudy() {
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
-      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16">
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="max-w-[1200px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <h1 style={{ color: '#000000', fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>FunFitLand Research</h1>
@@ -34,7 +35,11 @@ export function FunFitLandResearchCaseStudy() {
           </motion.div>
         </div>
       </section>
-      <section className="pb-32 px-8 md:px-16 lg:px-24">
+
+      {/* Mobile TOC */}
+      <MobileTOC items={tocItems} />
+
+      <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block"><StickyTOC items={tocItems} /></div>

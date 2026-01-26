@@ -1,7 +1,9 @@
 import { motion } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
+import { memo } from 'react';
+import slIcon from '../assets/sl_icon.png';
 
-export function Navigation() {
+export const Navigation = memo(function Navigation() {
   const location = useLocation();
 
   const navItems = [
@@ -21,16 +23,20 @@ export function Navigation() {
 
         <Link to="/">
           <motion.div
-            className="flex items-baseline gap-1"
-            whileHover={{ opacity: 0.6 }}
-            transition={{ duration: 0.3 }}
+            className="flex items-center"
+            whileHover={{ opacity: 0.7, scale: 1.05 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
           >
-            <span style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: '#666666', fontWeight: 400 }}>
-              Made by
-            </span>
-            <span style={{ fontSize: 'clamp(16px, 2vw, 18px)', color: '#000000', fontWeight: 400, textDecoration: 'underline' }}>
-              Shane Lai
-            </span>
+            <img 
+              src={slIcon} 
+              alt="SL" 
+              style={{ 
+                height: '48px',
+                width: 'auto',
+                display: 'block'
+              }}
+              className="md:h-[56px]"
+            />
           </motion.div>
         </Link>
 
@@ -59,4 +65,4 @@ export function Navigation() {
       </div>
     </motion.nav>
   );
-}
+});

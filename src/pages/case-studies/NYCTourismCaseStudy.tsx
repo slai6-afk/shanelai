@@ -1,11 +1,12 @@
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion } from 'motion/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
+import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 
-import heroComposite from '../../assets/desktop_homepage.png';
+import heroComposite from '../../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
 import tldrBackground from '../../assets/tlnrbg.png';
 import hookStreet from '../../assets/f47027c6a37e29d17d2cc9b1d3f48fff.jpg';
 import oldHomepage from '../../assets/oldweb1.png';
@@ -20,23 +21,23 @@ import iaImage from '../../assets/IA.png';
 import mapNotationImage from '../../assets/mapnotation.png';
 import homepageVideo from '../../assets/Screen Recording 2025-12-12 at 11.50.30 PM.mov';
 import cardComparison from '../../assets/cardcompareson.png';
-import mobileMapVideo from '../../assets/mapvideo.mov';
+import mobileMapVideo from '../../assets/map_record.mov';
 import mapComparisons from '../../assets/3maps.png';
 import explorationFlowVideo from '../../assets/mobilevideo.mov';
 import annotation1 from '../../assets/annotation1.png';
 import annotation2 from '../../assets/annotation2.png';
 import annotation3 from '../../assets/annotation3.png';
 import logoImage from '../../assets/logo.png';
+import designSystemImage from '../../assets/Design system.png';
+
+// Performance-optimized animation configs
+const simpleTransition = { duration: 0.3, ease: [0.4, 0, 0.2, 1] };
+const viewportConfig = { once: true, margin: "-50px" };
 
 export function NYCTourismCaseStudy() {
   const heroRef = useRef<HTMLDivElement>(null);
   const tocTriggerRef = useRef<HTMLDivElement>(null);
-  const [tocVisible, setTocVisible] = useState(false);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start']
-  });
-  const heroBgY = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const [tocFixed, setTocFixed] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
@@ -44,8 +45,8 @@ export function NYCTourismCaseStudy() {
       if (tocTriggerRef.current) {
         const triggerRect = tocTriggerRef.current.getBoundingClientRect();
         const activationOffset = 120;
-        const shouldShow = triggerRect.top <= activationOffset;
-        setTocVisible((prev) => (prev === shouldShow ? prev : shouldShow));
+        const shouldBeFixed = triggerRect.top <= activationOffset;
+        setTocFixed((prev) => (prev === shouldBeFixed ? prev : shouldBeFixed));
       }
     };
 
@@ -84,22 +85,10 @@ export function NYCTourismCaseStudy() {
     <div className="min-h-screen bg-[#f5f5f5]">
       <Navigation />
 
-      <section className="case-study-hero-section pt-40 pb-20 px-8 md:px-16" id="hero" ref={heroRef}>
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-16" id="hero" ref={heroRef}>
         <div className="max-w-[1200px] mx-auto">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              style={{
-                marginBottom: '32px',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                maxWidth: '60%',
-                margin: '0 auto 32px'
-              }}
-            >
-              <motion.div style={{ y: heroBgY }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={simpleTransition}>
+            <div className="mb-8 rounded-lg overflow-hidden w-full sm:w-11/12 md:w-4/5 lg:w-[70%] mx-auto">
                 <ImageWithFallback
                   src={heroComposite}
                   alt="NYC redesign map"
@@ -109,12 +98,10 @@ export function NYCTourismCaseStudy() {
                     aspectRatio: '16 / 9',
                     display: 'block',
                     objectFit: 'cover',
-                    objectPosition: 'top',
-                    opacity: 1
+                  objectPosition: 'center'
                   }}
                 />
-              </motion.div>
-            </motion.div>
+            </div>
 
             <h1
               style={{
@@ -125,7 +112,7 @@ export function NYCTourismCaseStudy() {
                 marginBottom: '16px'
               }}
             >
-              Reimagining discovery for young people navigating NYC
+              Make NYC Home, by discovering places you love.
             </h1>
 
             <p
@@ -138,7 +125,7 @@ export function NYCTourismCaseStudy() {
                 maxWidth: '800px'
               }}
             >
-              Helping students and recent arrivals turn the city into a place that feels livable, not overwhelming
+              Helping students and recent arrivals turn the city into a place that feels livable.
             </p>
           </motion.div>
         </div>
@@ -151,14 +138,14 @@ export function NYCTourismCaseStudy() {
           className="tldr-hero-fullbleed case-full-bleed"
           style={{
             position: 'relative',
-            height: '100vh',
-            minHeight: '720px',
+            minHeight: '100vh',
             marginBottom: '200px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            padding: '80px 0'
           }}
         >
           <motion.div
@@ -188,13 +175,13 @@ export function NYCTourismCaseStudy() {
           </motion.div>
 
           <div
+            className="px-4 sm:px-6 md:px-10 lg:px-12"
             style={{
               position: 'relative',
               zIndex: 1,
               width: '100%',
               maxWidth: '1200px',
-              margin: '0 auto',
-              padding: '0 40px'
+              margin: '0 auto'
             }}
           >
             <motion.div
@@ -227,10 +214,9 @@ export function NYCTourismCaseStudy() {
               </motion.p>
 
               <div
+                className="grid gap-4 sm:gap-4 md:gap-4"
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                  gap: '16px',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
                   alignItems: 'stretch'
                 }}
               >
@@ -336,7 +322,7 @@ export function NYCTourismCaseStudy() {
                         Shane
                       </p>
                       <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
-                        Explore things to do in Brooklyn
+                        Using curated content to help users explore
                       </p>
                     </motion.div>
 
@@ -350,7 +336,7 @@ export function NYCTourismCaseStudy() {
                         Harsh
                       </p>
                       <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
-                        Find a vegan and accessible restaurant in the Upper West Side
+                        Miltiple entry points for filtering 
                       </p>
                     </motion.div>
 
@@ -364,7 +350,7 @@ export function NYCTourismCaseStudy() {
                         Robert
                       </p>
                       <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
-                        Utilize the wishlist function
+                        Utilize the wishlist to save places and explore later
                       </p>
                     </motion.div>
                   </div>
@@ -393,11 +379,14 @@ export function NYCTourismCaseStudy() {
         </div>
       </section>
 
-      <section className="pb-32 px-8 md:px-16 lg:px-24">
+      {/* Mobile TOC */}
+      <MobileTOC items={tocItems} />
+
+      <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-4">
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} isVisible={tocVisible} />
+              <StickyTOC items={tocItems} isFixed={tocFixed} />
             </div>
 
             <div className="case-study-content-wrapper max-w-[1200px] w-full" style={{ position: 'relative' }}>
@@ -414,9 +403,20 @@ export function NYCTourismCaseStudy() {
                   textAlign: 'center'
                 }}
               >
-                <p style={{ fontSize: '16px', color: '#666', lineHeight: 1.6, margin: 0, fontStyle: 'italic' }}>
-                  I want to explore, but I do not know where to start.
+                <div style={{
+                  display: 'inline-block',
+                  background: 'rgba(0,0,0,0.02)',
+                  border: '1px solid rgba(0,0,0,0.06)',
+                  borderRadius: '12px',
+                  padding: '16px 24px'
+                }}>
+                  <p style={{ fontSize: '16px', color: '#333', lineHeight: 1.8, margin: 0, fontStyle: 'normal' }}>
+                    I want to explore.
+                  </p>
+                  <p style={{ fontSize: '16px', color: '#333', lineHeight: 1.8, margin: 0, fontStyle: 'normal' }}>
+                    Just not plan everything.
                 </p>
+                </div>
               </motion.div>
 
               <div id="hook" style={{ marginBottom: '200px', position: 'relative' }}>
@@ -497,15 +497,15 @@ export function NYCTourismCaseStudy() {
                       <p style={{ fontSize: 'clamp(20px, 2.6vw, 24px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em' }}>
                         Students told us the same story.
                       </p>
-                      <div style={{ borderLeft: '2px solid rgba(255,255,255,0.35)', paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                      <div style={{ borderLeft: '2px solid rgba(255,255,255,0.35)', paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                         <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
-                          “I want to explore but I do not know where to begin.”
+                          I want to explore.
                         </p>
                         <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
-                          “Everything is scattered across apps.”
+                          But everything is scattered across apps.
                         </p>
                         <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
-                          “I do not want to waste my one free evening.”
+                          And I don't want to waste my one free evening.
                         </p>
                       </div>
                       <motion.p
@@ -663,277 +663,161 @@ export function NYCTourismCaseStudy() {
                   So we looked at how people actually decide.
                 </motion.p>
 
-                <div
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'minmax(200px, 260px) minmax(0, 1fr)',
-                    gap: '16px',
-                    alignItems: 'start'
-                  }}
-                  className="lg:grid md:grid sm:block"
-                >
-                  {/* Left selector */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', maxWidth: '260px' }}>
-                    {[
-                      { step: 'Step 01', title: 'Interviews' },
-                      { step: 'Step 02', title: 'Card sorting' },
-                      { step: 'Step 03', title: 'Data analysis' },
-                      { step: 'Step 04', title: 'Tree testing' },
-                      { step: 'Step 05', title: 'Key insight' }
-                    ].map((item, idx) => (
-                      <motion.button
-                        key={item.step}
-                        type="button"
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.45, delay: 0.05 * idx, ease: 'easeOut' }}
-                        onClick={() => setActiveStep(idx)}
-                        style={{
-                          border: '1px solid rgba(0,0,0,0.08)',
-                          borderRadius: '12px',
-                          padding: '12px 14px',
-                          backgroundColor: activeStep === idx ? 'rgba(0,0,0,0.04)' : '#FFFFFF',
-                          boxShadow: activeStep === idx ? '0 10px 24px rgba(0,0,0,0.06)' : '0 2px 10px rgba(0,0,0,0.03)',
-                          transform: activeStep === idx ? 'translateY(-1px) scale(1.005)' : 'translateY(0) scale(1)',
-                          transition: 'all 0.2s ease',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        <span
-                          style={{
-                            width: '10px',
-                            height: '10px',
-                            borderRadius: '50%',
-                            backgroundColor: ['#FF7A00', '#FFB347', '#7D9FFF', '#5CC6C3', '#AC8BFF'][idx],
-                            flexShrink: 0
-                          }}
-                        />
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                          <span style={{ fontSize: '11px', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>{item.step}</span>
-                          <span style={{ fontSize: '15px', fontWeight: 600, color: '#111' }}>{item.title}</span>
-                        </div>
-                      </motion.button>
-                    ))}
-                  </div>
-
-                  {/* Right content */}
-                  <div
-                    style={{
-                      position: 'relative',
-                      border: '1px solid rgba(0,0,0,0.08)',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      backgroundColor: '#FFFFFF',
-                      minHeight: '420px',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.06)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      padding: '12px'
-                    }}
-                  >
+                <div className="research-grid">
+                  {/* Accordion View - All screens */}
+                  <div className="flex flex-col gap-3">
                     {[
                       {
-                        title: 'STEP 01 — Interviews',
+                        step: 'Step 01',
+                        title: 'Interviews',
+                        color: '#FF7A00',
+                        content: {
                         headline: 'Captured decision anxiety and planning under constraints',
                         reflection: 'People talked about energy, not features.',
-                        body: null,
                         data: [
                           { value: '6', label: 'Users' },
                           { value: '20–28', label: 'Ages' },
                           { value: '≤ 1 year', label: 'Time living in NYC' }
                         ],
-                        caption: 'Early notes turned confusion into concrete behaviors',
-                        image: null,
-                        type: 'data'
+                          caption: 'Early notes turned confusion into concrete behaviors'
+                        }
                       },
                       {
-                        title: 'STEP 02 — Card sorting',
+                        step: 'Step 02',
+                        title: 'Card sorting',
+                        color: '#FFB347',
+                        content: {
                         headline: 'Students organized content by context, not topic',
                         reflection: 'They grouped by feeling, not category.',
                         bullets: [
                           'Groupings reflected intention, situation, and emotional state',
                           '"What am I doing, with whom, and when?" mattered more than categories',
                           'Topic-based navigation consistently broke down'
-                        ],
-                        viz: [
-                          { label: 'Intention', color: '#FFB347' },
-                          { label: 'Vibe', color: '#7D9FFF' },
-                          { label: 'Situation', color: '#5CC6C3' }
-                        ],
-                        caption: null,
-                        image: null,
-                        type: 'context'
+                          ]
+                        }
                       },
                       {
-                        title: 'STEP 03 — Data analysis',
+                        step: 'Step 03',
+                        title: 'Data analysis',
+                        color: '#7D9FFF',
+                        content: {
                         headline: 'Quantitative analysis revealed hidden structural patterns',
                         reflection: 'Patterns appeared once emotion became structure.',
-                        bullets: [
-                          'Participant groupings were translated into co-occurrence percentages',
-                          'The matrix was reordered to highlight clustering patterns',
-                          'Clusters emerged that were not visible through qualitative review alone'
-                        ],
                         caption: 'Clusters emerged beyond intuition',
-                        image: similarityMatrix,
-                        type: 'matrix'
+                          image: similarityMatrix
+                        }
                       },
                       {
-                        title: 'STEP 04 — Tree testing',
+                        step: 'Step 04',
+                        title: 'Tree testing',
+                        color: '#5CC6C3',
+                        content: {
                         headline: 'Validation exposed where navigation failed',
                         reflection: 'This is where hesitation showed up.',
-                        bullets: [
-                          'Tree testing showed where label ambiguity and hierarchy caused hesitation, backtracking, and path confusion.'
-                        ],
                         caption: 'Validation confirmed where mental models and structure diverged',
-                        image: iaImage,
-                        type: 'tree'
+                          image: iaImage
+                        }
                       },
                       {
-                        title: 'STEP 05 — Key insight',
-                        headline: 'Exploration is intention-driven, not category-driven',
-                        reflection: 'Exploration follows intent, not menus.',
-                        bullets: ['Students do not explore cities by category. They explore by intention, vibe, and situation.'],
-                        caption: null,
-                        image: null,
-                        type: 'insight'
+                        step: 'Step 05',
+                        title: 'Key insight',
+                        color: '#AC8BFF',
+                        content: {
+                          headline: 'Confidence comes from clarity of choice, not abundance of options',
+                          reflection: 'Less can create more direction.'
+                        }
                       }
                     ].map((item, idx) => (
-                      <motion.div
-                        key={item.title}
-                        initial={{ opacity: 0, x: 8 }}
-                        animate={{ opacity: activeStep === idx ? 1 : 0, x: activeStep === idx ? 0 : 8 }}
-                        transition={{ duration: 0.4, ease: 'easeOut' }}
-                        style={{
-                          position: activeStep === idx ? 'relative' : 'absolute',
-                          inset: 0,
-                          pointerEvents: activeStep === idx ? 'auto' : 'none',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '12px'
-                        }}
+                      <div key={idx} className="research-accordion-item">
+                        <button
+                          className={`research-accordion-header ${activeStep === idx ? 'active' : ''}`}
+                          onClick={() => setActiveStep(activeStep === idx ? -1 : idx)}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '4px 4px 0' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                           <span
                             style={{
                               width: '10px',
                               height: '10px',
                               borderRadius: '50%',
-                              backgroundColor: ['#FF7A00', '#FFB347', '#7D9FFF', '#5CC6C3', '#AC8BFF'][idx],
+                                backgroundColor: item.color,
                               flexShrink: 0
                             }}
                           />
-                          <div>
-                            <p style={{ margin: 0, fontSize: '12px', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
+                              <span style={{ fontSize: '11px', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>
+                                {item.step}
+                              </span>
+                              <span style={{ fontSize: '15px', fontWeight: 600, color: '#111' }}>
                               {item.title}
-                            </p>
-                            <p style={{ margin: 0, fontSize: '18px', fontWeight: 600, color: '#111' }}>{item.headline}</p>
+                              </span>
                           </div>
                         </div>
-
-                        {item.reflection && (
-                          <p style={{ margin: '4px 4px 0', fontSize: '14px', color: '#777', lineHeight: 1.6, fontStyle: 'italic' }}>
-                            {item.reflection}
+                          <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            style={{
+                              transform: activeStep === idx ? 'rotate(180deg)' : 'rotate(0deg)',
+                              transition: 'transform 0.3s ease'
+                            }}
+                          >
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        </button>
+                        <div className={`research-accordion-content ${activeStep === idx ? 'open' : ''}`}>
+                          <div>
+                            <h4 style={{ fontSize: '18px', fontWeight: 600, color: '#111', marginBottom: '12px' }}>
+                              {item.content.headline}
+                            </h4>
+                            <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic', marginBottom: '16px' }}>
+                              {item.content.reflection}
                           </p>
-                        )}
-
-                        {item.data && (
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '10px', padding: '4px' }}>
-                            {item.data.map((d) => (
+                            {item.content.data && (
+                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '12px', marginBottom: '12px' }}>
+                                {item.content.data.map((d, i) => (
                               <div
-                                key={d.label}
+                                    key={i}
                                 style={{
                                   border: '1px solid rgba(0,0,0,0.06)',
-                                  borderRadius: '10px',
+                                      borderRadius: '8px',
                                   padding: '12px',
-                                  backgroundColor: '#fafafa'
+                                      textAlign: 'center',
+                                      background: '#fafafa'
                                 }}
                               >
-                                <p style={{ margin: 0, fontSize: '22px', fontWeight: 600, color: '#111' }}>{d.value}</p>
-                                <p style={{ margin: 0, fontSize: '12px', letterSpacing: '0.05em', color: '#666', textTransform: 'uppercase' }}>{d.label}</p>
+                                    <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '4px' }}>
+                                      {d.value}
+                              </div>
+                                    <div style={{ fontSize: '11px', color: '#999', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                      {d.label}
+                          </div>
                               </div>
                             ))}
                           </div>
                         )}
-
-                        {item.viz && (
-                          <div style={{ display: 'flex', gap: '10px', padding: '4px' }}>
-                            {item.viz.map((v) => (
-                              <div
-                                key={v.label}
-                                style={{
-                                  flex: 1,
-                                  borderRadius: '10px',
-                                  backgroundColor: v.color,
-                                  padding: '12px',
-                                  color: '#111',
-                                  fontWeight: 600,
-                                  textAlign: 'center'
-                                }}
-                              >
-                                {v.label}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
-                        {item.bullets && (
-                          <ul style={{ padding: '0 16px', margin: 0, display: 'flex', flexDirection: 'column', gap: '6px', color: '#444', fontSize: '15px', lineHeight: 1.6 }}>
-                            {item.bullets.map((b) => (
-                              <li key={b} style={{ listStyle: 'disc' }}>
-                                {b}
-                              </li>
+                            {item.content.bullets && (
+                              <ul style={{ fontSize: '14px', color: '#666', lineHeight: 1.7, paddingLeft: '20px', marginBottom: '12px' }}>
+                                {item.content.bullets.map((bullet, i) => (
+                                  <li key={i}>{bullet}</li>
                             ))}
                           </ul>
                         )}
-
-                        {item.image && (
-                          <motion.div
-                            initial={item.type === 'matrix' ? { opacity: 0.5, filter: 'grayscale(1)' } : { opacity: 0.95 }}
-                            animate={
-                              item.type === 'matrix'
-                                ? { opacity: activeStep === idx ? 1 : 0.5, filter: activeStep === idx ? 'grayscale(0)' : 'grayscale(1)' }
-                                : { opacity: activeStep === idx ? 1 : 0.95 }
-                            }
-                            transition={{ duration: item.type === 'matrix' ? 0.8 : 0.5, ease: 'easeOut' }}
-                            style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)', flex: 1, minHeight: '320px' }}
-                          >
-                            <ImageWithFallback
-                              src={item.image}
-                              alt={item.title}
-                              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                            />
-                          </motion.div>
-                        )}
-
-                        {item.type === 'insight' && (
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '10px', padding: '4px' }}>
-                            {['Wishlist', 'Curated information', 'Geo-based search'].map((label, i) => (
-                              <div
-                                key={label}
-                                style={{
-                                  border: '1px solid rgba(0,0,0,0.08)',
-                                  borderRadius: '10px',
-                                  padding: '12px',
-                                  backgroundColor: ['#FFF4E6', '#F3F0FF', '#E6FAF8'][i],
-                                  color: '#222',
-                                  fontWeight: 600,
-                                  textAlign: 'center'
-                                }}
-                              >
-                                {label}
-                              </div>
-                            ))}
+                            {item.content.image && (
+                              <div style={{ marginTop: '16px', borderRadius: '8px', overflow: 'hidden' }}>
+                                <ImageWithFallback src={item.content.image} alt={item.title} style={{ width: '100%', height: 'auto' }} />
                           </div>
                         )}
-
-                        {item.caption && (
-                          <p style={{ margin: '4px', fontSize: '14px', lineHeight: 1.5, color: '#444' }}>{item.caption}</p>
+                            {item.content.caption && (
+                              <p style={{ fontSize: '12px', color: '#999', marginTop: '12px', fontStyle: 'italic' }}>
+                                {item.content.caption}
+                              </p>
                         )}
-                      </motion.div>
+                          </div>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -986,54 +870,65 @@ export function NYCTourismCaseStudy() {
                 </motion.p>
               </div>
 
-              {/* Translating the spectrum into structure */}
-              <div style={{ marginBottom: '160px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}
-                >
-                  Designing for intention, not categories
-                </motion.h2>
-
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  style={{ color: '#555', fontSize: '15px', lineHeight: 1.6, marginBottom: '16px' }}
-                >
-                  —
-                </motion.p>
-
+              {/* Information Architecture */}
+              <div id="information-architecture" style={{ marginBottom: '160px' }}>
                 <motion.div
-                  initial={{ opacity: 0, filter: 'blur(6px)' }}
-                  whileInView={{ opacity: 1, filter: 'blur(0px)' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportConfig}
+                  transition={simpleTransition}
+                  style={{ marginBottom: '40px' }}
+                >
+                  <h2 style={{ 
+                    color: '#000000', 
+                    fontSize: 'clamp(28px, 4vw, 40px)', 
+                    fontWeight: 600, 
+                    marginBottom: '12px',
+                    letterSpacing: '-0.02em'
+                  }}>
+                    Information Architecture
+                  </h2>
+                  <p style={{ 
+                    color: '#666', 
+                    fontSize: '18px', 
+                    fontWeight: 400,
+                    maxWidth: '720px'
+                  }}>
+                    Designing for intention, not categories
+                  </p>
+                </motion.div>
+
+                {/* IA Diagram - Visual Focus */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportConfig}
+                  transition={{ duration: 0.6, delay: 0.1 }}
                   style={{
                     position: 'relative',
-                    borderRadius: '14px',
+                    borderRadius: '16px',
                     overflow: 'hidden',
-                    border: '1px solid rgba(0,0,0,0.06)',
-                    backgroundColor: '#FFF',
-                    padding: '12px'
+                    border: '1px solid rgba(0,0,0,0.08)',
+                    backgroundColor: '#FAFAFA',
+                    padding: '24px',
+                    marginBottom: '48px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.06)'
                   }}
                 >
                   <ImageWithFallback
                     src={iaImage}
-                    alt="IA diagram"
-                    style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '10px' }}
+                    alt="Information Architecture diagram showing user intent-based navigation"
+                    style={{ 
+                      width: '100%', 
+                      height: 'auto', 
+                      display: 'block', 
+                      borderRadius: '8px',
+                      background: '#FFFFFF'
+                    }}
                   />
 
-                  {/* Animated dots along paths */}
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3, repeat: Infinity, repeatType: 'mirror', repeatDelay: 1 }}
+                  {/* Static dots along paths - removed infinite animation for performance */}
+                  <span
                     style={{
                       position: 'absolute',
                       top: '28%',
@@ -1045,11 +940,7 @@ export function NYCTourismCaseStudy() {
                       boxShadow: '0 0 8px rgba(255,122,0,0.5)'
                     }}
                   />
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5, repeat: Infinity, repeatType: 'mirror', repeatDelay: 1 }}
+                  <span
                     style={{
                       position: 'absolute',
                       top: '48%',
@@ -1062,51 +953,265 @@ export function NYCTourismCaseStudy() {
                     }}
                   />
                 </motion.div>
+
+                {/* Annotations */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[
+                    {
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                      ),
+                      title: 'Multiple entry points',
+                      description: 'The same content can be accessed through different paths, so users can start wherever matches their mental model.',
+                      color: '#FF7A00'
+                    },
+                    {
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="12" y1="2" x2="12" y2="6"></line>
+                          <line x1="12" y1="18" x2="12" y2="22"></line>
+                          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                          <line x1="2" y1="12" x2="6" y2="12"></line>
+                          <line x1="18" y1="12" x2="22" y2="12"></line>
+                          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+                          <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+                        </svg>
+                      ),
+                      title: 'NYC 101 for orientation',
+                      description: 'NYC 101 provides essential basics like subway use and safety, helping new users feel grounded before exploring.',
+                      color: '#7D9FFF'
+                    },
+                    {
+                      icon: (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="3" width="7" height="7"></rect>
+                          <rect x="14" y="3" width="7" height="7"></rect>
+                          <rect x="14" y="14" width="7" height="7"></rect>
+                          <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                      ),
+                      title: 'Activities grouped by card sorting',
+                      description: '"Things to Do" is organized based on card-sorting results, reflecting how users naturally group activities.',
+                      color: '#AC8BFF'
+                    }
+                  ].map((annotation, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={viewportConfig}
+                      transition={{ duration: 0.5, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      style={{
+                        padding: '20px',
+                        borderRadius: '12px',
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(250,250,250,0.9) 100%)',
+                        border: `1px solid ${annotation.color}20`,
+                        boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {/* Icon */}
+                      <div style={{
+                        width: '40px',
+                        height: '40px',
+                        borderRadius: '8px',
+                        background: `${annotation.color}15`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: '16px',
+                        color: annotation.color
+                      }}>
+                        {annotation.icon}
+                      </div>
+
+                      {/* Title */}
+                      <h3 style={{
+                        fontSize: '16px',
+                        fontWeight: 600,
+                        color: '#1A1A1A',
+                        marginBottom: '8px',
+                        lineHeight: '1.3'
+                      }}>
+                        {annotation.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p style={{
+                        fontSize: '14px',
+                        lineHeight: '1.6',
+                        color: '#555',
+                        margin: 0
+                      }}>
+                        {annotation.description}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
 
-              {/* What this unlocked */}
-              <div id="insight" style={{ marginBottom: '140px' }}>
-                <motion.h2
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '16px' }}
+              {/* Key Insights - Redesigned */}
+              <div id="insight" style={{ marginBottom: '160px' }}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportConfig}
+                  transition={simpleTransition}
+                  style={{ marginBottom: '48px' }}
                 >
-                  What the structure made possible
-                </motion.h2>
+                  <h2 style={{ 
+                    color: '#000000', 
+                    fontSize: 'clamp(28px, 4vw, 40px)', 
+                    fontWeight: 600, 
+                    marginBottom: '12px',
+                    letterSpacing: '-0.02em'
+                  }}>
+                    What the structure made possible
+                  </h2>
+                  <p style={{ 
+                    color: '#666', 
+                    fontSize: '18px', 
+                    fontWeight: 400,
+                    maxWidth: '720px'
+                  }}>
+                    Three core principles that transformed how students discover NYC
+                  </p>
+                </motion.div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {[
-                    '1. multiple entry points for filter',
-                    '2. clear layout',
-                    '3. Geo-location Driven'
-                  ].map((line, idx) => (
+                    {
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <path d="M8 12h8"></path>
+                          <path d="M12 8v8"></path>
+                          <path d="M16 8l-8 8"></path>
+                          <path d="M8 8l8 8"></path>
+                        </svg>
+                      ),
+                      title: 'Multiple Entry Points',
+                      description: 'Students can start from vibe, location, or activity — whatever feels right in the moment',
+                      color: '#FF7A00',
+                      bgGradient: 'linear-gradient(135deg, rgba(255, 122, 0, 0.08) 0%, rgba(255, 122, 0, 0.02) 100%)'
+                    },
+                    {
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="3" width="7" height="7"></rect>
+                          <rect x="14" y="3" width="7" height="7"></rect>
+                          <rect x="14" y="14" width="7" height="7"></rect>
+                          <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                      ),
+                      title: 'Clear Information Hierarchy',
+                      description: 'Essential details first, deep context available when needed — no cognitive overload',
+                      color: '#7D9FFF',
+                      bgGradient: 'linear-gradient(135deg, rgba(125, 159, 255, 0.08) 0%, rgba(125, 159, 255, 0.02) 100%)'
+                    },
+                    {
+                      icon: (
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                      ),
+                      title: 'Geo-Location Driven',
+                      description: 'The map shows where you are and what\'s nearby — building spatial confidence over time',
+                      color: '#AC8BFF',
+                      bgGradient: 'linear-gradient(135deg, rgba(172, 139, 255, 0.08) 0%, rgba(172, 139, 255, 0.02) 100%)'
+                    }
+                  ].map((insight, idx) => (
                     <motion.div
-                      key={line}
-                      initial={{ opacity: 0, y: 8 }}
+                      key={idx}
+                      initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.45, delay: idx * 0.1, ease: 'easeOut' }}
-                      style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#222', fontSize: '16px' }}
+                      viewport={viewportConfig}
+                      transition={{ duration: 0.5, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.12)' }}
+                      style={{
+                        background: insight.bgGradient,
+                        borderRadius: '16px',
+                        padding: '32px 28px',
+                        border: `1px solid ${insight.color}20`,
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+                        transition: 'all 0.3s ease',
+                        cursor: 'default',
+                        position: 'relative',
+                        overflow: 'hidden'
+                      }}
                     >
-                      <span
-                        style={{
-                          width: '6px',
-                          height: '6px',
-                          borderRadius: '50%',
-                          backgroundColor: '#7D9FFF',
-                          flexShrink: 0
-                        }}
-                      />
-                      <span
-                        style={{
-                          width: '1px',
-                          height: '18px',
-                          backgroundColor: 'rgba(0,0,0,0.15)'
-                        }}
-                      />
-                      <span>{line}</span>
+                      {/* Background accent */}
+                      <div style={{
+                        position: 'absolute',
+                        top: -20,
+                        right: -20,
+                        width: '120px',
+                        height: '120px',
+                        background: `radial-gradient(circle, ${insight.color}15 0%, transparent 70%)`,
+                        pointerEvents: 'none'
+                      }} />
+                      
+                      {/* Icon container */}
+                      <div style={{
+                        width: '56px',
+                        height: '56px',
+                        borderRadius: '12px',
+                        background: `${insight.color}15`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: '20px',
+                        color: insight.color,
+                        position: 'relative',
+                        zIndex: 1
+                      }}>
+                        {insight.icon}
+                      </div>
+
+                      {/* Content */}
+                      <h3 style={{
+                        fontSize: '20px',
+                        fontWeight: 600,
+                        color: '#1A1A1A',
+                        marginBottom: '12px',
+                        lineHeight: '1.3',
+                        position: 'relative',
+                        zIndex: 1
+                      }}>
+                        {insight.title}
+                      </h3>
+                      <p style={{
+                        fontSize: '15px',
+                        lineHeight: '1.6',
+                        color: '#555',
+                        margin: 0,
+                        position: 'relative',
+                        zIndex: 1
+                      }}>
+                        {insight.description}
+                      </p>
+
+                      {/* Number indicator */}
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '16px',
+                        right: '20px',
+                        fontSize: '56px',
+                        fontWeight: 700,
+                        color: `${insight.color}12`,
+                        lineHeight: 1,
+                        userSelect: 'none',
+                        pointerEvents: 'none'
+                      }}>
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -1184,7 +1289,7 @@ export function NYCTourismCaseStudy() {
                       transition={{ duration: 0.35, delay: 0.5 }}
                       style={{ margin: 0, fontSize: '20px', fontWeight: 600 }}
                     >
-                      You are walking in Brooklyn.
+                      Walking in Brooklyn.
                     </motion.p>
 
                     <motion.p
@@ -1224,7 +1329,7 @@ export function NYCTourismCaseStudy() {
                       transition={{ duration: 0.35, delay: 1.6 }}
                       style={{ margin: 0, fontSize: '14px', color: 'rgba(245,245,245,0.65)' }}
                     >
-                      I do not want to compare ten tabs.
+                      I don't want ten tabs.
                     </motion.p>
 
                     <motion.p
@@ -1257,18 +1362,8 @@ export function NYCTourismCaseStudy() {
                     From guides to places worth discovering.
                   </motion.h3>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                  <div
                     style={{ position: 'relative', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.05)' }}
-                  >
-                    <motion.div
-                      initial={{ scale: 1.02 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.2, ease: 'easeOut' }}
                     >
                       <video
                         src={homepageVideo}
@@ -1277,10 +1372,10 @@ export function NYCTourismCaseStudy() {
                         playsInline
                         loop
                         controls={false}
+                      preload="metadata"
                         style={{ width: '100%', display: 'block', objectFit: 'cover' }}
                       />
-                    </motion.div>
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Subsection 02 */}
@@ -1340,12 +1435,8 @@ export function NYCTourismCaseStudy() {
                     Existing maps solve navigation. They do not solve exploration.
                   </motion.h3>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '24px', alignItems: 'center' }}>
-                    <motion.div
-                      initial={{ opacity: 0, x: 8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                  <div className="video-map-grid">
+                    <div
                       style={{ overflow: 'hidden', borderRadius: '12px' }}
                     >
                       <video
@@ -1355,15 +1446,13 @@ export function NYCTourismCaseStudy() {
                         playsInline
                         loop
                         controls={false}
-                        style={{ width: '100%', maxWidth: '620px', display: 'block', objectFit: 'cover', borderRadius: '50px' }}
+                        preload="metadata"
+                        className="w-4/5 sm:w-3/5 md:w-full mx-auto"
+                        style={{ maxWidth: '310px', display: 'block', objectFit: 'cover', borderRadius: '22px', border: '5px solid #333' }}
                       />
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                      initial={{ opacity: 0, x: -8 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.05 }}
+                    <div
                       style={{ overflow: 'hidden', borderRadius: '12px' }}
                     >
                       <ImageWithFallback
@@ -1371,7 +1460,7 @@ export function NYCTourismCaseStudy() {
                         alt="Map comparisons"
                         style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }}
                       />
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
 
@@ -1414,11 +1503,7 @@ export function NYCTourismCaseStudy() {
                     ))}
                   </div>
 
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                  <div
                     style={{ display: 'flex', justifyContent: 'center' }}
                   >
                     <video
@@ -1428,9 +1513,11 @@ export function NYCTourismCaseStudy() {
                       playsInline
                       loop={false}
                       controls
-                      style={{ width: '50%', maxWidth: '500px', display: 'block', objectFit: 'cover', borderRadius: '50px' }}
+                      preload="metadata"
+                      className="w-4/5 sm:w-3/5 md:w-2/5 lg:w-[35%]"
+                      style={{ maxWidth: '350px', display: 'block', objectFit: 'cover', borderRadius: '25px' }}
                     />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Design System in Action */}
@@ -1515,184 +1602,531 @@ export function NYCTourismCaseStudy() {
                   </motion.div>
                 </div>
 
-                {/* Measuring better exploration */}
-                <div id="evaluation" style={{ marginBottom: '160px' }}>
+                {/* Design System Overview - Interactive Section */}
+                <div style={{ marginBottom: '160px' }}>
                   <motion.h3
                     initial={{ opacity: 0, y: 6 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '16px' }}
+                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '12px' }}
                   >
-                    How we measure better exploration
+                    Design system overview
                   </motion.h3>
 
                   <motion.p
                     initial={{ opacity: 0, y: 6 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7, ease: 'easeOut' }}
-                    style={{ marginBottom: '10px', fontSize: '15px', color: '#777', lineHeight: 1.6, fontStyle: 'italic' }}
+                    transition={{ duration: 0.7, delay: 0.1 }}
+                    style={{ color: '#666', fontSize: '15px', marginBottom: '32px', fontStyle: 'italic' }}
                   >
-                    Better exploration is not about clicks.
+                    A scalable system supporting exploration across entry points, maps, and memory.
                   </motion.p>
 
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                  {/* Interactive Pan & Zoom Container */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.05 }}
-                    style={{ color: '#666', fontSize: '14px', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '24px' }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    beyond click-through
-                  </motion.p>
+                    {(() => {
+                      const [scale, setScale] = React.useState(1);
+                      const [position, setPosition] = React.useState({ x: 0, y: 0 });
+                      const [isDragging, setIsDragging] = React.useState(false);
+                      const [dragStart, setDragStart] = React.useState({ x: 0, y: 0 });
+                      const containerRef = React.useRef<HTMLDivElement>(null);
+                      const [isMobile, setIsMobile] = React.useState(false);
+                      
+                      // Touch state
+                      const [initialTouchDistance, setInitialTouchDistance] = React.useState<number | null>(null);
+                      const [initialScale, setInitialScale] = React.useState(1);
 
+                      // Detect mobile
+                      React.useEffect(() => {
+                        const checkMobile = () => {
+                          setIsMobile(window.innerWidth < 1024);
+                        };
+                        checkMobile();
+                        window.addEventListener('resize', checkMobile);
+                        return () => window.removeEventListener('resize', checkMobile);
+                      }, []);
+
+                      // Mouse handlers
+                      const handleMouseDown = (e: React.MouseEvent) => {
+                        setIsDragging(true);
+                        setDragStart({
+                          x: e.clientX - position.x,
+                          y: e.clientY - position.y
+                        });
+                      };
+
+                      const handleMouseMove = (e: React.MouseEvent) => {
+                        if (isDragging) {
+                          setPosition({
+                            x: e.clientX - dragStart.x,
+                            y: e.clientY - dragStart.y
+                          });
+                        }
+                      };
+
+                      const handleMouseUp = () => {
+                        setIsDragging(false);
+                      };
+
+                      const handleWheel = (e: React.WheelEvent) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const delta = e.deltaY * -0.001;
+                        const newScale = Math.min(Math.max(0.5, scale + delta), 3);
+                        setScale(newScale);
+                      };
+
+                      // Touch handlers
+                      const getTouchDistance = (touch1: React.Touch, touch2: React.Touch) => {
+                        const dx = touch1.clientX - touch2.clientX;
+                        const dy = touch1.clientY - touch2.clientY;
+                        return Math.sqrt(dx * dx + dy * dy);
+                      };
+
+                      const handleTouchStart = (e: React.TouchEvent) => {
+                        if (e.touches.length === 2) {
+                          // Two finger pinch
+                          e.preventDefault();
+                          const distance = getTouchDistance(e.touches[0], e.touches[1]);
+                          setInitialTouchDistance(distance);
+                          setInitialScale(scale);
+                        } else if (e.touches.length === 1) {
+                          // Single finger drag
+                          setIsDragging(true);
+                          setDragStart({
+                            x: e.touches[0].clientX - position.x,
+                            y: e.touches[0].clientY - position.y
+                          });
+                        }
+                      };
+
+                      const handleTouchMove = (e: React.TouchEvent) => {
+                        if (e.touches.length === 2 && initialTouchDistance) {
+                          // Pinch zoom
+                          e.preventDefault();
+                          const distance = getTouchDistance(e.touches[0], e.touches[1]);
+                          const scaleChange = distance / initialTouchDistance;
+                          const newScale = Math.min(Math.max(0.5, initialScale * scaleChange), 3);
+                          setScale(newScale);
+                        } else if (e.touches.length === 1 && isDragging) {
+                          // Drag
+                          e.preventDefault();
+                          setPosition({
+                            x: e.touches[0].clientX - dragStart.x,
+                            y: e.touches[0].clientY - dragStart.y
+                          });
+                        }
+                      };
+
+                      const handleTouchEnd = () => {
+                        setIsDragging(false);
+                        setInitialTouchDistance(null);
+                      };
+
+                      // Prevent scroll on wheel event
+                      React.useEffect(() => {
+                        const container = containerRef.current;
+                        if (!container) return;
+
+                        const preventScroll = (e: WheelEvent) => {
+                          e.preventDefault();
+                        };
+
+                        container.addEventListener('wheel', preventScroll, { passive: false });
+                        return () => {
+                          container.removeEventListener('wheel', preventScroll);
+                        };
+                      }, []);
+
+                      return isMobile ? (
+                        // Mobile: Static preview
                   <div
                     style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                      gap: '16px',
-                      background: '#f7f7f7',
-                      borderRadius: '16px',
-                      padding: '20px'
+                            border: '1px solid rgba(0,0,0,0.08)',
+                            borderRadius: '12px',
+                            overflow: 'hidden',
+                            background: '#fafafa',
+                            position: 'relative'
+                          }}
+                        >
+                          <img
+                            src={designSystemImage}
+                            alt="Design system overview"
+                                style={{
+                              width: '100%',
+                              height: 'auto',
+                              display: 'block'
+                                }}
+                              />
+                            <div
+                              style={{
+                                position: 'absolute',
+                              bottom: '12px',
+                              right: '12px',
+                              background: 'rgba(255,255,255,0.95)',
+                              padding: '6px 12px',
+                              borderRadius: '6px',
+                              fontSize: '11px',
+                              color: '#666',
+                              border: '1px solid rgba(0,0,0,0.06)'
+                            }}
+                          >
+                            Full system view on desktop
+                          </div>
+                        </div>
+                      ) : (
+                        // Desktop: Interactive pan & zoom
+                        <div
+                          style={{
+                            border: '1px solid rgba(0,0,0,0.08)',
+                            borderRadius: '12px',
+                            overflow: 'hidden',
+                            background: '#fafafa',
+                            position: 'relative',
+                            height: '600px',
+                            cursor: isDragging ? 'grabbing' : 'grab',
+                            touchAction: 'none'
+                          }}
+                          ref={containerRef}
+                          onMouseDown={handleMouseDown}
+                          onMouseMove={handleMouseMove}
+                          onMouseUp={handleMouseUp}
+                          onMouseLeave={handleMouseUp}
+                          onWheel={handleWheel}
+                          onTouchStart={handleTouchStart}
+                          onTouchMove={handleTouchMove}
+                          onTouchEnd={handleTouchEnd}
+                        >
+                          <div
+                            style={{
+                              transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
+                              transformOrigin: 'center center',
+                              transition: isDragging ? 'none' : 'transform 0.1s ease-out',
+                              width: '100%',
+                              height: 'auto',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              padding: '40px'
+                            }}
+                          >
+                            <img
+                              src={designSystemImage}
+                              alt="Design system overview"
+                              style={{
+                                maxWidth: '100%',
+                                height: 'auto',
+                                display: 'block',
+                                userSelect: 'none',
+                                pointerEvents: 'none'
+                              }}
+                              draggable={false}
+                            />
+                          </div>
+
+                          {/* Controls hint */}
+                          <div
+                              style={{
+                                position: 'absolute',
+                              bottom: '16px',
+                              right: '16px',
+                              background: 'rgba(255,255,255,0.95)',
+                              padding: '8px 14px',
+                              borderRadius: '8px',
+                              fontSize: '13px',
+                              color: '#666',
+                              border: '1px solid rgba(0,0,0,0.06)',
+                              pointerEvents: 'none',
+                              userSelect: 'none'
+                            }}
+                          >
+                            Drag to explore • Scroll or pinch to zoom
+                          </div>
+                        </div>
+                      );
+                    })()}
+                  </motion.div>
+                </div>
+
+                {/* Evaluation & Outcomes Section */}
+                <div id="evaluation" style={{ marginBottom: '160px' }}>
+                  {/* Part 1: How we measure better exploration */}
+                  <motion.h3
+                    initial={{ opacity: 0, y: 6 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '56px' }}
+                  >
+                    How we measure better exploration
+                  </motion.h3>
+
+                  {/* Visual Indicators */}
+                  <div
+                    className="grid gap-12 sm:gap-16 md:gap-12 mb-24 sm:mb-32 md:mb-24"
+                              style={{
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'
                     }}
                   >
                     {[
                       {
-                        title: 'Faster Discovery',
-                        label: 'Time to first confident choice',
-                        accent: '#FF7A00',
-                        visual: (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <div style={{ height: '6px', borderRadius: '999px', background: 'rgba(255,122,0,0.25)', flex: 1 }} />
-                            <div style={{ height: '6px', borderRadius: '999px', background: '#FF7A00', width: '35%' }} />
-                          </div>
-                        )
-                      },
-                      {
-                        title: 'Higher Confidence',
-                        label: 'Decision confidence and vibe clarity',
-                        accent: '#7D9FFF',
-                        visual: (
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '6px' }}>
-                            <div style={{ height: '6px', background: 'rgba(125,159,255,0.25)', borderRadius: '999px' }} />
-                            <div style={{ height: '6px', background: '#7D9FFF', borderRadius: '999px' }} />
-                            <div style={{ height: '6px', background: 'rgba(125,159,255,0.25)', borderRadius: '999px' }} />
-                            <div style={{ height: '6px', background: '#7D9FFF', borderRadius: '999px', width: '80%', justifySelf: 'end' }} />
-                          </div>
-                        )
-                      },
-                      {
-                        title: 'Deeper Exploration',
-                        label: 'Exploration depth and wishlist saves',
-                        accent: '#5CC6C3',
-                        visual: (
-                          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                            {[8, 14, 18, 26].map((h, i) => (
-                              <span
-                                key={h}
-                                style={{
-                                  width: '10px',
-                                  height: `${h}px`,
-                                  borderRadius: '6px',
-                                  background: i === 3 ? '#5CC6C3' : 'rgba(92,198,195,0.4)',
-                                  display: 'inline-block'
-                                }}
-                              />
-                            ))}
-                          </div>
-                        )
-                      },
-                      {
-                        title: 'Local Engagement',
-                        label: 'Repeat exploration and local focus',
-                        accent: '#AC8BFF',
-                        visual: (
-                          <div style={{ position: 'relative', width: '100%', height: '56px' }}>
-                            <div
-                              style={{
+                        label: 'Confidence to Start',
+                        color: '#FF7A00',
+                        icon: (
+                          <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto' }}>
+                            <div style={{
                                 position: 'absolute',
-                                inset: '8px 12px',
-                                border: '1px dashed rgba(172,139,255,0.5)',
-                                borderRadius: '10px'
-                              }}
-                            />
-                            <motion.span
-                              initial={{ opacity: 0.4, scale: 0.9 }}
-                              animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.9, 1, 0.9] }}
-                              transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-                              style={{
-                                position: 'absolute',
-                                top: '18px',
-                                left: '30%',
-                                width: '12px',
-                                height: '12px',
+                              inset: 0,
                                 borderRadius: '50%',
-                                background: '#AC8BFF',
-                                boxShadow: '0 0 12px rgba(172,139,255,0.6)'
-                              }}
-                            />
-                            <motion.span
-                              initial={{ opacity: 0.3, scale: 0.85 }}
-                              animate={{ opacity: [0.3, 0.7, 0.3], scale: [0.85, 1, 0.85] }}
-                              transition={{ duration: 1.6, delay: 0.3, repeat: Infinity, ease: 'easeInOut' }}
-                              style={{
-                                position: 'absolute',
-                                bottom: '12px',
-                                right: '28%',
-                                width: '10px',
-                                height: '10px',
+                              border: '3px solid rgba(255,122,0,0.12)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}>
+                              <div style={{
+                                width: '44px',
+                                height: '44px',
                                 borderRadius: '50%',
-                                background: '#AC8BFF'
-                              }}
-                            />
+                                background: '#FF7A00',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                              }}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                  <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      },
+                      {
+                        label: 'Clarity of Choice',
+                        color: '#7D9FFF',
+                        icon: (
+                          <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto' }}>
+                            <div style={{
+                              position: 'absolute',
+                              inset: 0,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}>
+                              <div style={{
+                                width: '42px',
+                                height: '42px',
+                                borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
+                                background: 'linear-gradient(180deg, #7D9FFF 0%, rgba(125,159,255,0.3) 100%)',
+                                position: 'relative'
+                              }}>
+                                <div style={{
+                                  position: 'absolute',
+                                  bottom: '-6px',
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  width: '14px',
+                                  height: '7px',
+                                  background: '#7D9FFF',
+                                  borderRadius: '0 0 3px 3px'
+                                }} />
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      },
+                      {
+                        label: 'Lightweight Commitment',
+                        color: '#5CC6C3',
+                        icon: (
+                          <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto' }}>
+                            <div style={{
+                              position: 'absolute',
+                              inset: 0,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}>
+                              <svg width="36" height="46" viewBox="0 0 40 52" fill="none">
+                                <path d="M4 0H36C38.2091 0 40 1.79086 40 4V52L20 40L0 52V4C0 1.79086 1.79086 0 4 0Z" fill="#5CC6C3" fillOpacity="0.15"/>
+                                <path d="M4 0H36C38.2091 0 40 1.79086 40 4V52L20 40L0 52V4C0 1.79086 1.79086 0 4 0Z" stroke="#5CC6C3" strokeWidth="2.5"/>
+                              </svg>
+                            </div>
+                          </div>
+                        )
+                      },
+                      {
+                        label: 'Local Continuity',
+                        color: '#AC8BFF',
+                        icon: (
+                          <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto' }}>
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+                              <circle cx="18" cy="18" r="5" fill="#AC8BFF" />
+                              <circle cx="36" cy="32" r="5" fill="#AC8BFF" />
+                              <circle cx="54" cy="22" r="5" fill="#AC8BFF" />
+                              <circle cx="45" cy="50" r="5" fill="#AC8BFF" />
+                              <path d="M 18 18 Q 27 25, 36 32" stroke="#AC8BFF" strokeWidth="2" fill="none" strokeDasharray="3 3" opacity="0.35"/>
+                              <path d="M 36 32 Q 45 27, 54 22" stroke="#AC8BFF" strokeWidth="2" fill="none" strokeDasharray="3 3" opacity="0.35"/>
+                              <path d="M 54 22 Q 49.5 36, 45 50" stroke="#AC8BFF" strokeWidth="2" fill="none" strokeDasharray="3 3" opacity="0.35"/>
+                            </svg>
                           </div>
                         )
                       }
-                    ].map((item) => (
+                    ].map((indicator, index) => (
                       <motion.div
-                        key={item.title}
-                        initial={{ opacity: 0, y: 8 }}
+                        key={indicator.label}
+                        initial={{ opacity: 0, y: 24 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.45, ease: 'easeOut' }}
+                        transition={{ duration: 0.7, delay: index * 0.12, ease: 'easeOut' }}
                         style={{
-                          background: '#FFFFFF',
-                          borderRadius: '12px',
-                          padding: '14px',
-                          border: '1px solid rgba(0,0,0,0.05)',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: '10px'
+                          alignItems: 'center',
+                          gap: '24px',
+                          textAlign: 'center'
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <span
-                            style={{
-                              width: '10px',
-                              height: '10px',
-                              borderRadius: '50%',
-                              backgroundColor: item.accent,
-                              flexShrink: 0
-                            }}
-                          />
-                          <p style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: '#111' }}>{item.title}</p>
-                        </div>
-                        <div>{item.visual}</div>
-                        <p style={{ margin: 0, fontSize: '13px', color: '#555' }}>{item.label}</p>
+                        {indicator.icon}
+                        <p style={{
+                          margin: 0,
+                          fontSize: '16px',
+                          fontWeight: 500,
+                          color: indicator.color,
+                          letterSpacing: '-0.01em',
+                          lineHeight: 1.3
+                        }}>
+                          {indicator.label}
+                        </p>
                       </motion.div>
                     ))}
                   </div>
 
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
+                  {/* Part 2: Design Outcomes */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    style={{ marginTop: '18px', color: '#666', fontSize: '14px' }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    Better exploration feels lighter, faster, and more confident. These signals help us see it.
-                  </motion.p>
+                    <h3 style={{ 
+                      color: '#111', 
+                      fontSize: '28px', 
+                      fontWeight: 500, 
+                      marginBottom: '56px',
+                      textAlign: 'center'
+                    }}>
+                      Design outcomes
+                    </h3>
+
+                    <div
+                      className="grid gap-8 sm:gap-10 md:gap-10 max-w-[1000px] mx-auto"
+                      style={{
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))'
+                      }}
+                    >
+                      {[
+                        {
+                          title: 'External Validation',
+                          icon: (
+                            <div style={{ 
+                              width: '48px', 
+                              height: '48px',
+                              borderRadius: '50%',
+                              background: 'rgba(125,159,255,0.12)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              margin: '0 auto 20px'
+                            }}>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7D9FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              </svg>
+                </div>
+                          ),
+                          content: 'Reviewed by three professional UX designers who recognized core insight clarity and solution restraint'
+                        },
+                        {
+                          title: 'Implementation Momentum',
+                          icon: (
+                            <div style={{ 
+                              width: '48px', 
+                              height: '48px',
+                              borderRadius: '50%',
+                              background: 'rgba(255,122,0,0.12)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              margin: '0 auto 20px'
+                            }}>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF7A00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="13 17 18 12 13 7"/>
+                                <polyline points="6 17 11 12 6 7"/>
+                              </svg>
+              </div>
+                          ),
+                          content: 'Actively moving toward implementation, indicating feasibility beyond academic exercise'
+                        },
+                        {
+                          title: 'User Impact Direction',
+                          icon: (
+                            <div style={{ 
+                              width: '48px', 
+                              height: '48px',
+                              borderRadius: '50%',
+                              background: 'rgba(92,198,195,0.12)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              margin: '0 auto 20px'
+                            }}>
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5CC6C3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                              </svg>
+            </div>
+                          ),
+                          content: 'Helps young NYC residents feel more oriented and gradually develop sense of belonging'
+                        }
+                      ].map((outcome, index) => (
+                        <motion.div
+                          key={outcome.title}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.7, delay: index * 0.15 }}
+                          style={{
+                            textAlign: 'center'
+                          }}
+                        >
+                          {outcome.icon}
+                          <h4 style={{
+                            fontSize: '17px',
+                            fontWeight: 600,
+                            color: '#111',
+                            marginBottom: '12px',
+                            letterSpacing: '-0.01em'
+                          }}>
+                            {outcome.title}
+                          </h4>
+                          <p style={{
+                            fontSize: '14px',
+                            color: '#666',
+                            lineHeight: 1.6,
+                            margin: 0
+                          }}>
+                            {outcome.content}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
