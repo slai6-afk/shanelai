@@ -49,7 +49,7 @@ import methodology1 from '../../assets/design1.png';
 
 import successWide from '../../assets/success.png';
 import thankyou from '../../assets/thankyou.png';
-import designSystemBoard from '../../assets/design system.png';
+import designSystemBoard from '../../assets/design-system.png';
 
 const PROTOTYPE_HREF =
   'https://www.figma.com/proto/I7h5TbtKGoPjvKTM5SOptr/Vibe-Sync---2026-Amazon-Music-Challenge--presented-by-All-Ears-?node-id=1-128&t=WL4rCVUuGfeyFHhV-1&starting-point-node-id=1%3A128';
