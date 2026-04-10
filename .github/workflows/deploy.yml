@@ -5,6 +5,10 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# JS-based actions (checkout, setup-node, etc.) — opt into Node 24 before GitHub’s default flip (see GitHub changelog 2025-09-19).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
