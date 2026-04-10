@@ -91,7 +91,7 @@ export const FullWidthHMWHero = forwardRef<HTMLElement, FullWidthHMWHeroProps>((
         >
           <h3 style={{
             color: '#FFFFFF',
-            fontSize: '16px',
+            fontSize: 'var(--type-l3)',
             fontWeight: 500,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
@@ -102,7 +102,7 @@ export const FullWidthHMWHero = forwardRef<HTMLElement, FullWidthHMWHeroProps>((
           </h3>
           <p style={{
             color: '#FFFFFF',
-            fontSize: 'clamp(24px, 3.5vw, 32px)',
+            fontSize: 'clamp(var(--type-l4), 3.5vw, var(--type-l5))',
             fontWeight: 400,
             lineHeight: '1.4',
             maxWidth: '700px',

@@ -63,7 +63,7 @@ export function PersonaDetailCard({
         <div style={{ flex: 1 }}>
           <h3 style={{
             color: '#333333',
-            fontSize: '18px',
+            fontSize: 'var(--type-l4)',
             fontFamily: 'MuseoModerno, sans-serif',
             fontWeight: 600,
             marginBottom: '4px'
@@ -72,7 +72,7 @@ export function PersonaDetailCard({
           </h3>
           <p style={{
             color: '#E56641',
-            fontSize: '13px',
+            fontSize: 'var(--type-l2)',
             fontFamily: 'MuseoModerno, sans-serif',
             fontWeight: 500,
             marginBottom: '2px'
@@ -80,8 +80,8 @@ export function PersonaDetailCard({
             {role} · Age {age}
           </p>
           <p style={{
-            color: '#666666',
-            fontSize: '12px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l1)',
             lineHeight: '1.5',
             margin: 0
           }}>
@@ -100,7 +100,7 @@ export function PersonaDetailCard({
       }}>
         <p style={{
           color: '#482D18',
-          fontSize: '13px',
+          fontSize: 'var(--type-l2)',
           fontStyle: 'italic',
           lineHeight: '1.6',
           margin: 0
@@ -112,7 +112,7 @@ export function PersonaDetailCard({
       {/* Details sections */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <DetailSection title="Goals" items={goals} color="#E56641" />
-        <DetailSection title="Tasks" items={tasks} color="#ED964F" />
+        <DetailSection title="Tasks" items={tasks} color="var(--ds-accent-case)" />
         <DetailSection title="Needs" items={needs} color="#AE8EFF" />
         <DetailSection title="Frustrations" items={frustrations} color="#795337" />
       </div>
@@ -125,7 +125,7 @@ function DetailSection({ title, items, color }: { title: string; items: string[]
     <div>
       <p style={{
         color: color,
-        fontSize: '11px',
+        fontSize: 'var(--type-l1)',
         fontFamily: 'MuseoModerno, sans-serif',
         fontWeight: 600,
         letterSpacing: '0.05em',
@@ -147,7 +147,7 @@ function DetailSection({ title, items, color }: { title: string; items: string[]
             key={idx}
             style={{
               color: '#3B2E24',
-              fontSize: '13px',
+              fontSize: 'var(--type-l2)',
               lineHeight: '1.6',
               paddingLeft: '16px',
               position: 'relative'

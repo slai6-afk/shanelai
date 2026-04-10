@@ -1,66 +1,101 @@
 import { motion } from 'motion/react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { memo } from 'react';
-import slIcon from '../assets/sl_icon.png';
+import brandImage from '../assets/brand.png';
+import { SketchCursorHint } from './SketchCursorHint';
 
 export const Navigation = memo(function Navigation() {
-  const location = useLocation();
-
   const navItems = [
-    { name: 'About Me', path: '/about' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Previous Work', path: '/previous-work' }
+    { name: 'Work', path: '/projects' },
+    { name: 'Playground', path: '/playground' },
+    { name: 'Workflow', path: '/design-engineering-workflow' },
+    { name: 'About', path: '/about' }
   ];
+
+  const linkStyle = {
+    color: 'var(--ds-nav-text)',
+    fontSize: 'var(--ds-text-nav)',
+    fontWeight: 400,
+    lineHeight: 'var(--type-l2-lh)',
+    letterSpacing: 'var(--type-track-body)',
+    textDecoration: 'none' as const,
+    whiteSpace: 'nowrap' as const,
+    display: 'inline-flex' as const,
+    alignItems: 'center' as const
+  };
 
   return (
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 bg-[#f5f5f5]/95 backdrop-blur-sm"
+      className="ds-site-nav fixed top-0 left-0 right-0 z-50"
     >
-     <div className="nav-inner max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 py-6 md:py-3 flex justify-between items-center">
-
-        <Link to="/">
-          <motion.div
-            className="flex items-center"
-            whileHover={{ opacity: 0.7, scale: 1.05 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-          >
-            <img 
-              src={slIcon} 
-              alt="SL" 
-              style={{ 
-                height: '48px',
-                width: 'auto',
-                display: 'block'
-              }}
-              className="md:h-[56px]"
-            />
-          </motion.div>
-        </Link>
-
-        <div className="flex items-center gap-6 md:gap-12">
-          {navItems.map((item) => {
-            const isActive = location.pathname === item.path;
-            
-            return (
-              <Link key={item.path} to={item.path}>
-                <motion.span
-                  whileHover={{ opacity: 0.6 }}
-                  transition={{ duration: 0.3 }}
+      <div
+        className="nav-inner mx-auto flex max-w-[1600px] items-center justify-between rounded-[100px] px-5 sm:px-6 md:px-12 lg:px-[48px]"
+        style={{
+          minHeight: '50px'
+        }}
+      >
+        <NavLink to="/" end>
+          <SketchCursorHint label="Home — hi again" className="block">
+            <motion.div
+              className="flex items-center"
+              whileHover={{ scale: 1.07, rotate: -5 }}
+              transition={{ type: 'spring', stiffness: 420, damping: 18 }}
+            >
+              <div
+                className="nav-brand-mark relative shrink-0 overflow-hidden rounded-full"
+                style={{ width: 68, height: 68 }}
+              >
+                <img
+                  src={brandImage}
+                  alt="Shane Lai"
+                  width={68}
+                  height={68}
                   style={{
-                    color: '#000000',
-                    fontSize: 'clamp(14px, 1.5vw, 16px)',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    display: 'block'
+                  }}
+                />
+                {/* Inner stroke above artwork (inset shadow on img alone sits under opaque pixels) */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 rounded-full"
+                  style={{ boxShadow: 'inset 0 0 0 8px #ffffff' }}
+                />
+              </div>
+            </motion.div>
+          </SketchCursorHint>
+        </NavLink>
+
+        <div
+          className="scrollbar-hide flex items-center overflow-x-auto"
+          style={{ gap: '28px' }}
+        >
+          {navItems.map((item) => (
+            <NavLink key={item.path} to={item.path} style={linkStyle}>
+              {({ isActive }) => (
+                <motion.span
+                  whileTap={{ opacity: 0.75 }}
+                  transition={{ duration: 0.15 }}
+                  className={`ds-nav-link ${isActive ? 'ds-nav-link--active' : ''}`}
+                  style={{
+                    ...linkStyle,
                     fontWeight: isActive ? 500 : 400,
-                    textDecoration: isActive ? 'underline' : 'none'
+                    opacity: isActive ? 1 : 0.88,
                   }}
                 >
                   {item.name}
+                  {item.name === 'Workflow' ? (
+                    <span aria-hidden style={{ marginLeft: 6, fontSize: 'var(--type-l1)', lineHeight: 1 }}>✨</span>
+                  ) : null}
                 </motion.span>
-              </Link>
-            );
-          })}
+              )}
+            </NavLink>
+          ))}
         </div>
       </div>
     </motion.nav>

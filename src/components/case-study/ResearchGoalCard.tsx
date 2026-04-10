@@ -38,7 +38,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
         </div>
         <h3 style={{
           color: '#AE8EFF',
-          fontSize: '20px',
+          fontSize: 'var(--type-l4)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           margin: 0
@@ -50,7 +50,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
       <div style={{ marginBottom: '20px' }}>
         <p style={{
           color: '#482D18',
-          fontSize: '12px',
+          fontSize: 'var(--type-l1)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           letterSpacing: '0.05em',
@@ -61,7 +61,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
         </p>
         <p style={{
           color: '#3B2E24',
-          fontSize: '15px',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           margin: 0
         }}>
@@ -72,7 +72,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
       <div>
         <p style={{
           color: '#482D18',
-          fontSize: '12px',
+          fontSize: 'var(--type-l1)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           letterSpacing: '0.05em',
@@ -83,7 +83,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
         </p>
         <p style={{
           color: '#3B2E24',
-          fontSize: '15px',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           margin: 0
         }}>

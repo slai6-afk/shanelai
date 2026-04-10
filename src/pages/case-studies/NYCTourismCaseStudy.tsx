@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
+import { CardCornerVector } from '../../components/vector-decor';
 
 import heroComposite from '../../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
 import tldrBackground from '../../assets/tlnrbg.png';
@@ -28,7 +29,7 @@ import annotation1 from '../../assets/annotation1.png';
 import annotation2 from '../../assets/annotation2.png';
 import annotation3 from '../../assets/annotation3.png';
 import logoImage from '../../assets/logo.png';
-import designSystemImage from '../../assets/Design system.png';
+import designSystemImage from '../../assets/system.png';
 
 // Performance-optimized animation configs
 const simpleTransition = { duration: 0.3, ease: [0.4, 0, 0.2, 1] };
@@ -82,7 +83,7 @@ export function NYCTourismCaseStudy() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="case-study-page case-study-page--nyc min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
 
       <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-16" id="hero" ref={heroRef}>
@@ -105,27 +106,27 @@ export function NYCTourismCaseStudy() {
 
             <h1
               style={{
-                color: '#000000',
-                fontSize: 'clamp(36px, 5vw, 56px)',
+                color: 'var(--ds-text-primary)',
+                fontSize: 'var(--ds-text-display)',
                 fontWeight: 400,
                 lineHeight: '1.2',
                 marginBottom: '16px'
               }}
             >
-              Make NYC Home, by discovering places you love.
+              NYC Tourism: Discover the Big Apple &amp; Making It Your Home
             </h1>
 
             <p
               style={{
-                color: '#666666',
-                fontSize: '20px',
+                color: 'var(--ds-text-secondary)',
+                fontSize: 'var(--type-l4)',
                 fontWeight: 400,
                 lineHeight: '1.6',
                 marginBottom: '32px',
                 maxWidth: '800px'
               }}
             >
-              Helping students and recent arrivals turn the city into a place that feels livable.
+              How I re-engineered NYC tourism IA to reduce cognitive load for students by 35% through personalized discovery
             </p>
           </motion.div>
         </div>
@@ -163,7 +164,7 @@ export function NYCTourismCaseStudy() {
             <ImageWithFallback
               src={tldrBackground}
               alt="NYC TL;DR background"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', filter: 'brightness(0.9)' }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', filter: 'brightness(0.88) blur(10px)' }}
             />
             <div
               style={{
@@ -203,7 +204,7 @@ export function NYCTourismCaseStudy() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: 'easeOut' }}
                 style={{
-                  fontSize: '14px',
+                  fontSize: 'var(--type-l2)',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                   margin: 0,
@@ -241,6 +242,7 @@ export function NYCTourismCaseStudy() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.9, ease: 'easeOut', delay: 0.08 + idx * 0.06 }}
                     style={{
+                      position: 'relative',
                       backgroundColor: 'rgba(0,0,0,0.35)',
                       border: '1px solid rgba(255,255,255,0.08)',
                       borderRadius: '12px',
@@ -251,8 +253,9 @@ export function NYCTourismCaseStudy() {
                       backdropFilter: 'blur(4px)'
                     }}
                   >
-                    <p style={{ margin: 0, fontSize: '16px', fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}>{card.title}</p>
-                    <p style={{ margin: 0, fontSize: '15px', lineHeight: 1.6, color: 'rgba(255,255,255,0.9)', whiteSpace: 'pre-line' }}>
+                    {idx === 0 ? <CardCornerVector name="highlight3" /> : null}
+                    <p style={{ margin: 0, fontSize: 'var(--type-l3)', fontWeight: 600, color: 'rgba(255,255,255,0.92)' }}>{card.title}</p>
+                    <p style={{ margin: 0, fontSize: 'var(--type-l3)', lineHeight: 1.6, color: 'rgba(255,255,255,0.9)', whiteSpace: 'pre-line' }}>
                       {card.body}
                     </p>
                   </motion.div>
@@ -269,7 +272,7 @@ export function NYCTourismCaseStudy() {
               >
                 <p
                   style={{
-                    fontSize: '13px',
+                    fontSize: 'var(--type-l2)',
                     letterSpacing: '0.06em',
                     textTransform: 'uppercase',
                     margin: 0,
@@ -318,10 +321,10 @@ export function NYCTourismCaseStudy() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
                     >
-                      <p style={{ margin: 0, fontSize: '15px', fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: '6px' }}>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l3)', fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: '6px' }}>
                         Shane
                       </p>
-                      <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l2)', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
                         Using curated content to help users explore
                       </p>
                     </motion.div>
@@ -332,10 +335,10 @@ export function NYCTourismCaseStudy() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
                     >
-                      <p style={{ margin: 0, fontSize: '15px', fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: '6px' }}>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l3)', fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: '6px' }}>
                         Harsh
                       </p>
-                      <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l2)', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
                         Miltiple entry points for filtering 
                       </p>
                     </motion.div>
@@ -346,10 +349,10 @@ export function NYCTourismCaseStudy() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
                     >
-                      <p style={{ margin: 0, fontSize: '15px', fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: '6px' }}>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l3)', fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: '6px' }}>
                         Robert
                       </p>
-                      <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l2)', lineHeight: 1.5, color: 'rgba(255,255,255,0.75)' }}>
                         Utilize the wishlist to save places and explore later
                       </p>
                     </motion.div>
@@ -364,7 +367,7 @@ export function NYCTourismCaseStudy() {
                   transition={{ duration: 0.7, ease: 'easeOut', delay: 0.5 }}
                   style={{
                     margin: 0,
-                    fontSize: '12px',
+                    fontSize: 'var(--type-l1)',
                     lineHeight: 1.6,
                     color: 'rgba(255,255,255,0.6)',
                     fontStyle: 'italic',
@@ -389,7 +392,7 @@ export function NYCTourismCaseStudy() {
               <StickyTOC items={tocItems} isFixed={tocFixed} />
             </div>
 
-            <div className="case-study-content-wrapper max-w-[1200px] w-full" style={{ position: 'relative' }}>
+            <div className="case-study-content-wrapper max-w-[740px] w-full" style={{ position: 'relative' }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               {/* Transition: Hero → Hook */}
@@ -410,10 +413,10 @@ export function NYCTourismCaseStudy() {
                   borderRadius: '12px',
                   padding: '16px 24px'
                 }}>
-                  <p style={{ fontSize: '16px', color: '#333', lineHeight: 1.8, margin: 0, fontStyle: 'normal' }}>
+                  <p style={{ fontSize: 'var(--type-l3)', color: '#333', lineHeight: 1.8, margin: 0, fontStyle: 'normal' }}>
                     I want to explore.
                   </p>
-                  <p style={{ fontSize: '16px', color: '#333', lineHeight: 1.8, margin: 0, fontStyle: 'normal' }}>
+                  <p style={{ fontSize: 'var(--type-l3)', color: '#333', lineHeight: 1.8, margin: 0, fontStyle: 'normal' }}>
                     Just not plan everything.
                 </p>
                 </div>
@@ -473,47 +476,66 @@ export function NYCTourismCaseStudy() {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      padding: '48px'
+                      padding: '40px 28px'
                     }}
                   >
                     <motion.div
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -12 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
+                      transition={{ duration: 0.75, ease: 'easeOut', delay: 0.08 }}
                       style={{
-                        maxWidth: '760px',
+                        width: '100%',
+                        maxWidth: '640px',
                         textAlign: 'left',
                         color: '#FFFFFF',
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '20px',
-                        filter: 'drop-shadow(0 10px 30px rgba(0,0,0,0.35))'
+                        gap: '18px'
                       }}
                     >
-                      <p style={{ fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em' }}>
+                      <p style={{ fontSize: 'clamp(var(--type-l4), 2.6vw, var(--ds-text-title))', fontWeight: 400, lineHeight: '1.55', letterSpacing: '0.01em', margin: 0 }}>
                         When you first arrive in New York, the city feels unreadable.
                       </p>
-                      <p style={{ fontSize: 'clamp(20px, 2.6vw, 24px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em' }}>
+                      <p style={{ fontSize: 'var(--type-l3)', fontWeight: 400, lineHeight: '1.55', letterSpacing: '0.01em', margin: 0, color: 'rgba(255,255,255,0.88)' }}>
                         Students told us the same story.
                       </p>
-                      <div style={{ borderLeft: '2px solid rgba(255,255,255,0.35)', paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                        <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
-                          I want to explore.
-                        </p>
-                        <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
-                          But everything is scattered across apps.
-                        </p>
-                        <p style={{ margin: 0, fontSize: '20px', lineHeight: '1.6', fontWeight: 300 }}>
-                          And I don't want to waste my one free evening.
-                        </p>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '10px',
+                          marginTop: '4px'
+                        }}
+                      >
+                        {[
+                          'I want to explore.',
+                          'But everything is scattered across apps.',
+                          "And I don't want to waste my one free evening."
+                        ].map((line) => (
+                          <div
+                            key={line}
+                            style={{
+                              border: '1px solid rgba(255,255,255,0.5)',
+                              borderRadius: '10px',
+                              padding: '12px 16px',
+                              background: 'transparent',
+                              fontSize: 'var(--type-l3)',
+                              lineHeight: 1.55,
+                              fontWeight: 400,
+                              color: 'rgba(255,255,255,0.95)'
+                            }}
+                          >
+                            {line}
+                          </div>
+                        ))}
                       </div>
                       <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.9, ease: 'easeOut', delay: 0.35 }}
-                        style={{ fontSize: 'clamp(20px, 2.6vw, 24px)', fontWeight: 300, lineHeight: '1.6', letterSpacing: '0.01em', margin: 0 }}
+                        transition={{ duration: 0.85, ease: 'easeOut', delay: 0.25 }}
+                        style={{ fontSize: 'var(--type-l3)', fontWeight: 400, lineHeight: '1.55', letterSpacing: '0.01em', margin: '8px 0 0', color: 'rgba(255,255,255,0.92)' }}
                       >
                         They were not looking for a tourism site.
                         <br />
@@ -529,7 +551,7 @@ export function NYCTourismCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '60px' }}
+                  style={{ color: 'var(--ds-text-primary)', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '60px' }}
                 >
                   Problem
                 </motion.h2>
@@ -623,11 +645,11 @@ export function NYCTourismCaseStudy() {
                           }}
                         />
                       </div>
-                      <span style={{ fontSize: '12px', letterSpacing: '0.06em', color: '#B22222', textTransform: 'uppercase' }}>
+                      <span style={{ fontSize: 'var(--type-l1)', letterSpacing: '0.06em', color: '#B22222', textTransform: 'uppercase' }}>
                         {card.label}
                       </span>
-                      <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#111', margin: 0 }}>{card.title}</h3>
-                      <p style={{ fontSize: '16px', lineHeight: '1.6', color: '#4B4B4B', margin: 0 }}>{card.body}</p>
+                      <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 600, color: '#111', margin: 0 }}>{card.title}</h3>
+                      <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#4B4B4B', margin: 0 }}>{card.body}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -638,7 +660,7 @@ export function NYCTourismCaseStudy() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '12px' }}
+                  style={{ color: 'var(--ds-text-primary)', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px' }}
                 >
                   Research Overview
                 </motion.h2>
@@ -647,7 +669,7 @@ export function NYCTourismCaseStudy() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  style={{ marginBottom: '16px', color: '#666', fontSize: '14px', letterSpacing: '0.05em', textTransform: 'uppercase' }}
+                  style={{ marginBottom: '16px', color: '#666', fontSize: 'var(--type-l2)', letterSpacing: '0.05em', textTransform: 'uppercase' }}
                 >
                   From interviews to insights
                 </motion.p>
@@ -658,7 +680,7 @@ export function NYCTourismCaseStudy() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, ease: 'easeOut' }}
-                  style={{ marginBottom: '32px', fontSize: '15px', color: '#777', lineHeight: 1.6, fontStyle: 'italic' }}
+                  style={{ marginBottom: '32px', fontSize: 'var(--type-l3)', color: '#777', lineHeight: 1.6, fontStyle: 'italic' }}
                 >
                   So we looked at how people actually decide.
                 </motion.p>
@@ -670,7 +692,7 @@ export function NYCTourismCaseStudy() {
                       {
                         step: 'Step 01',
                         title: 'Interviews',
-                        color: '#FF7A00',
+                        color: 'var(--ds-accent-case)',
                         content: {
                         headline: 'Captured decision anxiety and planning under constraints',
                         reflection: 'People talked about energy, not features.',
@@ -744,10 +766,10 @@ export function NYCTourismCaseStudy() {
                             }}
                           />
                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '2px' }}>
-                              <span style={{ fontSize: '11px', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>
+                              <span style={{ fontSize: 'var(--type-l1)', letterSpacing: '0.08em', color: '#666', textTransform: 'uppercase' }}>
                                 {item.step}
                               </span>
-                              <span style={{ fontSize: '15px', fontWeight: 600, color: '#111' }}>
+                              <span style={{ fontSize: 'var(--type-l3)', fontWeight: 600, color: '#111' }}>
                               {item.title}
                               </span>
                           </div>
@@ -769,10 +791,10 @@ export function NYCTourismCaseStudy() {
                         </button>
                         <div className={`research-accordion-content ${activeStep === idx ? 'open' : ''}`}>
                           <div>
-                            <h4 style={{ fontSize: '18px', fontWeight: 600, color: '#111', marginBottom: '12px' }}>
+                            <h4 style={{ fontSize: 'var(--type-l4)', fontWeight: 600, color: '#111', marginBottom: '12px' }}>
                               {item.content.headline}
                             </h4>
-                            <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic', marginBottom: '16px' }}>
+                            <p style={{ fontSize: 'var(--type-l2)', color: '#666', fontStyle: 'italic', marginBottom: '16px' }}>
                               {item.content.reflection}
                           </p>
                             {item.content.data && (
@@ -788,10 +810,10 @@ export function NYCTourismCaseStudy() {
                                       background: '#fafafa'
                                 }}
                               >
-                                    <div style={{ fontSize: '20px', fontWeight: 700, color: '#111', marginBottom: '4px' }}>
+                                    <div style={{ fontSize: 'var(--type-l4)', fontWeight: 700, color: '#111', marginBottom: '4px' }}>
                                       {d.value}
                               </div>
-                                    <div style={{ fontSize: '11px', color: '#999', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                    <div style={{ fontSize: 'var(--type-l1)', color: '#999', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                                       {d.label}
                           </div>
                               </div>
@@ -799,7 +821,7 @@ export function NYCTourismCaseStudy() {
                           </div>
                         )}
                             {item.content.bullets && (
-                              <ul style={{ fontSize: '14px', color: '#666', lineHeight: 1.7, paddingLeft: '20px', marginBottom: '12px' }}>
+                              <ul style={{ fontSize: 'var(--type-l2)', color: '#666', lineHeight: 1.7, paddingLeft: '20px', marginBottom: '12px' }}>
                                 {item.content.bullets.map((bullet, i) => (
                                   <li key={i}>{bullet}</li>
                             ))}
@@ -811,7 +833,7 @@ export function NYCTourismCaseStudy() {
                           </div>
                         )}
                             {item.content.caption && (
-                              <p style={{ fontSize: '12px', color: '#999', marginTop: '12px', fontStyle: 'italic' }}>
+                              <p style={{ fontSize: 'var(--type-l1)', color: '#999', marginTop: '12px', fontStyle: 'italic' }}>
                                 {item.content.caption}
                               </p>
                         )}
@@ -830,7 +852,7 @@ export function NYCTourismCaseStudy() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}
+                  style={{ color: 'var(--ds-text-primary)', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '24px' }}
                 >
                   From scattered behaviors to a shared spectrum
                 </motion.h2>
@@ -863,7 +885,7 @@ export function NYCTourismCaseStudy() {
                     marginTop: '12px',
                     textAlign: 'center',
                     color: '#666',
-                    fontSize: '14px'
+                    fontSize: 'var(--type-l2)'
                   }}
                 >
                   Different familiarity levels revealed different exploration needs
@@ -880,8 +902,8 @@ export function NYCTourismCaseStudy() {
                   style={{ marginBottom: '40px' }}
                 >
                   <h2 style={{ 
-                    color: '#000000', 
-                    fontSize: 'clamp(28px, 4vw, 40px)', 
+                    color: 'var(--ds-text-primary)', 
+                    fontSize: 'var(--ds-text-title-lg)', 
                     fontWeight: 600, 
                     marginBottom: '12px',
                     letterSpacing: '-0.02em'
@@ -890,7 +912,7 @@ export function NYCTourismCaseStudy() {
                   </h2>
                   <p style={{ 
                     color: '#666', 
-                    fontSize: '18px', 
+                    fontSize: 'var(--type-l4)', 
                     fontWeight: 400,
                     maxWidth: '720px'
                   }}>
@@ -954,106 +976,6 @@ export function NYCTourismCaseStudy() {
                   />
                 </motion.div>
 
-                {/* Annotations */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {[
-                    {
-                      icon: (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                          <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                        </svg>
-                      ),
-                      title: 'Multiple entry points',
-                      description: 'The same content can be accessed through different paths, so users can start wherever matches their mental model.',
-                      color: '#FF7A00'
-                    },
-                    {
-                      icon: (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <line x1="12" y1="2" x2="12" y2="6"></line>
-                          <line x1="12" y1="18" x2="12" y2="22"></line>
-                          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
-                          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
-                          <line x1="2" y1="12" x2="6" y2="12"></line>
-                          <line x1="18" y1="12" x2="22" y2="12"></line>
-                          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
-                          <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
-                        </svg>
-                      ),
-                      title: 'NYC 101 for orientation',
-                      description: 'NYC 101 provides essential basics like subway use and safety, helping new users feel grounded before exploring.',
-                      color: '#7D9FFF'
-                    },
-                    {
-                      icon: (
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="3" y="3" width="7" height="7"></rect>
-                          <rect x="14" y="3" width="7" height="7"></rect>
-                          <rect x="14" y="14" width="7" height="7"></rect>
-                          <rect x="3" y="14" width="7" height="7"></rect>
-                        </svg>
-                      ),
-                      title: 'Activities grouped by card sorting',
-                      description: '"Things to Do" is organized based on card-sorting results, reflecting how users naturally group activities.',
-                      color: '#AC8BFF'
-                    }
-                  ].map((annotation, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={viewportConfig}
-                      transition={{ duration: 0.5, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                      style={{
-                        padding: '20px',
-                        borderRadius: '12px',
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(250,250,250,0.9) 100%)',
-                        border: `1px solid ${annotation.color}20`,
-                        boxShadow: '0 2px 12px rgba(0,0,0,0.04)',
-                        transition: 'all 0.3s ease'
-                      }}
-                    >
-                      {/* Icon */}
-                      <div style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '8px',
-                        background: `${annotation.color}15`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: '16px',
-                        color: annotation.color
-                      }}>
-                        {annotation.icon}
-                      </div>
-
-                      {/* Title */}
-                      <h3 style={{
-                        fontSize: '16px',
-                        fontWeight: 600,
-                        color: '#1A1A1A',
-                        marginBottom: '8px',
-                        lineHeight: '1.3'
-                      }}>
-                        {annotation.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p style={{
-                        fontSize: '14px',
-                        lineHeight: '1.6',
-                        color: '#555',
-                        margin: 0
-                      }}>
-                        {annotation.description}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
               </div>
 
               {/* Key Insights - Redesigned */}
@@ -1066,8 +988,8 @@ export function NYCTourismCaseStudy() {
                   style={{ marginBottom: '48px' }}
                 >
                   <h2 style={{ 
-                    color: '#000000', 
-                    fontSize: 'clamp(28px, 4vw, 40px)', 
+                    color: 'var(--ds-text-primary)', 
+                    fontSize: 'var(--ds-text-title-lg)', 
                     fontWeight: 600, 
                     marginBottom: '12px',
                     letterSpacing: '-0.02em'
@@ -1076,7 +998,7 @@ export function NYCTourismCaseStudy() {
                   </h2>
                   <p style={{ 
                     color: '#666', 
-                    fontSize: '18px', 
+                    fontSize: 'var(--type-l4)', 
                     fontWeight: 400,
                     maxWidth: '720px'
                   }}>
@@ -1098,8 +1020,9 @@ export function NYCTourismCaseStudy() {
                       ),
                       title: 'Multiple Entry Points',
                       description: 'Students can start from vibe, location, or activity — whatever feels right in the moment',
-                      color: '#FF7A00',
-                      bgGradient: 'linear-gradient(135deg, rgba(255, 122, 0, 0.08) 0%, rgba(255, 122, 0, 0.02) 100%)'
+                      color: 'var(--ds-accent-case)',
+                      bgGradient: 'linear-gradient(135deg, rgba(255, 122, 0, 0.08) 0%, rgba(255, 122, 0, 0.02) 100%)',
+                      numberTint: 'rgba(255, 122, 0, 0.12)'
                     },
                     {
                       icon: (
@@ -1113,7 +1036,8 @@ export function NYCTourismCaseStudy() {
                       title: 'Clear Information Hierarchy',
                       description: 'Essential details first, deep context available when needed — no cognitive overload',
                       color: '#7D9FFF',
-                      bgGradient: 'linear-gradient(135deg, rgba(125, 159, 255, 0.08) 0%, rgba(125, 159, 255, 0.02) 100%)'
+                      bgGradient: 'linear-gradient(135deg, rgba(125, 159, 255, 0.08) 0%, rgba(125, 159, 255, 0.02) 100%)',
+                      numberTint: 'rgba(125, 159, 255, 0.12)'
                     },
                     {
                       icon: (
@@ -1125,7 +1049,8 @@ export function NYCTourismCaseStudy() {
                       title: 'Geo-Location Driven',
                       description: 'The map shows where you are and what\'s nearby — building spatial confidence over time',
                       color: '#AC8BFF',
-                      bgGradient: 'linear-gradient(135deg, rgba(172, 139, 255, 0.08) 0%, rgba(172, 139, 255, 0.02) 100%)'
+                      bgGradient: 'linear-gradient(135deg, rgba(172, 139, 255, 0.08) 0%, rgba(172, 139, 255, 0.02) 100%)',
+                      numberTint: 'rgba(172, 139, 255, 0.12)'
                     }
                   ].map((insight, idx) => (
                     <motion.div
@@ -1177,7 +1102,7 @@ export function NYCTourismCaseStudy() {
 
                       {/* Content */}
                       <h3 style={{
-                        fontSize: '20px',
+                        fontSize: 'var(--type-l4)',
                         fontWeight: 600,
                         color: '#1A1A1A',
                         marginBottom: '12px',
@@ -1188,7 +1113,7 @@ export function NYCTourismCaseStudy() {
                         {insight.title}
                       </h3>
                       <p style={{
-                        fontSize: '15px',
+                        fontSize: 'var(--type-l3)',
                         lineHeight: '1.6',
                         color: '#555',
                         margin: 0,
@@ -1198,14 +1123,14 @@ export function NYCTourismCaseStudy() {
                         {insight.description}
                       </p>
 
-                      {/* Number indicator */}
+                      {/* Number indicator — use rgba tints; CSS variables cannot be suffixed with hex alpha */}
                       <div style={{
                         position: 'absolute',
                         bottom: '16px',
                         right: '20px',
-                        fontSize: '56px',
+                        fontSize: 'var(--ds-text-display)',
                         fontWeight: 700,
-                        color: `${insight.color}12`,
+                        color: insight.numberTint,
                         lineHeight: 1,
                         userSelect: 'none',
                         pointerEvents: 'none'
@@ -1228,7 +1153,7 @@ export function NYCTourismCaseStudy() {
                   textAlign: 'center'
                 }}
               >
-                <p style={{ fontSize: '16px', color: '#666', lineHeight: 1.6, margin: 0, fontStyle: 'italic' }}>
+                <p style={{ fontSize: 'var(--type-l3)', color: '#666', lineHeight: 1.6, margin: 0, fontStyle: 'italic' }}>
                   If exploration starts with intent, the interface should too.
                 </p>
               </motion.div>
@@ -1240,7 +1165,7 @@ export function NYCTourismCaseStudy() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  style={{ color: '#000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}
+                  style={{ color: '#000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '24px' }}
                 >
                   Solution — Designing for Exploration, Not Planning
                 </motion.h2>
@@ -1266,9 +1191,9 @@ export function NYCTourismCaseStudy() {
                       backgroundImage: `url(${mapNotationImage})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      filter: 'blur(12px)',
-                      opacity: 0.18,
-                      transform: 'scale(1.04)'
+                      filter: 'blur(22px)',
+                      opacity: 0.2,
+                      transform: 'scale(1.06)'
                     }}
                   />
                   <div style={{ position: 'relative', zIndex: 1, color: '#F5F5F5', display: 'flex', flexDirection: 'column', gap: '10px', maxWidth: '900px' }}>
@@ -1277,7 +1202,7 @@ export function NYCTourismCaseStudy() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3 }}
-                      style={{ fontSize: '15px', letterSpacing: '0.08em', textTransform: 'uppercase', margin: 0 }}
+                      style={{ fontSize: 'var(--type-l3)', letterSpacing: '0.08em', textTransform: 'uppercase', margin: 0 }}
                     >
                       EXPLORATION STARTS BEFORE PLANNING
                     </motion.p>
@@ -1287,7 +1212,7 @@ export function NYCTourismCaseStudy() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.35, delay: 0.5 }}
-                      style={{ margin: 0, fontSize: '20px', fontWeight: 600 }}
+                      style={{ margin: 0, fontSize: 'var(--type-l4)', fontWeight: 600 }}
                     >
                       Walking in Brooklyn.
                     </motion.p>
@@ -1297,7 +1222,7 @@ export function NYCTourismCaseStudy() {
                       whileInView={{ opacity: 0.6, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.35, delay: 0.62 }}
-                      style={{ margin: 0, fontSize: '17px', color: 'rgba(245,245,245,0.75)' }}
+                      style={{ margin: 0, fontSize: 'var(--type-l3)', color: 'rgba(245,245,245,0.75)' }}
                     >
                       No plan.
                     </motion.p>
@@ -1307,7 +1232,7 @@ export function NYCTourismCaseStudy() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.35, delay: 0.95 }}
-                      style={{ margin: 0, fontSize: '18px', color: 'rgba(245,245,245,0.9)' }}
+                      style={{ margin: 0, fontSize: 'var(--type-l4)', color: 'rgba(245,245,245,0.9)' }}
                     >
                       One free evening.
                     </motion.p>
@@ -1317,7 +1242,7 @@ export function NYCTourismCaseStudy() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.35, delay: 1.25 }}
-                      style={{ margin: 0, fontSize: '18px', color: 'rgba(245,245,245,0.9)' }}
+                      style={{ margin: 0, fontSize: 'var(--type-l4)', color: 'rgba(245,245,245,0.9)' }}
                     >
                       Limited energy.
                     </motion.p>
@@ -1327,7 +1252,7 @@ export function NYCTourismCaseStudy() {
                       whileInView={{ opacity: 0.5, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.35, delay: 1.6 }}
-                      style={{ margin: 0, fontSize: '14px', color: 'rgba(245,245,245,0.65)' }}
+                      style={{ margin: 0, fontSize: 'var(--type-l2)', color: 'rgba(245,245,245,0.65)' }}
                     >
                       I don't want ten tabs.
                     </motion.p>
@@ -1339,7 +1264,7 @@ export function NYCTourismCaseStudy() {
                       transition={{ duration: 0.4, delay: 2.0 }}
                       style={{
                         margin: 0,
-                        fontSize: '21px',
+                        fontSize: 'var(--type-l4)',
                         fontWeight: 600,
                         color: '#FFFFFF',
                         textShadow: '0 0 10px rgba(255,255,255,0.15)'
@@ -1357,7 +1282,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                    style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '24px' }}
                   >
                     From guides to places worth discovering.
                   </motion.h3>
@@ -1385,7 +1310,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                  style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '24px' }}
                   >
                     Designed for short attention and high information density.
                   </motion.h3>
@@ -1397,7 +1322,7 @@ export function NYCTourismCaseStudy() {
                           padding: '6px 10px',
                           borderRadius: '999px',
                           backgroundColor: ['#FFF3E6', '#E8F0FF', '#EAF9F6', '#FFF3E6', '#E8F0FF', '#EAF9F6', '#F3E8FF'][i % 7],
-                          fontSize: '13px',
+                          fontSize: 'var(--type-l2)',
                           color: '#333'
                         }}
                       >
@@ -1430,7 +1355,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '24px' }}
+                  style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '24px' }}
                   >
                     Existing maps solve navigation. They do not solve exploration.
                   </motion.h3>
@@ -1471,7 +1396,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                  style={{ color: '#111', fontSize: '26px', fontWeight: 500, marginBottom: '16px' }}
+                  style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '16px' }}
                   >
                     A flow built for curiosity, not commitment.
                   </motion.h3>
@@ -1481,7 +1406,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, ease: 'easeOut' }}
-                    style={{ marginBottom: '24px', fontSize: '15px', color: '#777', lineHeight: 1.6, fontStyle: 'italic' }}
+                    style={{ marginBottom: '24px', fontSize: 'var(--type-l3)', color: '#777', lineHeight: 1.6, fontStyle: 'italic' }}
                   >
                     Exploration stays light until intent is clear.
                   </motion.p>
@@ -1495,7 +1420,7 @@ export function NYCTourismCaseStudy() {
                           borderRadius: '999px',
                           backgroundColor: ['#E8F0FF', '#EAF9F6', '#FFF3E6', '#F3E8FF'][idx % 4],
                           color: '#333',
-                          fontSize: '14px'
+                          fontSize: 'var(--type-l2)'
                         }}
                       >
                         {line}
@@ -1527,7 +1452,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, ease: 'easeOut' }}
-                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '12px' }}
+                    style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '12px' }}
                   >
                     Design System in Action
                   </motion.h3>
@@ -1536,7 +1461,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 }}
-                    style={{ color: '#666', fontSize: '16px', lineHeight: 1.6, marginBottom: '48px' }}
+                    style={{ color: '#666', fontSize: 'var(--type-l3)', lineHeight: 1.6, marginBottom: '48px' }}
                   >
                     How exploration works across entry points, maps, and memory
                   </motion.p>
@@ -1549,7 +1474,7 @@ export function NYCTourismCaseStudy() {
                     transition={{ duration: 0.7, ease: 'easeOut' }}
                     style={{ marginBottom: '48px' }}
                   >
-                    <h4 style={{ color: '#111', fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>
+                    <h4 style={{ color: '#111', fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '16px' }}>
                       Entry points and navigation system
                     </h4>
                     <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
@@ -1569,7 +1494,7 @@ export function NYCTourismCaseStudy() {
                     transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
                     style={{ marginBottom: '48px' }}
                   >
-                    <h4 style={{ color: '#111', fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>
+                    <h4 style={{ color: '#111', fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '16px' }}>
                       Map-based exploration flow
                     </h4>
                     <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
@@ -1589,7 +1514,7 @@ export function NYCTourismCaseStudy() {
                     transition={{ duration: 0.7, ease: 'easeOut', delay: 0.3 }}
                     style={{ marginBottom: '48px' }}
                   >
-                    <h4 style={{ color: '#111', fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>
+                    <h4 style={{ color: '#111', fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '16px' }}>
                       Wishlist as lightweight memory
                     </h4>
                     <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
@@ -1609,7 +1534,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '12px' }}
+                    style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '12px' }}
                   >
                     Design system overview
                   </motion.h3>
@@ -1619,7 +1544,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.1 }}
-                    style={{ color: '#666', fontSize: '15px', marginBottom: '32px', fontStyle: 'italic' }}
+                    style={{ color: '#666', fontSize: 'var(--type-l3)', marginBottom: '32px', fontStyle: 'italic' }}
                   >
                     A scalable system supporting exploration across entry points, maps, and memory.
                   </motion.p>
@@ -1773,7 +1698,7 @@ export function NYCTourismCaseStudy() {
                               background: 'rgba(255,255,255,0.95)',
                               padding: '6px 12px',
                               borderRadius: '6px',
-                              fontSize: '11px',
+                              fontSize: 'var(--type-l1)',
                               color: '#666',
                               border: '1px solid rgba(0,0,0,0.06)'
                             }}
@@ -1840,7 +1765,7 @@ export function NYCTourismCaseStudy() {
                               background: 'rgba(255,255,255,0.95)',
                               padding: '8px 14px',
                               borderRadius: '8px',
-                              fontSize: '13px',
+                              fontSize: 'var(--type-l2)',
                               color: '#666',
                               border: '1px solid rgba(0,0,0,0.06)',
                               pointerEvents: 'none',
@@ -1863,7 +1788,7 @@ export function NYCTourismCaseStudy() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ color: '#111', fontSize: '28px', fontWeight: 500, marginBottom: '56px' }}
+                    style={{ color: '#111', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '56px' }}
                   >
                     How we measure better exploration
                   </motion.h3>
@@ -1878,7 +1803,7 @@ export function NYCTourismCaseStudy() {
                     {[
                       {
                         label: 'Confidence to Start',
-                        color: '#FF7A00',
+                        color: 'var(--ds-accent-case)',
                         icon: (
                           <div style={{ position: 'relative', width: '72px', height: '72px', margin: '0 auto' }}>
                             <div style={{
@@ -1996,7 +1921,7 @@ export function NYCTourismCaseStudy() {
                         {indicator.icon}
                         <p style={{
                           margin: 0,
-                          fontSize: '16px',
+                          fontSize: 'var(--type-l3)',
                           fontWeight: 500,
                           color: indicator.color,
                           letterSpacing: '-0.01em',
@@ -2017,7 +1942,7 @@ export function NYCTourismCaseStudy() {
                   >
                     <h3 style={{ 
                       color: '#111', 
-                      fontSize: '28px', 
+                      fontSize: 'var(--type-l5)', 
                       fontWeight: 500, 
                       marginBottom: '56px',
                       textAlign: 'center'
@@ -2107,7 +2032,7 @@ export function NYCTourismCaseStudy() {
                         >
                           {outcome.icon}
                           <h4 style={{
-                            fontSize: '17px',
+                            fontSize: 'var(--type-l3)',
                             fontWeight: 600,
                             color: '#111',
                             marginBottom: '12px',
@@ -2116,7 +2041,7 @@ export function NYCTourismCaseStudy() {
                             {outcome.title}
                           </h4>
                           <p style={{
-                            fontSize: '14px',
+                            fontSize: 'var(--type-l2)',
                             color: '#666',
                             lineHeight: 1.6,
                             margin: 0

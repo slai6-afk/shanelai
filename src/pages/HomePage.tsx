@@ -1,1227 +1,976 @@
-import { motion } from 'motion/react';
-import { Mail, ArrowDown, Linkedin } from 'lucide-react';
-import { Navigation } from '../components/Navigation';
+import { motion, useScroll, useTransform } from 'motion/react';
+import { ArrowDown, Linkedin, Mail } from 'lucide-react';
+import { LINKEDIN_PROFILE_URL } from '../constants/links';
+import { Fragment, useRef, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import { AboutStickerSpan } from '../components/about/AboutStickerSpan';
+import { WordBackdropDecor } from '../components/vector-decor';
+import talkieSticker from '../assets/vector/talkie.png';
+import temuSticker from '../assets/vector/temu.png';
 import { Footer } from '../components/Footer';
-import { ProjectCard } from '../components/ProjectCard';
-import { HeroCurvedLine } from '../components/HeroCurvedLine';
-import temuLogo from '../assets/temulogo.png';
-import minimaxLogo from '../assets/minimax-ai-models-1024x532.jpg';
-import castboxLogo from '../assets/castchatlogo.png';
-import shaneAvatar from '../assets/shane-avatar.jpg';
+import { HeroSpiral } from '../components/HeroSpiral';
+import { Navigation } from '../components/Navigation';
+import { SketchCursorHint } from '../components/SketchCursorHint';
+import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import ammVideo from '../assets/AMM_video.mp4';
+import memoryNavigatorPoster from '../assets/Gemini_Generated_Image_c23ldzc23ldzc23l.png';
+import nycHeroVideo from '../assets/herovideo_NYC.mov';
+import funFitLandPoster from '../assets/bebbc88443fdebed4e56ae9980488dadc3739961.png';
+import titleImage from '../assets/title.png';
 import nycCover from '../assets/cover.png';
-import tsinghuaLogo from '../assets/Tsinghua_University_Logo.svg.png';
-import prattLogo from '../assets/Pratt_Institute_Logo.svg.png';
-import { useState, useEffect, useRef, memo } from 'react';
+import workIcon from '../assets/work.png';
+import happyPlaygroundIcon from '../assets/happyplayground.png';
+import playOneImage from '../assets/play1.png';
+import playTwoImage from '../assets/play2.png';
 
-// Terminal Typing Effect Component - Optimized
-const TerminalCard = memo(function TerminalCard() {
-  const lines = [
-    { text: '> Initializing Shanshan (Shane) Lai…', delay: 200 },
-    { text: '> Status: Online.', delay: 300 },
-    { text: '', delay: 100 },
-    { text: '> origin.location = central_china.small_city', delay: 150 },
-    { text: '', delay: 100 },
-    { text: '> education.loaded = interaction_design @tsinghua (2020)', delay: 150 },
-    { text: '', delay: 100 },
-    { text: '> module.vr_mr = shipped (0→1)', delay: 150 },
-    { text: '', delay: 100 },
-    { text: '> module.agi_avatar = active', delay: 100 },
-    { text: '> note: humans still confusing', delay: 250 },
-    { text: '', delay: 100 },
-    { text: '> ✈️ new_york (2025)', delay: 150 },
-    { text: '> program = pratt_ixd', delay: 250 },
-    { text: '', delay: 100 },
-    { text: '> current.task = ai_customer_support @temu', delay: 150 },
-    { text: '> goal: make help feel less robotic', delay: 0 }
-  ];
+/** Same video as FunFitLand case study hero — matches Figma 166:176 preview. */
+const funFitLandHeroVideo =
+  'https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc';
 
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  
-  // Check if tsinghua or pratt has been typed
-  const allText = displayedLines.join(' ') + ' ' + currentText;
-  const showTsinghua = allText.includes('tsinghua');
-  const showPratt = allText.includes('pratt');
+/** Hero “Previously @” Temu sticker frame */
+const HOME_HERO_STICKER_WIDTH = 'min(124px, 33vw)';
+/** Talkie / MiniMax asset reads smaller in-frame — ~2× Temu so the pop sticker matches weight */
+const HOME_HERO_MINIMAX_STICKER_WIDTH = 'min(248px, 66vw)';
 
-  // Start typing after initial card animation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTyping(true);
-    }, 700); // Match card fade-in delay
-    return () => clearTimeout(timer);
-  }, []);
+interface HomeProject {
+  title: string;
+  description: ReactNode;
+  /** Scribble tint + scope class for `WordBackdropDecor` in the teaser line */
+  slideAccent: 'vibe' | 'nyc' | 'funfit';
+  tags: string[];
+  /** When omitted, the slide is not wrapped in a link. */
+  link?: string;
+  mediaType: 'image' | 'video';
+  mediaSrc: string;
+  mediaPoster?: string;
+  mediaAlt: string;
+  mediaPosition?: 'left' | 'right';
+  contentLayout?: 'distributed' | 'centered';
+  /** Rounded media frame; default 20px (aligned with playground + project cards). */
+  mediaBorderRadius?: string;
+  /** Gap between tag pills in px; Figma uses 12. */
+  tagsGap?: number;
+  /** Horizontal gap between media and copy at md+; Figma 166:176 uses 24px. */
+  columnGap?: string;
+  /** Handwritten cursor hint on hover (all slides). */
+  hoverHint?: string;
+}
 
-  // Typing effect for current line - Optimized
-  useEffect(() => {
-    if (!isTyping || currentLineIndex >= lines.length) return;
+const homeProjects: HomeProject[] = [
+  {
+    title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
+    slideAccent: 'vibe',
+    description: (
+      <Fragment>
+        How I led product strategy in a{' '}
+        <WordBackdropDecor vector="highlight2">4-week sprint</WordBackdropDecor> to transform Amazon Music into a{' '}
+        <WordBackdropDecor vector="highlight3">Gen Z social hub</WordBackdropDecor>, bridging the discovery-to-retention gap.
+      </Fragment>
+    ),
+    tags: ['design', 'Product Thinking', 'Figma make', 'Social media'],
+    link: '/case-study/vibe-sync',
+    mediaType: 'video',
+    mediaSrc: ammVideo,
+    mediaPoster: memoryNavigatorPoster,
+    mediaAlt: 'Amazon Music concept preview video',
+    mediaPosition: 'right',
+    contentLayout: 'centered',
+    hoverHint: 'Click to see Vibe Sync for Amazon Music',
+  },
+  {
+    title: 'NYC Tourism: Discover the Big Apple & Making It Your Home',
+    slideAccent: 'nyc',
+    description: (
+      <Fragment>
+        How I re-engineered NYC tourism IA to reduce cognitive load for students by{' '}
+        <WordBackdropDecor vector="highlight2">35%</WordBackdropDecor> through{' '}
+        <WordBackdropDecor vector="highlight3">personalized discovery</WordBackdropDecor>
+      </Fragment>
+    ),
+    tags: ['UX', 'Redesign', 'IA'],
+    link: '/case-study/nyc-tourism',
+    mediaType: 'video',
+    mediaSrc: nycHeroVideo,
+    mediaPoster: nycCover,
+    mediaAlt: 'NYC Tourism Redesign preview video',
+    mediaPosition: 'left',
+    contentLayout: 'distributed',
+    hoverHint: 'Click to see how I make NYC feel like home',
+  },
+  {
+    title: 'FunFitLand: Making Fitness Accessible to Everyone In Immersive World',
+    slideAccent: 'funfit',
+    description: (
+      <Fragment>
+        Designing for the extremes: How I built an{' '}
+        <WordBackdropDecor vector="highlight2">inclusive VR fitness framework</WordBackdropDecor> that expanded accessibility
+        to <WordBackdropDecor vector="highlight3">90%</WordBackdropDecor> of diverse physical abilities
+      </Fragment>
+    ),
+    tags: ['VR', 'Accessibility', 'Design'],
+    link: '/case-study/funfitland',
+    mediaType: 'video',
+    mediaSrc: funFitLandHeroVideo,
+    mediaPoster: funFitLandPoster,
+    mediaAlt: 'FunFitLand VR fitness preview video',
+    mediaPosition: 'left',
+    contentLayout: 'distributed',
+    tagsGap: 12,
+    columnGap: '24px',
+    hoverHint: 'Click to see how I design inclusive VR fitness',
+  },
+];
 
-    const targetText = lines[currentLineIndex].text;
-    
-    if (currentText.length < targetText.length) {
-      const timer = setTimeout(() => {
-        setCurrentText(targetText.slice(0, currentText.length + 1));
-      }, 30); // Slightly faster typing for better performance
-      return () => clearTimeout(timer);
-    } else {
-      // Line complete, move to next after delay
-      const timer = setTimeout(() => {
-        setDisplayedLines(prev => [...prev, currentText]);
-        setCurrentText('');
-        setCurrentLineIndex(prev => prev + 1);
-      }, lines[currentLineIndex].delay);
-      return () => clearTimeout(timer);
-    }
-  }, [currentText, currentLineIndex, isTyping, lines]);
+interface SelectedWorkSlideProps {
+  project: HomeProject;
+}
 
-  // Cursor blink
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 530);
-    return () => clearInterval(interval);
-  }, []);
+function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
+  const slideWidth = 'min(80vw, 1440px)';
+  const mediaRadius = project.mediaBorderRadius ?? '20px';
+  const tagsGap = project.tagsGap ?? 8;
+  const columnGap = project.columnGap;
 
-  // Auto scroll to bottom when content updates
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [displayedLines, currentText]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.6, ease: 'easeOut' }}
-      whileHover={{ y: -4, boxShadow: '0 10px 28px rgba(0, 0, 0, 0.1)' }}
+  const content = (
+    <div
       style={{
         display: 'flex',
         flexDirection: 'column',
-        width: '50%',
-        marginLeft: '20px',
-        position: 'relative',
-        zIndex: 2,
-        backgroundColor: '#FFFFFF',
-        borderRadius: '16px',
-        padding: '28px 32px',
-        boxShadow: '0 6px 20px rgba(0, 0, 0, 0.06)',
-        transition: 'all 0.2s ease-out',
-        alignSelf: 'flex-start',
-        marginTop: '45px',
-        border: '1px solid rgba(0, 0, 0, 0.04)',
-        height: '216px'
+        justifyContent: project.contentLayout === 'centered' ? 'center' : 'space-between',
+        gap: '17px',
+        height: '100%',
+        width: '100%',
+        maxWidth: '309px',
       }}
-      className="terminal-card-wrapper"
+      className={`w-full md:py-1 ${project.contentLayout === 'centered' ? 'md:min-h-[422px]' : 'md:min-h-[476px]'}`}
     >
-      <div 
-        ref={scrollRef}
-        style={{ 
-          fontSize: '15px', 
-          fontFamily: 'monospace', 
-          color: '#1a1a1a', 
-          lineHeight: '1.8', 
-          fontWeight: 400,
-          overflowY: 'auto',
-          height: '100%',
-          paddingRight: '8px',
-          scrollBehavior: 'smooth',
-          position: 'relative'
-        }}
-        className="terminal-scroll"
-      >
-        {/* Tsinghua Logo Background - appears when typing tsinghua */}
-        {showTsinghua && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 0.7, scale: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            style={{
-              position: 'absolute',
-              top: '80px',
-              right: '-20px',
-              width: '130px',
-              height: '130px',
-              pointerEvents: 'none',
-              zIndex: 0
-            }}
-          >
-            <img 
-              src={tsinghuaLogo} 
-              alt="" 
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          </motion.div>
-        )}
-        
-        {/* Pratt Logo Background - appears when typing pratt */}
-        {showPratt && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-            animate={{ opacity: 0.7, scale: 1, rotate: -8 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            style={{
-              position: 'absolute',
-              top: '200px',
-              width: '130px',
-              height: '130px',
-              pointerEvents: 'none',
-              zIndex: 0,
-              transform: 'rotate(-8deg)'
-            }}
-          >
-            <img 
-              src={prattLogo} 
-              alt="" 
-              loading="lazy"
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          </motion.div>
-        )}
-        
-        {displayedLines.map((line, index) => (
-          <div 
-            key={index} 
-            style={{ 
-              marginBottom: line === '' ? '0px' : '4px',
-              color: line.includes('note:') ? '#666666' : 
-                     line.includes('goal:') ? '#666666' : 
-                     index <= 1 ? '#1a1a1a' : '#333333',
-              fontSize: line === '' ? '8px' : '15px',
-              lineHeight: line === '' ? '0.5' : '1.8',
-              position: 'relative',
-              zIndex: 1
-            }}
-          >
-            {line || '\u00A0'}
-          </div>
-        ))}
-        {currentLineIndex < lines.length && (
-          <div style={{ 
-            color: currentText.includes('note:') ? '#666666' : 
-                   currentText.includes('goal:') ? '#666666' : 
-                   currentLineIndex <= 1 ? '#1a1a1a' : '#333333',
-            fontSize: currentText === '' ? '8px' : '15px',
-            lineHeight: currentText === '' ? '0.5' : '1.8',
-            marginBottom: currentText === '' ? '0px' : '4px',
-            position: 'relative',
-            zIndex: 1
-          }}>
-            {currentText || '\u00A0'}
-            <span style={{ 
-              color: '#FF7300', 
-              opacity: showCursor ? 1 : 0,
-              transition: 'opacity 0.1s'
-            }}>
-              _
-            </span>
-          </div>
-        )}
-      </div>
-    </motion.div>
-  );
-});
+      <div style={{ paddingTop: '10px' }}>
+        <h3
+          style={{
+            color: 'var(--ds-text-primary)',
+            fontSize: 'var(--type-l4)',
+            fontWeight: 400,
+            lineHeight: 'var(--type-l4-lh)',
+            letterSpacing: 'var(--type-track-body)',
+            margin: 0,
+            marginBottom: '18px'
+          }}
+        >
+          {project.title}
+        </h3>
 
-export function HomePage() {
-  const highlightedWorks = [
-    {
-      title: 'NYC Tourism Redesign',
-      description: 'Helping students and recent arrivals turn the city into a place that feels livable, not overwhelming',
-      image: nycCover,
-      tags: ['UX', 'Redesign', 'IA'],
-      type: 'design' as const,
-      link: '/case-study/nyc-tourism'
-    },
-    {
-      title: 'Memory Navigator',
-      description: 'A MR game system for seniors with cognitive issue, to identify the symptoms earlier and acknowledge specialists better.',
-      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd3d7c1c3590b47178dabf39dc0bd330a',
-      tags: ['AR', 'HoloLens'],
-      type: 'design' as const,
-      link: '/case-study/memory-navigator'
-    },
-    {
-      title: 'Huuuuu',
-      description: 'Using gloves with breath-sensors and heating knit to empower women in cold work fields.',
-      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fca07cfe232474fd98a425e6157eb83f4',
-      tags: ['Arduino', 'Wearable'],
-      type: 'research' as const,
-      link: '/case-study/Huuuuu'
-    },
-    {
-      title: 'FunFitLand (UFit)',
-      description: 'Calibration system design in VR that fits users with diverse physical mobilities.',
-      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Ff9363af89837426eac1bacac49533375',
-      tags: ['VR', 'Accessibility', 'Design'],
-      type: 'design' as const,
-      link: '/case-study/funfitland'
-    }
-  ];
+        <div
+          style={{ display: 'flex', gap: `${tagsGap}px`, flexWrap: 'wrap', marginBottom: '18px' }}
+        >
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              style={{
+                backgroundColor: 'var(--ds-accent-tag)',
+                color: '#ffffff',
+                minHeight: '30px',
+                padding: '6px 12px',
+                borderRadius: '8px',
+                fontSize: 'var(--type-l1)',
+                fontWeight: 400,
+                letterSpacing: '0.02em',
+                lineHeight: '18px',
+                textTransform: 'uppercase',
+                display: 'inline-flex',
+                alignItems: 'center'
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <p
+        style={{
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l3)',
+          fontWeight: 400,
+          lineHeight: 'var(--type-l3-lh)',
+          letterSpacing: 'var(--type-track-body)',
+          margin: 0,
+          maxWidth: '309px'
+        }}
+      >
+        {project.description}
+      </p>
+    </div>
+  );
+
+  const cursorLabel = project.hoverHint ?? '';
+
+  /** Handwritten hint + slight zoom only when hovering the media frame (not title/copy). */
+  const media = (
+    <div style={{ flex: '1 1 0', minWidth: 0 }}>
+      <SketchCursorHint
+        label={cursorLabel}
+        enabled={cursorLabel.length > 0}
+        className="block w-full"
+      >
+        <div
+          className="ds-media-frame origin-center overflow-hidden"
+          style={{
+            borderRadius: mediaRadius,
+            boxShadow: 'var(--shadow-sm)',
+            backgroundColor: 'var(--ds-bg-page)',
+          }}
+        >
+          {project.mediaType === 'video' ? (
+            <video
+              src={project.mediaSrc}
+              poster={project.mediaPoster}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label={project.mediaAlt}
+              className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
+              style={{
+                aspectRatio: '818 / 476',
+                objectFit: 'cover',
+              }}
+            />
+          ) : (
+            <ImageWithFallback
+              src={project.mediaSrc}
+              alt={project.mediaAlt}
+              className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
+              style={{
+                aspectRatio: '818 / 476',
+                objectFit: 'cover',
+              }}
+            />
+          )}
+        </div>
+      </SketchCursorHint>
+    </div>
+  );
+
+  const row = (
+    <div
+      className={`flex flex-col md:flex-row md:items-center ${
+        columnGap ? '' : 'gap-6 md:gap-[17px]'
+      }`}
+      style={{
+        width: '100%',
+        margin: '0 auto',
+        ...(columnGap ? { gap: columnGap } : {}),
+      }}
+    >
+      {project.mediaPosition === 'right' ? (
+        <>
+          {content}
+          {media}
+        </>
+      ) : (
+        <>
+          {media}
+          {content}
+        </>
+      )}
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <section
+      className={`home-selected-work home-selected-work--${project.slideAccent} px-4 sm:px-6 md:px-10 lg:px-16`}
+      style={{
+        minHeight: '100vh',
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop: 'max(108px, 11vh)',
+        paddingBottom: 'max(56px, 7vh)',
+      }}
+    >
+      <div className="mx-auto w-full" style={{ width: slideWidth }}>
+        {project.link ? (
+          <Link
+            to={project.link}
+            className="group block w-full"
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            {row}
+          </Link>
+        ) : (
+          row
+        )}
+      </div>
+    </section>
+  );
+}
+
+export function HomePage() {
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const heroSectionRef = useRef<HTMLElement | null>(null);
+  const selectedWorksRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    container: scrollContainerRef,
+    target: heroSectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const spiralOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0.12]);
+  const spiralScale = useTransform(scrollYProgress, [0, 0.65], [1.06, 0.62]);
+
+  return (
+    <div
+      ref={scrollContainerRef}
+      style={{
+        height: '100vh',
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        backgroundColor: 'var(--ds-bg-surface)',
+        scrollSnapType: 'y mandatory',
+        scrollBehavior: 'smooth',
+        scrollPaddingTop: '88px',
+      }}
+    >
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pb-0 px-4 sm:px-6 md:px-12 lg:px-16">
-        <div className="max-w-[1400px] mx-auto">
-          <div style={{ paddingTop: '115px' }} className="flex flex-col">
-            <div style={{ display: 'flex', flexDirection: 'row', position: 'relative' }} className="max-md:flex-col hero-layout-container">
-              <HeroCurvedLine />
-              
-              {/* Left Column */}
-              <div style={{ display: 'flex', flexDirection: 'column', width: '50%', position: 'relative', zIndex: 2, paddingRight: '40px' }} className="max-md:!w-full max-md:!pr-0 hero-headline-wrapper">
-                {/* Name with Avatar Tooltip */}
-                <motion.div
-                  style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', width: 'fit-content' }}
-                  initial="rest"
-                  whileHover="hover"
-                  animate="rest"
-                >
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 400,
-                      color: '#666666',
-                      marginBottom: '24px',
-                      letterSpacing: '0.005em',
-                      cursor: 'pointer'
-                    }}
-                    onClick={() => window.location.href = '/about'}
-                  >
-                    Hi, I'm Shanshan (Shane) Lai.
-                  </motion.p>
-                  
-                  {/* Avatar Tooltip - Right Side */}
-                  <motion.div
-                    variants={{
-                      rest: { opacity: 0, x: -12, scale: 0.85, rotate: -15 },
-                      hover: { opacity: 1, x: 0, scale: 1, rotate: 0 }
-                    }}
-                    transition={{ 
-                      duration: 0.35, 
-                      ease: [0.34, 1.56, 0.64, 1],
-                      rotate: { duration: 0.4 }
-                    }}
-                    style={{
-                      position: 'absolute',
-                      left: '100%',
-                      top: '-28px',
-                      marginLeft: '20px',
-                      pointerEvents: 'none',
-                      zIndex: 100,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      gap: '10px'
-                    }}
-                  >
-                    {/* Playful wave container */}
-                    <motion.div
-                      variants={{
-                        rest: { rotate: 0 },
-                        hover: { rotate: [0, 3, -3, 2, -2, 0] }
-                      }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: 0.2,
-                        ease: 'easeInOut'
-                      }}
-                      style={{
-                        position: 'relative'
-                      }}
-                    >
-                      <div style={{
-                        width: '100px',
-                        height: '100px',
-                        borderRadius: '50%',
-                        overflow: 'hidden',
-                        border: '3px solid #FFFFFF',
-                        boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04)',
-                        backgroundColor: '#FFFFFF',
-                        position: 'relative'
-                      }}>
-                        <img
-                          src={shaneAvatar}
-                          alt="Shane"
-                          loading="eager"
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            display: 'block'
-                          }}
-                        />
-                      </div>
-                      
-                      {/* Sparkle decorations */}
-                      <motion.div
-                        variants={{
-                          rest: { opacity: 0, scale: 0 },
-                          hover: { opacity: 1, scale: 1 }
-                        }}
-                        transition={{ duration: 0.3, delay: 0.3 }}
-                        style={{
-                          position: 'absolute',
-                          top: '-4px',
-                          right: '-4px',
-                          fontSize: '18px'
-                        }}
-                      >
-                        ✨
-                      </motion.div>
-                      
-                      <motion.div
-                        variants={{
-                          rest: { opacity: 0, scale: 0 },
-                          hover: { opacity: 1, scale: 1 }
-                        }}
-                        transition={{ duration: 0.3, delay: 0.4 }}
-                        style={{
-                          position: 'absolute',
-                          bottom: '4px',
-                          left: '-8px',
-                          fontSize: '16px'
-                        }}
-                      >
-                        👋
-                      </motion.div>
-                    </motion.div>
-                    
-                    {/* Black Tooltip - same style as logo tooltips */}
-                    <motion.div
-                      variants={{
-                        rest: { opacity: 0, scale: 0.9 },
-                        hover: { opacity: 1, scale: 1 }
-                      }}
-                      transition={{ duration: 0.2, delay: 0.15 }}
-                      style={{
-                        backgroundColor: '#1a1a1a',
-                        color: '#ffffff',
-                        padding: '6px 12px',
-                        borderRadius: '6px',
-                        fontSize: '12px',
-                        fontWeight: 500,
-                        whiteSpace: 'nowrap',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                        position: 'relative'
-                      }}
-                    >
-                      About Me
-                      {/* Top arrow pointing to avatar */}
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '-4px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          width: 0,
-                          height: 0,
-                          borderLeft: '4px solid transparent',
-                          borderRight: '4px solid transparent',
-                          borderBottom: '4px solid #1a1a1a'
-                        }}
-                      />
-                    </motion.div>
-                    
-                    {/* Left-pointing arrow (to text) */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        left: '-6px',
-                        top: '46px',
-                        width: 0,
-                        height: 0,
-                        borderTop: '6px solid transparent',
-                        borderBottom: '6px solid transparent',
-                        borderRight: '6px solid #FFFFFF',
-                        filter: 'drop-shadow(-2px 0 2px rgba(0,0,0,0.04))'
-                      }}
-                    />
-                  </motion.div>
-                </motion.div>
-
-                {/* Primary Introduction - Most prominent */}
-                <motion.h1
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-                  style={{
-                    fontSize: 'clamp(20px, 5vw, 36px)',
-                    fontWeight: 400,
-                    lineHeight: '1.4',
-                    color: '#000000',
-                    marginBottom: '32px',
-                    maxWidth: '580px',
-                    letterSpacing: '-0.01em'
-                  }}
-                >
-                  Designs <span style={{ color: '#FF7300', fontWeight: 500 }}>GenAI & B2C</span> products that blend data, systems, and <span style={{ color: '#FF7300', fontWeight: 500 }}>human stories</span> into intuitive experiences people enjoy every day.
-                </motion.h1>
-
-                {/* Company Credibility Line */}
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    fontSize: '14px',
-                    color: '#666666',
-                    marginBottom: '48px',
-                    flexWrap: 'wrap'
-                  }}
-                >
-                  <span style={{ marginRight: '4px' }}>Prev. @</span>
-                  
-                  {/* TEMU Logo with Tooltip */}
-                  <motion.div
-                    style={{ position: 'relative', display: 'inline-block' }}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                  >
-                    <motion.img
-                      src={temuLogo}
-                      alt="TEMU"
-                      loading="eager"
-                      variants={{
-                        rest: { y: 0, scale: 1 },
-                        hover: { y: -3, scale: 1.03 }
-                      }}
-                      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                      onClick={() => window.open('https://www.temu.com', '_blank')}
-                      style={{
-                        height: '40px',
-                        width: 'auto',
-                        opacity: 0.8,
-                        cursor: 'pointer',
-                        borderRadius: '4px',
-                        display: 'block'
-                      }}
-                    />
-                    <motion.div
-                      variants={{
-                        rest: { opacity: 0, y: -8, scale: 0.9, rotate: -3 },
-                        hover: { opacity: 1, y: 0, scale: 1, rotate: 0 }
-                      }}
-                      transition={{ duration: 0.3, ease: [0.34, 1.26, 0.64, 1] }}
-                      style={{
-                        position: 'absolute',
-                        top: '54px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        backgroundColor: '#1a1a1a',
-                        color: '#ffffff',
-                        borderRadius: '8px',
-                        fontSize: '11px',
-                        pointerEvents: 'none',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                        zIndex: 100,
-                        minWidth: '160px',
-                        overflow: 'hidden'
-                      }}
-                    >
-                      {/* Colored accent bar */}
-                      <div style={{ 
-                        height: '2px', 
-                        background: 'linear-gradient(90deg, #FF7300 0%, #FFA500 100%)'
-                      }} />
-                      
-                      {/* Content */}
-                      <div style={{ padding: '10px 12px', position: 'relative' }}>
-                        {/* Emoji decoration */}
-                        <motion.span
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.2, duration: 0.3 }}
-                          style={{
-                            position: 'absolute',
-                            top: '6px',
-                            right: '8px',
-                            fontSize: '14px'
-                          }}
-                        >
-                          🛍️
-                        </motion.span>
-                        
-                        <div style={{ 
-                          fontWeight: 600, 
-                          fontSize: '12px',
-                          marginBottom: '4px',
-                          color: '#ffffff'
-                        }}>
-                          Temu
-                        </div>
-                        <div style={{ 
-                          fontSize: '10px', 
-                          color: 'rgba(255,255,255,0.85)',
-                          lineHeight: '1.4'
-                        }}>
-                          Product Designer
-                        </div>
-                        <div style={{ 
-                          fontSize: '9px', 
-                          color: 'rgba(255,255,255,0.6)',
-                          marginTop: '3px',
-                          fontStyle: 'italic'
-                        }}>
-                          AI-driven Customer Support
-                        </div>
-                      </div>
-                      
-                      {/* Top arrow pointing to logo */}
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '-5px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          width: 0,
-                          height: 0,
-                          borderLeft: '6px solid transparent',
-                          borderRight: '6px solid transparent',
-                          borderBottom: '6px solid #1a1a1a',
-                          filter: 'drop-shadow(0 -2px 3px rgba(0,0,0,0.1))'
-                        }}
-                      />
-                    </motion.div>
-                  </motion.div>
-
-                  <span style={{ fontWeight: 300 }}>&</span>
-                  
-                  {/* MiniMax Logo with Tooltip */}
-                  <motion.div
-                    style={{ position: 'relative', display: 'inline-block' }}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                  >
-                    <motion.img
-                      src={minimaxLogo}
-                      alt="MiniMax"
-                      loading="eager"
-                      variants={{
-                        rest: { y: 0, scale: 1 },
-                        hover: { y: -3, scale: 1.03 }
-                      }}
-                      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                      onClick={() => window.open('https://www.minimax.io', '_blank')}
-                      style={{
-                        height: '40px',
-                        width: 'auto',
-                        opacity: 0.8,
-                        cursor: 'pointer',
-                        borderRadius: '4px',
-                        display: 'block'
-                      }}
-                    />
-                    <motion.div
-                      variants={{
-                        rest: { opacity: 0, y: -8, scale: 0.9, rotate: -3 },
-                        hover: { opacity: 1, y: 0, scale: 1, rotate: 0 }
-                      }}
-                      transition={{ duration: 0.3, ease: [0.34, 1.26, 0.64, 1] }}
-                      style={{
-                        position: 'absolute',
-                        top: '54px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        backgroundColor: '#1a1a1a',
-                        color: '#ffffff',
-                        borderRadius: '8px',
-                        fontSize: '11px',
-                        pointerEvents: 'none',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                        zIndex: 100,
-                        minWidth: '160px',
-                        overflow: 'hidden'
-                      }}
-                    >
-                      {/* Colored accent bar */}
-                      <div style={{ 
-                        height: '2px', 
-                        background: 'linear-gradient(90deg, #667EEA 0%, #764BA2 100%)'
-                      }} />
-                      
-                      {/* Content */}
-                      <div style={{ padding: '10px 12px', position: 'relative' }}>
-                        {/* Emoji decoration */}
-                        <motion.span
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.2, duration: 0.3 }}
-                          style={{
-                            position: 'absolute',
-                            top: '6px',
-                            right: '8px',
-                            fontSize: '14px'
-                          }}
-                        >
-                          🤖
-                        </motion.span>
-                        
-                        <div style={{ 
-                          fontWeight: 600, 
-                          fontSize: '12px',
-                          marginBottom: '4px',
-                          color: '#ffffff'
-                        }}>
-                          MiniMax
-                        </div>
-                        <div style={{ 
-                          fontSize: '10px', 
-                          color: 'rgba(255,255,255,0.85)',
-                          lineHeight: '1.4'
-                        }}>
-                          Product Intern
-                        </div>
-                        <div style={{ 
-                          fontSize: '9px', 
-                          color: 'rgba(255,255,255,0.6)',
-                          marginTop: '3px',
-                          fontStyle: 'italic'
-                        }}>
-                          GenAI Platform
-                        </div>
-                      </div>
-                      
-                      {/* Top arrow pointing to logo */}
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '-5px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          width: 0,
-                          height: 0,
-                          borderLeft: '6px solid transparent',
-                          borderRight: '6px solid transparent',
-                          borderBottom: '6px solid #1a1a1a',
-                          filter: 'drop-shadow(0 -2px 3px rgba(0,0,0,0.1))'
-                        }}
-                      />
-                    </motion.div>
-                  </motion.div>
-
-                  <span style={{ fontWeight: 300 }}>&</span>
-                  
-                  {/* CastChat Logo with Tooltip */}
-                  <motion.div
-                    style={{ position: 'relative', display: 'inline-block' }}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                  >
-                    <motion.img
-                      src={castboxLogo}
-                      alt="CastChat"
-                      loading="eager"
-                      variants={{
-                        rest: { y: 0, scale: 1 },
-                        hover: { y: -3, scale: 1.03 }
-                      }}
-                      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                      onClick={() => window.open('https://among.chat', '_blank')}
-                      style={{
-                        height: '40px',
-                        width: 'auto',
-                        opacity: 0.8,
-                        cursor: 'pointer',
-                        borderRadius: '4px',
-                        display: 'block'
-                      }}
-                    />
-                    <motion.div
-                      variants={{
-                        rest: { opacity: 0, y: -8, scale: 0.9, rotate: -3 },
-                        hover: { opacity: 1, y: 0, scale: 1, rotate: 0 }
-                      }}
-                      transition={{ duration: 0.3, ease: [0.34, 1.26, 0.64, 1] }}
-                      style={{
-                        position: 'absolute',
-                        top: '54px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        backgroundColor: '#1a1a1a',
-                        color: '#ffffff',
-                        borderRadius: '8px',
-                        fontSize: '11px',
-                        pointerEvents: 'none',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                        zIndex: 100,
-                        minWidth: '160px',
-                        overflow: 'hidden'
-                      }}
-                    >
-                      {/* Colored accent bar */}
-                      <div style={{ 
-                        height: '2px', 
-                        background: 'linear-gradient(90deg, #11998E 0%, #38EF7D 100%)'
-                      }} />
-                      
-                      {/* Content */}
-                      <div style={{ padding: '10px 12px', position: 'relative' }}>
-                        {/* Emoji decoration */}
-                        <motion.span
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.2, duration: 0.3 }}
-                          style={{
-                            position: 'absolute',
-                            top: '6px',
-                            right: '8px',
-                            fontSize: '14px'
-                          }}
-                        >
-                          💬
-                        </motion.span>
-                        
-                        <div style={{ 
-                          fontWeight: 600, 
-                          fontSize: '12px',
-                          marginBottom: '4px',
-                          color: '#ffffff'
-                        }}>
-                          CastChat
-                        </div>
-                        <div style={{ 
-                          fontSize: '10px', 
-                          color: 'rgba(255,255,255,0.85)',
-                          lineHeight: '1.4'
-                        }}>
-                          UX Designer
-                        </div>
-                        <div style={{ 
-                          fontSize: '9px', 
-                          color: 'rgba(255,255,255,0.6)',
-                          marginTop: '3px',
-                          fontStyle: 'italic'
-                        }}>
-                          Chatbot Gamification
-                        </div>
-                      </div>
-                      
-                      {/* Top arrow pointing to logo */}
-                      <div
-                        style={{
-                          position: 'absolute',
-                          top: '-5px',
-                          left: '50%',
-                          transform: 'translateX(-50%)',
-                          width: 0,
-                          height: 0,
-                          borderLeft: '6px solid transparent',
-                          borderRight: '6px solid transparent',
-                          borderBottom: '6px solid #1a1a1a',
-                          filter: 'drop-shadow(0 -2px 3px rgba(0,0,0,0.1))'
-                        }}
-                      />
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-
-                {/* Contact Module */}
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.9, ease: 'easeOut' }}
-                  style={{ marginTop: '48px' }}
-                >
-                  <motion.a
-                    href="mailto:shanshanlai160402@gmail.com"
-                    whileHover="hover"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      fontSize: '15px',
-                      fontWeight: 500,
-                      color: '#000000',
-                      textDecoration: 'none',
-                      position: 'relative',
-                      paddingBottom: '2px',
-                      marginBottom: '12px'
-                    }}
-                  >
-                    <span>Get in touch</span>
-                    <motion.span
-                      variants={{
-                        hover: { x: 4 }
-                      }}
-                      transition={{ duration: 0.2 }}
-                      style={{ display: 'inline-block', fontSize: '14px' }}
-                    >
-                      →
-                    </motion.span>
-                    <motion.span
-                      variants={{
-                        hover: { scaleX: 1 }
-                      }}
-                      initial={{ scaleX: 0 }}
-                      transition={{ duration: 0.22 }}
-                      style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: '1px',
-                        backgroundColor: '#000000',
-                        transformOrigin: 'left'
-                      }}
-                    />
-                  </motion.a>
-                  
-                  <div style={{ fontSize: '13px', color: '#999999', marginBottom: '16px', lineHeight: '1.5' }}>
-                    Based in NYC 🗽 · Open to UX/Product roles
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                    <motion.a
-                      href="mailto:shanshanlai160402@gmail.com"
-                      whileHover={{ scale: 1.12, color: '#FF7300' }}
-                      transition={{ duration: 0.18 }}
-                      style={{ color: '#666666', display: 'flex', cursor: 'pointer' }}
-                      aria-label="Email"
-                    >
-                      <Mail size={19} />
-                    </motion.a>
-                    <motion.a
-                      href="https://www.linkedin.com/in/shanshan-lai"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.12, color: '#FF7300' }}
-                      transition={{ duration: 0.18 }}
-                      style={{ color: '#666666', display: 'flex', cursor: 'pointer' }}
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin size={19} />
-                    </motion.a>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Right Column - Terminal Card */}
-              <TerminalCard />
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Selected Works Section */}
-      <section className="py-12 sm:py-16 md:py-28 px-4 sm:px-6 md:px-12 lg:px-16 selected-works-section">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="mb-10">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              style={{ 
-                color: '#000000', 
-                fontSize: 'clamp(32px, 4vw, 48px)',
-                fontWeight: 400,
-                lineHeight: '1.3'
-              }}
-            >
-              Selected Works
-            </motion.h2>
-            
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center gap-2 mt-3"
-              style={{ 
-                color: '#666666',
-                fontSize: '14px',
-                fontWeight: 400
-              }}
-            >
-<ArrowDown size={16} />
-              <span>Scroll down</span>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {highlightedWorks.map((work, index) => (
-              <ProjectCard
-                key={work.title}
-                title={work.title}
-                description={work.description}
-                image={work.image}
-                tags={work.tags}
-                type={work.type}
-                link={work.link}
-                index={index}
-              />
-            ))}
-          </div>
-
-          {/* See More Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            style={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              marginTop: '60px' 
-            }}
-          >
-            <motion.a
-              href="/projects"
-              whileHover={{ scale: 1.05, x: 5 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '14px 28px',
-                backgroundColor: '#000000',
-                color: '#FFFFFF',
-                borderRadius: '50px',
-                fontSize: '15px',
-                fontWeight: 500,
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                position: 'relative',
-                overflow: 'hidden'
-              }}
-            >
-              <span style={{ position: 'relative', zIndex: 1 }}>See more projects here</span>
-              <motion.span
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ position: 'relative', zIndex: 1, fontSize: '18px' }}
-              >
-                👉
-              </motion.span>
-              
-              {/* Hover background effect */}
-              <motion.div
-                initial={{ x: '-100%' }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(90deg, #FF7300 0%, #FFA500 100%)',
-                  zIndex: 0
-                }}
-              />
-            </motion.a>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Thank You Section */}
-      <section style={{ 
-        padding: '80px 48px 60px', 
-        background: '#1a1a1a',
-        position: 'relative',
-        overflow: 'hidden',
-        marginTop: '60px'
-      }}
-      className="sm:mt-20 md:mt-24"
+      <section
+        ref={heroSectionRef}
+        className="px-4 sm:px-6 md:px-12 lg:px-16"
+        style={{
+          minHeight: '100vh',
+          scrollSnapAlign: 'start',
+          scrollSnapStop: 'always',
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: 'max(84px, 8vh)',
+          paddingBottom: 'max(20px, 2.5vh)',
+        }}
       >
-        {/* Reduced background particles for better performance */}
-        {[...Array(6)].map((_, i) => (
+        <div className="max-w-[1280px] mx-auto w-full">
           <motion.div
-            key={i}
-            animate={{
-              y: [0, -30, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0.1, 0.3, 0.1]
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2
-            }}
-            style={{
-              position: 'absolute',
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${4 + Math.random() * 8}px`,
-              height: `${4 + Math.random() * 8}px`,
-              borderRadius: '50%',
-              background: '#FF7300',
-              filter: 'blur(2px)',
-              willChange: 'transform, opacity'
-            }}
-          />
-        ))}
-
-        <div className="max-w-[1000px] mx-auto" style={{ position: 'relative', zIndex: 1 }}>
-          {/* Main Thank You */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            style={{ textAlign: 'center', marginBottom: '40px' }}
-          >
-            <motion.h2
-              animate={{ 
-                scale: [1, 1.02, 1],
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-              style={{
-                fontSize: 'clamp(32px, 5vw, 56px)',
-                fontWeight: 600,
-                color: '#FFFFFF',
-                marginBottom: '16px',
-                letterSpacing: '-0.02em'
-              }}
-            >
-              Thanks for stopping by! 
-              <motion.span
-                animate={{ rotate: [0, 14, -8, 14, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
-                style={{ display: 'inline-block', marginLeft: '12px' }}
-              >
-                👋
-              </motion.span>
-            </motion.h2>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              style={{
-                fontSize: '18px',
-                color: 'rgba(255,255,255,0.8)',
-                lineHeight: '1.6',
-                maxWidth: '600px',
-                margin: '0 auto'
-              }}
-            >
-              Hope you enjoyed exploring my work. If you have any feedback, ideas, or just want to say hi, I'd love to hear from you!
-            </motion.p>
-          </motion.div>
-
-          {/* Feedback Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            whileHover={{ y: -4, boxShadow: '0 12px 32px rgba(255, 115, 0, 0.2)' }}
-            style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              borderRadius: '16px',
-              padding: '32px',
-              textAlign: 'center',
-              position: 'relative',
-              overflow: 'hidden'
-            }}
-          >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              style={{
-                position: 'absolute',
-                top: '-50%',
-                left: '-50%',
-                width: '200%',
-                height: '200%',
-                background: 'radial-gradient(circle, rgba(255,115,0,0.1) 0%, transparent 70%)',
-                pointerEvents: 'none'
-              }}
-            />
-            
-            <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              style={{ fontSize: '48px', marginBottom: '16px' }}
-            >
-              💭
-            </motion.div>
-            
-            <p style={{ 
-              fontSize: '16px', 
-              color: 'rgba(255,255,255,0.9)',
-              marginBottom: '20px',
-              fontWeight: 500
-            }}>
-              Got feedback or suggestions?
-            </p>
-            
-            <motion.a
-              href="mailto:shanshanlai160402@gmail.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '12px 24px',
-                background: 'linear-gradient(90deg, #FF7300 0%, #FFA500 100%)',
-                color: '#FFFFFF',
-                borderRadius: '50px',
-                fontSize: '14px',
-                fontWeight: 600,
-                textDecoration: 'none',
-                boxShadow: '0 4px 16px rgba(255, 115, 0, 0.3)'
-              }}
-            >
-              <Mail size={16} />
-              <span>Drop me a line</span>
-            </motion.a>
-          </motion.div>
-
-          {/* Fun emoji decorations */}
-          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             style={{
               display: 'flex',
-              justifyContent: 'center',
-              gap: '20px',
-              marginTop: '40px',
-              fontSize: '24px'
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '10px',
+              textAlign: 'center',
+              minHeight: 'calc(100dvh - 140px)',
+              paddingTop: '10px',
+              paddingBottom: '10px'
             }}
           >
-            {['✨', '🎨', '💡', '🚀', '🎯'].map((emoji, i) => (
-              <motion.span
-                key={i}
-                animate={{ 
-                  y: [0, -10, 0],
-                  rotate: [0, 10, -10, 0]
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '20px',
+                width: '100%'
+              }}
+            >
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 'min(580px, calc(100dvh - 320px))',
+                  minHeight: '360px'
                 }}
-                transition={{ 
-                  duration: 2,
-                  delay: i * 0.2,
-                  repeat: Infinity,
-                  repeatDelay: 1
-                }}
-                style={{ display: 'inline-block', cursor: 'default' }}
               >
-                {emoji}
-              </motion.span>
-            ))}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 'clamp(112px, 32%, 210px)',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 0
+                  }}
+                >
+                  <motion.div
+                    style={{
+                      display: 'flex',
+                      width: 'min(92vw, 760px, calc(100dvh - 320px))',
+                      height: 'min(92vw, 760px, calc(100dvh - 320px))',
+                      opacity: spiralOpacity,
+                      scale: spiralScale,
+                      filter: 'saturate(1.22) contrast(1.06)',
+                      transformOrigin: 'center center',
+                    }}
+                  >
+                    <HeroSpiral
+                      totalDots={680}
+                      dotRadius={2.35}
+                      duration={4.6}
+                      margin={20}
+                      minOpacity={0.18}
+                      maxOpacity={0.92}
+                      minScale={0.62}
+                      maxScale={1.75}
+                      useMultipleColors
+                      colors={[
+                        { color: '#F3EDFF' },
+                        { color: '#DFC8FF' },
+                        { color: '#F8DFFF' },
+                      ]}
+                      size={760}
+                    />
+                  </motion.div>
+                </div>
+
+                <div
+                  style={{
+                    position: 'relative',
+                    zIndex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '18px',
+                    minHeight: 'min(580px, calc(100dvh - 320px))',
+                    marginTop: 'clamp(16px, 3vh, 38px)',
+                    marginBottom: 'clamp(16px, 3vh, 38px)',
+                    paddingTop: '12px',
+                    paddingBottom: '12px',
+                    width: '100%',
+                    maxWidth: '713px',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                  }}
+                >
+                  <SketchCursorHint
+                    label="This is Shane Lai, WASSUP?"
+                    className="inline-block"
+                  >
+                    <img
+                      src={titleImage}
+                      alt="Shane Lai"
+                      style={{
+                        width: 'clamp(108px, 14vw, 216px)',
+                        height: 'auto',
+                        display: 'block'
+                      }}
+                    />
+                  </SketchCursorHint>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', width: '100%', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', alignItems: 'center' }}>
+                      <p
+                        style={{
+                          margin: 0,
+                          color: 'var(--ds-text-subtle)',
+                          fontSize: 'clamp(var(--type-l4), 2vw, var(--type-l5))',
+                          lineHeight: 'var(--type-l5-lh)',
+                          fontWeight: 400,
+                          letterSpacing: 'var(--type-track-tight)',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        PRODUCT DESIGNER IN NYC🗽
+                      </p>
+
+                      <p
+                        style={{
+                          margin: 0,
+                          color: 'var(--ds-text-subtle)',
+                          fontSize: 'var(--type-l3)',
+                          lineHeight: 'var(--type-l3-lh)',
+                          fontWeight: 400,
+                          letterSpacing: 'var(--type-track-body)',
+                          maxWidth: '643px'
+                        }}
+                      >
+                        I design AI and consumer products that turn human behavior into better interactions
+                        <br />
+                        with 3 years experience
+                      </p>
+                    </div>
+
+                    <p
+                      style={{
+                        margin: 0,
+                        color: 'var(--ds-text-subtle)',
+                        fontSize: 'var(--type-l3)',
+                        lineHeight: 'var(--type-l3-lh)',
+                        fontWeight: 400,
+                        letterSpacing: 'var(--type-track-body)'
+                      }}
+                    >
+                      Previously @{' '}
+                      <AboutStickerSpan
+                        stickerSrc={temuSticker}
+                        stickerLabel="Sticker: Temu"
+                        vectorHighlight={false}
+                        stickerWidth={HOME_HERO_STICKER_WIDTH}
+                        motion={{
+                          restRotateDeg: -3,
+                          hoverRotateDeg: 12,
+                          restOffsetY: 12,
+                          restNudgeX: 3,
+                          hoverNudgeX: 1,
+                        }}
+                      >
+                        <span style={{ color: '#FF4800' }}>Temu</span>
+                      </AboutStickerSpan>
+                      {' & '}
+                      <AboutStickerSpan
+                        stickerSrc={talkieSticker}
+                        stickerLabel="Sticker: MiniMax — Talkie"
+                        vectorHighlight={false}
+                        stickerWidth={HOME_HERO_MINIMAX_STICKER_WIDTH}
+                        motion={{
+                          restRotateDeg: 5,
+                          hoverRotateDeg: -10,
+                          restOffsetY: 9,
+                          restNudgeX: -5,
+                          hoverNudgeX: -3,
+                        }}
+                      >
+                        <span style={{ color: '#FF14AD' }}>MiniMax</span>
+                      </AboutStickerSpan>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <a href="mailto:shanshanlai160402@gmail.com" aria-label="Email" style={{ color: 'var(--ds-text-tertiary)' }}>
+                <Mail size={19} strokeWidth={1.75} />
+              </a>
+              <a
+                href={LINKEDIN_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                style={{ color: 'var(--ds-text-tertiary)' }}
+              >
+                <Linkedin size={19} strokeWidth={1.75} />
+              </a>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => selectedWorksRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                textDecoration: 'none',
+                border: 'none',
+                background: 'transparent',
+                cursor: 'pointer'
+              }}
+            >
+              <ArrowDown size={24} color="var(--ds-text-subtle)" strokeWidth={1.5} />
+              <p
+                style={{
+                  margin: 0,
+                  color: 'var(--ds-text-subtle)',
+                  fontSize: 'var(--type-l3)',
+                  lineHeight: 'var(--type-l3-lh)',
+                  fontWeight: 400,
+                  letterSpacing: 'var(--type-track-body)'
+                }}
+              >
+                Works that I love most
+              </p>
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      <div ref={selectedWorksRef} id="selected-works">
+        {homeProjects.map((project) => (
+          <SelectedWorkSlide key={project.title} project={project} />
+        ))}
+      </div>
+
+      <section
+        className="px-4 sm:px-6 md:px-12 lg:px-16"
+        style={{
+          minHeight: '60vh',
+          scrollSnapAlign: 'start',
+          scrollSnapStop: 'always',
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: 'max(56px, 7vh)',
+          paddingBottom: 'max(56px, 7vh)',
+        }}
+      >
+        <div className="mx-auto w-full max-w-[1176px]">
+          <div style={{ marginBottom: '18px' }}>
+            <p
+              style={{
+                margin: 0,
+                color: 'var(--ds-text-tertiary)',
+                fontSize: 'var(--type-l1)',
+                fontWeight: 500,
+                letterSpacing: 'var(--type-track-caps)',
+                textTransform: 'uppercase',
+              }}
+            >
+              More To Explore
+            </p>
+            <h2
+              style={{
+                margin: '8px 0 0',
+                color: 'var(--ds-text-primary)',
+                fontSize: 'var(--ds-text-title)',
+                lineHeight: 'var(--type-l5-lh)',
+                fontWeight: 600,
+                letterSpacing: 'var(--type-track-tight)',
+              }}
+            >
+              Quick teaser before you click in
+            </h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '22px',
+              overflow: 'visible',
+            }}
+          >
+            <SketchCursorHint label="See all my selected projects" className="block w-full">
+              <motion.div
+                whileHover={{ y: -8, scale: 1.01, zIndex: 30 }}
+                transition={{ type: 'spring', stiffness: 420, damping: 28 }}
+                style={{ position: 'relative', zIndex: 1 }}
+              >
+                <Link
+                  to="/projects"
+                  className="group block"
+                  style={{
+                    display: 'block',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    borderRadius: '22px',
+                    background: 'var(--ds-surface-elevated)',
+                    boxShadow: 'var(--ds-shadow-elevated)',
+                    padding: '18px',
+                    position: 'relative',
+                    overflow: 'visible',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px' }}>
+                    <div>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l1)', letterSpacing: 'var(--type-track-caps)', textTransform: 'uppercase', color: 'var(--ds-text-tertiary)' }}>
+                        Work
+                      </p>
+                      <h3 style={{ margin: '6px 0 0', fontSize: 'var(--type-l4)', lineHeight: 'var(--type-l4-lh)', fontWeight: 600, letterSpacing: 'var(--type-track-body)', color: 'var(--ds-text-primary)' }}>
+                        Featured Cases
+                      </h3>
+                    </div>
+                    <img
+                      src={workIcon}
+                      alt="Work icon"
+                      width={52}
+                      height={52}
+                      style={{ width: 52, height: 52, objectFit: 'contain', display: 'block' }}
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      position: 'relative',
+                      height: '170px',
+                      marginTop: '14px',
+                      borderRadius: '16px',
+                      background: 'linear-gradient(180deg, #f7f7f8 0%, #f1f2f4 100%)',
+                      overflow: 'visible',
+                    }}
+                  >
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fca07cfe232474fd98a425e6157eb83f4"
+                      alt="Huuuuu teaser"
+                      className="transition-transform duration-300 ease-out group-hover:-translate-y-6 group-hover:rotate-[-7deg]"
+                      style={{
+                        position: 'absolute',
+                        top: '16px',
+                        left: '14px',
+                        width: '42%',
+                        borderRadius: '12px',
+                        transform: 'rotate(-5deg)',
+                        boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
+                      }}
+                    />
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F8f1c564879944802a28da9b67b45e07b"
+                      alt="Talkie teaser"
+                      className="transition-transform duration-300 ease-out group-hover:-translate-y-8 group-hover:rotate-[8deg]"
+                      style={{
+                        position: 'absolute',
+                        top: '16px',
+                        right: '16px',
+                        width: '44%',
+                        borderRadius: '12px',
+                        transform: 'rotate(6deg)',
+                        boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
+                      }}
+                    />
+                    <img
+                      src="https://images.unsplash.com/photo-1758521960456-c876c573e0b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxWUiUyMGZpdG5lc3MlMjB0cmFpbmluZ3xlbnwxfHx8fDE3NjE5MzQ5NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                      alt="FunFitLand research teaser"
+                      className="transition-transform duration-300 ease-out group-hover:-translate-y-10 group-hover:rotate-[-3deg]"
+                      style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '30%',
+                        width: '42%',
+                        borderRadius: '12px',
+                        transform: 'rotate(-2deg)',
+                        boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
+                      }}
+                    />
+                  </div>
+                </Link>
+              </motion.div>
+            </SketchCursorHint>
+
+            <SketchCursorHint label="Playground with fun experiments" className="block w-full">
+              <motion.div
+                whileHover={{ y: -8, scale: 1.01, zIndex: 30 }}
+                transition={{ type: 'spring', stiffness: 420, damping: 28 }}
+                style={{ position: 'relative', zIndex: 1 }}
+              >
+                <Link
+                  to="/playground"
+                  className="group block"
+                  style={{
+                    display: 'block',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    borderRadius: '22px',
+                    background: 'linear-gradient(135deg, #fffaf2 0%, #fff4de 100%)',
+                    boxShadow: 'var(--ds-shadow-elevated)',
+                    padding: '18px',
+                    position: 'relative',
+                    overflow: 'visible',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '14px' }}>
+                    <div>
+                      <p style={{ margin: 0, fontSize: 'var(--type-l1)', letterSpacing: 'var(--type-track-caps)', textTransform: 'uppercase', color: 'var(--ds-text-tertiary)' }}>
+                        Playground
+                      </p>
+                      <h3 style={{ margin: '6px 0 0', fontSize: 'var(--type-l4)', lineHeight: 'var(--type-l4-lh)', fontWeight: 600, letterSpacing: 'var(--type-track-body)', color: 'var(--ds-text-primary)' }}>
+                        Vibe Coding
+                      </h3>
+                    </div>
+                    <img
+                      src={happyPlaygroundIcon}
+                      alt="Playground icon"
+                      width={52}
+                      height={52}
+                      style={{ width: 52, height: 52, objectFit: 'contain', display: 'block' }}
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      position: 'relative',
+                      height: '170px',
+                      marginTop: '14px',
+                      borderRadius: '16px',
+                      background: 'linear-gradient(180deg, #fff8ea 0%, #ffefcf 100%)',
+                      overflow: 'visible',
+                    }}
+                  >
+                    <img
+                      src={playOneImage}
+                      alt="Playground teaser one"
+                      className="transition-transform duration-300 ease-out group-hover:-translate-y-8 group-hover:rotate-[-8deg]"
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        left: '16px',
+                        width: '48%',
+                        borderRadius: '12px',
+                        transform: 'rotate(-6deg)',
+                        boxShadow: '0 10px 24px rgba(0,0,0,0.15)',
+                        background: 'rgba(255,255,255,0.45)',
+                      }}
+                    />
+                    <img
+                      src={playTwoImage}
+                      alt="Playground teaser two"
+                      className="transition-transform duration-300 ease-out group-hover:-translate-y-12 group-hover:rotate-[7deg]"
+                      style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        right: '14px',
+                        width: '54%',
+                        borderRadius: '12px',
+                        transform: 'rotate(5deg)',
+                        boxShadow: '0 10px 24px rgba(0,0,0,0.15)',
+                        background: 'rgba(255,255,255,0.55)',
+                      }}
+                    />
+                  </div>
+                </Link>
+              </motion.div>
+            </SketchCursorHint>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="px-4 sm:px-6 md:px-12 lg:px-16"
+        style={{
+          minHeight: '100vh',
+          scrollSnapAlign: 'center',
+          scrollSnapStop: 'always',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingTop: 'max(28px, 3.5vh)',
+          paddingBottom: 'max(28px, 3.5vh)',
+        }}
+      >
+        <div className="mx-auto w-full max-w-[1176px]">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 'clamp(18px, 3vw, 26px)',
+              padding: '28px clamp(20px, 4vw, 32px)',
+              borderRadius: '16px',
+              textAlign: 'center',
+              backgroundColor: 'var(--ds-surface-elevated)',
+              border: '1px solid var(--ds-border-subtle)',
+              boxShadow: 'var(--ds-shadow-soft)',
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                color: 'var(--ds-text-tertiary)',
+                fontSize: 'var(--type-l3)',
+                fontWeight: 500,
+                letterSpacing: 'var(--type-track-caps)',
+                textTransform: 'uppercase',
+              }}
+            >
+              Contact
+            </p>
+
+            <div style={{ maxWidth: '560px', width: '100%' }}>
+              <h2
+                style={{
+                  margin: 0,
+                  color: 'var(--ds-text-primary)',
+                  fontSize: 'var(--type-l4)',
+                  lineHeight: 'var(--type-l4-lh)',
+                  fontWeight: 600,
+                  letterSpacing: 'var(--type-track-tight)',
+                }}
+              >
+                Glad You Made It Here
+              </h2>
+              <p
+                style={{
+                  margin: '14px 0 0',
+                  color: 'var(--ds-text-secondary)',
+                  fontSize: 'var(--type-l3)',
+                  lineHeight: 'var(--type-l3-lh)',
+                  fontWeight: 400,
+                  letterSpacing: 'var(--type-track-body)',
+                }}
+              >
+                Let&apos;s grab coffee (or Hot Pot). 🍲 I&apos;m always down for a caffeine-fueled ☕️ brainstorm. If it
+                involves fun products or spicy food, I&apos;m definitely in.
+              </p>
+            </div>
+
+            <motion.a
+              href="mailto:shanshanlai160402@gmail.com"
+              className="home-say-hello-btn"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 520, damping: 28 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '10px',
+                minHeight: '44px',
+                padding: '0 20px',
+                borderRadius: '10px',
+                border: '1px solid var(--ds-border-subtle)',
+                backgroundColor: 'var(--ds-bg-page)',
+                color: 'var(--ds-text-primary)',
+                fontSize: 'var(--type-l3)',
+                lineHeight: 'var(--type-l3-lh)',
+                fontWeight: 500,
+                letterSpacing: 'var(--type-track-body)',
+                textDecoration: 'none',
+              }}
+            >
+              <span className="home-say-hello-btn__wave" aria-hidden>
+                👋
+              </span>
+              <span>Say Hello</span>
+            </motion.a>
+
+            <div
+              style={{
+                width: '100%',
+                maxWidth: '560px',
+                margin: 0,
+                textAlign: 'center',
+                color: 'var(--ds-text-secondary)',
+                fontSize: 'var(--type-l3)',
+                lineHeight: 'var(--type-l3-lh)',
+                letterSpacing: 'var(--type-track-body)',
+              }}
+            >
+              <p style={{ margin: '0 0 10px', fontWeight: 500, color: 'var(--ds-text-primary)' }}>Reach out directly:</p>
+              <p style={{ margin: '0 0 6px' }}>
+                Email:{' '}
+                <a href="mailto:shanshanlai160402@gmail.com" className="home-footer-contact-link">
+                  shanshanlai160402@gmail.com
+                </a>
+              </p>
+              <p style={{ margin: '0 0 6px' }}>
+                Text:{' '}
+                <a href="tel:+19294207656" className="home-footer-contact-link">
+                  929.420.7656
+                </a>
+              </p>
+              <p style={{ margin: 0 }}>📍 NYC / Overseas / Underwater</p>
+            </div>
+
+            <SketchCursorHint label="My funfact? Check here" className="inline-block">
+              <Link
+                to="/about"
+                aria-label="About — fun facts and story"
+                className="home-footer-emoji-link"
+                style={{
+                  margin: 0,
+                  fontSize: 'var(--type-l3)',
+                  lineHeight: 'var(--type-l3-lh)',
+                  letterSpacing: '0.08em',
+                  borderRadius: '8px',
+                  padding: '4px 6px',
+                }}
+              >
+                ✨ 🎧 🥟 💬 🚀 🤿
+              </Link>
+            </SketchCursorHint>
           </motion.div>
         </div>
       </section>

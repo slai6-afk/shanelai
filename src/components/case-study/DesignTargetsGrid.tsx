@@ -30,7 +30,7 @@ export function DesignTargetsGrid({
       <div style={{ textAlign: 'center', marginBottom: '32px' }}>
         <h3 style={{
           color: '#AE8EFF',
-          fontSize: '24px',
+          fontSize: 'var(--type-l4)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           marginBottom: '12px'
@@ -39,8 +39,8 @@ export function DesignTargetsGrid({
         </h3>
         {subtitle && (
           <p style={{
-            color: '#666666',
-            fontSize: '14px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             lineHeight: '1.8',
             maxWidth: '800px',
             margin: '0 auto'
@@ -94,7 +94,7 @@ export function DesignTargetsGrid({
             
             <h4 style={{
               color: '#482D18',
-              fontSize: '16px',
+              fontSize: 'var(--type-l3)',
               fontFamily: 'MuseoModerno, sans-serif',
               fontWeight: 600,
               marginBottom: '4px',
@@ -105,7 +105,7 @@ export function DesignTargetsGrid({
             
             <p style={{
               color: '#AE8EFF',
-              fontSize: '13px',
+              fontSize: 'var(--type-l2)',
               fontFamily: 'MuseoModerno, sans-serif',
               fontWeight: 600,
               margin: 0

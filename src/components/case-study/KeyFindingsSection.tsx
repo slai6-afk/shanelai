@@ -19,7 +19,7 @@ const categoryConfig = {
   emotional: {
     icon: Heart,
     label: 'Emotional Pain Points',
-    color: '#ED964F'
+    color: 'var(--ds-accent-case)'
   },
   technical: {
     icon: Shield,
@@ -69,7 +69,7 @@ export function KeyFindingsSection({ findings }: KeyFindingsSectionProps) {
               </div>
               <h4 style={{
                 color: config.color,
-                fontSize: '16px',
+                fontSize: 'var(--type-l3)',
                 fontFamily: 'MuseoModerno, sans-serif',
                 fontWeight: 600,
                 margin: 0
@@ -95,7 +95,7 @@ export function KeyFindingsSection({ findings }: KeyFindingsSectionProps) {
                   transition={{ duration: 0.4, delay: index * 0.15 + idx * 0.1 }}
                   style={{
                     color: '#3B2E24',
-                    fontSize: '14px',
+                    fontSize: 'var(--type-l2)',
                     lineHeight: '1.7',
                     paddingLeft: '20px',
                     position: 'relative'

@@ -38,7 +38,7 @@ export function StatHighlight({ stats }: StatHighlightProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
             style={{
-              fontSize: '36px',
+              fontSize: 'var(--type-l6)',
               fontFamily: 'MuseoModerno, sans-serif',
               fontWeight: 700,
               color: stat.color || '#E56641',
@@ -50,7 +50,7 @@ export function StatHighlight({ stats }: StatHighlightProps) {
           </motion.div>
           <p style={{
             color: '#3B2E24',
-            fontSize: '13px',
+            fontSize: 'var(--type-l2)',
             lineHeight: '1.4',
             margin: 0
           }}>

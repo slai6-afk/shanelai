@@ -50,9 +50,9 @@ export function ReflectionCards({ items, accentColor = '#B3B2FF' }: ReflectionCa
             )}
             <h4
               style={{
-                fontSize: '17px',
+                fontSize: 'var(--type-l3)',
                 fontWeight: 600,
-                color: '#000000',
+                color: 'var(--ds-text-primary)',
                 marginBottom: '12px',
                 lineHeight: '1.4'
               }}
@@ -61,8 +61,8 @@ export function ReflectionCards({ items, accentColor = '#B3B2FF' }: ReflectionCa
             </h4>
             <p
               style={{
-                fontSize: '15px',
-                color: '#666666',
+                fontSize: 'var(--type-l3)',
+                color: 'var(--ds-text-secondary)',
                 lineHeight: '1.7'
               }}
             >

@@ -22,7 +22,7 @@ export function FilterTabs({ categories, activeCategory, onCategoryChange }: Fil
             transition={{ duration: 0.3 }}
             style={{
               color: '#000000',
-              fontSize: '16px',
+              fontSize: 'var(--type-l3)',
               fontWeight: isActive ? 500 : 400
             }}
           >

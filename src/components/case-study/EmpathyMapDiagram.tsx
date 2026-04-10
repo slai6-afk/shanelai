@@ -16,7 +16,7 @@ interface EmpathyMapDiagramProps {
 export function EmpathyMapDiagram({ personaName, data }: EmpathyMapDiagramProps) {
   const quadrants = [
     { key: 'says', label: 'Says', icon: MessageCircle, color: '#E56641', data: data.says },
-    { key: 'thinks', label: 'Thinks', icon: Brain, color: '#ED964F', data: data.thinks },
+    { key: 'thinks', label: 'Thinks', icon: Brain, color: 'var(--ds-accent-case)', data: data.thinks },
     { key: 'feels', label: 'Feels', icon: Heart, color: '#AE8EFF', data: data.feels },
     { key: 'does', label: 'Does', icon: TrendingUp, color: '#795337', data: data.does }
   ];
@@ -29,7 +29,7 @@ export function EmpathyMapDiagram({ personaName, data }: EmpathyMapDiagramProps)
         viewport={{ once: true }}
         style={{
           color: '#AE8EFF',
-          fontSize: '18px',
+          fontSize: 'var(--type-l4)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           textAlign: 'center',
@@ -86,7 +86,7 @@ export function EmpathyMapDiagram({ personaName, data }: EmpathyMapDiagramProps)
                 </div>
                 <h5 style={{
                   color: quadrant.color,
-                  fontSize: '14px',
+                  fontSize: 'var(--type-l2)',
                   fontFamily: 'MuseoModerno, sans-serif',
                   fontWeight: 600,
                   textTransform: 'uppercase',
@@ -114,7 +114,7 @@ export function EmpathyMapDiagram({ personaName, data }: EmpathyMapDiagramProps)
                     transition={{ duration: 0.4, delay: index * 0.1 + idx * 0.05 }}
                     style={{
                       color: '#3B2E24',
-                      fontSize: '13px',
+                      fontSize: 'var(--type-l2)',
                       lineHeight: '1.6',
                       paddingLeft: '16px',
                       position: 'relative'

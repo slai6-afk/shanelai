@@ -28,7 +28,7 @@ export function HowMightWeCard({ question, accentColor = '#B3B2FF' }: HowMightWe
           position: 'absolute',
           top: '16px',
           left: '24px',
-          fontSize: '14px',
+          fontSize: 'var(--type-l2)',
           fontWeight: 600,
           color: accentColor,
           letterSpacing: '0.08em',
@@ -39,10 +39,10 @@ export function HowMightWeCard({ question, accentColor = '#B3B2FF' }: HowMightWe
       </div>
       <p
         style={{
-          fontSize: 'clamp(22px, 3vw, 32px)',
+          fontSize: 'clamp(var(--type-l4), 3vw, var(--type-l5))',
           fontWeight: 600,
           lineHeight: '1.5',
-          color: '#000000',
+          color: 'var(--ds-text-primary)',
           marginTop: '24px',
           fontStyle: 'italic'
         }}

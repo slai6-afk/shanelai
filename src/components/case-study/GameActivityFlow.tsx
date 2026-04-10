@@ -38,7 +38,7 @@ export function GameActivityFlow({
         <div style={{ marginBottom: '24px' }}>
           <h4 style={{
             color: '#454950',
-            fontSize: '18px',
+            fontSize: 'var(--type-l4)',
             fontFamily: 'MuseoModerno, sans-serif',
             fontWeight: 600,
             marginBottom: '8px'
@@ -47,7 +47,7 @@ export function GameActivityFlow({
           </h4>
           <p style={{
             color: accentColor,
-            fontSize: '13px',
+            fontSize: 'var(--type-l2)',
             lineHeight: '1.6',
             margin: 0
           }}>
@@ -92,8 +92,8 @@ export function GameActivityFlow({
               </div>
               {step.caption && (
                 <p style={{
-                  color: '#666666',
-                  fontSize: '11px',
+                  color: 'var(--ds-text-secondary)',
+                  fontSize: 'var(--type-l1)',
                   padding: '8px 12px',
                   margin: 0,
                   textAlign: 'center',
@@ -109,7 +109,7 @@ export function GameActivityFlow({
         {flowDescription && (
           <p style={{
             color: '#454950',
-            fontSize: '12px',
+            fontSize: 'var(--type-l1)',
             fontWeight: 600,
             textAlign: 'center',
             margin: 0,

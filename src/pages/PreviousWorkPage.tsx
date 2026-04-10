@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { ProjectCarousel } from '../components/ProjectCarousel';
+import { TextVectorMark } from '../components/vector-decor';
 
 export function PreviousWorkPage() {
   const categories = ['All', 'Internship', 'Research', 'Personal'];
@@ -68,7 +69,7 @@ export function PreviousWorkPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
 
       <section className="pt-40 pb-32 px-8 md:px-16 relative">
@@ -77,7 +78,7 @@ export function PreviousWorkPage() {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="absolute top-52 left-[8%] w-3 h-3 rounded-full bg-black"
+          className="absolute top-52 left-[8%] w-3 h-3 rounded-full bg-[var(--ds-text-primary)]"
         />
 
         <div className="max-w-[1400px] mx-auto">
@@ -87,14 +88,14 @@ export function PreviousWorkPage() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16"
             style={{ 
-              color: '#000000', 
-              fontSize: 'clamp(40px, 6vw, 72px)',
+              color: 'var(--ds-text-primary)', 
+              fontSize: 'var(--ds-text-display)',
               fontWeight: 400,
               lineHeight: '1.2',
               letterSpacing: '-0.02em'
             }}
           >
-            Previous Work
+            Previous <TextVectorMark vector="highlight1">Work</TextVectorMark>
           </motion.h1>
 
           <motion.div
@@ -103,8 +104,8 @@ export function PreviousWorkPage() {
             transition={{ duration: 1, delay: 0.2 }}
             className="mb-20 max-w-2xl"
             style={{
-              color: '#666666',
-              fontSize: '18px',
+              color: 'var(--ds-text-secondary)',
+              fontSize: 'var(--type-l4)',
               fontWeight: 400,
               lineHeight: '1.8'
             }}

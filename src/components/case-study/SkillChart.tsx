@@ -53,7 +53,7 @@ export function SkillChart() {
     >
       <h4 style={{ 
         color: '#d7a163', 
-        fontSize: '14px', 
+        fontSize: 'var(--type-l2)', 
         fontWeight: 500, 
         marginBottom: '32px',
         textAlign: 'center',
@@ -262,7 +262,7 @@ export function SkillChart() {
 
       <p style={{ 
         color: 'rgba(107, 93, 79, 0.6)', 
-        fontSize: '12px', 
+        fontSize: 'var(--type-l1)', 
         fontWeight: 400,
         textAlign: 'center',
         marginTop: '24px',

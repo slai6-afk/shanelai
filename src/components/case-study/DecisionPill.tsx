@@ -15,13 +15,13 @@ export function DecisionPill({ text, index = 0 }: DecisionPillProps) {
       style={{
         display: 'inline-block',
         padding: '8px 16px',
-        backgroundColor: '#000000',
-        color: '#FFFFFF',
-        fontSize: '13px',
+        backgroundColor: 'var(--ds-text-primary)',
+        color: 'var(--ds-bg-surface)',
+        fontSize: 'var(--type-l2)',
         fontWeight: 500,
         letterSpacing: '0.01em',
         borderRadius: '8px',
-        border: '1px solid #000000',
+        border: '1px solid var(--ds-text-primary)',
         boxShadow: 'var(--shadow-sm)'
       }}
     >

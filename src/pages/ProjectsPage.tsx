@@ -2,18 +2,45 @@ import { motion } from 'motion/react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { ProjectCard } from '../components/ProjectCard';
-import { InkTrail } from '../components/InkTrail';
+import { TextVectorMark } from '../components/vector-decor';
+import homepageCover from '../assets/homepage.png';
+import nycTourismCover from '../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
 
 export function ProjectsPage() {
   const projects = [
-    // Design Projects
     {
-      title: 'FunFitLand (UFit)',
-      description: 'VR fitness experience designed for accessibility and inclusive movement',
+      title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
+      description:
+        'How I led product strategy in a 4-week sprint to transform Amazon Music into a Gen Z social hub, bridging the discovery-to-retention gap.',
+      image: homepageCover,
+      tags: ['Social', 'Product', 'Figma'],
+      type: 'design' as const,
+      link: '/case-study/vibe-sync',
+      hoverHint: 'Click to see Vibe Sync for Amazon Music',
+      imageFit: 'contain' as const,
+      mediaBackground: '#000000'
+    },
+    {
+      title: 'FunFitLand: Making Fitness Accessible to Everyone In Immersive World',
+      description:
+        'Designing for the extremes: How I built an inclusive VR fitness framework that expanded accessibility to 90% of diverse physical abilities',
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Ff9363af89837426eac1bacac49533375',
       tags: ['VR', 'Accessibility', 'Design'],
       type: 'design' as const,
-      link: '/case-study/funfitland'
+      link: '/case-study/funfitland',
+      hoverHint: 'Click to see how I design inclusive VR fitness'
+    },
+    {
+      title: 'NYC Tourism: Discover the Big Apple & Making It Your Home',
+      description:
+        'How I re-engineered NYC tourism IA to reduce cognitive load for students by 35% through personalized discovery',
+      image: nycTourismCover,
+      tags: ['IA', 'UX Research', 'Testing'],
+      type: 'research' as const,
+      link: '/case-study/nyc-tourism',
+      hoverHint: 'Click to see how I untangle the NYC trip for newcomers',
+      imageFit: 'contain' as const,
+      mediaBackground: '#000000'
     },
     {
       title: 'Memory Navigator',
@@ -21,7 +48,8 @@ export function ProjectsPage() {
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fd3d7c1c3590b47178dabf39dc0bd330a',
       tags: ['AR', 'HoloLens', 'Design'],
       type: 'design' as const,
-      link: '/case-study/memory-navigator'
+      link: '/case-study/memory-navigator',
+      hoverHint: 'Click to see how memory becomes spatial AR'
     },
     {
       title: 'Huuuuu!',
@@ -29,16 +57,8 @@ export function ProjectsPage() {
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fca07cfe232474fd98a425e6157eb83f4',
       tags: ['Wellness', 'Mobile', 'Design'],
       type: 'design' as const,
-      link: '/case-study/huuuuu'
-    },
-    // Research Projects
-    {
-      title: 'NYC Tourism',
-      description: 'Information architecture redesign improving content findability by 30%',
-      image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Fbc60856c9b904543a50df19660bf5814',
-      tags: ['IA', 'UX Research', 'Testing'],
-      type: 'research' as const,
-      link: '/case-study/nyc-tourism'
+      link: '/case-study/huuuuu',
+      hoverHint: 'Click to see breath turned into calm visuals'
     },
     {
       title: 'Talkie',
@@ -46,22 +66,14 @@ export function ProjectsPage() {
       image: 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2F8f1c564879944802a28da9b67b45e07b',
       tags: ['AI', 'Voice', 'Research'],
       type: 'research' as const,
-      link: '/case-study/talkie'
-    },
-    {
-      title: 'FunFitLand (Research)',
-      description: 'User research exploring accessibility barriers in VR fitness experiences',
-      image: 'https://images.unsplash.com/photo-1758521960456-c876c573e0b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxWUiUyMGZpdG5lc3MlMjB0cmFpbmluZ3xlbnwxfHx8fDE3NjE5MzQ5NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      tags: ['VR', 'Accessibility', 'Research'],
-      type: 'research' as const,
-      link: '/case-study/funfitland-research'
+      link: '/case-study/talkie',
+      hoverHint: 'Click to see voice AI for long-haul drivers'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
-      <InkTrail />
 
       <section className="pt-40 pb-32 px-8 md:px-16">
         <div className="max-w-[1400px] mx-auto">
@@ -72,14 +84,14 @@ export function ProjectsPage() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="mb-24 text-center"
             style={{ 
-              color: '#000000', 
-              fontSize: 'clamp(40px, 6vw, 72px)',
+              color: 'var(--ds-text-primary)', 
+              fontSize: 'var(--ds-text-display)',
               fontWeight: 400,
-              lineHeight: '1.2',
-              letterSpacing: '-0.02em'
+              lineHeight: 'var(--type-l6-lh)',
+              letterSpacing: 'var(--type-track-tight)'
             }}
           >
-            Projects
+            <TextVectorMark vector="highlight3">Projects</TextVectorMark>
           </motion.h1>
 
           {/* Projects Grid */}
@@ -93,7 +105,10 @@ export function ProjectsPage() {
                 tags={project.tags}
                 type={project.type}
                 link={project.link}
+                hoverHint={project.hoverHint}
                 index={index}
+                imageFit={project.imageFit}
+                mediaBackground={project.mediaBackground}
               />
             ))}
           </div>
@@ -104,8 +119,8 @@ export function ProjectsPage() {
             whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-32 mb-16 h-px bg-[#1D0024]/10"
-            style={{ transformOrigin: 'left' }}
+            className="mt-32 mb-16 h-px"
+            style={{ transformOrigin: 'left', backgroundColor: 'var(--ds-border-subtle)' }}
           />
 
           {/* Closing Statement */}
@@ -116,8 +131,8 @@ export function ProjectsPage() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-center max-w-2xl mx-auto"
             style={{ 
-              color: '#666666', 
-              fontSize: '16px',
+              color: 'var(--ds-text-secondary)', 
+              fontSize: 'var(--type-l3)',
               fontWeight: 400,
               lineHeight: '1.8'
             }}

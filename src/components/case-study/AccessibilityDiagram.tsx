@@ -32,7 +32,7 @@ export function AccessibilityDiagram() {
           }} />
           <h4 style={{ 
             color: '#333333', 
-            fontSize: '15px', 
+            fontSize: 'var(--type-l3)', 
             fontWeight: 500,
             fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif',
             letterSpacing: '-0.01em'
@@ -126,7 +126,7 @@ export function AccessibilityDiagram() {
             y="177"
             fontSize="17"
             fontWeight="600"
-            fill="#000000"
+            fill="var(--ds-text-primary)"
             textAnchor="middle"
             fontFamily="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif"
             letterSpacing="-0.02em"
@@ -143,8 +143,8 @@ export function AccessibilityDiagram() {
         textAlign: 'center'
       }}>
         <p style={{ 
-          color: '#666666', 
-          fontSize: '14px', 
+          color: 'var(--ds-text-secondary)', 
+          fontSize: 'var(--type-l2)', 
           fontWeight: 400, 
           lineHeight: '1.7',
           fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif',

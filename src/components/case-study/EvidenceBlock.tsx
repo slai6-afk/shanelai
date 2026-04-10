@@ -17,18 +17,18 @@ export function EvidenceBlock({ type, content, source, index = 0 }: EvidenceBloc
       transition={{ duration: 0.6, delay: index * 0.1 }}
       style={{
         padding: '24px',
-        backgroundColor: type === 'quote' ? '#f5f5f5' : '#FFFFFF',
-        borderLeft: type === 'quote' ? '4px solid #000000' : 'none',
-        border: type === 'chart' ? '1px solid rgba(0, 0, 0, 0.1)' : 'none',
+        backgroundColor: type === 'quote' ? 'var(--ds-bg-page)' : 'var(--ds-bg-surface)',
+        borderLeft: type === 'quote' ? '4px solid var(--ds-text-primary)' : 'none',
+        border: type === 'chart' ? '1px solid var(--ds-border-subtle)' : 'none',
         marginBottom: '24px'
       }}
     >
       {type === 'quote' && (
         <>
-          <Quote size={24} style={{ color: '#000000', marginBottom: '12px' }} />
+          <Quote size={24} style={{ color: 'var(--ds-text-primary)', marginBottom: '12px' }} />
           <p style={{
-            color: '#000000',
-            fontSize: '16px',
+            color: 'var(--ds-text-primary)',
+            fontSize: 'var(--type-l3)',
             fontWeight: 400,
             fontStyle: 'italic',
             lineHeight: '1.7',
@@ -38,8 +38,8 @@ export function EvidenceBlock({ type, content, source, index = 0 }: EvidenceBloc
           </p>
           {source && (
             <p style={{
-              color: '#666666',
-              fontSize: '13px',
+              color: 'var(--ds-text-secondary)',
+              fontSize: 'var(--type-l2)',
               fontWeight: 400
             }}>
               — {source}
@@ -50,20 +50,20 @@ export function EvidenceBlock({ type, content, source, index = 0 }: EvidenceBloc
 
       {type === 'chart' && (
         <div style={{
-          color: '#000000',
-          fontSize: '14px',
+          color: 'var(--ds-text-primary)',
+          fontSize: 'var(--type-l2)',
           fontWeight: 400,
           lineHeight: '1.6',
           textAlign: 'center',
           padding: '32px'
         }}>
-          <p style={{ color: '#666666', fontStyle: 'italic' }}>
+          <p style={{ color: 'var(--ds-text-secondary)', fontStyle: 'italic' }}>
             [Chart: {content}]
           </p>
           {source && (
             <p style={{ 
-              color: '#999999', 
-              fontSize: '12px',
+              color: 'var(--ds-footer-text-muted)', 
+              fontSize: 'var(--type-l1)',
               marginTop: '12px'
             }}>
               {source}

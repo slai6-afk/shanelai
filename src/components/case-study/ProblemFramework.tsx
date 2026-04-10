@@ -23,7 +23,7 @@ export function ProblemFramework({
       {title && (
         <h3 style={{
           color: '#AE8EFF',
-          fontSize: '24px',
+          fontSize: 'var(--type-l4)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           marginBottom: '24px'
@@ -35,7 +35,7 @@ export function ProblemFramework({
       {description && (
         <p style={{
           color: '#3B2E24',
-          fontSize: '15px',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           marginBottom: '32px'
         }}>

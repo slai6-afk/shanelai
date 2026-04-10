@@ -1,9 +1,10 @@
+import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { MediaBox } from './MediaBox';
 
 interface Tag {
   label: string;
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'vibe';
 }
 
 interface Link {
@@ -13,9 +14,12 @@ interface Link {
 
 interface CaseStudyHeroProps {
   title: string;
-  description: string;
+  description: string | ReactNode;
   mediaType: 'video' | 'image';
   mediaSrc: string;
+  mediaPoster?: string;
+  videoCaption?: string;
+  showVideoCaption?: boolean;
   descriptionLink?: Link;
   visitLink?: Link;
   tags?: Tag[];
@@ -26,6 +30,9 @@ export function CaseStudyHero({
   description,
   mediaType,
   mediaSrc,
+  mediaPoster,
+  videoCaption,
+  showVideoCaption,
   descriptionLink,
   visitLink,
   tags = []
@@ -34,6 +41,8 @@ export function CaseStudyHero({
     switch (variant) {
       case 'primary':
         return 'case-hero-tag--primary';
+      case 'vibe':
+        return 'case-hero-tag--vibe';
       case 'tertiary':
       case 'secondary':
       default:
@@ -42,9 +51,15 @@ export function CaseStudyHero({
   };
 
   return (
-    <section className="case-study-hero-section pb-20 px-10 md:px-12 lg:px-16">
-      <MediaBox type={mediaType} src={mediaSrc} />
-      <div className="max-w-[1200px] mx-auto case-study-hero-content-wrapper">
+    <section className="case-study-hero-section px-4 sm:px-6 md:px-12 lg:px-16">
+      <MediaBox
+        type={mediaType}
+        src={mediaSrc}
+        poster={mediaPoster}
+        videoCaption={videoCaption}
+        showVideoCaption={showVideoCaption}
+      />
+      <div className="max-w-[1144px] mx-auto case-study-hero-content-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,14 +70,9 @@ export function CaseStudyHero({
 
           <div className="case-hero-description">
             {descriptionLink ? (
-              <>
-                <p className="case-hero-description-text">
-                  <div className="hero-description-link">
-                    <strong>{descriptionLink.label}</strong>
-                  </div>
-                </p>
-                <br />
-              </>
+              <p className="case-hero-description-text hero-description-link">
+                <strong>{descriptionLink.label}</strong>
+              </p>
             ) : (
               <p className="case-hero-description-text">{description}</p>
             )}

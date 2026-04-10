@@ -62,9 +62,9 @@ export function JourneyScrollSection({ steps }: JourneyScrollSectionProps) {
           <div style={{ padding: '24px' }}>
             <h4
               style={{
-                fontSize: '18px',
+                fontSize: 'var(--type-l4)',
                 fontWeight: 600,
-                color: '#000000',
+                color: 'var(--ds-text-primary)',
                 marginBottom: '16px'
               }}
             >
@@ -89,7 +89,7 @@ export function JourneyScrollSection({ steps }: JourneyScrollSectionProps) {
                     backgroundColor: '#94C9FF'
                   }}
                 />
-                <span style={{ fontSize: '13px', color: '#666666' }}>Before: {step.tempBefore}°C</span>
+                <span style={{ fontSize: 'var(--type-l2)', color: 'var(--ds-text-secondary)' }}>Before: {step.tempBefore}°C</span>
               </div>
               <div
                 style={{
@@ -106,7 +106,7 @@ export function JourneyScrollSection({ steps }: JourneyScrollSectionProps) {
                     backgroundColor: '#FFB394'
                   }}
                 />
-                <span style={{ fontSize: '13px', color: '#666666' }}>After: {step.tempAfter}°C</span>
+                <span style={{ fontSize: 'var(--type-l2)', color: 'var(--ds-text-secondary)' }}>After: {step.tempAfter}°C</span>
               </div>
             </div>
 
@@ -122,7 +122,7 @@ export function JourneyScrollSection({ steps }: JourneyScrollSectionProps) {
               >
                 <p
                   style={{
-                    fontSize: '14px',
+                    fontSize: 'var(--type-l2)',
                     fontStyle: 'italic',
                     color: '#333333',
                     lineHeight: '1.6'

@@ -31,15 +31,15 @@ export function TakeoutMapSection({
         marginBottom: '40px'
       }}>
         <h3 style={{
-          color: '#000000',
-          fontSize: '32px',
+          color: 'var(--ds-text-primary)',
+          fontSize: 'var(--type-l5)',
           marginBottom: '20px'
         }}>
           {title}
         </h3>
         <p style={{
-          color: '#666666',
-          fontSize: '15px',
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           maxWidth: '900px',
           margin: '0 auto',
@@ -99,7 +99,7 @@ export function TakeoutMapSection({
       >
         <p style={{
           color: '#482D18',
-          fontSize: '15px',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           textAlign: 'center',
           margin: 0,

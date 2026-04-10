@@ -6,6 +6,7 @@ import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { ArrowRight, Thermometer, Wind, Heart, Zap, Users, Activity, Layers, MessageCircle, AlertCircle, Lightbulb } from 'lucide-react';
+import { WordBackdropDecor } from '../../components/vector-decor';
 
 const heroImage = 'https://cdn.builder.io/api/v1/image/assets%2F46b2761d61834692828a7f7e644854fc%2Febad1e3d1c1241e789cd0daeabbe07d6';
 import contextImage from 'figma:asset/d4bf212ef865fe4182e7ced9ce71b8bf36c22642.png';
@@ -58,11 +59,11 @@ export function HuuuuuCaseStudy() {
   // Styles
   const styles = {
     sectionPaddingBottom: '160px',
-    headingH1: { fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 400, letterSpacing: '-0.3px', color: '#1A1A1A', lineHeight: '1.2', marginBottom: '16px' },
-    headingH2: { fontSize: '32px', fontWeight: 400, color: '#000000', marginBottom: '60px' },
-    headingH3: { fontSize: '24px', fontWeight: 500, color: '#000000', marginBottom: '24px' },
-    bodyText: { fontSize: '16.5px', fontWeight: 400, lineHeight: '1.55', color: '#4A4A4A', marginBottom: '20px' },
-    captionText: { fontSize: '14px', fontWeight: 350, lineHeight: '1.45', color: '#666666', marginTop: '12px' },
+    headingH1: { fontSize: 'var(--ds-text-display)', fontWeight: 400, letterSpacing: '-0.3px', color: '#1A1A1A', lineHeight: '1.2', marginBottom: '16px' },
+    headingH2: { fontSize: 'var(--type-l5)', fontWeight: 400, color: '#000000', marginBottom: '60px' },
+    headingH3: { fontSize: 'var(--type-l4)', fontWeight: 500, color: '#000000', marginBottom: '24px' },
+    bodyText: { fontSize: 'var(--type-l3)', fontWeight: 400, lineHeight: '1.55', color: '#4A4A4A', marginBottom: '20px' },
+    captionText: { fontSize: 'var(--type-l2)', fontWeight: 350, lineHeight: '1.45', color: '#666666', marginTop: '12px' },
     cardSurface: {
       backgroundColor: '#FFFFFF',
       borderRadius: '16px',
@@ -108,7 +109,10 @@ export function HuuuuuCaseStudy() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #FAF8F4 0%, #FFFFFF 100%)' }}>
+    <div
+      className="case-study-page case-study-page--huuuuu min-h-screen"
+      style={{ background: 'linear-gradient(to bottom, #FAF8F4 0%, #FFFFFF 100%)' }}
+    >
       <Navigation />
 
       <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-24 md:pb-32 px-4 sm:px-6 md:px-8 lg:px-16">
@@ -143,16 +147,16 @@ export function HuuuuuCaseStudy() {
               Huuuuu!
             </h1>
 
-            <p style={{ color: '#666666', fontSize: '20px', fontWeight: 400, lineHeight: '1.6', marginBottom: '40px', maxWidth: '800px' }}>
-              A breath-powered glove that turns a private gesture into warmth, agency, and a shared reminder that comfort is not neutral.
+            <p style={{ color: '#666666', fontSize: 'var(--type-l4)', fontWeight: 400, lineHeight: '1.6', marginBottom: '40px', maxWidth: '800px' }}>
+              A <WordBackdropDecor vector="love">breath-powered</WordBackdropDecor> glove that turns a private gesture into warmth, agency, and a shared reminder that comfort is not neutral.
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '32px' }}>
-              <span style={{ padding: '8px 16px', backgroundColor: '#B3B2FF', color: '#FFFFFF', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Design</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Arduino · Wearable · IoT</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Interaction Designer</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>10 Days</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Gender Equity · Social Design</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#B3B2FF', color: '#FFFFFF', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Design</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Arduino · Wearable · IoT</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Interaction Designer</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>10 Days</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Gender Equity · Social Design</span>
             </div>
           </motion.div>
         </div>
@@ -192,9 +196,9 @@ export function HuuuuuCaseStudy() {
                     style={styles.cardSurface}
                   >
                     <AlertCircle color={styles.accentColor} className="mb-4" />
-                    <h3 style={{ fontSize: '18px', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Challenge</h3> {/* Matched H3 style */}
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>Office temperatures still follow a male metabolic model.</p>
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', margin: 0 }}>Women feel colder—not because they’re “sensitive”—but because the system was never calibrated for them.</p>
+                    <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Challenge</h3> {/* Matched H3 style */}
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>Office temperatures still follow a male metabolic model.</p>
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', margin: 0 }}>Women feel colder—not because they’re “sensitive”—but because the system was never calibrated for them.</p>
                   </motion.div>
 
                   {/* Insight */}
@@ -206,9 +210,9 @@ export function HuuuuuCaseStudy() {
                     style={styles.cardSurface}
                   >
                     <Lightbulb color={styles.accentColor} className="mb-4" />
-                    <h3 style={{ fontSize: '18px', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Insight</h3>
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>Cold is not a personal flaw.</p>
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', margin: 0 }}>It’s infrastructure choosing one body over another.</p>
+                    <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Insight</h3>
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>Cold is not a personal flaw.</p>
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', margin: 0 }}>It’s infrastructure choosing one body over another.</p>
                 </motion.div>
 
                   {/* Solution */}
@@ -220,10 +224,10 @@ export function HuuuuuCaseStudy() {
                     style={styles.cardSurface}
                   >
                     <Wind color={styles.accentColor} className="mb-4" />
-                    <h3 style={{ fontSize: '18px', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Solution</h3>
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>A glove that warms when you breathe into your hands.</p>
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>Quiet. Natural. Dignity-preserving.</p>
-                    <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#666', margin: 0, fontWeight: 500 }}>A gesture you already make—amplified.</p>
+                    <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Solution</h3>
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>A glove that warms when you breathe into your hands.</p>
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', marginBottom: '12px' }}>Quiet. Natural. Dignity-preserving.</p>
+                    <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#666', margin: 0, fontWeight: 500 }}>A gesture you already make—amplified.</p>
                 </motion.div>
 
                   {/* Impact */}
@@ -235,7 +239,7 @@ export function HuuuuuCaseStudy() {
                     style={styles.cardSurface}
                   >
                     <Zap color={styles.accentColor} className="mb-4" />
-                    <h3 style={{ fontSize: '18px', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Impact</h3>
+                    <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#1A1A1A', marginBottom: '12px' }}>Impact</h3>
                     <ul className="space-y-2">
                       <li className="flex items-center gap-2 text-[15px] text-gray-600"><ArrowRight size={14} /> Warmth becomes agency.</li>
                       <li className="flex items-center gap-2 text-[15px] text-gray-600"><ArrowRight size={14} /> Data becomes visibility.</li>
@@ -262,10 +266,10 @@ export function HuuuuuCaseStudy() {
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     <div>
-                      <p style={{ fontSize: '20px', fontWeight: 500, color: '#E0E0E0', lineHeight: '1.6', marginBottom: '24px' }}>
+                      <p style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#E0E0E0', lineHeight: '1.6', marginBottom: '24px' }}>
                         “Universal comfort” is often just “default male comfort.”
                       </p>
-                      <p style={{ fontSize: '17px', color: '#B0B0B0', marginBottom: '16px' }}>
+                      <p style={{ fontSize: 'var(--type-l3)', color: '#B0B0B0', marginBottom: '16px' }}>
                         Women adapt daily:
                       </p>
                       <ul className="space-y-3 mb-8">
@@ -282,7 +286,7 @@ export function HuuuuuCaseStudy() {
                           </motion.li>
                         ))}
                       </ul>
-                      <p style={{ fontSize: '18px', fontWeight: 500, color: '#FFFFFF' }}>
+                      <p style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#FFFFFF' }}>
                         Thermal discomfort is accumulated evidence that the environment wasn’t designed for you.
                       </p>
                     </div>
@@ -322,10 +326,10 @@ export function HuuuuuCaseStudy() {
                   transition={{ duration: 0.8 }}
                    className="text-center max-w-[700px] mx-auto mb-16"
                  >
-                   <h3 style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999', marginBottom: '24px' }}>
+                   <h3 style={{ fontSize: 'var(--type-l2)', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#999', marginBottom: '24px' }}>
                      How Might We
                    </h3>
-                   <p style={{ fontSize: '32px', fontWeight: 500, lineHeight: '1.4', color: '#1A1A1A' }}>
+                   <p style={{ fontSize: 'var(--type-l5)', fontWeight: 500, lineHeight: '1.4', color: '#1A1A1A' }}>
                      How might we give warmth back its dignity—and turn a quiet gesture into shared recognition?
                   </p>
                 </motion.div>
@@ -348,7 +352,7 @@ export function HuuuuuCaseStudy() {
                        <div className="mx-auto w-12 h-12 flex items-center justify-center bg-[#F5F5F5] rounded-full mb-4">
                          <item.icon size={20} color="#1A1A1A" />
                        </div>
-                       <h4 style={{ fontWeight: 600, fontSize: '18px', marginBottom: '8px' }}>{item.title}</h4>
+                       <h4 style={{ fontWeight: 600, fontSize: 'var(--type-l4)', marginBottom: '8px' }}>{item.title}</h4>
                        <p style={styles.captionText}>{item.text}</p>
                 </motion.div>
                    ))}
@@ -382,7 +386,7 @@ export function HuuuuuCaseStudy() {
                         style={styles.floatingCard}
                 >
                         <div className="text-xs font-bold tracking-wider text-[#B3B2FF] uppercase mb-2">{step.time}</div>
-                        <h4 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '8px' }}>{step.title}</h4>
+                        <h4 style={{ fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '8px' }}>{step.title}</h4>
                         <p style={styles.bodyText}>{step.desc}</p>
                 </motion.div>
                     ))}
@@ -395,7 +399,7 @@ export function HuuuuuCaseStudy() {
                   viewport={{ once: true }}
                   style={{ ...styles.imageCard, marginTop: '40px', borderLeft: '4px solid #B3B2FF' }}
                 >
-                  <p style={{ fontSize: '24px', fontStyle: 'italic', color: '#4A4A4A', textAlign: 'center', margin: '20px 0' }}>
+                  <p style={{ fontSize: 'var(--type-l4)', fontStyle: 'italic', color: '#4A4A4A', textAlign: 'center', margin: '20px 0' }}>
                     “I don’t have to apologize for being cold anymore.”
                   </p>
                 </motion.div>
@@ -447,7 +451,7 @@ export function HuuuuuCaseStudy() {
                   viewport={{ once: true }}
                 >
                   <h2 style={styles.headingH2}>System Integration</h2>
-                  <h3 style={{ ...styles.headingH3, fontSize: '24px', marginBottom: '40px' }}>Breath → Heat → Data → Solidarity</h3>
+                  <h3 style={{ ...styles.headingH3, fontSize: 'var(--type-l4)', marginBottom: '40px' }}>Breath → Heat → Data → Solidarity</h3>
 
                   <motion.div style={{ y: systemParallax }} className="mb-12">
                     <div style={styles.imageCard}>
@@ -492,7 +496,7 @@ export function HuuuuuCaseStudy() {
                         borderRadius: '2px',
                         boxShadow: '0 2px 8px rgba(179, 178, 255, 0.3)'
                       }}></div>
-                      <h3 style={{ ...styles.headingH3, marginBottom: 0, fontSize: '28px' }}>App Showcase</h3>
+                      <h3 style={{ ...styles.headingH3, marginBottom: 0, fontSize: 'var(--type-l5)' }}>App Showcase</h3>
                     </motion.div>
 
                     {/* iPhone Mockup Showcase */}
@@ -687,7 +691,7 @@ export function HuuuuuCaseStudy() {
                                     borderRadius: '50%',
                                     width: '40px',
                                     height: '40px',
-                                    fontSize: '24px',
+                                    fontSize: 'var(--type-l4)',
                                     cursor: 'pointer',
                                     display: 'flex',
                                     alignItems: 'center',
@@ -723,7 +727,7 @@ export function HuuuuuCaseStudy() {
                                   background: 'linear-gradient(135deg, rgba(179, 178, 255, 0.1) 0%, rgba(139, 127, 255, 0.05) 100%)',
                                   borderRadius: '20px',
                                   border: '1px solid rgba(179, 178, 255, 0.2)',
-                                  fontSize: '14px',
+                                  fontSize: 'var(--type-l2)',
                                   color: '#666',
                                   fontWeight: 500
                                 }}

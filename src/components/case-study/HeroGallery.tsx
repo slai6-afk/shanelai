@@ -101,7 +101,7 @@ export function HeroGallery({ images, autoPlayInterval = 6000 }: HeroGalleryProp
               color: '#ffffff',
               padding: '8px 16px',
               borderRadius: '8px',
-              fontSize: '13px',
+              fontSize: 'var(--type-l2)',
               fontWeight: 500,
               zIndex: 20,
               pointerEvents: 'none',
@@ -111,7 +111,7 @@ export function HeroGallery({ images, autoPlayInterval = 6000 }: HeroGalleryProp
               gap: '8px'
             }}
           >
-            <span style={{ fontSize: '16px' }}>⇆</span>
+            <span style={{ fontSize: 'var(--type-l3)' }}>⇆</span>
             <span>Drag to explore</span>
           </motion.div>
         )}
@@ -274,7 +274,7 @@ export function HeroGallery({ images, autoPlayInterval = 6000 }: HeroGalleryProp
           color: '#ffffff',
           padding: '6px 14px',
           borderRadius: '20px',
-          fontSize: '13px',
+          fontSize: 'var(--type-l2)',
           fontWeight: 500,
           zIndex: 20,
           backdropFilter: 'blur(8px)'

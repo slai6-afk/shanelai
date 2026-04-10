@@ -32,16 +32,16 @@ export function DesignLayoutSection({
       {/* Section Header */}
       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
         <h2 style={{
-          color: '#000000',
-          fontSize: '32px',
+          color: 'var(--ds-text-primary)',
+          fontSize: 'var(--type-l5)',
           fontWeight: 400,
           marginBottom: '16px'
         }}>
           Design Layout: From Concept to Prototype
         </h2>
         <p style={{
-          color: '#666666',
-          fontSize: '16px',
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           maxWidth: '720px',
           margin: '0 auto'
@@ -83,7 +83,7 @@ export function DesignLayoutSection({
               color: 'white',
               padding: '6px 16px',
               borderRadius: '20px',
-              fontSize: '12px',
+              fontSize: 'var(--type-l1)',
               fontFamily: 'MuseoModerno, sans-serif',
               fontWeight: 600,
               boxShadow: '0px 2px 8px rgba(172, 139, 255, 0.4)',
@@ -112,7 +112,7 @@ export function DesignLayoutSection({
             {conceptAnnotation && (
               <p style={{
                 color: '#AC8BFF',
-                fontSize: '13px',
+                fontSize: 'var(--type-l2)',
                 lineHeight: '1.6',
                 marginTop: '16px',
                 fontStyle: 'italic',
@@ -168,7 +168,7 @@ export function DesignLayoutSection({
               color: 'white',
               padding: '6px 16px',
               borderRadius: '20px',
-              fontSize: '12px',
+              fontSize: 'var(--type-l1)',
               fontFamily: 'MuseoModerno, sans-serif',
               fontWeight: 600,
               boxShadow: '0px 2px 8px rgba(229, 102, 65, 0.4)',
@@ -197,7 +197,7 @@ export function DesignLayoutSection({
             {prototypeAnnotation && (
               <p style={{
                 color: '#E56641',
-                fontSize: '13px',
+                fontSize: 'var(--type-l2)',
                 lineHeight: '1.6',
                 marginTop: '16px',
                 fontStyle: 'italic',
@@ -228,7 +228,7 @@ export function DesignLayoutSection({
         >
           <p style={{
             color: '#482D18',
-            fontSize: '15px',
+            fontSize: 'var(--type-l3)',
             lineHeight: '1.8',
             textAlign: 'center',
             margin: 0

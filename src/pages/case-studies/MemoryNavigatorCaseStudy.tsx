@@ -4,6 +4,7 @@ import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { TLDRCard } from '../../components/case-study/TLDRCard';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
+import { WordBackdropDecor } from '../../components/vector-decor';
 import { NextSteps } from '../../components/case-study/NextSteps';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
@@ -154,7 +155,7 @@ export function MemoryNavigatorCaseStudy() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="case-study-page case-study-page--memory min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
 
       <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-24 md:pb-32 px-4 sm:px-6 md:px-8 lg:px-16">
@@ -181,20 +182,20 @@ export function MemoryNavigatorCaseStudy() {
               />
             </div>
 
-            <h1 style={{ color: '#000000', fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
+            <h1 style={{ color: '#000000', fontSize: 'var(--ds-text-display)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
               Memory Navigator
             </h1>
 
-            <p style={{ color: '#666666', fontSize: '20px', fontWeight: 400, lineHeight: '1.6', marginBottom: '32px', maxWidth: '800px' }}>
-              MR cognitive training system using HoloLens for elderly users with mild cognitive impairment
+            <p style={{ color: '#666666', fontSize: 'var(--type-l4)', fontWeight: 400, lineHeight: '1.6', marginBottom: '32px', maxWidth: '800px' }}>
+              MR <WordBackdropDecor vector="highlight2">cognitive</WordBackdropDecor> training system using HoloLens for elderly users with mild cognitive impairment
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFA789', color: '#FFFFFF', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Design</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>MR · HoloLens · Unity</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Product Designer</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>10 Weeks</span>
-              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: '12px', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Unity Prototype · Clinical Trial Ready</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFA789', color: '#FFFFFF', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Design</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>MR · HoloLens · Unity</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Product Designer</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>10 Weeks</span>
+              <span style={{ padding: '8px 16px', backgroundColor: '#FFFFFF', color: '#000000', fontSize: 'var(--type-l1)', fontWeight: 500, letterSpacing: '0.02em', border: '1px solid rgba(0, 0, 0, 0.2)' }}>Unity Prototype · Clinical Trial Ready</span>
             </div>
           </div>
         </div>
@@ -257,7 +258,7 @@ export function MemoryNavigatorCaseStudy() {
               transition={{ duration: 0.7, ease: 'easeOut' }}
               style={{ 
                 color: '#FFFFFF', 
-                fontSize: 'clamp(28px, 3.5vw, 36px)', 
+                fontSize: 'var(--ds-text-title-lg)', 
                 fontWeight: 400, 
                 marginBottom: '32px',
                 textAlign: 'center'
@@ -279,7 +280,7 @@ export function MemoryNavigatorCaseStudy() {
                 transition={{ duration: 0.7, delay: 0.05, ease: 'easeOut' }}
                 style={{
                   color: '#FFFFFF',
-                  fontSize: 'clamp(18px, 2vw, 20px)',
+                  fontSize: 'var(--type-l3)',
                   fontWeight: 400,
                   lineHeight: '1.7',
                   marginBottom: '12px'
@@ -294,7 +295,7 @@ export function MemoryNavigatorCaseStudy() {
                 transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
                 style={{
                   color: '#FFFFFF',
-                  fontSize: 'clamp(18px, 2vw, 20px)',
+                  fontSize: 'var(--type-l3)',
                   fontWeight: 400,
                   lineHeight: '1.7'
                 }}
@@ -319,7 +320,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'clamp(36px, 4vw, 48px)',
+                  fontSize: 'var(--ds-text-display)',
                   fontWeight: 700,
                   color: '#FF7A00',
                   lineHeight: '1',
@@ -329,7 +330,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
                 <p style={{
                   color: '#FFFFFF',
-                  fontSize: '16px',
+                  fontSize: 'var(--type-l3)',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   margin: 0
@@ -346,7 +347,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'clamp(36px, 4vw, 48px)',
+                  fontSize: 'var(--ds-text-display)',
                   fontWeight: 700,
                   color: '#FF7A00',
                   lineHeight: '1',
@@ -356,7 +357,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
                 <p style={{
                   color: '#FFFFFF',
-                  fontSize: '16px',
+                  fontSize: 'var(--type-l3)',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   margin: 0
@@ -373,7 +374,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'clamp(36px, 4vw, 48px)',
+                  fontSize: 'var(--ds-text-display)',
                   fontWeight: 700,
                   color: '#FF7A00',
                   lineHeight: '1',
@@ -383,7 +384,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
                 <p style={{
                   color: '#FFFFFF',
-                  fontSize: '16px',
+                  fontSize: 'var(--type-l3)',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   margin: 0
@@ -400,7 +401,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'clamp(24px, 3vw, 32px)',
+                  fontSize: 'var(--ds-text-title)',
                   fontWeight: 600,
                   color: '#FFFFFF',
                   lineHeight: '1.2',
@@ -410,7 +411,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
                 <p style={{
                   color: '#FFFFFF',
-                  fontSize: '16px',
+                  fontSize: 'var(--type-l3)',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   margin: 0
@@ -436,7 +437,7 @@ export function MemoryNavigatorCaseStudy() {
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               <div id="background" style={{ marginBottom: '200px', position: 'relative' }}>
-                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '60px' }}>Background</motion.h2>
+                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '60px' }}>Background</motion.h2>
                 
                 <motion.div 
                   style={{ 
@@ -495,7 +496,7 @@ export function MemoryNavigatorCaseStudy() {
                   >
                     <p style={{
                               color: '#FFFFFF',
-                              fontSize: 'clamp(22px, 3vw, 28px)',
+                              fontSize: 'var(--ds-text-title)',
                               fontWeight: 300, // Light
                               lineHeight: '1.6',
                               letterSpacing: '0.02em'
@@ -519,7 +520,7 @@ export function MemoryNavigatorCaseStudy() {
                       >
                           <div style={{
                               color: '#FFFFFF',
-                              fontSize: 'clamp(48px, 5vw, 64px)', // Very large
+                              fontSize: 'var(--ds-text-display)',
                               fontWeight: 200, // Ultra light/thin
                               letterSpacing: '-0.02em',
                               marginBottom: '8px',
@@ -529,7 +530,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
                           <div style={{
                               color: 'rgba(255,255,255,0.7)',
-                              fontSize: '16px',
+                              fontSize: 'var(--type-l3)',
                               fontWeight: 400,
                               letterSpacing: '0.05em',
                               textTransform: 'uppercase'
@@ -542,7 +543,7 @@ export function MemoryNavigatorCaseStudy() {
               </div>
 
               <div id="discover" style={{ marginBottom: '200px' }}>
-                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '60px' }}>Discover</motion.h2>
+                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '60px' }}>Discover</motion.h2>
                 
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -550,7 +551,7 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8 }}
                   style={{ 
-                    fontSize: 'clamp(20px, 2.5vw, 24px)', 
+                    fontSize: 'var(--type-l4)', 
                     lineHeight: '1.6', 
                     color: '#333', 
                     marginBottom: '80px',
@@ -589,8 +590,8 @@ export function MemoryNavigatorCaseStudy() {
                         gap: '24px'
                       }}
                     >
-                      <span style={{ fontSize: '40px' }}>{card.icon}</span>
-                      <p style={{ fontSize: '20px', color: '#333', margin: 0, lineHeight: '1.5', fontWeight: 500 }}>{card.text}</p>
+                      <span style={{ fontSize: 'var(--type-l5)' }}>{card.icon}</span>
+                      <p style={{ fontSize: 'var(--type-l4)', color: '#333', margin: 0, lineHeight: '1.5', fontWeight: 500 }}>{card.text}</p>
                     </motion.div>
                   ))}
                   </div>
@@ -603,7 +604,7 @@ export function MemoryNavigatorCaseStudy() {
                   style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}
                 >
                   <p style={{ 
-                    fontSize: 'clamp(24px, 3vw, 32px)', 
+                    fontSize: 'var(--ds-text-title)', 
                     fontWeight: 500, 
                     lineHeight: '1.4', 
                     color: '#000' 
@@ -654,7 +655,7 @@ export function MemoryNavigatorCaseStudy() {
                      viewport={{ once: true }} 
                      style={{ 
                        color: '#000000', 
-                       fontSize: '32px', 
+                       fontSize: 'var(--type-l5)', 
                        fontWeight: 400, 
                        marginBottom: '60px' 
                      }}
@@ -729,7 +730,7 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }} 
                   style={{ 
                     color: '#000000', 
-                    fontSize: '32px', 
+                    fontSize: 'var(--type-l5)', 
                     fontWeight: 400, 
                     marginBottom: '60px' 
                   }}
@@ -757,7 +758,7 @@ export function MemoryNavigatorCaseStudy() {
                       transition={{ duration: 0.8 }}
                       style={{ maxWidth: '900px', margin: '0 auto' }}
                     >
-                      <h3 style={{ fontSize: '24px', fontWeight: 500, marginBottom: '40px', color: '#FFFFFF' }}>
+                      <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, marginBottom: '40px', color: '#FFFFFF' }}>
                         ✨ What’s breaking down
                       </h3>
 
@@ -783,10 +784,10 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.15 * (i + 1) }}
                           >
-                            <h3 style={{ fontSize: '20px', fontWeight: 500, color: '#FFFFFF', marginBottom: '8px' }}>
+                            <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, color: '#FFFFFF', marginBottom: '8px' }}>
                               {insight.title}
                             </h3>
-                            <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#CFCFCF', margin: 0, maxWidth: '650px' }}>
+                            <p style={{ fontSize: 'var(--type-l3)', lineHeight: '1.6', color: '#CFCFCF', margin: 0, maxWidth: '650px' }}>
                               {insight.text}
                   </p>
                 </motion.div>
@@ -799,7 +800,7 @@ export function MemoryNavigatorCaseStudy() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.6 }}
                       >
-                        <p style={{ fontSize: '24px', fontWeight: 600, color: '#FFFFFF', lineHeight: '1.4' }}>
+                        <p style={{ fontSize: 'var(--type-l4)', fontWeight: 600, color: '#FFFFFF', lineHeight: '1.4' }}>
                           🎯 We need a way to make everyday cognitive change visible—without making seniors feel watched.
                   </p>
                 </motion.div>
@@ -815,7 +816,7 @@ export function MemoryNavigatorCaseStudy() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                   >
-                    <h3 style={{ fontSize: '32px', fontWeight: 500, marginBottom: '16px', color: '#000' }}>
+                    <h3 style={{ fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '16px', color: '#000' }}>
                       What the system actually needs to solve
                     </h3>
                     <div style={{ maxWidth: '800px', margin: '0 auto 40px' }}>
@@ -825,7 +826,7 @@ export function MemoryNavigatorCaseStudy() {
                         style={{ width: '100%', height: 'auto', display: 'block' }}
                       />
                     </div>
-                    <p style={{ fontSize: '20px', color: '#666', margin: 0 }}>
+                    <p style={{ fontSize: 'var(--type-l4)', color: '#666', margin: 0 }}>
                       A hidden behavioral gap between seniors, caregivers, and providers.
                   </p>
                 </motion.div>
@@ -858,7 +859,7 @@ export function MemoryNavigatorCaseStudy() {
                           padding: '24px',
                           backgroundColor: '#F9F9F9',
                     borderRadius: '12px',
-                          fontSize: '18px',
+                          fontSize: 'var(--type-l4)',
                           color: '#333',
                           fontWeight: 500,
                           textAlign: 'center'
@@ -878,7 +879,7 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }}
                   style={{
                     color: '#000000', 
-                    fontSize: '32px', 
+                    fontSize: 'var(--type-l5)', 
                     fontWeight: 400, 
                     marginBottom: '60px' 
                   }}
@@ -894,7 +895,7 @@ export function MemoryNavigatorCaseStudy() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                   >
-                    <h3 style={{ fontSize: '24px', fontWeight: 500, marginBottom: '48px', color: '#000', maxWidth: '800px', margin: '0 auto 48px' }}>
+                    <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, marginBottom: '48px', color: '#000', maxWidth: '800px', margin: '0 auto 48px' }}>
                       A connected ecosystem turning everyday actions into shared insight.
                     </h3>
                     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
@@ -909,7 +910,7 @@ export function MemoryNavigatorCaseStudy() {
 
                 {/* BLOCK 5: SYSTEM FLOW */}
                 <div style={{ marginBottom: '160px', textAlign: 'center' }}>
-                  <h3 style={{ fontSize: '24px', fontWeight: 500, marginBottom: '24px', color: '#000' }}>
+                  <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, marginBottom: '24px', color: '#000' }}>
                     How it works
                   </h3>
 
@@ -939,7 +940,7 @@ export function MemoryNavigatorCaseStudy() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 * i }}
-                        style={{ fontSize: '20px', color: '#333', margin: 0 }}
+                        style={{ fontSize: 'var(--type-l4)', color: '#333', margin: 0 }}
                       >
                         {line}
                       </motion.p>
@@ -965,7 +966,7 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                   style={{
-                          fontSize: 'clamp(40px, 5vw, 64px)', // 54-64px
+                          fontSize: 'var(--ds-text-title-lg)',
                           fontWeight: 300, // 300-400
                           color: '#000',
                           lineHeight: '1.1',
@@ -980,7 +981,7 @@ export function MemoryNavigatorCaseStudy() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ 
-                          fontSize: '22px', // 20-22px
+                          fontSize: 'var(--type-l4)', // section subtitle
                           color: '#666', // low-contrast
                           maxWidth: '800px',
                           margin: '0 auto 32px',
@@ -997,7 +998,7 @@ export function MemoryNavigatorCaseStudy() {
                             backgroundColor: 'rgba(255,255,255,0.6)',
                             border: '1px solid rgba(0,0,0,0.05)',
                             borderRadius: '100px',
-                    fontSize: '14px',
+                    fontSize: 'var(--type-l2)',
                             color: '#555'
                           }}>
                             {tag}
@@ -1048,8 +1049,8 @@ export function MemoryNavigatorCaseStudy() {
                   transition={{ duration: 0.6 }}
                     >
                       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: '40px', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Scanning</h4>
-                        <p style={{ fontSize: '18px', color: '#888', fontWeight: 300 }}>Put on the headset → Enter Memory Navigator → Locate by QR code</p>
+                        <h4 style={{ fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Scanning</h4>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 300 }}>Put on the headset → Enter Memory Navigator → Locate by QR code</p>
                 </div>
 
                       <motion.div
@@ -1065,7 +1066,7 @@ export function MemoryNavigatorCaseStudy() {
                         <ImageWithFallback src={scanningCard} alt="Scanning Task" style={{ width: '100%', height: 'auto', display: 'block' }} />
                 </motion.div>
 
-                      <p style={{ textAlign: 'center', fontSize: '18px', color: '#555', fontStyle: 'italic' }}>
+                      <p style={{ textAlign: 'center', fontSize: 'var(--type-l4)', color: '#555', fontStyle: 'italic' }}>
                         Tactile grounding makes MR feel safe, predictable, and intuitive.
                   </p>
                 </motion.div>
@@ -1078,8 +1079,8 @@ export function MemoryNavigatorCaseStudy() {
                       transition={{ duration: 0.6 }}
                     >
                       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: '40px', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Friend Hunt</h4>
-                        <p style={{ fontSize: '18px', color: '#888', fontWeight: 300 }}>Try to find friends’ addresses → Guided hints → Celebrate small wins</p>
+                        <h4 style={{ fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Friend Hunt</h4>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 300 }}>Try to find friends’ addresses → Guided hints → Celebrate small wins</p>
                       </div>
                       
                       <motion.div
@@ -1095,7 +1096,7 @@ export function MemoryNavigatorCaseStudy() {
                         <ImageWithFallback src={friendHuntCard} alt="Friend Hunt Task" style={{ width: '100%', height: 'auto', display: 'block' }} />
                       </motion.div>
                       
-                      <p style={{ textAlign: 'center', fontSize: '18px', color: '#555', fontStyle: 'italic' }}>
+                      <p style={{ textAlign: 'center', fontSize: 'var(--type-l4)', color: '#555', fontStyle: 'italic' }}>
                         A meaningful social goal turns navigation practice into a warm, human moment.
                       </p>
                 </motion.div>
@@ -1108,8 +1109,8 @@ export function MemoryNavigatorCaseStudy() {
                   transition={{ duration: 0.6 }}
                     >
                       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: '40px', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Essential Explorer</h4>
-                        <p style={{ fontSize: '18px', color: '#888', fontWeight: 300 }}>Tap on locations → Learn what they offer → Build daily confidence</p>
+                        <h4 style={{ fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Essential Explorer</h4>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 300 }}>Tap on locations → Learn what they offer → Build daily confidence</p>
                       </div>
                       
                       <motion.div
@@ -1125,7 +1126,7 @@ export function MemoryNavigatorCaseStudy() {
                         <ImageWithFallback src={essentialExplorerCard} alt="Essential Explorer Task" style={{ width: '100%', height: 'auto', display: 'block' }} />
                   </motion.div>
 
-                      <p style={{ textAlign: 'center', fontSize: '18px', color: '#555', fontStyle: 'italic' }}>
+                      <p style={{ textAlign: 'center', fontSize: 'var(--type-l4)', color: '#555', fontStyle: 'italic' }}>
                         Understanding nearby essentials supports safety, logic, and independence.
                   </p>
                 </motion.div>
@@ -1151,10 +1152,10 @@ export function MemoryNavigatorCaseStudy() {
                       viewport={{ once: true }}
                       transition={{ duration: 1.0 }}
                     >
-                      <h3 style={{ fontSize: '36px', fontWeight: 400, marginBottom: '32px', color: '#000' }}>
+                      <h3 style={{ fontSize: 'var(--type-l6)', fontWeight: 400, marginBottom: '32px', color: '#000' }}>
                         Designed to support — not overwhelm.
                   </h3>
-                      <p style={{ fontSize: '20px', lineHeight: '1.6', color: '#555', maxWidth: '700px', margin: '0 auto 48px' }}>
+                      <p style={{ fontSize: 'var(--type-l4)', lineHeight: '1.6', color: '#555', maxWidth: '700px', margin: '0 auto 48px' }}>
                         The tasks stay intentionally quiet.<br/>
                         They encourage seniors to look, reach, plan, and understand —<br/>
                         the same cognitive actions they rely on every day,<br/>
@@ -1168,7 +1169,7 @@ export function MemoryNavigatorCaseStudy() {
                             backgroundColor: '#FFF',
                             border: '1px solid #EAEAEA',
                             borderRadius: '100px',
-                            fontSize: '14px',
+                            fontSize: 'var(--type-l2)',
                             color: '#666'
                           }}>
                             {tag}
@@ -1198,7 +1199,7 @@ export function MemoryNavigatorCaseStudy() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                         style={{
-                          fontSize: '42px', 
+                          fontSize: 'var(--type-l6)', 
                           fontWeight: 500, 
                           color: '#000', 
                           marginBottom: '16px' 
@@ -1212,7 +1213,7 @@ export function MemoryNavigatorCaseStudy() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ 
-                          fontSize: '18px', 
+                          fontSize: 'var(--type-l4)', 
                           color: '#666', 
                           fontWeight: 300
                         }}
@@ -1245,7 +1246,7 @@ export function MemoryNavigatorCaseStudy() {
                           style={{ width: '100%', height: 'auto', display: 'block' }} 
                         />
                       </motion.div>
-                      <p style={{ fontSize: '16px', color: '#8A8A9B' }}>
+                      <p style={{ fontSize: 'var(--type-l3)', color: '#8A8A9B' }}>
                         Grounded in real routines, not dashboards.
                   </p>
                 </motion.div>
@@ -1259,10 +1260,10 @@ export function MemoryNavigatorCaseStudy() {
                       style={{ marginBottom: '120px', textAlign: 'center' }}
                     >
                       <div style={{ marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: '36px', fontWeight: 500, marginBottom: '12px', color: '#000' }}>
+                        <h4 style={{ fontSize: 'var(--type-l6)', fontWeight: 500, marginBottom: '12px', color: '#000' }}>
                           Understanding each person’s rhythm
                         </h4>
-                        <p style={{ fontSize: '18px', color: '#666', fontWeight: 300 }}>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#666', fontWeight: 300 }}>
                           Subtle shifts in movement, clarity, and memory — shown gently.
                         </p>
                       </div>
@@ -1283,7 +1284,7 @@ export function MemoryNavigatorCaseStudy() {
                           style={{ width: '100%', height: 'auto', display: 'block' }} 
                         />
                       </motion.div>
-                      <p style={{ fontSize: '16px', color: '#8A8A9B' }}>
+                      <p style={{ fontSize: 'var(--type-l3)', color: '#8A8A9B' }}>
                         A calm overview designed for quick, human judgment.
                       </p>
                     </motion.div>
@@ -1315,7 +1316,7 @@ export function MemoryNavigatorCaseStudy() {
                           style={{ width: '100%', display: 'block', height: 'auto' }} 
                         />
                       </motion.div>
-                      <p style={{ fontSize: '16px', color: '#8A8A9B' }}>
+                      <p style={{ fontSize: 'var(--type-l3)', color: '#8A8A9B' }}>
                         Lightweight support for everyday caregiving.
                       </p>
                     </motion.div>
@@ -1328,7 +1329,7 @@ export function MemoryNavigatorCaseStudy() {
                       transition={{ duration: 1.0 }}
                       style={{ textAlign: 'center' }}
                     >
-                      <p style={{ fontSize: '14px', color: '#AAA', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      <p style={{ fontSize: 'var(--type-l2)', color: '#AAA', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                         Designed to guide, not to monitor.
                       </p>
                     </motion.div>
@@ -1338,10 +1339,10 @@ export function MemoryNavigatorCaseStudy() {
               </div>
 
               <div id="develop" style={{ marginBottom: '80px' }}>
-                <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: '24px', fontWeight: 500, marginBottom: '32px' }}>Prototyping & Testing</motion.h3>
+                <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l4)', fontWeight: 500, marginBottom: '32px' }}>Prototyping & Testing</motion.h3>
                 
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '40px' }}>
+                  <p style={{ color: '#666666', fontSize: 'var(--type-l3)', lineHeight: '1.8', marginBottom: '40px' }}>
                     After developing our Unity prototype, we invited participants from diverse backgrounds — including professors, students, and seniors — to experience our immersive media lab demo. Their feedback informed design refinement and usability improvement for older adults.
                   </p>
                 </motion.div>
@@ -1383,7 +1384,7 @@ export function MemoryNavigatorCaseStudy() {
                       </div>
                       <figcaption style={{
                         color: '#666666',
-                        fontSize: '13px',
+                        fontSize: 'var(--type-l2)',
                         fontStyle: 'italic',
                         marginTop: '12px',
                         textAlign: 'center',
@@ -1423,7 +1424,7 @@ export function MemoryNavigatorCaseStudy() {
                       </div>
                       <figcaption style={{
                         color: '#666666',
-                        fontSize: '13px',
+                        fontSize: 'var(--type-l2)',
                         fontStyle: 'italic',
                         marginTop: '12px',
                         textAlign: 'center',
@@ -1464,7 +1465,7 @@ export function MemoryNavigatorCaseStudy() {
                     </div>
                     <figcaption style={{
                       color: '#666666',
-                      fontSize: '13px',
+                      fontSize: 'var(--type-l2)',
                       fontStyle: 'italic',
                       marginTop: '12px',
                       textAlign: 'center',
@@ -1490,7 +1491,7 @@ export function MemoryNavigatorCaseStudy() {
                 >
                   <h4 style={{
                     color: '#482D18',
-                    fontSize: '18px',
+                    fontSize: 'var(--type-l4)',
                     fontWeight: 600,
                     marginBottom: '24px'
                   }}>
@@ -1500,33 +1501,33 @@ export function MemoryNavigatorCaseStudy() {
                     <div style={{ display: 'flex', gap: '16px' }}>
                       <span style={{
                         color: '#E56641',
-                        fontSize: '18px',
+                        fontSize: 'var(--type-l4)',
                         fontWeight: 600,
                         minWidth: '28px'
                       }}>1.</span>
-                      <p style={{ color: '#3B2E24', fontSize: '15px', lineHeight: '1.7', margin: 0 }}>
+                      <p style={{ color: '#3B2E24', fontSize: 'var(--type-l3)', lineHeight: '1.7', margin: 0 }}>
                         Designing systems for seniors must be respectful, avoiding preconceptions.
                       </p>
                     </div>
                     <div style={{ display: 'flex', gap: '16px' }}>
                       <span style={{
                         color: '#E56641',
-                        fontSize: '18px',
+                        fontSize: 'var(--type-l4)',
                         fontWeight: 600,
                         minWidth: '28px'
                       }}>2.</span>
-                      <p style={{ color: '#3B2E24', fontSize: '15px', lineHeight: '1.7', margin: 0 }}>
+                      <p style={{ color: '#3B2E24', fontSize: 'var(--type-l3)', lineHeight: '1.7', margin: 0 }}>
                         Prioritize usability for older adults — consider color contrast, interface visibility, and element scale.
                       </p>
                     </div>
                     <div style={{ display: 'flex', gap: '16px' }}>
                       <span style={{
                         color: '#E56641',
-                        fontSize: '18px',
+                        fontSize: 'var(--type-l4)',
                         fontWeight: 600,
                         minWidth: '28px'
                       }}>3.</span>
-                      <p style={{ color: '#3B2E24', fontSize: '15px', lineHeight: '1.7', margin: 0 }}>
+                      <p style={{ color: '#3B2E24', fontSize: 'var(--type-l3)', lineHeight: '1.7', margin: 0 }}>
                         Immersive experiences should empower, not exclude, those with limited mobility.
                       </p>
                     </div>
@@ -1535,15 +1536,15 @@ export function MemoryNavigatorCaseStudy() {
               </div>
 
               <div id="outcomes" style={{ marginBottom: '80px' }}>
-                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: '32px', fontWeight: 400, marginBottom: '24px' }}>Outcomes</motion.h2>
+                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '24px' }}>Outcomes</motion.h2>
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0, 0, 0, 0.08)', padding: '32px', marginBottom: '24px' }}>
-                  <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.8', marginBottom: '16px' }}>
+                  <p style={{ color: '#666666', fontSize: 'var(--type-l3)', lineHeight: '1.8', marginBottom: '16px' }}>
                     <strong style={{ color: '#000000' }}>Validation:</strong> Pilot study with 6 MCI patients showed 68% reduction in navigation errors and 40% faster task completion compared to baseline.
                   </p>
-                  <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.8', marginBottom: '16px' }}>
+                  <p style={{ color: '#666666', fontSize: 'var(--type-l3)', lineHeight: '1.8', marginBottom: '16px' }}>
                     <strong style={{ color: '#000000' }}>Academic Recognition:</strong> Presented at ACM CHI Student Research Competition 2024. Received honorable mention.
                   </p>
-                  <p style={{ color: '#666666', fontSize: '15px', lineHeight: '1.8', margin: 0 }}>
+                  <p style={{ color: '#666666', fontSize: 'var(--type-l3)', lineHeight: '1.8', margin: 0 }}>
                     <strong style={{ color: '#000000' }}>Clinical Interest:</strong> Cognitive Health Lab at Columbia expressed interest in expanded clinical trial (pending IRB approval).
                   </p>
                 </motion.div>
@@ -1559,10 +1560,10 @@ export function MemoryNavigatorCaseStudy() {
               </div>
 
               <div id="reflection" style={{ marginBottom: '80px' }}>
-                <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: '24px', fontWeight: 500, marginBottom: '24px' }}>Reflection</motion.h3>
+                <motion.h3 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l4)', fontWeight: 500, marginBottom: '24px' }}>Reflection</motion.h3>
                 
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-                  <p style={{ color: '#666666', fontSize: '16px', lineHeight: '1.8', marginBottom: '48px' }}>
+                  <p style={{ color: '#666666', fontSize: 'var(--type-l3)', lineHeight: '1.8', marginBottom: '48px' }}>
                     Testing with diverse participants — from seniors navigating cognitive changes to academic experts in immersive technology — helped me move beyond interface evaluation toward understanding emotional accessibility. These reflections shaped my growth as a designer committed to human-centered care.
                   </p>
                 </motion.div>
@@ -1591,13 +1592,13 @@ export function MemoryNavigatorCaseStudy() {
                     </div>
                     <h4 style={{
                       color: '#482D18',
-                      fontSize: '17px',
+                      fontSize: 'var(--type-l3)',
                       fontWeight: 600,
                       marginBottom: '12px'
                     }}>
                       Empathy as a Method
                     </h4>
-                    <p style={{ color: '#666666', fontSize: '14px', lineHeight: '1.7', margin: 0 }}>
+                    <p style={{ color: '#666666', fontSize: 'var(--type-l2)', lineHeight: '1.7', margin: 0 }}>
                       Observing seniors taught me to listen before designing — noticing not just their needs, but their rhythm and confidence.
                     </p>
                   </motion.div>
@@ -1620,13 +1621,13 @@ export function MemoryNavigatorCaseStudy() {
                     </div>
                     <h4 style={{
                       color: '#482D18',
-                      fontSize: '17px',
+                      fontSize: 'var(--type-l3)',
                       fontWeight: 600,
                       marginBottom: '12px'
                     }}>
                       Designing Across Touch and Cognition
                     </h4>
-                    <p style={{ color: '#666666', fontSize: '14px', lineHeight: '1.7', margin: 0 }}>
+                    <p style={{ color: '#666666', fontSize: 'var(--type-l2)', lineHeight: '1.7', margin: 0 }}>
                       Translating digital data into tangible, physical maps revealed how memory and emotion intertwine with interaction.
                     </p>
                   </motion.div>
@@ -1649,13 +1650,13 @@ export function MemoryNavigatorCaseStudy() {
                     </div>
                     <h4 style={{
                       color: '#482D18',
-                      fontSize: '17px',
+                      fontSize: 'var(--type-l3)',
                       fontWeight: 600,
                       marginBottom: '12px'
                     }}>
                       Redefining Accessibility
                     </h4>
-                    <p style={{ color: '#666666', fontSize: '14px', lineHeight: '1.7', margin: 0 }}>
+                    <p style={{ color: '#666666', fontSize: 'var(--type-l2)', lineHeight: '1.7', margin: 0 }}>
                       Accessibility is not just clarity of interface — it's dignity and independence. Design should empower, not protect.
                     </p>
                   </motion.div>
@@ -1685,7 +1686,7 @@ export function MemoryNavigatorCaseStudy() {
                   
                   <p style={{
                     color: '#795337',
-                    fontSize: '13px',
+                    fontSize: 'var(--type-l2)',
                     fontFamily: 'MuseoModerno, sans-serif',
                     fontWeight: 600,
                     letterSpacing: '0.05em',
@@ -1710,7 +1711,7 @@ export function MemoryNavigatorCaseStudy() {
                     }}>
                       <p style={{
                         color: '#E56641',
-                        fontSize: '15px',
+                        fontSize: 'var(--type-l3)',
                         fontWeight: 600,
                         marginBottom: '8px'
                       }}>
@@ -1718,7 +1719,7 @@ export function MemoryNavigatorCaseStudy() {
                       </p>
                       <p style={{
                         color: '#666666',
-                        fontSize: '13px',
+                        fontSize: 'var(--type-l2)',
                         lineHeight: '1.6',
                         margin: 0
                       }}>
@@ -1735,7 +1736,7 @@ export function MemoryNavigatorCaseStudy() {
                     }}>
                       <p style={{
                         color: '#ED964F',
-                        fontSize: '15px',
+                        fontSize: 'var(--type-l3)',
                         fontWeight: 600,
                         marginBottom: '8px'
                       }}>
@@ -1743,7 +1744,7 @@ export function MemoryNavigatorCaseStudy() {
                       </p>
                       <p style={{
                         color: '#666666',
-                        fontSize: '13px',
+                        fontSize: 'var(--type-l2)',
                         lineHeight: '1.6',
                         margin: 0
                       }}>
@@ -1760,7 +1761,7 @@ export function MemoryNavigatorCaseStudy() {
                     }}>
                       <p style={{
                         color: '#AC8BFF',
-                        fontSize: '15px',
+                        fontSize: 'var(--type-l3)',
                         fontWeight: 600,
                         marginBottom: '8px'
                       }}>
@@ -1768,7 +1769,7 @@ export function MemoryNavigatorCaseStudy() {
                       </p>
                       <p style={{
                         color: '#666666',
-                        fontSize: '13px',
+                        fontSize: 'var(--type-l2)',
                         lineHeight: '1.6',
                         margin: 0
                       }}>
@@ -1786,7 +1787,7 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }} 
                   style={{ 
                     color: '#000000', 
-                    fontSize: '24px', 
+                    fontSize: 'var(--type-l4)', 
                     fontWeight: 500, 
                     marginBottom: '32px' 
                   }}
@@ -1820,7 +1821,7 @@ export function MemoryNavigatorCaseStudy() {
                       <div style={{ marginBottom: '32px' }}>
                         <h3 style={{ 
                           color: '#000000', 
-                          fontSize: '16px', 
+                          fontSize: 'var(--type-l3)', 
                           fontWeight: 500, 
                           marginBottom: '12px',
                           letterSpacing: '0.02em'
@@ -1829,7 +1830,7 @@ export function MemoryNavigatorCaseStudy() {
                         </h3>
                         <p style={{ 
                           color: '#666666', 
-                          fontSize: '15px', 
+                          fontSize: 'var(--type-l3)', 
                           lineHeight: '1.8', 
                           margin: 0 
                         }}>
@@ -1841,7 +1842,7 @@ export function MemoryNavigatorCaseStudy() {
                       <div>
                         <h3 style={{ 
                           color: '#000000', 
-                          fontSize: '16px', 
+                          fontSize: 'var(--type-l3)', 
                           fontWeight: 500, 
                           marginBottom: '12px',
                           letterSpacing: '0.02em'
@@ -1850,7 +1851,7 @@ export function MemoryNavigatorCaseStudy() {
                         </h3>
                         <p style={{ 
                           color: '#666666', 
-                          fontSize: '15px', 
+                          fontSize: 'var(--type-l3)', 
                           lineHeight: '1.8', 
                           margin: 0 
                         }}>
@@ -1864,7 +1865,7 @@ export function MemoryNavigatorCaseStudy() {
                     <div>
                       <h3 style={{ 
                         color: '#000000', 
-                        fontSize: '16px', 
+                        fontSize: 'var(--type-l3)', 
                         fontWeight: 500, 
                         marginBottom: '12px',
                         letterSpacing: '0.02em'
@@ -1873,7 +1874,7 @@ export function MemoryNavigatorCaseStudy() {
                       </h3>
                       <p style={{ 
                         color: '#666666', 
-                        fontSize: '15px', 
+                        fontSize: 'var(--type-l3)', 
                         lineHeight: '1.8', 
                         margin: 0,
                         fontStyle: 'italic'

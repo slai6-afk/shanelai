@@ -48,6 +48,7 @@ export function InsightCard({
   if (number && content) {
     return (
       <motion.div
+        className="project-card-vector"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -58,17 +59,17 @@ export function InsightCard({
           transition: { duration: 0.3 }
         }}
         style={{
-          backgroundColor: '#FFFFFF',
-          border: '1px solid rgba(0, 0, 0, 0.08)',
+          backgroundColor: 'var(--ds-bg-surface)',
+          border: '1px solid var(--ds-border-subtle)',
           padding: '32px',
           borderRadius: '20px',
           boxShadow: 'var(--shadow-sm)'
         }}
       >
         <div style={{
-          fontSize: '48px',
+          fontSize: 'var(--type-l6)',
           fontWeight: 600,
-          color: '#ED964F',
+          color: 'var(--ds-accent-case)',
           marginBottom: '16px',
           lineHeight: '1'
         }}>
@@ -76,8 +77,8 @@ export function InsightCard({
         </div>
 
         <h3 style={{ 
-          color: '#000000',
-          fontSize: '20px',
+          color: 'var(--ds-text-primary)',
+          fontSize: 'var(--type-l4)',
           fontWeight: 500,
           marginBottom: '12px',
           lineHeight: '1.4'
@@ -86,8 +87,8 @@ export function InsightCard({
         </h3>
 
         <p style={{
-          color: '#666666',
-          fontSize: '15px',
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l3)',
           fontWeight: 400,
           lineHeight: '1.7'
         }}>
@@ -100,6 +101,7 @@ export function InsightCard({
   // Full card variant (with evidence, recommendation, impact)
   return (
     <motion.div
+      className="project-card-vector"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -110,8 +112,8 @@ export function InsightCard({
         transition: { duration: 0.3 }
       }}
       style={{
-        backgroundColor: '#FFFFFF',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
+        backgroundColor: 'var(--ds-bg-surface)',
+        border: '1px solid var(--ds-border-subtle)',
         padding: '32px',
         borderRadius: '20px',
         boxShadow: 'var(--shadow-sm)'
@@ -119,8 +121,8 @@ export function InsightCard({
     >
       {/* Title */}
       <h3 style={{ 
-        color: '#000000',
-        fontSize: '20px',
+        color: 'var(--ds-text-primary)',
+        fontSize: 'var(--type-l4)',
         fontWeight: 500,
         marginBottom: '20px',
         lineHeight: '1.4'
@@ -133,13 +135,13 @@ export function InsightCard({
         <div style={{ 
           marginBottom: '24px',
           padding: '16px',
-          backgroundColor: '#f5f5f5',
-          borderLeft: '3px solid #000000',
+          backgroundColor: 'var(--ds-bg-page)',
+          borderLeft: '3px solid var(--ds-text-primary)',
           borderRadius: '8px'
         }}>
           <p style={{
-            color: '#666666',
-            fontSize: '14px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             fontWeight: 400,
             fontStyle: 'italic',
             lineHeight: '1.6'
@@ -153,16 +155,16 @@ export function InsightCard({
       {recommendation && (
         <div style={{ marginBottom: '20px' }}>
           <p style={{
-            color: '#000000',
-            fontSize: '14px',
+            color: 'var(--ds-text-primary)',
+            fontSize: 'var(--type-l2)',
             fontWeight: 500,
             marginBottom: '8px'
           }}>
             Recommendation
           </p>
           <p style={{
-            color: '#666666',
-            fontSize: '14px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             fontWeight: 400,
             lineHeight: '1.6'
           }}>
@@ -175,16 +177,16 @@ export function InsightCard({
       {impact && (
         <div style={{ marginBottom: '20px' }}>
           <p style={{
-            color: '#000000',
-            fontSize: '14px',
+            color: 'var(--ds-text-primary)',
+            fontSize: 'var(--type-l2)',
             fontWeight: 500,
             marginBottom: '8px'
           }}>
             Expected Impact
           </p>
           <p style={{
-            color: '#666666',
-            fontSize: '14px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             fontWeight: 400,
             lineHeight: '1.6'
           }}>
@@ -202,8 +204,8 @@ export function InsightCard({
             gap: '4px',
             padding: '4px 12px',
             backgroundColor: confidenceColors[confidence],
-            color: '#FFFFFF',
-            fontSize: '11px',
+            color: 'var(--ds-bg-surface)',
+            fontSize: 'var(--type-l1)',
             fontWeight: 500,
             borderRadius: '12px',
             textTransform: 'uppercase',
@@ -219,8 +221,8 @@ export function InsightCard({
             gap: '4px',
             padding: '4px 12px',
             backgroundColor: effortColors[effort],
-            color: '#FFFFFF',
-            fontSize: '11px',
+            color: 'var(--ds-bg-surface)',
+            fontSize: 'var(--type-l1)',
             fontWeight: 500,
             borderRadius: '12px',
             textTransform: 'uppercase',
@@ -235,8 +237,8 @@ export function InsightCard({
             gap: '4px',
             padding: '4px 12px',
             backgroundColor: impactColors[impactLevel],
-            color: '#FFFFFF',
-            fontSize: '11px',
+            color: 'var(--ds-bg-surface)',
+            fontSize: 'var(--type-l1)',
             fontWeight: 500,
             borderRadius: '12px',
             textTransform: 'uppercase',

@@ -36,8 +36,8 @@ export function FigureWithCaption({ src, alt, caption, index = 0, imgStyle }: Fi
       </div>
       
       <figcaption style={{
-        color: '#666666',
-        fontSize: '13px',
+        color: 'var(--ds-text-secondary)',
+        fontSize: 'var(--type-l2)',
         fontWeight: 400,
         fontStyle: 'italic',
         marginTop: '12px',

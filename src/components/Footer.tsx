@@ -1,36 +1,48 @@
 import { motion } from 'motion/react';
 import { Mail, Linkedin, ArrowUp } from 'lucide-react';
 import { memo } from 'react';
+import { LINKEDIN_PROFILE_URL } from '../constants/links';
 
 export const Footer = memo(function Footer() {
   const socialLinks = [
     { icon: Mail, label: 'Email', href: 'mailto:shanshanlai160402@gmail.com' },
-    { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com/in/shanshan-lai' }
+    { icon: Linkedin, label: 'LinkedIn', href: LINKEDIN_PROFILE_URL }
   ];
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const iconStyle = {
+    color: 'var(--ds-footer-text)',
+    cursor: 'pointer' as const
+  };
+
   return (
-    <footer style={{ 
-      backgroundColor: '#0f0f0f',
-      borderTop: '1px solid rgba(255,255,255,0.08)'
-    }}>
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-16">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-          <motion.div
+    <footer
+      style={{
+        backgroundColor: 'var(--ds-footer-bg)',
+        borderTop: '1px solid var(--ds-footer-border)'
+      }}
+    >
+      <div className="site-footer__inner">
+        <div className="site-footer__row">
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.45 }}
+            style={{
+              color: 'var(--ds-footer-text-muted)',
+              fontSize: 'var(--ds-text-caption)',
+              fontWeight: 400,
+              margin: 0
+            }}
           >
-            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', fontWeight: 400 }}>
-              © 2025 Shane Lai
-            </p>
-          </motion.div>
+            © 2025 Shane Lai
+          </motion.p>
 
-          <div className="flex items-center gap-6">
+          <div className="site-footer__actions">
             {socialLinks.map((link, index) => {
               const Icon = link.icon;
               return (
@@ -42,49 +54,53 @@ export const Footer = memo(function Footer() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1, color: '#FF7300' }}
-                  style={{ color: 'rgba(255,255,255,0.8)', cursor: 'pointer' }}
+                  transition={{ duration: 0.45, delay: index * 0.05 }}
+                  whileHover={{ scale: 1.06, color: 'var(--ds-accent-warm)' }}
+                  className="inline-flex rounded-md p-2.5 -m-1.5 transition-colors"
+                  style={iconStyle}
                   aria-label={link.label}
                 >
-                  <Icon size={20} />
+                  <Icon size={18} strokeWidth={1.5} />
                 </motion.a>
               );
             })}
-            
-            {/* Divider */}
-            <div style={{ 
-              width: '1px', 
-              height: '20px', 
-              backgroundColor: 'rgba(255,255,255,0.2)' 
-            }} />
-            
-            {/* Back to Top Button */}
+
+            <div
+              className="hidden sm:block"
+              style={{
+                width: '1px',
+                height: '20px',
+                backgroundColor: 'var(--ds-border-subtle)'
+              }}
+              aria-hidden
+            />
+
             <motion.button
+              type="button"
               onClick={scrollToTop}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              whileHover={{ 
-                scale: 1.1, 
-                color: '#FF7300',
-                y: -2
+              transition={{ duration: 0.45, delay: 0.1 }}
+              whileHover={{
+                scale: 1.04,
+                color: 'var(--ds-accent-warm)'
               }}
-              style={{ 
-                color: 'rgba(255,255,255,0.8)',
+              className="rounded-md px-3 py-2.5 -my-1"
+              style={{
+                color: 'var(--ds-footer-text)',
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                padding: '4px',
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: '4px',
-                fontSize: '13px'
+                gap: '8px',
+                fontSize: 'var(--ds-text-caption)',
+                fontWeight: 400
               }}
               aria-label="Back to top"
             >
-              <ArrowUp size={18} />
+              <ArrowUp size={16} strokeWidth={1.75} />
               <span>Top</span>
             </motion.button>
           </div>

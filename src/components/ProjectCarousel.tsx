@@ -60,7 +60,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
   if (filteredSlides.length === 0) {
     return (
       <div className="text-center py-32">
-        <p style={{ color: '#666666', fontSize: '16px', fontWeight: 400 }}>
+        <p style={{ color: '#666666', fontSize: 'var(--type-l3)', fontWeight: 400 }}>
           No projects found in this category.
         </p>
       </div>
@@ -83,7 +83,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
               className="relative pb-3"
               style={{
                 color: isActive ? '#000000' : '#9ca3af',
-                fontSize: '16px',
+                fontSize: 'var(--type-l3)',
                 fontWeight: 500,
                 letterSpacing: '-0.02em'
               }}
@@ -173,7 +173,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
                           >
                             <p style={{ 
                               color: '#000000', 
-                              fontSize: '11px',
+                              fontSize: 'var(--type-l1)',
                               fontWeight: 500,
                               letterSpacing: '0.1em',
                               textTransform: 'uppercase'
@@ -189,7 +189,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
                       className="mb-4"
                       style={{ 
                         color: '#666666', 
-                        fontSize: '13px',
+                        fontSize: 'var(--type-l2)',
                         fontWeight: 400,
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase'
@@ -202,7 +202,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
                       className="mb-6"
                       style={{ 
                         color: '#000000', 
-                        fontSize: 'clamp(28px, 3vw, 36px)',
+                        fontSize: 'var(--ds-text-title-lg)',
                         fontWeight: 500,
                         lineHeight: '1.2',
                         letterSpacing: '-0.01em'
@@ -215,7 +215,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
                       className="mb-10"
                       style={{ 
                         color: '#666666', 
-                        fontSize: '16px',
+                        fontSize: 'var(--type-l3)',
                         fontWeight: 400,
                         lineHeight: '1.7'
                       }}
@@ -231,7 +231,7 @@ export function ProjectCarousel({ slides, categories }: ProjectCarouselProps) {
                           className="inline-flex items-center gap-2 group/link"
                           style={{ 
                             color: '#000000', 
-                            fontSize: '16px',
+                            fontSize: 'var(--type-l3)',
                             fontWeight: 500
                           }}
                         >

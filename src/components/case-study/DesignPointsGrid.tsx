@@ -28,7 +28,7 @@ export function DesignPointsGrid({
     >
       <h3 style={{
         color: '#AE8EFF',
-        fontSize: '24px',
+        fontSize: 'var(--type-l4)',
         fontFamily: 'MuseoModerno, sans-serif',
         fontWeight: 600,
         marginBottom: '32px'
@@ -84,7 +84,7 @@ export function DesignPointsGrid({
               )}
               <h4 style={{
                 color: '#482D18',
-                fontSize: '16px',
+                fontSize: 'var(--type-l3)',
                 fontWeight: 600,
                 marginBottom: point.description ? '8px' : 0,
                 lineHeight: '1.4'
@@ -93,8 +93,8 @@ export function DesignPointsGrid({
               </h4>
               {point.description && (
                 <p style={{
-                  color: '#666666',
-                  fontSize: '14px',
+                  color: 'var(--ds-text-secondary)',
+                  fontSize: 'var(--type-l2)',
                   lineHeight: '1.6',
                   margin: 0
                 }}>

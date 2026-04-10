@@ -27,7 +27,7 @@ export function ConceptualDiagram({
       <div style={{ textAlign: 'center', marginBottom: '24px' }}>
         <h3 style={{
           color: '#AE8EFF',
-          fontSize: '24px',
+          fontSize: 'var(--type-l4)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           marginBottom: '12px'
@@ -36,8 +36,8 @@ export function ConceptualDiagram({
         </h3>
         {description && (
           <p style={{
-            color: '#666666',
-            fontSize: '15px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l3)',
             lineHeight: '1.8',
             maxWidth: '700px',
             margin: '0 auto'
@@ -65,7 +65,7 @@ export function ConceptualDiagram({
         >
           <p style={{
             color: '#AC8BFF',
-            fontSize: '14px',
+            fontSize: 'var(--type-l2)',
             fontStyle: 'italic',
             textAlign: 'center',
             lineHeight: '1.6',
@@ -103,8 +103,8 @@ export function ConceptualDiagram({
 
       {caption && (
         <p style={{
-          color: '#666666',
-          fontSize: '13px',
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l2)',
           fontStyle: 'italic',
           marginTop: '16px',
           textAlign: 'center',

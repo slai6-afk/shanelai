@@ -98,7 +98,7 @@ export function PersonaJourneyGrid({ personas }: PersonaJourneyGridProps) {
               <div style={{ textAlign: 'center' }}>
                 <h3 style={{
                   color: persona.accentColor,
-                  fontSize: '18px',
+                  fontSize: 'var(--type-l4)',
                   fontFamily: 'MuseoModerno, sans-serif',
                   fontWeight: 600,
                   marginBottom: '8px'
@@ -106,8 +106,8 @@ export function PersonaJourneyGrid({ personas }: PersonaJourneyGridProps) {
                   {persona.name}
                 </h3>
                 <p style={{
-                  color: '#666666',
-                  fontSize: '13px',
+                  color: 'var(--ds-text-secondary)',
+                  fontSize: 'var(--type-l2)',
                   lineHeight: '1.5',
                   margin: 0
                 }}>
@@ -233,7 +233,7 @@ function JourneyStageBlock({
     >
       <p style={{
         color: accentColor,
-        fontSize: '11px',
+        fontSize: 'var(--type-l1)',
         fontFamily: 'MuseoModerno, sans-serif',
         fontWeight: 600,
         letterSpacing: '0.05em',
@@ -244,7 +244,7 @@ function JourneyStageBlock({
       </p>
       <p style={{
         color: '#3B2E24',
-        fontSize: '13px',
+        fontSize: 'var(--type-l2)',
         lineHeight: '1.6',
         margin: 0,
         flex: 1

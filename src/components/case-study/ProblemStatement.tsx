@@ -27,7 +27,7 @@ export function ProblemStatement({ statement, context, hmw }: ProblemStatementPr
       {context && (
         <p style={{
           color: '#482D18',
-          fontSize: '12px',
+          fontSize: 'var(--type-l1)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           letterSpacing: '0.05em',
@@ -40,7 +40,7 @@ export function ProblemStatement({ statement, context, hmw }: ProblemStatementPr
       
       <p style={{
         color: '#3B2E24',
-        fontSize: '18px',
+        fontSize: 'var(--type-l4)',
         fontWeight: 500,
         lineHeight: '1.8',
         marginBottom: hmw ? '24px' : 0
@@ -59,7 +59,7 @@ export function ProblemStatement({ statement, context, hmw }: ProblemStatementPr
           <div>
             <p style={{
               color: '#AE8EFF',
-              fontSize: '14px',
+              fontSize: 'var(--type-l2)',
               fontFamily: 'MuseoModerno, sans-serif',
               fontWeight: 600,
               letterSpacing: '0.03em',
@@ -69,7 +69,7 @@ export function ProblemStatement({ statement, context, hmw }: ProblemStatementPr
             </p>
             <p style={{
               color: '#482D18',
-              fontSize: '17px',
+              fontSize: 'var(--type-l3)',
               fontWeight: 500,
               lineHeight: '1.7',
               fontStyle: 'italic',

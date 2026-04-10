@@ -35,15 +35,15 @@ export function PlatformComparison({
         marginBottom: '48px' 
       }}>
         <h3 style={{
-          color: '#000000',
-          fontSize: '28px',
+          color: 'var(--ds-text-primary)',
+          fontSize: 'var(--type-l5)',
           marginBottom: '16px'
         }}>
           {title}
         </h3>
         <p style={{
-          color: '#666666',
-          fontSize: '15px',
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           maxWidth: '800px',
           margin: '0 auto',
@@ -92,8 +92,8 @@ export function PlatformComparison({
             />
           </div>
           <p style={{
-            color: '#666666',
-            fontSize: '13px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             lineHeight: '1.6',
             marginTop: '16px',
             textAlign: 'center',
@@ -132,8 +132,8 @@ export function PlatformComparison({
             />
           </div>
           <p style={{
-            color: '#666666',
-            fontSize: '13px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             lineHeight: '1.6',
             marginTop: '16px',
             textAlign: 'center',

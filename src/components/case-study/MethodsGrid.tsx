@@ -49,7 +49,7 @@ export function MethodsGrid({ methods, timeline }: MethodsGridProps) {
                 width: '40px',
                 height: '40px',
                 borderRadius: '10px',
-                background: 'linear-gradient(135deg, #ED964F 0%, #E56641 100%)',
+                background: 'linear-gradient(135deg, var(--ds-accent-case) 0%, #E56641 100%)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -59,7 +59,7 @@ export function MethodsGrid({ methods, timeline }: MethodsGridProps) {
               </div>
               <h4 style={{
                 color: '#333333',
-                fontSize: '14px',
+                fontSize: 'var(--type-l2)',
                 fontFamily: 'MuseoModerno, sans-serif',
                 fontWeight: 600,
                 marginBottom: '8px'
@@ -67,8 +67,8 @@ export function MethodsGrid({ methods, timeline }: MethodsGridProps) {
                 {method.title}
               </h4>
               <p style={{
-                color: '#666666',
-                fontSize: '13px',
+                color: 'var(--ds-text-secondary)',
+                fontSize: 'var(--type-l2)',
                 lineHeight: '1.6',
                 margin: 0
               }}>
@@ -95,7 +95,7 @@ export function MethodsGrid({ methods, timeline }: MethodsGridProps) {
         >
           <p style={{
             color: '#795337',
-            fontSize: '13px',
+            fontSize: 'var(--type-l2)',
             fontFamily: 'MuseoModerno, sans-serif',
             fontWeight: 500,
             margin: 0

@@ -31,8 +31,8 @@ export function NextSteps({ steps }: NextStepsProps) {
             }} 
           />
           <p style={{
-            color: '#000000',
-            fontSize: '15px',
+            color: 'var(--ds-text-primary)',
+            fontSize: 'var(--type-l3)',
             fontWeight: 400,
             lineHeight: '1.6',
             margin: 0

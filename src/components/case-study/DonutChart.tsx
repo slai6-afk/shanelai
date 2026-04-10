@@ -63,7 +63,7 @@ export function DonutChart({ percentage, title, subtitle, accentColor = '#FF7A00
           textAlign: 'center'
         }}>
           <div style={{
-            fontSize: '48px',
+            fontSize: 'var(--type-l6)',
             fontWeight: 700,
             color: accentColor,
             lineHeight: '1'
@@ -73,8 +73,8 @@ export function DonutChart({ percentage, title, subtitle, accentColor = '#FF7A00
         </div>
       </div>
       <h4 style={{
-        color: '#000000',
-        fontSize: '20px',
+        color: 'var(--ds-text-primary)',
+        fontSize: 'var(--type-l4)',
         fontWeight: 500,
         marginBottom: '8px',
         textAlign: 'center'
@@ -82,8 +82,8 @@ export function DonutChart({ percentage, title, subtitle, accentColor = '#FF7A00
         {title}
       </h4>
       <p style={{
-        color: '#666666',
-        fontSize: '16px',
+        color: 'var(--ds-text-secondary)',
+        fontSize: 'var(--type-l3)',
         fontWeight: 400,
         lineHeight: '1.6',
         textAlign: 'center',

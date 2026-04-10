@@ -31,14 +31,7 @@ export function TransitionBlock({ title, content, highlightedText }: TransitionB
         }
         // Add highlighted text
         parts.push(
-          <span
-            key={`highlight-${idx}`}
-            style={{
-              color: '#E56641',
-              fontWeight: 600,
-              fontFamily: 'MuseoModerno, sans-serif'
-            }}
-          >
+          <span key={`highlight-${idx}`} className="marker-highlight marker-highlight--orange">
             {highlight.text}
           </span>
         );
@@ -80,7 +73,7 @@ export function TransitionBlock({ title, content, highlightedText }: TransitionB
         left: 0,
         right: 0,
         height: '4px',
-        background: 'linear-gradient(90deg, #ED964F 0%, #E56641 50%, #ED964F 100%)',
+        background: 'linear-gradient(90deg, var(--ds-accent-case) 0%, #E56641 50%, var(--ds-accent-case) 100%)',
         opacity: 0.6
       }} />
 
@@ -89,7 +82,7 @@ export function TransitionBlock({ title, content, highlightedText }: TransitionB
           <ArrowRight size={20} color="#E56641" />
           <h4 style={{
             color: '#E56641',
-            fontSize: '16px',
+            fontSize: 'var(--type-l3)',
             fontFamily: 'MuseoModerno, sans-serif',
             fontWeight: 600,
             margin: 0
@@ -101,7 +94,7 @@ export function TransitionBlock({ title, content, highlightedText }: TransitionB
 
       <p style={{
         color: '#3B2E24',
-        fontSize: '15px',
+        fontSize: 'var(--type-l3)',
         lineHeight: '1.8',
         margin: 0
       }}>

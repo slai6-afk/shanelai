@@ -25,7 +25,7 @@ export function ServiceBlueprint({
       {title && (
         <h3 style={{
           color: '#AE8EFF',
-          fontSize: '24px',
+          fontSize: 'var(--type-l4)',
           fontFamily: 'MuseoModerno, sans-serif',
           fontWeight: 600,
           marginBottom: '16px'
@@ -37,7 +37,7 @@ export function ServiceBlueprint({
       {description && (
         <p style={{
           color: '#3B2E24',
-          fontSize: '15px',
+          fontSize: 'var(--type-l3)',
           lineHeight: '1.8',
           marginBottom: '32px'
         }}>
@@ -71,8 +71,8 @@ export function ServiceBlueprint({
 
       {caption && (
         <p style={{
-          color: '#666666',
-          fontSize: '13px',
+          color: 'var(--ds-text-secondary)',
+          fontSize: 'var(--type-l2)',
           fontStyle: 'italic',
           marginTop: '16px',
           textAlign: 'center',

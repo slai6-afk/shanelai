@@ -18,8 +18,8 @@ export function MethodBlock({ icon: Icon, title, description, details, index = 0
       transition={{ duration: 0.6, delay: index * 0.1 }}
       style={{
         padding: '32px',
-        backgroundColor: '#FFFFFF',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
+        backgroundColor: 'var(--ds-bg-surface)',
+        border: '1px solid var(--ds-border-subtle)',
         marginBottom: '16px',
         borderRadius: '20px',
         boxShadow: 'var(--shadow-sm)'
@@ -29,20 +29,20 @@ export function MethodBlock({ icon: Icon, title, description, details, index = 0
         <div style={{
           width: '48px',
           height: '48px',
-          backgroundColor: '#000000',
+          backgroundColor: 'var(--ds-text-primary)',
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexShrink: 0
         }}>
-          <Icon size={24} style={{ color: '#FFFFFF' }} />
+          <Icon size={24} style={{ color: 'var(--ds-bg-surface)' }} />
         </div>
 
         <div style={{ flex: 1 }}>
           <h4 style={{
-            color: '#000000',
-            fontSize: '18px',
+            color: 'var(--ds-text-primary)',
+            fontSize: 'var(--type-l4)',
             fontWeight: 500,
             marginBottom: '8px'
           }}>
@@ -50,8 +50,8 @@ export function MethodBlock({ icon: Icon, title, description, details, index = 0
           </h4>
 
           <p style={{
-            color: '#666666',
-            fontSize: '14px',
+            color: 'var(--ds-text-secondary)',
+            fontSize: 'var(--type-l2)',
             fontWeight: 400,
             lineHeight: '1.6',
             marginBottom: details ? '16px' : '0'
@@ -67,8 +67,8 @@ export function MethodBlock({ icon: Icon, title, description, details, index = 0
             }}>
               {details.map((detail, i) => (
                 <li key={i} style={{
-                  color: '#666666',
-                  fontSize: '13px',
+                  color: 'var(--ds-text-secondary)',
+                  fontSize: 'var(--type-l2)',
                   fontWeight: 400,
                   lineHeight: '1.6',
                   marginBottom: '6px'

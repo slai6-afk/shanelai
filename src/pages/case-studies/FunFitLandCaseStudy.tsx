@@ -11,6 +11,7 @@ import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { SkillChart } from '../../components/case-study/SkillChart';
 import { AccessibilityDiagram } from '../../components/case-study/AccessibilityDiagram';
 import { CaseStudyHero } from '../../components/case-study/CaseStudyHero';
+import { CardCornerVector } from '../../components/vector-decor';
 import { AlertCircle, Target, TrendingUp, Palette, Gamepad2, Users } from 'lucide-react';
 import imgUserReportIssues from 'figma:asset/a8276e897fcf9fa38bd1bea21da5d7a60fda47d0.png';
 import imgTwoModes from 'figma:asset/f2dd88065c1de01d1bbadd5728203917f47d848a.png';
@@ -62,19 +63,14 @@ export function FunFitLandCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5]">
+    <div className="case-study-page case-study-page--funfit min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
 
       <CaseStudyHero
-        title="FunFitLand"
-        description=""
+        title="FunFitLand: Making Fitness Accessible to Everyone In Immersive World"
+        description="Designing for the extremes: How I built an inclusive VR fitness framework that expanded accessibility to 90% of diverse physical abilities"
         mediaType="video"
         mediaSrc="https://cdn.builder.io/o/assets%2F46b2761d61834692828a7f7e644854fc%2F12f602c331974b6a80f9c9034a740790?alt=media&token=0110fa1e-2440-40b4-845a-2032514a4142&apiKey=46b2761d61834692828a7f7e644854fc"
-        descriptionLink={{
-          href: 'https://a378b32952bb4365821281b3623c6cd1-e9a7ea443472457392199db97.projects.builder.codes/case-study/funfitland',
-          label:
-            'I designed calibration system in VR games that fits users with diverse physical mobilities, providing users with different motion range and targets size.'
-        }}
         visitLink={{
           href: 'https://www.funfitland.com',
           label: 'Visit FunFitLand.com'
@@ -98,7 +94,7 @@ export function FunFitLandCaseStudy() {
               <StickyTOC items={tocItems} isFixed={tocFixed} />
             </div>
 
-            <div className="case-study-content-wrapper max-w-[900px] w-full">
+            <div className="case-study-content-wrapper max-w-[848px] w-full">
               <div ref={tocTriggerRef} style={{ height: 1 }} />
               {/* Overview */}
               <div id="tldr" className="funfit-section funfit-overview-section">
@@ -106,7 +102,8 @@ export function FunFitLandCaseStudy() {
                   TL;DR
                 </h2>
 
-                <div className="funfit-overview-meta-card">
+                <div className="funfit-overview-meta-card relative">
+                  <CardCornerVector name="right4" />
                   <div className="funfit-overview-meta-group">
                     <h3 className="funfit-meta-heading">My Role</h3>
                     <p className="funfit-meta-text">
