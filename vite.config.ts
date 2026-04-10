@@ -151,6 +151,9 @@ build: {
   target: 'esnext',
   outDir: 'dist',
   emptyOutDir: true,
+  // Keep SVGs as emitted files (not data: URLs). CSS mask-image + url(data:...) can render
+  // strokes differently vs url(file.svg) across browsers — matches dev server behavior.
+  assetsInlineLimit: 0,
   // Performance optimizations
   minify: 'terser',
   terserOptions: {
