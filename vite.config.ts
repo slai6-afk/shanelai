@@ -4,7 +4,9 @@ import path from 'path';
 
 // ✅ Shane final fixed version - Performance optimized
 export default defineConfig({
-  base: './', // 使用相对路径，支持自定义域名 shanelai.com
+  // Root-relative assets so deep routes like /case-study/... load /assets/... correctly.
+  // (base: './' breaks subpaths: ./assets resolves to /case-study/assets.)
+  base: '/',
   plugins: [
     react({
       // Enable React Fast Refresh
