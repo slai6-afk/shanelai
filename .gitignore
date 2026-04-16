@@ -1,2 +1,4 @@
 vite.config.ts.save
 .DS_Store
+dist/
+*-check.png

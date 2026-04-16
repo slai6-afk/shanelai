@@ -6,6 +6,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "clean:dist": "rm -rf dist",
+    "clean:temp": "rm -f *-check.png",
+    "clean": "npm run clean:dist && npm run clean:temp",
     "postinstall": ""
   },
   "dependencies": {
@@ -20,6 +23,7 @@
   "devDependencies": {
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "playwright": "^1.49.1",
     "terser": "^5.46.0",
     "typescript": "^5.9.3",
     "vite": "^5.0.0"
