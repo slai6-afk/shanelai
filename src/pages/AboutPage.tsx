@@ -710,8 +710,9 @@ export function AboutPage() {
                   and{' '}
                   <AboutStickerSpan
                     stickerSrc={temuSticker}
-                    stickerLabel="Sticker: Temu"
+                    stickerLabel="Temu — open AI support case study"
                     highlightVector="highlight2"
+                    linkTo="/case-study/temu-ai-support"
                     motion={{
                       restRotateDeg: -3,
                       hoverRotateDeg: 12,

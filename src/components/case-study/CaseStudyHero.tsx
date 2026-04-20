@@ -20,6 +20,8 @@ interface CaseStudyHeroProps {
   mediaPoster?: string;
   videoCaption?: string;
   showVideoCaption?: boolean;
+  /** Masks thin letterbox bars on the video with white overlays (hero media only) */
+  videoSurfaceMask?: boolean;
   descriptionLink?: Link;
   visitLink?: Link;
   tags?: Tag[];
@@ -33,6 +35,7 @@ export function CaseStudyHero({
   mediaPoster,
   videoCaption,
   showVideoCaption,
+  videoSurfaceMask,
   descriptionLink,
   visitLink,
   tags = []
@@ -58,8 +61,9 @@ export function CaseStudyHero({
         poster={mediaPoster}
         videoCaption={videoCaption}
         showVideoCaption={showVideoCaption}
+        videoSurfaceMask={videoSurfaceMask}
       />
-      <div className="max-w-[1144px] mx-auto case-study-hero-content-wrapper">
+      <div className="case-study-hero-content-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

@@ -17,6 +17,7 @@ const MemoryNavigatorCaseStudy = lazy(() => import('./pages/case-studies/MemoryN
 const HuuuuuCaseStudy = lazy(() => import('./pages/case-studies/HuuuuuCaseStudy').then(m => ({ default: m.HuuuuuCaseStudy })));
 const TalkieCaseStudy = lazy(() => import('./pages/case-studies/TalkieCaseStudy').then(m => ({ default: m.TalkieCaseStudy })));
 const VibeSyncCaseStudy = lazy(() => import('./pages/case-studies/VibeSyncCaseStudy').then(m => ({ default: m.VibeSyncCaseStudy })));
+const TemuCaseStudy = lazy(() => import('./pages/case-studies/TemuCaseStudy').then(m => ({ default: m.TemuCaseStudy })));
 
 // Loading component for Suspense fallback
 function PageLoader() {
@@ -72,6 +73,7 @@ function AnimatedRoutes() {
         <Route path="/case-study/huuuuu" element={<PageWrapper><HuuuuuCaseStudy /></PageWrapper>} />
         <Route path="/case-study/talkie" element={<PageWrapper><TalkieCaseStudy /></PageWrapper>} />
         <Route path="/case-study/vibe-sync" element={<PageWrapper><VibeSyncCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/temu-ai-support" element={<PageWrapper><TemuCaseStudy /></PageWrapper>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>

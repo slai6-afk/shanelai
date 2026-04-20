@@ -5,6 +5,7 @@ import { ProjectCard } from '../components/ProjectCard';
 import { TextVectorMark } from '../components/vector-decor';
 import homepageCover from '../assets/homepage.png';
 import nycTourismCover from '../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
+import temuCover from '../assets/cover.png';
 
 export function ProjectsPage() {
   const projects = [
@@ -19,6 +20,18 @@ export function ProjectsPage() {
       hoverHint: 'Click to see Vibe Sync for Amazon Music',
       imageFit: 'contain' as const,
       mediaBackground: '#000000'
+    },
+    {
+      title: 'Temu: Fixing the "Leaky Bucket" of AI Support',
+      description:
+        'How I redesigned Temu\'s AI support ecosystem, dropping manual agent escalation from 81% to 20% through intent-driven routing and strategic UI friction.',
+      image: temuCover,
+      tags: ['AI', 'NLP', 'Product', 'Data viz'],
+      type: 'design' as const,
+      link: '/case-study/temu-ai-support',
+      hoverHint: 'Click to see Temu AI support redesign',
+      imageFit: 'contain' as const,
+      mediaBackground: '#ffffff'
     },
     {
       title: 'FunFitLand: Making Fitness Accessible to Everyone In Immersive World',

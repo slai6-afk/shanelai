@@ -234,7 +234,7 @@ export function VibeSyncCaseStudy() {
       />
 
       <section className="px-4 sm:px-6 md:px-12 lg:px-16">
-        <div className="mx-auto w-full max-w-[1144px] vibesync-hero-gallery-shell">
+        <div className="vibesync-hero-gallery-shell">
           <div ref={heroGalleryRef} className="vibesync-hero-gallery-row">
             {[gallery1, gallery2, gallery3].map((img, idx) => (
               <div className="vibesync-hero-gallery-item" key={idx}>

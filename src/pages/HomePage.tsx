@@ -12,12 +12,14 @@ import { HeroSpiral } from '../components/HeroSpiral';
 import { Navigation } from '../components/Navigation';
 import { SketchCursorHint } from '../components/SketchCursorHint';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { VideoWhiteEdgeMask } from '../components/case-study/MediaBox';
 import ammVideo from '../assets/AMM_video.mp4';
 import memoryNavigatorPoster from '../assets/Gemini_Generated_Image_c23ldzc23ldzc23l.png';
 import nycHeroVideo from '../assets/herovideo_NYC.mov';
 import funFitLandPoster from '../assets/bebbc88443fdebed4e56ae9980488dadc3739961.png';
 import titleImage from '../assets/title.png';
 import nycCover from '../assets/cover.png';
+import homeVideo from '../assets/home video.mp4';
 import workIcon from '../assets/work.png';
 import happyPlaygroundIcon from '../assets/happyplayground.png';
 import playOneImage from '../assets/play1.png';
@@ -36,7 +38,7 @@ interface HomeProject {
   title: string;
   description: ReactNode;
   /** Scribble tint + scope class for `WordBackdropDecor` in the teaser line */
-  slideAccent: 'vibe' | 'nyc' | 'funfit';
+  slideAccent: 'vibe' | 'temu' | 'nyc' | 'funfit';
   tags: string[];
   /** When omitted, the slide is not wrapped in a link. */
   link?: string;
@@ -76,6 +78,26 @@ const homeProjects: HomeProject[] = [
     mediaPosition: 'right',
     contentLayout: 'centered',
     hoverHint: 'Click to see Vibe Sync for Amazon Music',
+  },
+  {
+    title: 'Temu: Fixing the "Leaky Bucket" of AI Support',
+    slideAccent: 'temu',
+    description: (
+      <Fragment>
+        How I redesigned Temu&apos;s AI support ecosystem, dropping manual agent escalation from{' '}
+        <WordBackdropDecor vector="highlight2">81%</WordBackdropDecor> to{' '}
+        <WordBackdropDecor vector="highlight3">20%</WordBackdropDecor> through intent-driven routing and strategic UI
+        friction.
+      </Fragment>
+    ),
+    tags: ['Product Design', 'AI & NLP', 'Support deflection', 'Data viz'],
+    link: '/case-study/temu-ai-support',
+    mediaType: 'video',
+    mediaSrc: homeVideo,
+    mediaAlt: 'Temu AI support case study preview video',
+    mediaPosition: 'left',
+    contentLayout: 'distributed',
+    hoverHint: 'Click to see Temu AI support redesign',
   },
   {
     title: 'NYC Tourism: Discover the Big Apple & Making It Your Home',
@@ -218,24 +240,28 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
             borderRadius: mediaRadius,
             boxShadow: 'var(--shadow-sm)',
             backgroundColor: 'var(--ds-bg-page)',
+            position: 'relative',
           }}
         >
           {project.mediaType === 'video' ? (
-            <video
-              src={project.mediaSrc}
-              poster={project.mediaPoster}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              aria-label={project.mediaAlt}
-              className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
-              style={{
-                aspectRatio: '818 / 476',
-                objectFit: 'cover',
-              }}
-            />
+            <>
+              <video
+                src={project.mediaSrc}
+                poster={project.mediaPoster}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={project.mediaAlt}
+                className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
+                style={{
+                  aspectRatio: '818 / 476',
+                  objectFit: 'cover',
+                }}
+              />
+              <VideoWhiteEdgeMask />
+            </>
           ) : (
             <ImageWithFallback
               src={project.mediaSrc}
@@ -503,9 +529,10 @@ export function HomePage() {
                       Previously @{' '}
                       <AboutStickerSpan
                         stickerSrc={temuSticker}
-                        stickerLabel="Sticker: Temu"
+                        stickerLabel="Temu — open AI support case study"
                         vectorHighlight={false}
                         stickerWidth={HOME_HERO_STICKER_WIDTH}
+                        linkTo="/case-study/temu-ai-support"
                         motion={{
                           restRotateDeg: -3,
                           hoverRotateDeg: 12,

@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { VECTOR, VECTOR_VIEWBOX, type VectorName } from '../vector-decor';
 
 export type AboutStickerMotion = {
@@ -25,6 +26,8 @@ type AboutStickerSpanProps = {
   vectorHighlight?: boolean;
   /** Width of the floating PNG sticker — passed to `--about-sticker-pop-width` */
   stickerWidth?: string;
+  /** When set, the sticker acts as an in-app link (e.g. portfolio case study). */
+  linkTo?: string;
 };
 
 const defaultMotion: Required<AboutStickerMotion> = {
@@ -57,6 +60,7 @@ export function AboutStickerSpan({
   highlightVector = 'highlight2',
   vectorHighlight = true,
   stickerWidth,
+  linkTo,
 }: AboutStickerSpanProps) {
   const rootStyle = {
     ...motionVars(motion),
@@ -89,17 +93,27 @@ export function AboutStickerSpan({
     );
   }
 
+  const sticker = (
+    <span className="about-sticker-span__sticker" aria-hidden>
+      <img src={stickerSrc} alt="" className="about-sticker-span__sticker-img" loading="lazy" decoding="async" />
+    </span>
+  );
+
+  const className = `about-sticker-span${vectorHighlight ? '' : ' about-sticker-span--no-vector'}`.trim();
+
+  if (linkTo) {
+    return (
+      <Link to={linkTo} className={className} style={rootStyle} aria-label={stickerLabel}>
+        {label}
+        {sticker}
+      </Link>
+    );
+  }
+
   return (
-    <span
-      className={`about-sticker-span${vectorHighlight ? '' : ' about-sticker-span--no-vector'}`.trim()}
-      style={rootStyle}
-      tabIndex={0}
-      aria-label={stickerLabel}
-    >
+    <span className={className} style={rootStyle} tabIndex={0} aria-label={stickerLabel}>
       {label}
-      <span className="about-sticker-span__sticker" aria-hidden>
-        <img src={stickerSrc} alt="" className="about-sticker-span__sticker-img" loading="lazy" decoding="async" />
-      </span>
+      {sticker}
     </span>
   );
 }
