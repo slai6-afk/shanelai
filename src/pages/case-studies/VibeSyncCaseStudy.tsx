@@ -16,7 +16,9 @@ import {
 } from '../../components/vector-decor';
 
 import heroVideo from '../../assets/AMM_video.mp4';
-import gallery1 from '../../assets/Image1.png';
+import gallery1 from '../../assets/vibes1.png';
+import gallery2 from '../../assets/vibes2.png';
+import gallery3 from '../../assets/vibes3.png';
 import problemAmazonStrip from '../../assets/Screenshot 2026-04-05 at 3.27.50 PM 1.png';
 
 import research1 from '../../assets/research1.png';
@@ -55,8 +57,6 @@ const PROTOTYPE_HREF =
   'https://www.figma.com/proto/I7h5TbtKGoPjvKTM5SOptr/Vibe-Sync---2026-Amazon-Music-Challenge--presented-by-All-Ears-?node-id=1-128&t=WL4rCVUuGfeyFHhV-1&starting-point-node-id=1%3A128';
 
 const VIBE_CYAN = '#00d5dd';
-const gallery2 = 'https://www.figma.com/api/mcp/asset/3c7bd32c-f85a-475f-9eb8-8301478c7167';
-const gallery3 = 'https://www.figma.com/api/mcp/asset/4fd1146d-8ad1-4a4c-9e88-ade97634e28d';
 const userJourneyWide = 'https://www.figma.com/api/mcp/asset/cc6779dd-004b-4cc5-8510-a56560d521a9';
 const userFlowWide = 'https://www.figma.com/api/mcp/asset/09241c24-144a-4bce-90ce-a3b108d55266';
 const methodology2 = 'https://www.figma.com/api/mcp/asset/a3a9aac4-363a-49d9-89a5-9bc59cffcda5';
@@ -238,7 +238,7 @@ export function VibeSyncCaseStudy() {
           <div ref={heroGalleryRef} className="vibesync-hero-gallery-row">
             {[gallery1, gallery2, gallery3].map((img, idx) => (
               <div className="vibesync-hero-gallery-item" key={idx}>
-                <img src={img} alt="" />
+                <img src={img} alt="" loading="lazy" decoding="async" />
               </div>
             ))}
           </div>

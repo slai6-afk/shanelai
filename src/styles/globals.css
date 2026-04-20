@@ -3043,7 +3043,7 @@ html {
   width: 100%;
   min-width: 0;
   /* Match methodology strip height band so wheel + layout feel the same */
-  min-height: min(55vh, 500px);
+  height: 533px;
   overflow-x: auto;
   overflow-y: hidden;
   border-radius: 20px;
@@ -3071,7 +3071,8 @@ html {
   min-width: min(85vw, 893px);
   max-width: min(1408px, 100%);
   box-sizing: border-box;
-  height: auto;
+  aspect-ratio: 1408 / 715;
+  height: 100%;
   align-self: center;
   border-radius: 14px;
   overflow: hidden;
@@ -3084,7 +3085,7 @@ html {
 .vibesync-hero-gallery-item img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 100%;
   object-fit: contain;
   object-position: center center;
