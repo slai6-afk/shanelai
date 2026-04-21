@@ -158,6 +158,7 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const mediaContainerRef = useRef<HTMLDivElement | null>(null);
   const mediaVideoRef = useRef<HTMLVideoElement | null>(null);
   const mediaPositionAtMdUp = index % 2 === 0 ? 'right' : 'left';
+  const needsEdgeCrop = project.slideAccent === 'temu';
 
   useEffect(() => {
     const target = mediaContainerRef.current;
@@ -317,6 +318,8 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
               style={{
                 aspectRatio: '818 / 476',
                 objectFit: 'cover',
+                backgroundColor: '#fff',
+                ...(needsEdgeCrop ? { clipPath: 'inset(3px 0 3px 0)' } : {}),
               }}
               onError={() => setMediaFailed(true)}
             />
