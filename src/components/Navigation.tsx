@@ -32,7 +32,7 @@ export const Navigation = memo(function Navigation() {
       className="ds-site-nav fixed top-0 left-0 right-0 z-50"
     >
       <div
-        className="nav-inner mx-auto flex max-w-[1600px] items-center justify-between rounded-[100px] px-3 sm:px-5 md:px-12 lg:px-[48px]"
+        className="nav-inner mx-auto flex w-full max-w-[1600px] items-center justify-between rounded-[100px] px-3 sm:px-5 md:px-12 lg:px-[48px]"
         style={{
           minHeight: '46px'
         }}

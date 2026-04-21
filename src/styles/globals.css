@@ -1071,6 +1071,11 @@ html {
   .case-study-content-wrapper {
     margin-left: -48px;
   }
+
+  /* Temu page should align with viewport container (no desktop left offset). */
+  .temu-page .case-study-content-wrapper {
+    margin-left: 0;
+  }
 }
 
 /* Selected Works Section Responsive Styles */

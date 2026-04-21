@@ -440,9 +440,15 @@ function TemuPhoneMockups() {
               </p>
             </div>
 
-            {/* 两列固定 70% : 30%，始终左图右视频 */}
-            <div className="grid w-full min-w-0 grid-cols-[70%_30%] gap-0">
-              <div className="flex w-full min-h-0 min-w-0 items-stretch justify-start">
+            {/* 两列固定 70% : 30%，始终左图右视频（inline style 强制，避免样式缓存影响） */}
+            <div
+              className="w-full min-w-0"
+              style={{ display: 'flex', width: '100%', gap: 0, alignItems: 'stretch' }}
+            >
+              <div
+                className="flex min-h-0 min-w-0 items-stretch justify-start"
+                style={{ width: '70%', maxWidth: '70%', flex: '0 0 70%' }}
+              >
                 <img
                   src={c.image}
                   alt={c.imageAlt}
@@ -451,7 +457,10 @@ function TemuPhoneMockups() {
                   decoding="async"
                 />
               </div>
-              <div className="flex w-full min-h-0 min-w-0 items-stretch justify-start">
+              <div
+                className="flex min-h-0 min-w-0 items-stretch justify-start"
+                style={{ width: '30%', maxWidth: '30%', flex: '0 0 30%' }}
+              >
                 <TemuMockupLoopVideo src={c.video} ariaLabel={`${c.tier} — motion clip`} />
               </div>
             </div>
@@ -767,7 +776,7 @@ export function TemuCaseStudy() {
               <StickyTOC items={tocItems} isFixed={tocFixed} />
             </div>
 
-            <div className="case-study-content-wrapper flex max-w-[848px] w-full flex-col">
+            <div className="case-study-content-wrapper flex w-full max-w-none min-w-0 flex-col">
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               <div id="tldr" className="funfit-section">
