@@ -367,11 +367,11 @@ function TemuMockupLoopVideo({ src, ariaLabel }: { src: string; ariaLabel: strin
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-[12px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] [contain:layout]"
+      className="relative w-full overflow-hidden rounded-[12px] shadow-[0_4px_24px_rgba(0,0,0,0.08)] [contain:layout]"
     >
       <video
         ref={videoRef}
-        className="block h-auto w-full max-h-[min(70vh,520px)] object-contain"
+        className="mx-auto block h-auto w-auto max-w-full max-h-[min(56vh,420px)] object-contain"
         src={src}
         muted
         playsInline
@@ -440,18 +440,18 @@ function TemuPhoneMockups() {
               </p>
             </div>
 
-            {/* 两列固定 70% : 30%（flex 7:3 在扣掉 gap 后按比例分配） */}
-            <div className="flex w-full min-w-0 flex-col items-center gap-3 sm:gap-4 md:flex-row md:gap-6">
-              <div className="flex w-full min-h-0 min-w-0 items-center justify-center md:flex-[7]">
+            {/* 两列固定 70% : 30%，始终左图右视频 */}
+            <div className="grid w-full min-w-0 grid-cols-[70%_30%] gap-0">
+              <div className="flex w-full min-h-0 min-w-0 items-stretch justify-start">
                 <img
                   src={c.image}
                   alt={c.imageAlt}
-                  className="h-auto w-full max-h-[min(70vh,520px)] rounded-[12px] object-contain shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
+                  className="block h-auto w-full max-h-[min(64vh,480px)] rounded-[12px] object-contain shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
-              <div className="flex w-full min-h-0 min-w-0 items-center justify-center md:flex-[3]">
+              <div className="flex w-full min-h-0 min-w-0 items-stretch justify-start">
                 <TemuMockupLoopVideo src={c.video} ariaLabel={`${c.tier} — motion clip`} />
               </div>
             </div>
