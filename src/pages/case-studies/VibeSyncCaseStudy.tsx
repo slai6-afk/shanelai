@@ -34,6 +34,8 @@ import retentionB from '../../assets/user2.png';
 import playlistsExpressive from '../../assets/Playlists Expressive Image.png';
 import playlistsExpressiveHover from '../../assets/Playlists Expressive Image2.png';
 import overlay2 from '../../assets/Overlay2.png';
+import currentJourneyMap from '../../assets/currentjourney.png';
+import userFlowMap from '../../assets/userflow.png';
 import dataMetricsImage from '../../assets/data.png';
 
 import clientImage from '../../assets/Client Image.png';
@@ -57,8 +59,6 @@ const PROTOTYPE_HREF =
   'https://www.figma.com/proto/I7h5TbtKGoPjvKTM5SOptr/Vibe-Sync---2026-Amazon-Music-Challenge--presented-by-All-Ears-?node-id=1-128&t=WL4rCVUuGfeyFHhV-1&starting-point-node-id=1%3A128';
 
 const VIBE_CYAN = '#00d5dd';
-const userJourneyWide = 'https://www.figma.com/api/mcp/asset/cc6779dd-004b-4cc5-8510-a56560d521a9';
-const userFlowWide = 'https://www.figma.com/api/mcp/asset/09241c24-144a-4bce-90ce-a3b108d55266';
 const methodology2 = 'https://www.figma.com/api/mcp/asset/a3a9aac4-363a-49d9-89a5-9bc59cffcda5';
 const methodology3 = 'https://www.figma.com/api/mcp/asset/32baa5e9-ba7c-48d5-a274-185e45f67e97';
 const methodology4 = 'https://www.figma.com/api/mcp/asset/312efa0c-d862-43e0-9e8d-5203b9e8cf61';
@@ -655,7 +655,7 @@ export function VibeSyncCaseStudy() {
                       </div>
                       <div className="group vibesync-swap-shell vibesync-swap-shell--dark w-full">
                         <img
-                          src={userJourneyWide}
+                          src={currentJourneyMap}
                           alt="User journey map for Vibe Sync"
                           className="vibesync-swap-shell__img vibesync-swap-shell__img--base"
                         />
@@ -676,7 +676,7 @@ export function VibeSyncCaseStudy() {
                         <img src={userFlowDecor} alt="" className="h-[108px] w-[105px] object-cover" />
                       </div>
                       <div className="vibesync-define-diagram">
-                        <img src={userFlowWide} alt="User flow map for Vibe Sync" />
+                        <img src={userFlowMap} alt="User flow map for Vibe Sync" />
                       </div>
                     </div>
                   </div>

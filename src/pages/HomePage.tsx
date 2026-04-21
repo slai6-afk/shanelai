@@ -59,26 +59,6 @@ interface HomeProject {
 
 const homeProjects: HomeProject[] = [
   {
-    title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
-    slideAccent: 'vibe',
-    description: (
-      <Fragment>
-        How I led product strategy in a{' '}
-        <WordBackdropDecor vector="highlight2">4-week sprint</WordBackdropDecor> to transform Amazon Music into a{' '}
-        <WordBackdropDecor vector="highlight3">Gen Z social hub</WordBackdropDecor>, bridging the discovery-to-retention gap.
-      </Fragment>
-    ),
-    tags: ['design', 'Product Thinking', 'Figma make', 'Social media'],
-    link: '/case-study/vibe-sync',
-    mediaType: 'video',
-    mediaSrc: ammVideo,
-    mediaPoster: memoryNavigatorPoster,
-    mediaAlt: 'Amazon Music concept preview video',
-    mediaPosition: 'right',
-    contentLayout: 'centered',
-    hoverHint: 'Click to see Vibe Sync for Amazon Music',
-  },
-  {
     title: 'Temu: Fixing the "Leaky Bucket" of AI Support',
     slideAccent: 'temu',
     description: (
@@ -97,6 +77,26 @@ const homeProjects: HomeProject[] = [
     mediaPosition: 'left',
     contentLayout: 'distributed',
     hoverHint: 'Click to see Temu AI support redesign',
+  },
+  {
+    title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
+    slideAccent: 'vibe',
+    description: (
+      <Fragment>
+        How I led product strategy in a{' '}
+        <WordBackdropDecor vector="highlight2">4-week sprint</WordBackdropDecor> to transform Amazon Music into a{' '}
+        <WordBackdropDecor vector="highlight3">Gen Z social hub</WordBackdropDecor>, bridging the discovery-to-retention gap.
+      </Fragment>
+    ),
+    tags: ['design', 'Product Thinking', 'Figma make', 'Social media'],
+    link: '/case-study/vibe-sync',
+    mediaType: 'video',
+    mediaSrc: ammVideo,
+    mediaPoster: memoryNavigatorPoster,
+    mediaAlt: 'Amazon Music concept preview video',
+    mediaPosition: 'right',
+    contentLayout: 'centered',
+    hoverHint: 'Click to see Vibe Sync for Amazon Music',
   },
   {
     title: 'NYC Tourism: Discover the Big Apple & Making It Your Home',
@@ -299,7 +299,7 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
           className="ds-media-frame origin-center overflow-hidden"
           style={{
             borderRadius: mediaRadius,
-            boxShadow: 'var(--shadow-sm)',
+            boxShadow: 'none',
             backgroundColor: 'var(--ds-bg-page)',
             position: 'relative',
           }}
@@ -318,7 +318,6 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
               style={{
                 aspectRatio: '818 / 476',
                 objectFit: 'cover',
-                backgroundColor: '#fff',
                 ...(needsEdgeCrop ? { clipPath: 'inset(3px 0 3px 0)' } : {}),
               }}
               onError={() => setMediaFailed(true)}

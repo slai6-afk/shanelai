@@ -59,12 +59,6 @@ export const Navigation = memo(function Navigation() {
                     display: 'block'
                   }}
                 />
-                {/* Inner stroke above artwork (inset shadow on img alone sits under opaque pixels) */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 rounded-full"
-                  style={{ boxShadow: 'inset 0 0 0 8px #ffffff' }}
-                />
               </div>
             </motion.div>
           </SketchCursorHint>
