@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown, Linkedin, Mail } from 'lucide-react';
 import { LINKEDIN_PROFILE_URL } from '../constants/links';
-import { Fragment, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { AboutStickerSpan } from '../components/about/AboutStickerSpan';
 import { WordBackdropDecor } from '../components/vector-decor';
@@ -12,7 +12,6 @@ import { HeroSpiral } from '../components/HeroSpiral';
 import { Navigation } from '../components/Navigation';
 import { SketchCursorHint } from '../components/SketchCursorHint';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
-import { VideoWhiteEdgeMask } from '../components/case-study/MediaBox';
 import ammVideo from '../assets/AMM_video.mp4';
 import memoryNavigatorPoster from '../assets/Gemini_Generated_Image_c23ldzc23ldzc23l.png';
 import nycHeroVideo from '../assets/herovideo_NYC.mov';
@@ -154,7 +153,63 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const tagsGap = project.tagsGap ?? 8;
   const columnGap = project.columnGap;
   const [mediaFailed, setMediaFailed] = useState(false);
+  const [shouldLoadMedia, setShouldLoadMedia] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const mediaContainerRef = useRef<HTMLDivElement | null>(null);
+  const mediaVideoRef = useRef<HTMLVideoElement | null>(null);
   const mediaPositionAtMdUp = index % 2 === 0 ? 'right' : 'left';
+
+  useEffect(() => {
+    const target = mediaContainerRef.current;
+    if (!target) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (!entry) {
+          return;
+        }
+
+        if (entry.isIntersecting) {
+          setShouldLoadMedia(true);
+          setIsInView(true);
+          return;
+        }
+
+        setIsInView(false);
+      },
+      {
+        // Start loading a bit early to avoid blank poster flashes while scrolling.
+        rootMargin: '240px 0px',
+        threshold: 0.15,
+      }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (project.mediaType !== 'video') {
+      return;
+    }
+
+    const video = mediaVideoRef.current;
+    if (!video) {
+      return;
+    }
+
+    if (isInView) {
+      void video.play().catch(() => {
+        // Some browsers block autoplay in special power/data-saving modes.
+      });
+      return;
+    }
+
+    video.pause();
+  }, [isInView, project.mediaType]);
 
   const content = (
     <div
@@ -233,7 +288,7 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
 
   /** Handwritten hint + slight zoom only when hovering the media frame (not title/copy). */
   const media = (
-    <div className="home-selected-work__media" style={{ flex: '1 1 0', minWidth: 0 }}>
+    <div ref={mediaContainerRef} className="home-selected-work__media" style={{ flex: '1 1 0', minWidth: 0 }}>
       <SketchCursorHint
         label={cursorLabel}
         enabled={cursorLabel.length > 0}
@@ -249,25 +304,22 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
           }}
         >
           {project.mediaType === 'video' && !mediaFailed ? (
-            <>
-              <video
-                src={project.mediaSrc}
-                poster={project.mediaPoster}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                aria-label={project.mediaAlt}
-                className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
-                style={{
-                  aspectRatio: '818 / 476',
-                  objectFit: 'cover',
-                }}
-                onError={() => setMediaFailed(true)}
-              />
-              <VideoWhiteEdgeMask />
-            </>
+            <video
+              ref={mediaVideoRef}
+              src={shouldLoadMedia ? project.mediaSrc : undefined}
+              autoPlay={isInView}
+              loop
+              muted
+              playsInline
+              preload={shouldLoadMedia ? 'metadata' : 'none'}
+              aria-label={project.mediaAlt}
+              className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
+              style={{
+                aspectRatio: '818 / 476',
+                objectFit: 'cover',
+              }}
+              onError={() => setMediaFailed(true)}
+            />
           ) : (
             <ImageWithFallback
               src={project.mediaPoster ?? project.mediaSrc}
