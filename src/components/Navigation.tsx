@@ -32,9 +32,9 @@ export const Navigation = memo(function Navigation() {
       className="ds-site-nav fixed top-0 left-0 right-0 z-50"
     >
       <div
-        className="nav-inner mx-auto flex max-w-[1600px] items-center justify-between rounded-[100px] px-5 sm:px-6 md:px-12 lg:px-[48px]"
+        className="nav-inner mx-auto flex max-w-[1600px] items-center justify-between rounded-[100px] px-3 sm:px-5 md:px-12 lg:px-[48px]"
         style={{
-          minHeight: '50px'
+          minHeight: '46px'
         }}
       >
         <NavLink to="/" end>
@@ -45,8 +45,7 @@ export const Navigation = memo(function Navigation() {
               transition={{ type: 'spring', stiffness: 420, damping: 18 }}
             >
               <div
-                className="nav-brand-mark relative shrink-0 overflow-hidden rounded-full"
-                style={{ width: 68, height: 68 }}
+                className="nav-brand-mark relative h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full sm:h-[60px] sm:w-[60px] md:h-[68px] md:w-[68px]"
               >
                 <img
                   src={brandImage}
@@ -72,8 +71,7 @@ export const Navigation = memo(function Navigation() {
         </NavLink>
 
         <div
-          className="scrollbar-hide flex items-center overflow-x-auto"
-          style={{ gap: '28px' }}
+          className="scrollbar-hide flex items-center gap-4 overflow-x-auto sm:gap-5 md:gap-7"
         >
           {navItems.map((item) => (
             <NavLink key={item.path} to={item.path} style={linkStyle}>

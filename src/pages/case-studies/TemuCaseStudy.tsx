@@ -425,7 +425,7 @@ function TemuPhoneMockups() {
             key={c.tier}
             className="group/mockcap w-full !max-w-none !rounded-[var(--temu-radius-inner)] !p-0 text-center"
           >
-            <div className="mb-0 flex flex-col items-center gap-4">
+            <div className="mb-0 flex flex-col items-center gap-2 md:gap-4">
               <div
                 className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--temu-radius-pill)] transition-transform duration-300 motion-safe:group-hover/mockcap:scale-105"
                 style={{ background: TEMU_ORANGE_SOFT }}
@@ -441,8 +441,8 @@ function TemuPhoneMockups() {
             </div>
 
             {/* 两列固定 70% : 30%（flex 7:3 在扣掉 gap 后按比例分配） */}
-            <div className="mx-auto flex w-full max-w-[min(100%,52rem)] min-w-0 flex-row items-center gap-4 md:gap-6">
-              <div className="flex min-h-0 min-w-0 flex-[7] items-center justify-center">
+            <div className="flex w-full min-w-0 flex-col items-center gap-3 sm:gap-4 md:flex-row md:gap-6">
+              <div className="flex w-full min-h-0 min-w-0 items-center justify-center md:flex-[7]">
                 <img
                   src={c.image}
                   alt={c.imageAlt}
@@ -451,7 +451,7 @@ function TemuPhoneMockups() {
                   decoding="async"
                 />
               </div>
-              <div className="flex min-h-0 min-w-0 flex-[3] items-center justify-center">
+              <div className="flex w-full min-h-0 min-w-0 items-center justify-center md:flex-[3]">
                 <TemuMockupLoopVideo src={c.video} ariaLabel={`${c.tier} — motion clip`} />
               </div>
             </div>
@@ -772,7 +772,7 @@ export function TemuCaseStudy() {
 
               <div id="tldr" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">TL;DR</h2>
-                <TemuSoftSurface className="!px-6 !py-[10px] md:!px-10 md:!py-[10px]" interactive={false}>
+                <TemuSoftSurface className="!px-3 !py-2 sm:!px-4 md:!px-10 md:!py-[10px]" interactive={false}>
                   <div className="temu-tldr-info">
                     <h3 className="temu-tldr-subhead">Project Information</h3>
                     <div className="temu-tldr-info-grid">

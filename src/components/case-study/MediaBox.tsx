@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 /** White strips on top of the video to mask baked-in letterboxing / export artifacts */
 export function VideoWhiteEdgeMask({
@@ -54,10 +54,13 @@ export function MediaBoxResponsive({
     playsInline: true
   }
 }: MediaBoxProps) {
+  const [videoFailed, setVideoFailed] = useState(false);
+  const showVideo = type === 'video' && !videoFailed;
+
   return (
     <div className="media-box-container">
       <div className="media-box-inner video-wrapper">
-        {type === 'video' ? (
+        {showVideo ? (
           <div className="media-box-video-wrapper">
             {videoSurfaceMask ? (
               <div className="media-box-video-frame media-box-video-frame--surface-mask relative w-full overflow-hidden rounded-[8px]">
@@ -71,6 +74,7 @@ export function MediaBoxResponsive({
                   playsInline={videoProps.playsInline}
                   loop={videoProps.loop}
                   preload="metadata"
+                  onError={() => setVideoFailed(true)}
                 />
                 <VideoWhiteEdgeMask />
               </div>
@@ -85,6 +89,7 @@ export function MediaBoxResponsive({
                 playsInline={videoProps.playsInline}
                 loop={videoProps.loop}
                 preload="metadata"
+                onError={() => setVideoFailed(true)}
               />
             )}
             {showVideoCaption && videoCaption ? (
@@ -95,7 +100,7 @@ export function MediaBoxResponsive({
         ) : (
           <img
             className="media-box-image"
-            src={src}
+            src={poster ?? src}
             alt={alt}
           />
         )}

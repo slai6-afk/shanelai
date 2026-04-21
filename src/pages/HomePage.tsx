@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown, Linkedin, Mail } from 'lucide-react';
 import { LINKEDIN_PROFILE_URL } from '../constants/links';
-import { Fragment, useRef, type ReactNode } from 'react';
+import { Fragment, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { AboutStickerSpan } from '../components/about/AboutStickerSpan';
 import { WordBackdropDecor } from '../components/vector-decor';
@@ -148,10 +148,11 @@ interface SelectedWorkSlideProps {
 }
 
 function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
-  const slideWidth = 'min(80vw, 1440px)';
+  const slideWidth = 'min(100%, 1440px)';
   const mediaRadius = project.mediaBorderRadius ?? '20px';
   const tagsGap = project.tagsGap ?? 8;
   const columnGap = project.columnGap;
+  const [mediaFailed, setMediaFailed] = useState(false);
 
   const content = (
     <div
@@ -164,7 +165,7 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
         width: '100%',
         maxWidth: '309px',
       }}
-      className={`w-full md:py-1 ${project.contentLayout === 'centered' ? 'md:min-h-[422px]' : 'md:min-h-[476px]'}`}
+      className={`home-selected-work__content w-full lg:py-1 ${project.contentLayout === 'centered' ? 'lg:min-h-[422px]' : 'lg:min-h-[476px]'}`}
     >
       <div style={{ paddingTop: '10px' }}>
         <h3
@@ -182,6 +183,7 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
         </h3>
 
         <div
+          className="home-selected-work__tags"
           style={{ display: 'flex', gap: `${tagsGap}px`, flexWrap: 'wrap', marginBottom: '18px' }}
         >
           {project.tags.map((tag) => (
@@ -209,6 +211,7 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
       </div>
 
       <p
+        className="home-selected-work__description"
         style={{
           color: 'var(--ds-text-secondary)',
           fontSize: 'var(--type-l3)',
@@ -228,7 +231,7 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
 
   /** Handwritten hint + slight zoom only when hovering the media frame (not title/copy). */
   const media = (
-    <div style={{ flex: '1 1 0', minWidth: 0 }}>
+    <div className="home-selected-work__media" style={{ flex: '1 1 0', minWidth: 0 }}>
       <SketchCursorHint
         label={cursorLabel}
         enabled={cursorLabel.length > 0}
@@ -243,7 +246,7 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
             position: 'relative',
           }}
         >
-          {project.mediaType === 'video' ? (
+          {project.mediaType === 'video' && !mediaFailed ? (
             <>
               <video
                 src={project.mediaSrc}
@@ -259,12 +262,13 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
                   aspectRatio: '818 / 476',
                   objectFit: 'cover',
                 }}
+                onError={() => setMediaFailed(true)}
               />
               <VideoWhiteEdgeMask />
             </>
           ) : (
             <ImageWithFallback
-              src={project.mediaSrc}
+              src={project.mediaPoster ?? project.mediaSrc}
               alt={project.mediaAlt}
               className="block w-full origin-center scale-100 transition-transform duration-300 ease-out group-hover:scale-[1.015]"
               style={{
@@ -280,8 +284,8 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
 
   const row = (
     <div
-      className={`flex flex-col md:flex-row md:items-center ${
-        columnGap ? '' : 'gap-6 md:gap-[17px]'
+      className={`home-selected-work__row flex flex-col lg:flex-row lg:items-center ${
+        columnGap ? '' : 'gap-4 sm:gap-6 lg:gap-[17px]'
       }`}
       style={{
         width: '100%',
@@ -349,6 +353,7 @@ export function HomePage() {
   return (
     <div
       ref={scrollContainerRef}
+      className="home-scroll-container"
       style={{
         height: '100vh',
         overflowY: 'auto',
