@@ -145,14 +145,16 @@ const homeProjects: HomeProject[] = [
 
 interface SelectedWorkSlideProps {
   project: HomeProject;
+  index: number;
 }
 
-function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
+function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const slideWidth = 'min(100%, 1440px)';
   const mediaRadius = project.mediaBorderRadius ?? '20px';
   const tagsGap = project.tagsGap ?? 8;
   const columnGap = project.columnGap;
   const [mediaFailed, setMediaFailed] = useState(false);
+  const mediaPositionAtMdUp = index % 2 === 0 ? 'right' : 'left';
 
   const content = (
     <div
@@ -284,8 +286,8 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
 
   const row = (
     <div
-      className={`home-selected-work__row flex flex-col lg:flex-row lg:items-center ${
-        columnGap ? '' : 'gap-4 sm:gap-6 lg:gap-[17px]'
+      className={`home-selected-work__row flex flex-col md:flex-row md:items-center ${
+        columnGap ? '' : 'gap-4 sm:gap-6 md:gap-[17px]'
       }`}
       style={{
         width: '100%',
@@ -293,7 +295,7 @@ function SelectedWorkSlide({ project }: SelectedWorkSlideProps) {
         ...(columnGap ? { gap: columnGap } : {}),
       }}
     >
-      {project.mediaPosition === 'right' ? (
+      {mediaPositionAtMdUp === 'right' ? (
         <>
           {content}
           {media}
@@ -619,8 +621,8 @@ export function HomePage() {
       </section>
 
       <div ref={selectedWorksRef} id="selected-works">
-        {homeProjects.map((project) => (
-          <SelectedWorkSlide key={project.title} project={project} />
+        {homeProjects.map((project, index) => (
+          <SelectedWorkSlide key={project.title} project={project} index={index} />
         ))}
       </div>
 
