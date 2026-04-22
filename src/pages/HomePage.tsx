@@ -153,7 +153,7 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const tagsGap = project.tagsGap ?? 8;
   const columnGap = project.columnGap;
   const [mediaFailed, setMediaFailed] = useState(false);
-  const [shouldLoadMedia, setShouldLoadMedia] = useState(false);
+  const [shouldLoadMedia, setShouldLoadMedia] = useState(index < 3);
   const [isInView, setIsInView] = useState(false);
   const mediaContainerRef = useRef<HTMLDivElement | null>(null);
   const mediaVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -182,8 +182,8 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
         setIsInView(false);
       },
       {
-        // Start loading a bit early to avoid blank poster flashes while scrolling.
-        rootMargin: '240px 0px',
+        // Preload earlier so next cards are ready before entering viewport.
+        rootMargin: '1200px 0px',
         threshold: 0.15,
       }
     );
