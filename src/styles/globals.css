@@ -1144,17 +1144,11 @@ html {
   padding-top: 40px;
 }
 
-/* Selected Works — section full-viewport tinted backgrounds */
-#selected-works .home-selected-work--temu   { background: color-mix(in srgb, #fb7701 14%, #fff5ee); }
-#selected-works .home-selected-work--vibe   { background: color-mix(in srgb, #12b8c4 12%, #edf9fa); }
-#selected-works .home-selected-work--nyc    { background: color-mix(in srgb, #ffb347 16%, #fff7eb); }
-#selected-works .home-selected-work--funfit { background: color-mix(in srgb, #ed964f 14%, #fff3e8); }
-
-/* Cards: slightly stronger tint so they lift off the section bg */
-.home-selected-work__card--temu   { background: color-mix(in srgb, #fb7701 26%, #fff8f2); }
-.home-selected-work__card--vibe   { background: color-mix(in srgb, #12b8c4 22%, #f0fafb); }
-.home-selected-work__card--nyc    { background: color-mix(in srgb, #ffb347 28%, #fffaf0); }
-.home-selected-work__card--funfit { background: color-mix(in srgb, #ed964f 26%, #fff5ed); }
+/* Selected Works cards — tinted backgrounds, sections are transparent */
+.home-selected-work__card--temu   { background: color-mix(in srgb, #fb7701 22%, #fff8f2); }
+.home-selected-work__card--vibe   { background: color-mix(in srgb, #12b8c4 20%, #f0fafb); }
+.home-selected-work__card--nyc    { background: color-mix(in srgb, #ffb347 25%, #fffaf0); }
+.home-selected-work__card--funfit { background: color-mix(in srgb, #ed964f 22%, #fff5ed); }
 
 /* Ultra-wide tuning: relax common container caps to better use 1920+ screens. */
 @media (min-width: 1920px) {
@@ -1230,8 +1224,23 @@ html {
     scroll-behavior: auto !important;
   }
 
+  /* Media takes ~70% of card on mobile — taller aspect ratio */
+  #selected-works .home-selected-work .home-selected-work__media {
+    width: 100%;
+  }
+
   #selected-works .home-selected-work .home-selected-work__media .ds-media-frame {
     border-radius: 14px !important;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  #selected-works .home-selected-work .home-selected-work__media .ds-media-frame video,
+  #selected-works .home-selected-work .home-selected-work__media .ds-media-frame img {
+    aspect-ratio: 4 / 3 !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .ds-site-nav .nav-inner {
