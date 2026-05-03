@@ -278,7 +278,7 @@ body.site-cursor-eyes * {
    * Shape: full pill (border-radius: 9999px)
    */
   --ds-cta-font:      var(--font-heading);
-  --ds-cta-weight:    600;
+  --ds-cta-weight:    800;
   --ds-cta-track:     0.05em;
   --ds-cta-transform: uppercase;
   --ds-cta-radius:    9999px;
@@ -317,7 +317,7 @@ body.site-cursor-eyes * {
    * distinct from CTA pills so the user knows these are labels, not actions.
    */
   --ds-badge-font:      var(--font-heading);
-  --ds-badge-weight:    600;
+  --ds-badge-weight:    800;
   --ds-badge-track:     0.1em;
   --ds-badge-transform: uppercase;
   --ds-badge-radius:    8px;
@@ -330,26 +330,6 @@ body.site-cursor-eyes * {
   --ds-badge-temu-fg:     #ffffff;
   --ds-badge-minimax-bg:  #FF14AD;
   --ds-badge-minimax-fg:  #ffffff;
-}
-
-/* Site-wide typography: same heading stack as the home hero (Montserrat-first) */
-body {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#root {
-  font-family: inherit;
-}
-
-button,
-input,
-textarea,
-select {
-  font-family: inherit;
 }
 
 /* --- Interaction utilities (see ProjectCard, HomePage, Navigation, AboutPage) --- */
@@ -1057,7 +1037,7 @@ html {
 /* Sticky TOC layout and interactions */
 .sticky-toc-nav {
   align-self: flex-start;
-  max-width: 180px;
+  max-width: 100%;
   width: 100%;
   position: relative;
   z-index: 60;
@@ -1066,20 +1046,12 @@ html {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Static state - TOC starts here, scrolling with content */
-.sticky-toc-nav.sticky-toc-static {
+/* Both static and fixed states use relative positioning (sticky wrapper handles positioning) */
+.sticky-toc-nav.sticky-toc-static,
+.sticky-toc-nav.sticky-toc-fixed {
   position: relative;
   top: 0;
-}
-
-/* Fixed state - TOC locks into fixed position */
-@media (min-width: 1024px) {
-  .sticky-toc-nav.sticky-toc-fixed {
-    position: fixed;
-    top: 120px;
-    left: max(64px, calc((100vw - 1600px) / 2 + 64px));
-    z-index: 60;
-  }
+  left: 0;
 }
 
 .case-full-bleed {
@@ -1150,7 +1122,7 @@ html {
 
 @media (min-width: 1024px) {
   .case-study-content-wrapper {
-    margin-left: -48px;
+    margin-left: 0;
   }
 
   /* Temu page should align with viewport container (no desktop left offset). */
@@ -1164,11 +1136,69 @@ html {
   padding-top: 40px;
 }
 
-/* Selected Works cards — tinted backgrounds, sections are transparent */
-.home-selected-work__card--temu   { background: color-mix(in srgb, #fb7701 22%, #fff8f2); }
-.home-selected-work__card--vibe   { background: color-mix(in srgb, #12b8c4 20%, #f0fafb); }
-.home-selected-work__card--nyc    { background: color-mix(in srgb, #ffb347 25%, #fffaf0); }
-.home-selected-work__card--funfit { background: color-mix(in srgb, #ed964f 22%, #fff5ed); }
+/* Selected Works cards — bold solid colors with premium shadows */
+.home-selected-work__card--temu   {
+  background: #FF6D00;
+  box-shadow: 0 20px 60px rgba(255, 109, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+.home-selected-work__card--vibe   {
+  background: #00D5DD;
+  box-shadow: 0 20px 60px rgba(0, 213, 221, 0.25), 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+.home-selected-work__card--nyc    {
+  background: #2D2D2D;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+}
+.home-selected-work__card--funfit {
+  background: #FFFFFF;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Strict Black & White Typography System - Luminance-based */
+/* Dark Gray (#2D2D2D) background: Pure White text */
+.home-selected-work__card--nyc h3,
+.home-selected-work__card--nyc .home-selected-work__description,
+.home-selected-work__card--nyc .home-selected-work__card-header span {
+  color: #FFFFFF !important;
+}
+
+/* Orange (#FF6D00), Cyan (#00D5DD) and White (#FFFFFF) backgrounds: Pure Black text */
+.home-selected-work__card--temu h3,
+.home-selected-work__card--temu .home-selected-work__description,
+.home-selected-work__card--temu .home-selected-work__card-header span,
+.home-selected-work__card--vibe h3,
+.home-selected-work__card--vibe .home-selected-work__description,
+.home-selected-work__card--vibe .home-selected-work__card-header span,
+.home-selected-work__card--funfit h3,
+.home-selected-work__card--funfit .home-selected-work__description,
+.home-selected-work__card--funfit .home-selected-work__card-header span {
+  color: #000000 !important;
+}
+
+/* Ghost Tags - No background, 1px border matching text color */
+/* Dark Gray card: White border and text */
+.home-selected-work__card--nyc .home-selected-work__tags span {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFFFF !important;
+}
+
+/* Orange, Cyan and White cards: Black border and text */
+.home-selected-work__card--temu .home-selected-work__tags span,
+.home-selected-work__card--vibe .home-selected-work__tags span,
+.home-selected-work__card--funfit .home-selected-work__tags span {
+  background: transparent !important;
+  color: #000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+/* Larger, more impactful card titles */
+#selected-works .home-selected-work h3 {
+  font-size: clamp(26px, 3.5vw, 46px) !important;
+  font-weight: 900 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.035em !important;
+}
 
 /* Ultra-wide tuning: relax common container caps to better use 1920+ screens. */
 @media (min-width: 1920px) {
@@ -2145,11 +2175,22 @@ html {
   line-height: 1.58;
 }
 
+/* ── Temu hero: Block A ── clear full-width section, well separated from the grid below */
+.temu-page .case-study-hero-section {
+  padding-bottom: clamp(32px, 5vw, 72px);
+}
+
+.temu-page .case-study-hero-content-wrapper {
+  /* Title block spans the full hero width — not constrained to right-column width */
+  max-width: min(100%, 1600px);
+  margin-top: clamp(24px, 3vw, 40px);   /* gap between video and title */
+}
+
 .temu-page .case-study-hero-content-wrapper .case-hero-header-block {
   display: flex;
   flex-direction: column;
   gap: clamp(18px, 2.5vw, 24px);
-  margin-bottom: 40px;
+  margin-bottom: 0;                      /* bottom handled by section padding-bottom */
 }
 
 .temu-page .case-study-hero-section > .media-box-container {
@@ -4073,7 +4114,7 @@ a.about-sticker-span {
 
 .vibesync-define-inter-label {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
   line-height: 1.75;
   color: #00d5dd;
