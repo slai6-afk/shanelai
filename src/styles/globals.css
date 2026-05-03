@@ -1144,23 +1144,17 @@ html {
   padding-top: 40px;
 }
 
-/* Card-style Selected Works — tinted backgrounds per project theme */
-.home-selected-work__card--temu {
-  background: color-mix(in srgb, #fb7701 18%, #fff8f2);
-  border: 1px solid color-mix(in srgb, #fb7701 14%, transparent);
-}
-.home-selected-work__card--vibe {
-  background: color-mix(in srgb, #12b8c4 16%, #f0fafb);
-  border: 1px solid color-mix(in srgb, #12b8c4 12%, transparent);
-}
-.home-selected-work__card--nyc {
-  background: color-mix(in srgb, #ffb347 20%, #fffaf0);
-  border: 1px solid color-mix(in srgb, #ffb347 14%, transparent);
-}
-.home-selected-work__card--funfit {
-  background: color-mix(in srgb, #ed964f 18%, #fff5ed);
-  border: 1px solid color-mix(in srgb, #ed964f 14%, transparent);
-}
+/* Selected Works — section full-viewport tinted backgrounds */
+#selected-works .home-selected-work--temu   { background: color-mix(in srgb, #fb7701 14%, #fff5ee); }
+#selected-works .home-selected-work--vibe   { background: color-mix(in srgb, #12b8c4 12%, #edf9fa); }
+#selected-works .home-selected-work--nyc    { background: color-mix(in srgb, #ffb347 16%, #fff7eb); }
+#selected-works .home-selected-work--funfit { background: color-mix(in srgb, #ed964f 14%, #fff3e8); }
+
+/* Cards: slightly stronger tint so they lift off the section bg */
+.home-selected-work__card--temu   { background: color-mix(in srgb, #fb7701 26%, #fff8f2); }
+.home-selected-work__card--vibe   { background: color-mix(in srgb, #12b8c4 22%, #f0fafb); }
+.home-selected-work__card--nyc    { background: color-mix(in srgb, #ffb347 28%, #fffaf0); }
+.home-selected-work__card--funfit { background: color-mix(in srgb, #ed964f 26%, #fff5ed); }
 
 /* Ultra-wide tuning: relax common container caps to better use 1920+ screens. */
 @media (min-width: 1920px) {
@@ -1178,7 +1172,7 @@ html {
   }
 }
 
-/* Home selected-work mobile UX: media first, copy below, no narrow text column */
+/* Tablet (768–1023px): side-by-side row still works — only fix order and stretch */
 @media (max-width: 1023px) {
   #selected-works .home-selected-work .home-selected-work__row {
     align-items: stretch !important;
@@ -1190,9 +1184,15 @@ html {
 
   #selected-works .home-selected-work .home-selected-work__content {
     order: 2;
+    gap: 12px !important;
+  }
+}
+
+/* Mobile (<768px): column layout — content full-width, centered */
+@media (max-width: 767px) {
+  #selected-works .home-selected-work .home-selected-work__content {
     max-width: none !important;
     width: 100% !important;
-    gap: 12px !important;
   }
 
   #selected-works .home-selected-work .home-selected-work__description {
@@ -1210,27 +1210,24 @@ html {
   }
 }
 
+/* Tablet + mobile (≤1023px): disable sticky stacking, cards flow normally */
+@media (max-width: 1023px) {
+  #selected-works .home-selected-work {
+    position: relative !important;
+    height: auto !important;
+    min-height: auto !important;
+    top: auto !important;
+    z-index: auto !important;
+    transform: none !important;
+    padding-top: clamp(88px, 11vh, 108px) !important;
+    padding-bottom: 32px !important;
+  }
+}
+
 @media (max-width: 767px) {
   .home-scroll-container {
     scroll-snap-type: y proximity !important;
     scroll-behavior: auto !important;
-  }
-
-  #selected-works .home-selected-work {
-    position: relative !important;
-    height: auto !important;
-    top: auto !important;
-    z-index: auto !important;
-    min-height: auto !important;
-    padding-top: 96px !important;
-    padding-bottom: 32px !important;
-    transform: none !important;
-  }
-
-  #selected-works .home-selected-work.home-selected-work--stack {
-    position: relative !important;
-    top: auto !important;
-    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
   }
 
   #selected-works .home-selected-work .home-selected-work__media .ds-media-frame {
