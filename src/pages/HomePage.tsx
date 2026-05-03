@@ -39,6 +39,8 @@ interface HomeProject {
   /** Scribble tint + scope class for `WordBackdropDecor` in the teaser line */
   slideAccent: 'vibe' | 'temu' | 'nyc' | 'funfit';
   tags: string[];
+  year?: string;
+  category?: string;
   /** When omitted, the slide is not wrapped in a link. */
   link?: string;
   mediaType: 'image' | 'video';
@@ -61,6 +63,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'Temu: Fixing the "Leaky Bucket" of AI Support',
     slideAccent: 'temu',
+    year: '2024',
+    category: 'Product Design',
     description: (
       <Fragment>
         How I redesigned Temu&apos;s AI support ecosystem, dropping manual agent escalation from{' '}
@@ -81,6 +85,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
     slideAccent: 'vibe',
+    year: '2024',
+    category: 'Social & Discovery',
     description: (
       <Fragment>
         How I led product strategy in a{' '}
@@ -101,6 +107,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'NYC Tourism: Discover the Big Apple & Making It Your Home',
     slideAccent: 'nyc',
+    year: '2023',
+    category: 'UX Research & Strategy',
     description: (
       <Fragment>
         How I re-engineered NYC tourism IA to reduce cognitive load for students by{' '}
@@ -121,6 +129,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'FunFitLand: Making Fitness Accessible to Everyone In Immersive World',
     slideAccent: 'funfit',
+    year: '2023',
+    category: 'Accessibility & VR',
     description: (
       <Fragment>
         Designing for the extremes: How I built an{' '}
@@ -364,32 +374,80 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
     </div>
   );
 
+  const cardInner = (
+    <>
+      {/* Card header: year + category */}
+      <div
+        className="home-selected-work__card-header"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          marginBottom: '20px',
+        }}
+      >
+        <span
+          style={{
+            fontSize: 'var(--type-l1)',
+            fontWeight: 500,
+            color: 'var(--ds-text-secondary)',
+            letterSpacing: '0.02em',
+          }}
+        >
+          {project.year}
+        </span>
+        <span
+          style={{
+            fontSize: 'var(--type-l1)',
+            fontWeight: 500,
+            color: 'var(--ds-text-secondary)',
+            letterSpacing: '0.02em',
+            textTransform: 'uppercase',
+          }}
+        >
+          {project.category}
+        </span>
+      </div>
+      {row}
+    </>
+  );
+
   return (
     <section
-      className={`home-selected-work home-selected-work--${project.slideAccent} home-selected-work--stack mx-3 sm:mx-5 md:mx-8 lg:mx-12 rounded-[20px] sm:rounded-[24px] md:rounded-[28px] px-4 sm:px-6 md:px-10 lg:px-16`}
+      className={`home-selected-work home-selected-work--${project.slideAccent}`}
       style={{
         minHeight: '100vh',
-        scrollSnapAlign: 'start',
-        scrollSnapStop: 'normal',
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 'max(108px, 11vh)',
-        paddingBottom: 'max(56px, 7vh)',
-        zIndex: 10 + index,
+        paddingTop: '88px',
+        paddingBottom: '32px',
+        paddingLeft: 'clamp(16px, 3vw, 40px)',
+        paddingRight: 'clamp(16px, 3vw, 40px)',
+        backgroundColor: '#ffffff',
       }}
     >
-      <div className="mx-auto w-full" style={{ width: slideWidth }}>
+      <div
+        className={`home-selected-work__card home-selected-work__card--${project.slideAccent} mx-auto w-full`}
+        style={{
+          maxWidth: '1400px',
+          borderRadius: '28px',
+          padding: 'clamp(28px, 4vw, 56px) clamp(24px, 3.5vw, 56px)',
+          boxShadow: '0 4px 40px rgba(15,23,42,0.09), 0 1px 4px rgba(15,23,42,0.04)',
+        }}
+      >
         {project.link ? (
           <Link
             to={project.link}
             className="group block w-full"
             style={{ textDecoration: 'none', color: 'inherit' }}
           >
-            {row}
+            {cardInner}
           </Link>
         ) : (
-          row
+          cardInner
         )}
       </div>
     </section>
