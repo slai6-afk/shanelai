@@ -159,6 +159,7 @@ interface SelectedWorkSlideProps {
 
 function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const slideWidth = 'min(100%, 1440px)';
+  const rotationDeg = index % 2 === 0 ? -1.5 : 1.5;
   const mediaRadius = project.mediaBorderRadius ?? '20px';
   const tagsGap = project.tagsGap ?? 8;
   const columnGap = project.columnGap;
@@ -416,13 +417,14 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
     <section
       className={`home-selected-work home-selected-work--${project.slideAccent}`}
       style={{
-        minHeight: '100vh',
-        scrollSnapAlign: 'center',
-        scrollSnapStop: 'always',
+        height: '100dvh',
+        position: 'sticky',
+        top: 0,
+        zIndex: 10 + index,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: '88px',
+        paddingTop: 'clamp(96px, 11vh, 128px)',
         paddingBottom: '32px',
         paddingLeft: 'clamp(16px, 3vw, 40px)',
         paddingRight: 'clamp(16px, 3vw, 40px)',
@@ -435,7 +437,10 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
           maxWidth: '1400px',
           borderRadius: '28px',
           padding: 'clamp(28px, 4vw, 56px) clamp(24px, 3.5vw, 56px)',
-          boxShadow: '0 4px 40px rgba(15,23,42,0.09), 0 1px 4px rgba(15,23,42,0.04)',
+          boxShadow: '0 8px 56px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.05)',
+          transform: `rotate(${rotationDeg}deg)`,
+          transformOrigin: 'center center',
+          willChange: 'transform',
         }}
       >
         {project.link ? (
@@ -475,7 +480,7 @@ export function HomePage() {
         overflowY: 'auto',
         overflowX: 'hidden',
         backgroundColor: 'var(--ds-bg-surface)',
-        scrollSnapType: 'y mandatory',
+        scrollSnapType: 'y proximity',
         scrollBehavior: 'smooth',
         scrollPaddingTop: '88px',
       }}
