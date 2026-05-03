@@ -159,7 +159,6 @@ interface SelectedWorkSlideProps {
 
 function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const slideWidth = 'min(100%, 1440px)';
-  const rotationDeg = index % 2 === 0 ? -1.5 : 1.5;
   const mediaRadius = project.mediaBorderRadius ?? '20px';
   const tagsGap = project.tagsGap ?? 8;
   const columnGap = project.columnGap;
@@ -428,7 +427,6 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
         paddingBottom: '32px',
         paddingLeft: 'clamp(16px, 3vw, 40px)',
         paddingRight: 'clamp(16px, 3vw, 40px)',
-        backgroundColor: '#ffffff',
       }}
     >
       <div
@@ -436,11 +434,8 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
         style={{
           maxWidth: '1400px',
           borderRadius: '28px',
-          padding: 'clamp(28px, 4vw, 56px) clamp(24px, 3.5vw, 56px)',
-          boxShadow: '0 8px 56px rgba(15,23,42,0.12), 0 2px 8px rgba(15,23,42,0.05)',
-          transform: `rotate(${rotationDeg}deg)`,
-          transformOrigin: 'center center',
-          willChange: 'transform',
+          padding: 'clamp(20px, 3.5vw, 52px) clamp(18px, 3vw, 52px)',
+          boxShadow: '0 8px 56px rgba(15,23,42,0.10), 0 2px 8px rgba(15,23,42,0.04)',
         }}
       >
         {project.link ? (
