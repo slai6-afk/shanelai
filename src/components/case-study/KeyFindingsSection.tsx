@@ -70,7 +70,7 @@ export function KeyFindingsSection({ findings }: KeyFindingsSectionProps) {
               <h4 style={{
                 color: config.color,
                 fontSize: 'var(--type-l3)',
-                fontFamily: 'MuseoModerno, sans-serif',
+                fontFamily: 'var(--font-heading)',
                 fontWeight: 600,
                 margin: 0
               }}>

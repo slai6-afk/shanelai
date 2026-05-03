@@ -1687,7 +1687,7 @@ export function MemoryNavigatorCaseStudy() {
                   <p style={{
                     color: '#795337',
                     fontSize: 'var(--type-l2)',
-                    fontFamily: 'MuseoModerno, sans-serif',
+                    fontFamily: 'var(--font-heading)',
                     fontWeight: 600,
                     letterSpacing: '0.05em',
                     textTransform: 'uppercase',

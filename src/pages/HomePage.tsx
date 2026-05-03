@@ -584,7 +584,7 @@ export function HomePage() {
                     paddingTop: '12px',
                     paddingBottom: '12px',
                     width: '100%',
-                    maxWidth: '713px',
+                    maxWidth: 'min(1040px, 94vw)',
                     marginLeft: 'auto',
                     marginRight: 'auto',
                   }}
@@ -612,7 +612,7 @@ export function HomePage() {
                           color: 'var(--ds-text-tertiary)',
                           fontSize: 'clamp(12px, 1.1vw, 15px)',
                           lineHeight: 1.4,
-                          fontWeight: 700,
+                          fontWeight: 600,
                           fontFamily: 'var(--font-heading)',
                           letterSpacing: '0.1em',
                           textTransform: 'uppercase',
@@ -627,10 +627,10 @@ export function HomePage() {
                           color: 'var(--ds-text-primary)',
                           fontSize: 'clamp(22px, 3.2vw, 48px)',
                           lineHeight: 1.1,
-                          fontWeight: 900,
+                          fontWeight: 700,
                           fontFamily: 'var(--font-heading)',
                           letterSpacing: '-0.03em',
-                          maxWidth: '680px',
+                          maxWidth: 'min(980px, 92vw)',
                         }}
                       >
                         I design AI and consumer products that turn human behavior into better interactions — 3 years strong.

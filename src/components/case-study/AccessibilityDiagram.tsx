@@ -34,7 +34,7 @@ export function AccessibilityDiagram() {
             color: '#333333', 
             fontSize: 'var(--type-l3)', 
             fontWeight: 500,
-            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif',
+            fontFamily: 'var(--font-heading)',
             letterSpacing: '-0.01em'
           }}>
             Commitment to Accessibility → Enablement through Inclusive Design
@@ -67,7 +67,7 @@ export function AccessibilityDiagram() {
             fontWeight="400"
             fill="#333333"
             textAnchor="middle"
-            fontFamily="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif"
+            fontFamily="Montserrat, 'Ember Modern Display Standard', system-ui, sans-serif"
           >
             Mobility
           </text>
@@ -88,7 +88,7 @@ export function AccessibilityDiagram() {
             fontWeight="400"
             fill="#333333"
             textAnchor="middle"
-            fontFamily="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif"
+            fontFamily="Montserrat, 'Ember Modern Display Standard', system-ui, sans-serif"
           >
             Age
           </text>
@@ -109,7 +109,7 @@ export function AccessibilityDiagram() {
             fontWeight="400"
             fill="#333333"
             textAnchor="middle"
-            fontFamily="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif"
+            fontFamily="Montserrat, 'Ember Modern Display Standard', system-ui, sans-serif"
           >
             Disability
           </text>
@@ -128,7 +128,7 @@ export function AccessibilityDiagram() {
             fontWeight="600"
             fill="var(--ds-text-primary)"
             textAnchor="middle"
-            fontFamily="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif"
+            fontFamily="Montserrat, 'Ember Modern Display Standard', system-ui, sans-serif"
             letterSpacing="-0.02em"
           >
             Enablement
@@ -147,7 +147,7 @@ export function AccessibilityDiagram() {
           fontSize: 'var(--type-l2)', 
           fontWeight: 400, 
           lineHeight: '1.7',
-          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif',
+          fontFamily: 'var(--font-heading)',
           letterSpacing: '-0.005em'
         }}>
           "Accessibility is not a one-time checklist—it's an ongoing commitment to ensuring that technology serves everyone, regardless of mobility, disability, age, or capability."

@@ -6,14 +6,14 @@ import imgScreenshot20250106At0222271 from "figma:asset/1c8f78cebe8e96a24b2fd055
 export default function Frame3465176() {
   return (
     <div className="w-full">
-      <h3 className="text-[#ed964f] font-semibold mb-6" style={{ fontFamily: 'MuseoModerno, sans-serif' }}>
+      <h3 className="text-[#ed964f] font-semibold mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
         Calibration Experience Design
       </h3>
       
       {/* Three images in a row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <div className="flex flex-col">
-          <p className="text-[#ed964f] text-[10px] font-semibold mb-2" style={{ fontFamily: 'MuseoModerno, sans-serif' }}>
+          <p className="text-[#ed964f] text-[10px] font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
             Comfort Reach
           </p>
           <div className="w-full bg-white rounded-lg overflow-hidden">
@@ -26,7 +26,7 @@ export default function Frame3465176() {
         </div>
         
         <div className="flex flex-col">
-          <p className="text-[#ed964f] text-[10px] font-semibold mb-2" style={{ fontFamily: 'MuseoModerno, sans-serif' }}>
+          <p className="text-[#ed964f] text-[10px] font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
             Mid Stretch
           </p>
           <div className="w-full bg-white rounded-lg overflow-hidden">
@@ -39,7 +39,7 @@ export default function Frame3465176() {
         </div>
         
         <div className="flex flex-col">
-          <p className="text-[#ed964f] text-[10px] font-semibold mb-2" style={{ fontFamily: 'MuseoModerno, sans-serif' }}>
+          <p className="text-[#ed964f] text-[10px] font-semibold mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
             Max Stretch
           </p>
           <div className="w-full bg-white rounded-lg overflow-hidden">

@@ -24,7 +24,7 @@ export function ProblemFramework({
         <h3 style={{
           color: '#AE8EFF',
           fontSize: 'var(--type-l4)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           marginBottom: '24px'
         }}>

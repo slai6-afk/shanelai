@@ -39,7 +39,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
         <h3 style={{
           color: '#AE8EFF',
           fontSize: 'var(--type-l4)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           margin: 0
         }}>
@@ -51,7 +51,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
         <p style={{
           color: '#482D18',
           fontSize: 'var(--type-l1)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           letterSpacing: '0.05em',
           textTransform: 'uppercase',
@@ -73,7 +73,7 @@ export function ResearchGoalCard({ title, goal, hypothesis, index = 0 }: Researc
         <p style={{
           color: '#482D18',
           fontSize: 'var(--type-l1)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           letterSpacing: '0.05em',
           textTransform: 'uppercase',

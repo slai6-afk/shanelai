@@ -28,7 +28,7 @@ export function ProblemStatement({ statement, context, hmw }: ProblemStatementPr
         <p style={{
           color: '#482D18',
           fontSize: 'var(--type-l1)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           letterSpacing: '0.05em',
           textTransform: 'uppercase',
@@ -60,7 +60,7 @@ export function ProblemStatement({ statement, context, hmw }: ProblemStatementPr
             <p style={{
               color: '#AE8EFF',
               fontSize: 'var(--type-l2)',
-              fontFamily: 'MuseoModerno, sans-serif',
+              fontFamily: 'var(--font-heading)',
               fontWeight: 600,
               letterSpacing: '0.03em',
               marginBottom: '12px'

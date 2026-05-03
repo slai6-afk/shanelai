@@ -695,14 +695,14 @@ export function VibeSyncCaseStudy() {
                   </div>
                   <div className="my-8 flex flex-col items-center gap-3 text-center">
                     <p
-                      className="m-0 font-['Ember_Modern_Display_Standard','Inter',sans-serif] text-[length:var(--type-l3)] font-semibold leading-[var(--type-l3-lh)] text-black/85"
+                      className="m-0 font-sans text-[length:var(--type-l3)] font-semibold leading-[var(--type-l3-lh)] text-black/85"
                       style={{ letterSpacing: 'var(--type-track-body)' }}
                     >
                       From Sketches
                     </p>
                     <VectorDecor name={pickFlowVertical(9)} className="vector-decor--connector" />
                     <p
-                      className="m-0 font-['Ember_Modern_Display_Standard','Inter',sans-serif] text-[length:var(--type-l3)] font-semibold leading-[var(--type-l3-lh)] text-black/85"
+                      className="m-0 font-sans text-[length:var(--type-l3)] font-semibold leading-[var(--type-l3-lh)] text-black/85"
                       style={{ letterSpacing: 'var(--type-track-body)' }}
                     >
                       Prototype

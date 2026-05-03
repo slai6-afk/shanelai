@@ -39,7 +39,7 @@ export function StatHighlight({ stats }: StatHighlightProps) {
             transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
             style={{
               fontSize: 'var(--type-l6)',
-              fontFamily: 'MuseoModerno, sans-serif',
+              fontFamily: 'var(--font-heading)',
               fontWeight: 700,
               color: stat.color || '#E56641',
               lineHeight: '1',

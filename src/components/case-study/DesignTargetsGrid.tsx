@@ -31,7 +31,7 @@ export function DesignTargetsGrid({
         <h3 style={{
           color: '#AE8EFF',
           fontSize: 'var(--type-l4)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           marginBottom: '12px'
         }}>
@@ -95,7 +95,7 @@ export function DesignTargetsGrid({
             <h4 style={{
               color: '#482D18',
               fontSize: 'var(--type-l3)',
-              fontFamily: 'MuseoModerno, sans-serif',
+              fontFamily: 'var(--font-heading)',
               fontWeight: 600,
               marginBottom: '4px',
               lineHeight: '1.4'
@@ -106,7 +106,7 @@ export function DesignTargetsGrid({
             <p style={{
               color: '#AE8EFF',
               fontSize: 'var(--type-l2)',
-              fontFamily: 'MuseoModerno, sans-serif',
+              fontFamily: 'var(--font-heading)',
               fontWeight: 600,
               margin: 0
             }}>

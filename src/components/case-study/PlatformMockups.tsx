@@ -43,7 +43,7 @@ export function PlatformMockups({ platforms }: PlatformMockupsProps) {
               <h4 style={{
                 color: platform.accentColor || '#AE8EFF',
                 fontSize: 'var(--type-l4)',
-                fontFamily: 'MuseoModerno, sans-serif',
+                fontFamily: 'var(--font-heading)',
                 fontWeight: 600,
                 marginBottom: '8px'
               }}>

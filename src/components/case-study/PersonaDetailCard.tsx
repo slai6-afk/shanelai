@@ -64,7 +64,7 @@ export function PersonaDetailCard({
           <h3 style={{
             color: '#333333',
             fontSize: 'var(--type-l4)',
-            fontFamily: 'MuseoModerno, sans-serif',
+            fontFamily: 'var(--font-heading)',
             fontWeight: 600,
             marginBottom: '4px'
           }}>
@@ -73,7 +73,7 @@ export function PersonaDetailCard({
           <p style={{
             color: '#E56641',
             fontSize: 'var(--type-l2)',
-            fontFamily: 'MuseoModerno, sans-serif',
+            fontFamily: 'var(--font-heading)',
             fontWeight: 500,
             marginBottom: '2px'
           }}>
@@ -126,7 +126,7 @@ function DetailSection({ title, items, color }: { title: string; items: string[]
       <p style={{
         color: color,
         fontSize: 'var(--type-l1)',
-        fontFamily: 'MuseoModerno, sans-serif',
+        fontFamily: 'var(--font-heading)',
         fontWeight: 600,
         letterSpacing: '0.05em',
         textTransform: 'uppercase',

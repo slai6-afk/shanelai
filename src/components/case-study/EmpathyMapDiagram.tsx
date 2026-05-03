@@ -30,7 +30,7 @@ export function EmpathyMapDiagram({ personaName, data }: EmpathyMapDiagramProps)
         style={{
           color: '#AE8EFF',
           fontSize: 'var(--type-l4)',
-          fontFamily: 'MuseoModerno, sans-serif',
+          fontFamily: 'var(--font-heading)',
           fontWeight: 600,
           textAlign: 'center',
           marginBottom: '24px'
@@ -87,7 +87,7 @@ export function EmpathyMapDiagram({ personaName, data }: EmpathyMapDiagramProps)
                 <h5 style={{
                   color: quadrant.color,
                   fontSize: 'var(--type-l2)',
-                  fontFamily: 'MuseoModerno, sans-serif',
+                  fontFamily: 'var(--font-heading)',
                   fontWeight: 600,
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',

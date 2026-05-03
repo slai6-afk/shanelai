@@ -84,7 +84,7 @@ export function DesignLayoutSection({
               padding: '6px 16px',
               borderRadius: '20px',
               fontSize: 'var(--type-l1)',
-              fontFamily: 'MuseoModerno, sans-serif',
+              fontFamily: 'var(--font-heading)',
               fontWeight: 600,
               boxShadow: '0px 2px 8px rgba(172, 139, 255, 0.4)',
               zIndex: 1
@@ -169,7 +169,7 @@ export function DesignLayoutSection({
               padding: '6px 16px',
               borderRadius: '20px',
               fontSize: 'var(--type-l1)',
-              fontFamily: 'MuseoModerno, sans-serif',
+              fontFamily: 'var(--font-heading)',
               fontWeight: 600,
               boxShadow: '0px 2px 8px rgba(229, 102, 65, 0.4)',
               zIndex: 1

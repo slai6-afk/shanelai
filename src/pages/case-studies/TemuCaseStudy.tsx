@@ -36,13 +36,12 @@ const TEMU_ORANGE_SOFT = 'color-mix(in srgb, #FB7701 14%, white)';
 const TEMU_TRACK = 'color-mix(in srgb, var(--ds-text-primary) 8%, transparent)';
 const TEMU_SECTION_BLOCK_MT = 'mt-10 md:mt-10';
 
-/** Ember @font-face only registers 400 + 700; use real Bold + this stack so caps match zone titles */
-const TEMU_EMBER_BOLD =
-  "font-['Ember_Modern_Display_Standard','Inter',sans-serif] font-bold";
+/** Inherits global --font-heading (Montserrat-first); Bold = 700 metric */
+const TEMU_EMBER_BOLD = 'font-bold';
 const TEMU_KICKER_SIZE = 'text-[length:var(--type-l4)] leading-[var(--type-l4-lh)]';
 const TEMU_KICKER_CAPS = `tracking-[var(--type-track-caps)] ${TEMU_KICKER_SIZE}`;
 const TEMU_KICKER_STYLE = {
-  fontFamily: "'Ember Modern Display Standard', 'Inter', sans-serif",
+  fontFamily: 'var(--font-heading)',
   fontSize: 'var(--type-l4)',
   fontWeight: 700,
   lineHeight: 'var(--type-l4-lh)',

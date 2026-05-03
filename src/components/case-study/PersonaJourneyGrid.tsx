@@ -99,7 +99,7 @@ export function PersonaJourneyGrid({ personas }: PersonaJourneyGridProps) {
                 <h3 style={{
                   color: persona.accentColor,
                   fontSize: 'var(--type-l4)',
-                  fontFamily: 'MuseoModerno, sans-serif',
+                  fontFamily: 'var(--font-heading)',
                   fontWeight: 600,
                   marginBottom: '8px'
                 }}>
@@ -234,7 +234,7 @@ function JourneyStageBlock({
       <p style={{
         color: accentColor,
         fontSize: 'var(--type-l1)',
-        fontFamily: 'MuseoModerno, sans-serif',
+        fontFamily: 'var(--font-heading)',
         fontWeight: 600,
         letterSpacing: '0.05em',
         textTransform: 'uppercase',

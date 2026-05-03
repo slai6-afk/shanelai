@@ -60,7 +60,7 @@ export function MethodsGrid({ methods, timeline }: MethodsGridProps) {
               <h4 style={{
                 color: '#333333',
                 fontSize: 'var(--type-l2)',
-                fontFamily: 'MuseoModerno, sans-serif',
+                fontFamily: 'var(--font-heading)',
                 fontWeight: 600,
                 marginBottom: '8px'
               }}>
@@ -96,7 +96,7 @@ export function MethodsGrid({ methods, timeline }: MethodsGridProps) {
           <p style={{
             color: '#795337',
             fontSize: 'var(--type-l2)',
-            fontFamily: 'MuseoModerno, sans-serif',
+            fontFamily: 'var(--font-heading)',
             fontWeight: 500,
             margin: 0
           }}>

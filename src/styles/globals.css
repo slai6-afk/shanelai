@@ -278,7 +278,7 @@ body.site-cursor-eyes * {
    * Shape: full pill (border-radius: 9999px)
    */
   --ds-cta-font:      var(--font-heading);
-  --ds-cta-weight:    800;
+  --ds-cta-weight:    600;
   --ds-cta-track:     0.05em;
   --ds-cta-transform: uppercase;
   --ds-cta-radius:    9999px;
@@ -317,7 +317,7 @@ body.site-cursor-eyes * {
    * distinct from CTA pills so the user knows these are labels, not actions.
    */
   --ds-badge-font:      var(--font-heading);
-  --ds-badge-weight:    800;
+  --ds-badge-weight:    600;
   --ds-badge-track:     0.1em;
   --ds-badge-transform: uppercase;
   --ds-badge-radius:    8px;
@@ -330,6 +330,26 @@ body.site-cursor-eyes * {
   --ds-badge-temu-fg:     #ffffff;
   --ds-badge-minimax-bg:  #FF14AD;
   --ds-badge-minimax-fg:  #ffffff;
+}
+
+/* Site-wide typography: same heading stack as the home hero (Montserrat-first) */
+body {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  font-family: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 /* --- Interaction utilities (see ProjectCard, HomePage, Navigation, AboutPage) --- */
@@ -677,7 +697,7 @@ body.site-cursor-eyes * {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-heading);
 }
 
 @media (max-width: 991px) {
@@ -2198,7 +2218,7 @@ html {
 .temu-page .temu-tldr-subhead {
   margin: 0 0 12px;
   color: var(--ds-text-primary);
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: var(--temu-type-subhead);
   font-weight: 700;
   line-height: 1.28;
@@ -2390,7 +2410,7 @@ html {
 }
 
 .temu-page .funfit-section-title {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: var(--temu-type-section-title);
   font-weight: 700;
   line-height: var(--temu-leading-title);
@@ -2425,7 +2445,7 @@ html {
 
 .temu-page .funfit-zone-title {
   color: #fb7701;
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(18px, 1.9vw, 20px);
   font-weight: 700;
   line-height: 1.35;
@@ -2490,7 +2510,7 @@ html {
   margin: 0;
   padding: 0 18px 14px;
   color: #111111;
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(22px, 2.7vw, var(--type-l4));
   line-height: var(--type-l4-lh);
   letter-spacing: 0;
@@ -2512,7 +2532,7 @@ html {
 
 .temu-page .temu-impact-note-card__kicker {
   margin: 0;
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: var(--type-l4);
   font-weight: 700;
   letter-spacing: var(--type-track-caps);
@@ -2621,7 +2641,7 @@ html {
   font-size: var(--type-l2);
   line-height: var(--type-l2-lh);
   letter-spacing: var(--type-track-caps);
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -2639,7 +2659,7 @@ html {
   font-size: clamp(3rem, 6.6vw, 4.2rem);
   line-height: 1;
   letter-spacing: var(--type-track-tight);
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -2684,7 +2704,7 @@ html {
 
 .temu-page .temu-impact-block__eyebrow {
   margin: 0;
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: var(--type-l3);
   line-height: var(--type-l3-lh);
   letter-spacing: var(--type-track-caps);
@@ -2776,7 +2796,7 @@ html {
   color: var(--ds-text-primary);
   font-size: var(--type-l2);
   line-height: var(--type-l2-lh);
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
@@ -3034,12 +3054,12 @@ html {
 .vibesync-page .funfit-section-subtitle-neutral,
 .vibesync-page .funfit-section-subtitle-accent,
 .vibesync-page .vibesync-display {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
 }
 
 .vibesync-page h4 {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
 }
 
 /* Vibe Sync: constrain flex/grid children so Chrome/Atlas respect max-width (not just Safari). */
@@ -3198,7 +3218,7 @@ html {
 }
 
 .vibesync-page .vibesync-tldr-metric-ember {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.05rem, 2.65vw, 1.35rem);
   font-weight: 500;
   letter-spacing: -0.03em;
@@ -3995,7 +4015,7 @@ a.about-sticker-span {
 }
 
 .vibesync-problem-label {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-size: var(--type-l1);
   line-height: var(--type-l1-lh);
   letter-spacing: var(--type-track-caps);
@@ -4005,7 +4025,7 @@ a.about-sticker-span {
 }
 
 .vibesync-problem-text {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   color: #111111;
   font-size: clamp(24px, 3vw, var(--type-l5));
@@ -4043,7 +4063,7 @@ a.about-sticker-span {
 }
 
 .vibesync-define-heading {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--type-l5);
   line-height: 1.75;
@@ -4052,8 +4072,8 @@ a.about-sticker-span {
 }
 
 .vibesync-define-inter-label {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-weight: 600;
   font-size: 20px;
   line-height: 1.75;
   color: #00d5dd;
@@ -4069,7 +4089,7 @@ a.about-sticker-span {
 }
 
 .vibesync-define-bullet-list li {
-  font-family: 'Ember Modern Display Standard', 'Inter', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--type-l5);
   line-height: 1.75;

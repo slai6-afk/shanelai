@@ -83,7 +83,7 @@ export function TransitionBlock({ title, content, highlightedText }: TransitionB
           <h4 style={{
             color: '#E56641',
             fontSize: 'var(--type-l3)',
-            fontFamily: 'MuseoModerno, sans-serif',
+            fontFamily: 'var(--font-heading)',
             fontWeight: 600,
             margin: 0
           }}>
