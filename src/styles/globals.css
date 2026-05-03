@@ -1144,6 +1144,24 @@ html {
   padding-top: 40px;
 }
 
+/* Card-style Selected Works — tinted backgrounds per project theme */
+.home-selected-work__card--temu {
+  background: color-mix(in srgb, #fb7701 18%, #fff8f2);
+  border: 1px solid color-mix(in srgb, #fb7701 14%, transparent);
+}
+.home-selected-work__card--vibe {
+  background: color-mix(in srgb, #12b8c4 16%, #f0fafb);
+  border: 1px solid color-mix(in srgb, #12b8c4 12%, transparent);
+}
+.home-selected-work__card--nyc {
+  background: color-mix(in srgb, #ffb347 20%, #fffaf0);
+  border: 1px solid color-mix(in srgb, #ffb347 14%, transparent);
+}
+.home-selected-work__card--funfit {
+  background: color-mix(in srgb, #ed964f 18%, #fff5ed);
+  border: 1px solid color-mix(in srgb, #ed964f 14%, transparent);
+}
+
 /* Ultra-wide tuning: relax common container caps to better use 1920+ screens. */
 @media (min-width: 1920px) {
   .nav-inner,
