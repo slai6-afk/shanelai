@@ -1083,6 +1083,40 @@ html {
   padding-top: 40px;
 }
 
+/* Home — Selected Works: light theme-tinted panels + sticky stack (cards slide over each other) */
+#selected-works {
+  background: var(--ds-bg-surface);
+  padding-top: 12px;
+  padding-bottom: 24px;
+}
+
+#selected-works .home-selected-work--stack {
+  box-shadow: 0 12px 44px rgba(15, 23, 42, 0.06);
+}
+
+#selected-works .home-selected-work--temu {
+  background: color-mix(in srgb, #fb7701 9%, #faf6f0);
+}
+
+#selected-works .home-selected-work--vibe {
+  background: color-mix(in srgb, #12b8c4 8%, #f2fbfb);
+}
+
+#selected-works .home-selected-work--nyc {
+  background: color-mix(in srgb, #ffb347 11%, #fff8f0);
+}
+
+#selected-works .home-selected-work--funfit {
+  background: color-mix(in srgb, #ed964f 9%, #fff6ed);
+}
+
+@media (min-width: 768px) {
+  #selected-works .home-selected-work--stack {
+    position: sticky;
+    top: 88px;
+  }
+}
+
 /* Ultra-wide tuning: relax common container caps to better use 1920+ screens. */
 @media (min-width: 1920px) {
   .nav-inner,
@@ -1142,6 +1176,12 @@ html {
     padding-top: 96px !important;
     padding-bottom: 32px !important;
     scroll-snap-stop: normal !important;
+  }
+
+  #selected-works .home-selected-work.home-selected-work--stack {
+    position: relative !important;
+    top: auto !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
   }
 
   #selected-works .home-selected-work .home-selected-work__media .ds-media-frame {

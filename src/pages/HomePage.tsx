@@ -365,16 +365,17 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
 
   return (
     <section
-      className={`home-selected-work home-selected-work--${project.slideAccent} px-4 sm:px-6 md:px-10 lg:px-16`}
+      className={`home-selected-work home-selected-work--${project.slideAccent} home-selected-work--stack mx-3 sm:mx-5 md:mx-8 lg:mx-12 rounded-[20px] sm:rounded-[24px] md:rounded-[28px] px-4 sm:px-6 md:px-10 lg:px-16`}
       style={{
         minHeight: '100vh',
-        scrollSnapAlign: 'center',
-        scrollSnapStop: 'always',
+        scrollSnapAlign: 'start',
+        scrollSnapStop: 'normal',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: 'max(108px, 11vh)',
         paddingBottom: 'max(56px, 7vh)',
+        zIndex: 10 + index,
       }}
     >
       <div className="mx-auto w-full" style={{ width: slideWidth }}>
