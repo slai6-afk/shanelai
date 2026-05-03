@@ -110,6 +110,7 @@ body.site-cursor-eyes * {
 
 :root {
   --font-size: 16px;
+  --font-heading: 'Montserrat', 'Ember Modern Display Standard', ui-sans-serif, system-ui, sans-serif;
   --background: #ffffff;
   --foreground: #000000;
   --card: #ffffff;
@@ -269,6 +270,66 @@ body.site-cursor-eyes * {
   --ds-lift-amount: -3px;
   --ds-shadow-interactive: 0 14px 36px rgba(0, 0, 0, 0.09);
   --ds-ring-focus: rgba(0, 0, 0, 0.2);
+
+  /*
+   * ── CTA Button System ────────────────────────────────────────────────────
+   * Large pill-shaped action buttons. Use for contact, navigation, and
+   * direct user actions (Email, LinkedIn, Say hello…).
+   * Shape: full pill (border-radius: 9999px)
+   */
+  --ds-cta-font:      var(--font-heading);
+  --ds-cta-weight:    800;
+  --ds-cta-track:     0.05em;
+  --ds-cta-transform: uppercase;
+  --ds-cta-radius:    9999px;
+
+  /* Sizes */
+  --ds-cta-lg-h:   56px;
+  --ds-cta-lg-px:  52px;
+  --ds-cta-lg-fz:  clamp(15px, 1.4vw, 19px);
+
+  --ds-cta-md-h:   44px;
+  --ds-cta-md-px:  28px;
+  --ds-cta-md-fz:  clamp(13px, 1.2vw, 15px);
+
+  --ds-cta-sm-h:   36px;
+  --ds-cta-sm-px:  20px;
+  --ds-cta-sm-fz:  13px;
+
+  /* Colour variants */
+  --ds-cta-primary-bg:  #000000;
+  --ds-cta-primary-fg:  #ffffff;
+  --ds-cta-outline-bd:  #000000;
+  --ds-cta-outline-fg:  #000000;
+  --ds-cta-ghost-bd:    var(--ds-border-subtle);
+  --ds-cta-ghost-fg:    var(--ds-text-primary);
+
+  /* Contact-section CTA (full-width rect button) */
+  --ds-cta-rect-radius: 14px;
+  --ds-cta-rect-h:      clamp(52px, 6vw, 64px);
+  --ds-cta-rect-px:     56px;
+  --ds-cta-rect-fz:     clamp(16px, 1.6vw, 22px);
+
+  /*
+   * ── Company Badge System ─────────────────────────────────────────────────
+   * Compact credential chips used exclusively for "Previously at" context.
+   * Shape: slightly-rounded rectangle (border-radius: 8px) — visually
+   * distinct from CTA pills so the user knows these are labels, not actions.
+   */
+  --ds-badge-font:      var(--font-heading);
+  --ds-badge-weight:    800;
+  --ds-badge-track:     0.1em;
+  --ds-badge-transform: uppercase;
+  --ds-badge-radius:    8px;
+  --ds-badge-h:         32px;
+  --ds-badge-px:        14px;
+  --ds-badge-fz:        11px;
+
+  /* Brand colours */
+  --ds-badge-temu-bg:     #FF4800;
+  --ds-badge-temu-fg:     #ffffff;
+  --ds-badge-minimax-bg:  #FF14AD;
+  --ds-badge-minimax-fg:  #ffffff;
 }
 
 /* --- Interaction utilities (see ProjectCard, HomePage, Navigation, AboutPage) --- */

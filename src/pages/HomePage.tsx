@@ -229,12 +229,13 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
         <h3
           style={{
             color: 'var(--ds-text-primary)',
-            fontSize: 'var(--type-l4)',
-            fontWeight: 400,
-            lineHeight: 'var(--type-l4-lh)',
-            letterSpacing: 'var(--type-track-body)',
+            fontSize: 'clamp(18px, 1.7vw, 24px)',
+            fontWeight: 800,
+            fontFamily: 'var(--font-heading)',
+            lineHeight: 1.2,
+            letterSpacing: '-0.025em',
             margin: 0,
-            marginBottom: '18px'
+            marginBottom: '18px',
           }}
         >
           {project.title}
@@ -550,12 +551,13 @@ export function HomePage() {
                       <p
                         style={{
                           margin: 0,
-                          color: 'var(--ds-text-subtle)',
-                          fontSize: 'clamp(var(--type-l4), 2vw, var(--type-l5))',
-                          lineHeight: 'var(--type-l5-lh)',
-                          fontWeight: 400,
-                          letterSpacing: 'var(--type-track-tight)',
-                          textTransform: 'uppercase'
+                          color: 'var(--ds-text-tertiary)',
+                          fontSize: 'clamp(12px, 1.1vw, 15px)',
+                          lineHeight: 1.4,
+                          fontWeight: 700,
+                          fontFamily: 'var(--font-heading)',
+                          letterSpacing: '0.1em',
+                          textTransform: 'uppercase',
                         }}
                       >
                         PRODUCT DESIGNER IN NYC🗽
@@ -564,83 +566,151 @@ export function HomePage() {
                       <p
                         style={{
                           margin: 0,
-                          color: 'var(--ds-text-subtle)',
-                          fontSize: 'var(--type-l3)',
-                          lineHeight: 'var(--type-l3-lh)',
-                          fontWeight: 400,
-                          letterSpacing: 'var(--type-track-body)',
-                          maxWidth: '643px'
+                          color: 'var(--ds-text-primary)',
+                          fontSize: 'clamp(22px, 3.2vw, 48px)',
+                          lineHeight: 1.1,
+                          fontWeight: 900,
+                          fontFamily: 'var(--font-heading)',
+                          letterSpacing: '-0.03em',
+                          maxWidth: '680px',
                         }}
                       >
-                        I design AI and consumer products that turn human behavior into better interactions
-                        <br />
-                        with 3 years experience
+                        I design AI and consumer products that turn human behavior into better interactions — 3 years strong.
                       </p>
                     </div>
 
-                    <p
-                      style={{
-                        margin: 0,
-                        color: 'var(--ds-text-subtle)',
-                        fontSize: 'var(--type-l3)',
-                        lineHeight: 'var(--type-l3-lh)',
-                        fontWeight: 400,
-                        letterSpacing: 'var(--type-track-body)'
-                      }}
-                    >
-                      Previously @{' '}
-                      <AboutStickerSpan
-                        stickerSrc={temuSticker}
-                        stickerLabel="Temu — open AI support case study"
-                        vectorHighlight={false}
-                        stickerWidth={HOME_HERO_STICKER_WIDTH}
-                        linkTo="/case-study/temu-ai-support"
-                        motion={{
-                          restRotateDeg: -3,
-                          hoverRotateDeg: 12,
-                          restOffsetY: 12,
-                          restNudgeX: 3,
-                          hoverNudgeX: 1,
-                        }}
-                      >
-                        <span style={{ color: '#FF4800' }}>Temu</span>
-                      </AboutStickerSpan>
-                      {' & '}
-                      <AboutStickerSpan
-                        stickerSrc={talkieSticker}
-                        stickerLabel="Sticker: MiniMax — Talkie"
-                        vectorHighlight={false}
-                        stickerWidth={HOME_HERO_MINIMAX_STICKER_WIDTH}
-                        motion={{
-                          restRotateDeg: 5,
-                          hoverRotateDeg: -10,
-                          restOffsetY: 9,
-                          restNudgeX: -5,
-                          hoverNudgeX: -3,
-                        }}
-                      >
-                        <span style={{ color: '#FF14AD' }}>MiniMax</span>
-                      </AboutStickerSpan>
-                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                      {/* Credentials */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                        <p style={{ margin: 0, color: 'var(--ds-text-tertiary)', fontSize: 'var(--ds-badge-fz)', fontWeight: 'var(--ds-badge-weight)' as never, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--ds-badge-font)' }}>
+                          Previously at
+                        </p>
+                        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                          <AboutStickerSpan
+                            stickerSrc={temuSticker}
+                            stickerLabel="Temu — open AI support case study"
+                            vectorHighlight={false}
+                            stickerWidth={HOME_HERO_STICKER_WIDTH}
+                            motion={{ restRotateDeg: -3, hoverRotateDeg: 12, restOffsetY: -48, restNudgeX: 3, hoverNudgeX: 1 }}
+                          >
+                            <a
+                              href="/case-study/temu-ai-support"
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '5px',
+                                height: 'var(--ds-badge-h)',
+                                padding: '0 var(--ds-badge-px)',
+                                borderRadius: 'var(--ds-badge-radius)',
+                                backgroundColor: 'var(--ds-badge-temu-bg)',
+                                color: 'var(--ds-badge-temu-fg)',
+                                fontSize: 'var(--ds-badge-fz)',
+                                fontWeight: 'var(--ds-badge-weight)' as never,
+                                fontFamily: 'var(--ds-badge-font)',
+                                letterSpacing: 'var(--ds-badge-track)',
+                                textTransform: 'uppercase',
+                                textDecoration: 'none',
+                              }}
+                            >
+                              Temu
+                              <span style={{ opacity: 0.7, fontSize: '10px' }}>↗</span>
+                            </a>
+                          </AboutStickerSpan>
+                          <AboutStickerSpan
+                            stickerSrc={talkieSticker}
+                            stickerLabel="Sticker: MiniMax — Talkie"
+                            vectorHighlight={false}
+                            stickerWidth={HOME_HERO_MINIMAX_STICKER_WIDTH}
+                            motion={{ restRotateDeg: 5, hoverRotateDeg: -10, restOffsetY: -48, restNudgeX: -5, hoverNudgeX: -3 }}
+                          >
+                            <span
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '5px',
+                                height: 'var(--ds-badge-h)',
+                                padding: '0 var(--ds-badge-px)',
+                                borderRadius: 'var(--ds-badge-radius)',
+                                backgroundColor: 'var(--ds-badge-minimax-bg)',
+                                color: 'var(--ds-badge-minimax-fg)',
+                                fontSize: 'var(--ds-badge-fz)',
+                                fontWeight: 'var(--ds-badge-weight)' as never,
+                                fontFamily: 'var(--ds-badge-font)',
+                                letterSpacing: 'var(--ds-badge-track)',
+                                textTransform: 'uppercase',
+                              }}
+                            >
+                              MiniMax
+                              <span style={{ opacity: 0.7, fontSize: '10px' }}>↗</span>
+                            </span>
+                          </AboutStickerSpan>
+                        </div>
+                      </div>
+                      {/* Divider */}
+                      <div style={{ width: '32px', height: '1px', backgroundColor: 'var(--ds-border-subtle)' }} />
+                      {/* Action CTAs */}
+                      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                        <motion.a
+                          href="mailto:shanshanlai160402@gmail.com"
+                          aria-label="Email"
+                          whileHover={{ scale: 1.05, y: -3 }}
+                          whileTap={{ scale: 0.97 }}
+                          transition={{ type: 'spring', stiffness: 480, damping: 26 }}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            height: 'var(--ds-cta-md-h)',
+                            padding: '0 var(--ds-cta-md-px)',
+                            borderRadius: 'var(--ds-cta-radius)',
+                            backgroundColor: 'var(--ds-cta-primary-bg)',
+                            color: 'var(--ds-cta-primary-fg)',
+                            fontSize: 'var(--ds-cta-md-fz)',
+                            fontWeight: 'var(--ds-cta-weight)' as never,
+                            fontFamily: 'var(--ds-cta-font)',
+                            letterSpacing: 'var(--ds-cta-track)',
+                            textTransform: 'uppercase',
+                            textDecoration: 'none',
+                          }}
+                        >
+                          <Mail size={15} strokeWidth={2.5} />
+                          Email
+                        </motion.a>
+                        <motion.a
+                          href={LINKEDIN_PROFILE_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="LinkedIn"
+                          whileHover={{ scale: 1.05, y: -3 }}
+                          whileTap={{ scale: 0.97 }}
+                          transition={{ type: 'spring', stiffness: 480, damping: 26 }}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            height: 'var(--ds-cta-md-h)',
+                            padding: '0 var(--ds-cta-md-px)',
+                            borderRadius: 'var(--ds-cta-radius)',
+                            border: '2px solid var(--ds-cta-outline-bd)',
+                            backgroundColor: 'transparent',
+                            color: 'var(--ds-cta-outline-fg)',
+                            fontSize: 'var(--ds-cta-md-fz)',
+                            fontWeight: 'var(--ds-cta-weight)' as never,
+                            fontFamily: 'var(--ds-cta-font)',
+                            letterSpacing: 'var(--ds-cta-track)',
+                            textTransform: 'uppercase',
+                            textDecoration: 'none',
+                          }}
+                        >
+                          <Linkedin size={15} strokeWidth={2.5} />
+                          LinkedIn
+                        </motion.a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              <a href="mailto:shanshanlai160402@gmail.com" aria-label="Email" style={{ color: 'var(--ds-text-tertiary)' }}>
-                <Mail size={19} strokeWidth={1.75} />
-              </a>
-              <a
-                href={LINKEDIN_PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                style={{ color: 'var(--ds-text-tertiary)' }}
-              >
-                <Linkedin size={19} strokeWidth={1.75} />
-              </a>
             </div>
 
             <button
@@ -921,147 +991,241 @@ export function HomePage() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingTop: 'max(28px, 3.5vh)',
-          paddingBottom: 'max(28px, 3.5vh)',
+          paddingTop: 'max(48px, 6vh)',
+          paddingBottom: 'max(48px, 6vh)',
+          backgroundColor: 'var(--ds-bg-page)',
         }}
       >
-        <div className="mx-auto w-full max-w-[1176px]">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 'clamp(20px, 3.5vw, 36px)',
+            textAlign: 'center',
+            maxWidth: '720px',
+            width: '100%',
+          }}
+        >
+          <h2
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 'clamp(18px, 3vw, 26px)',
-              padding: '28px clamp(20px, 4vw, 32px)',
-              borderRadius: '16px',
-              textAlign: 'center',
-              backgroundColor: 'var(--ds-surface-elevated)',
-              border: '1px solid var(--ds-border-subtle)',
-              boxShadow: 'var(--ds-shadow-soft)',
+              margin: 0,
+              color: 'var(--ds-text-primary)',
+              fontSize: 'clamp(44px, 7vw, 88px)',
+              fontWeight: 900,
+              fontFamily: 'var(--font-heading)',
+              letterSpacing: '-0.04em',
+              lineHeight: 0.95,
+              textTransform: 'uppercase',
             }}
           >
-            <p
-              style={{
-                margin: 0,
-                color: 'var(--ds-text-tertiary)',
-                fontSize: 'var(--type-l3)',
-                fontWeight: 500,
-                letterSpacing: 'var(--type-track-caps)',
-                textTransform: 'uppercase',
-              }}
-            >
-              Contact
-            </p>
+            CONTACT
+          </h2>
 
-            <div style={{ maxWidth: '560px', width: '100%' }}>
-              <h2
-                style={{
-                  margin: 0,
-                  color: 'var(--ds-text-primary)',
-                  fontSize: 'var(--type-l4)',
-                  lineHeight: 'var(--type-l4-lh)',
-                  fontWeight: 600,
-                  letterSpacing: 'var(--type-track-tight)',
-                }}
-              >
-                Glad You Made It Here
-              </h2>
-              <p
-                style={{
-                  margin: '14px 0 0',
-                  color: 'var(--ds-text-secondary)',
-                  fontSize: 'var(--type-l3)',
-                  lineHeight: 'var(--type-l3-lh)',
-                  fontWeight: 400,
-                  letterSpacing: 'var(--type-track-body)',
-                }}
-              >
-                Let&apos;s grab coffee (or Hot Pot). 🍲 I&apos;m always down for a caffeine-fueled ☕️ brainstorm. If it
-                involves fun products or spicy food, I&apos;m definitely in.
-              </p>
-            </div>
+          <p
+            style={{
+              margin: 0,
+              color: 'var(--ds-text-secondary)',
+              fontSize: 'clamp(15px, 1.4vw, 18px)',
+              lineHeight: 1.7,
+              fontWeight: 400,
+              maxWidth: '500px',
+            }}
+          >
+            Let&apos;s grab coffee (or Hot Pot). 🍲 I&apos;m always down for a caffeine-fueled ☕️ brainstorm. If it involves fun products or spicy food, I&apos;m definitely in.
+          </p>
 
+          <motion.a
+            href="mailto:shanshanlai160402@gmail.com"
+            whileHover={{ scale: 1.03, y: -3 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: 'spring', stiffness: 480, damping: 26 }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: 'var(--ds-cta-rect-h)',
+              padding: '0 var(--ds-cta-rect-px)',
+              borderRadius: 'var(--ds-cta-rect-radius)',
+              backgroundColor: 'var(--ds-cta-primary-bg)',
+              color: 'var(--ds-cta-primary-fg)',
+              fontSize: 'var(--ds-cta-rect-fz)',
+              fontWeight: 'var(--ds-cta-weight)' as never,
+              fontFamily: 'var(--ds-cta-font)',
+              letterSpacing: '0.02em',
+              textDecoration: 'none',
+              minWidth: '260px',
+            }}
+          >
+            Say hello
+          </motion.a>
+
+          {/* 2×2 grid — equal column widths, same gap both axes */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '10px',
+            width: '100%',
+            maxWidth: '400px',
+          }}>
+            {/* Row 1: ghost CTA pills (action) */}
             <motion.a
               href="mailto:shanshanlai160402@gmail.com"
-              className="home-say-hello-btn"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 520, damping: 28 }}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 480, damping: 26 }}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '10px',
-                minHeight: '44px',
-                padding: '0 20px',
-                borderRadius: '10px',
-                border: '1px solid var(--ds-border-subtle)',
+                gap: '7px',
+                height: 'var(--ds-cta-sm-h)',
+                borderRadius: 'var(--ds-cta-radius)',
+                border: '1.5px solid rgba(0,0,0,0.15)',
                 backgroundColor: 'var(--ds-bg-page)',
-                color: 'var(--ds-text-primary)',
-                fontSize: 'var(--type-l3)',
-                lineHeight: 'var(--type-l3-lh)',
-                fontWeight: 500,
-                letterSpacing: 'var(--type-track-body)',
+                color: 'var(--ds-cta-ghost-fg)',
+                fontSize: 'var(--ds-cta-sm-fz)',
+                fontWeight: 'var(--ds-cta-weight)' as never,
+                fontFamily: 'var(--ds-cta-font)',
+                letterSpacing: 'var(--ds-cta-track)',
+                textTransform: 'uppercase',
                 textDecoration: 'none',
               }}
             >
-              <span className="home-say-hello-btn__wave" aria-hidden>
-                👋
-              </span>
-              <span>Say Hello</span>
+              <Mail size={13} strokeWidth={2.5} />
+              Email
             </motion.a>
 
-            <div
+            <motion.a
+              href={LINKEDIN_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 480, damping: 26 }}
               style={{
-                width: '100%',
-                maxWidth: '560px',
-                margin: 0,
-                textAlign: 'center',
-                color: 'var(--ds-text-secondary)',
-                fontSize: 'var(--type-l3)',
-                lineHeight: 'var(--type-l3-lh)',
-                letterSpacing: 'var(--type-track-body)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '7px',
+                height: 'var(--ds-cta-sm-h)',
+                borderRadius: 'var(--ds-cta-radius)',
+                border: '1.5px solid rgba(0,0,0,0.15)',
+                backgroundColor: 'var(--ds-bg-page)',
+                color: 'var(--ds-cta-ghost-fg)',
+                fontSize: 'var(--ds-cta-sm-fz)',
+                fontWeight: 'var(--ds-cta-weight)' as never,
+                fontFamily: 'var(--ds-cta-font)',
+                letterSpacing: 'var(--ds-cta-track)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
               }}
             >
-              <p style={{ margin: '0 0 10px', fontWeight: 500, color: 'var(--ds-text-primary)' }}>Reach out directly:</p>
-              <p style={{ margin: '0 0 6px' }}>
-                Email:{' '}
-                <a href="mailto:shanshanlai160402@gmail.com" className="home-footer-contact-link">
-                  shanshanlai160402@gmail.com
-                </a>
-              </p>
-              <p style={{ margin: '0 0 6px' }}>
-                Text:{' '}
-                <a href="tel:+19294207656" className="home-footer-contact-link">
-                  929.420.7656
-                </a>
-              </p>
-              <p style={{ margin: 0 }}>📍 NYC / Overseas / Underwater</p>
-            </div>
+              <Linkedin size={13} strokeWidth={2.5} />
+              LinkedIn
+            </motion.a>
 
-            <SketchCursorHint label="My funfact? Check here" className="inline-block">
-              <Link
-                to="/about"
-                aria-label="About — fun facts and story"
-                className="home-footer-emoji-link"
-                style={{
-                  margin: 0,
-                  fontSize: 'var(--type-l3)',
-                  lineHeight: 'var(--type-l3-lh)',
-                  letterSpacing: '0.08em',
-                  borderRadius: '8px',
-                  padding: '4px 6px',
-                }}
-              >
-                ✨ 🎧 🥟 💬 🚀 🤿
-              </Link>
-            </SketchCursorHint>
-          </motion.div>
-        </div>
+            {/* Row 2: brand badges (credential / work) */}
+            <motion.a
+              href="/case-study/temu-ai-support"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 480, damping: 26 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px',
+                height: 'var(--ds-badge-h)',
+                borderRadius: 'var(--ds-badge-radius)',
+                backgroundColor: 'var(--ds-badge-temu-bg)',
+                color: 'var(--ds-badge-temu-fg)',
+                fontSize: 'var(--ds-badge-fz)',
+                fontWeight: 'var(--ds-badge-weight)' as never,
+                fontFamily: 'var(--ds-badge-font)',
+                letterSpacing: 'var(--ds-badge-track)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+              }}
+            >
+              Temu
+              <span style={{ opacity: 0.7, fontSize: '10px' }}>↗</span>
+            </motion.a>
+
+            <motion.a
+              href="https://www.minimaxi.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 480, damping: 26 }}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '5px',
+                height: 'var(--ds-badge-h)',
+                borderRadius: 'var(--ds-badge-radius)',
+                backgroundColor: 'var(--ds-badge-minimax-bg)',
+                color: 'var(--ds-badge-minimax-fg)',
+                fontSize: 'var(--ds-badge-fz)',
+                fontWeight: 'var(--ds-badge-weight)' as never,
+                fontFamily: 'var(--ds-badge-font)',
+                letterSpacing: 'var(--ds-badge-track)',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+              }}
+            >
+              MiniMax
+              <span style={{ opacity: 0.7, fontSize: '10px' }}>↗</span>
+            </motion.a>
+          </div>
+
+          <div
+            style={{
+              color: 'var(--ds-text-secondary)',
+              fontSize: '14px',
+              lineHeight: 2,
+              letterSpacing: '0.01em',
+            }}
+          >
+            <p style={{ margin: '0 0 2px' }}>
+              Email:{' '}
+              <a href="mailto:shanshanlai160402@gmail.com" style={{ color: 'inherit' }}>
+                shanshanlai160402@gmail.com
+              </a>
+            </p>
+            <p style={{ margin: '0 0 2px' }}>
+              Text:{' '}
+              <a href="tel:+19294207656" style={{ color: 'inherit' }}>
+                929.420.7656
+              </a>
+            </p>
+            <p style={{ margin: 0 }}>📍 NYC / Overseas / Underwater</p>
+          </div>
+
+          <SketchCursorHint label="My funfact? Check here" className="inline-block">
+            <Link
+              to="/about"
+              aria-label="About — fun facts and story"
+              style={{
+                fontSize: 'var(--type-l3)',
+                lineHeight: 'var(--type-l3-lh)',
+                letterSpacing: '0.08em',
+                borderRadius: '8px',
+                padding: '4px 6px',
+                color: 'var(--ds-text-tertiary)',
+                textDecoration: 'none',
+              }}
+            >
+              ✨ 🎧 🥟 💬 🚀 🤿
+            </Link>
+          </SketchCursorHint>
+        </motion.div>
       </section>
 
       <Footer />
