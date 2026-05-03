@@ -387,12 +387,14 @@ export function NYCTourismCaseStudy() {
 
       <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-3 lg:gap-4">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(240px,25%)_1fr]">
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} isFixed={tocFixed} />
+              <div style={{ position: 'sticky', top: '100px' }}>
+                <StickyTOC items={tocItems} isFixed={tocFixed} />
+              </div>
             </div>
 
-            <div className="case-study-content-wrapper max-w-[740px] w-full" style={{ position: 'relative' }}>
+            <div className="case-study-content-wrapper flex w-full max-w-none min-w-0 flex-col" style={{ position: 'relative' }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               {/* Transition: Hero → Hook */}

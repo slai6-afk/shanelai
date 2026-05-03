@@ -87,10 +87,11 @@ export function PreviousWorkPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16"
-            style={{ 
-              color: 'var(--ds-text-primary)', 
+            style={{
+              color: 'var(--ds-text-primary)',
               fontSize: 'var(--ds-text-display)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: '1.2',
               letterSpacing: '-0.02em'
             }}
@@ -107,6 +108,7 @@ export function PreviousWorkPage() {
               color: 'var(--ds-text-secondary)',
               fontSize: 'var(--type-l4)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: '1.8'
             }}
           >

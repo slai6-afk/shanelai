@@ -57,6 +57,7 @@ const tagStyle: CSSProperties = {
   borderRadius: '8px',
   fontSize: 'var(--type-l1)',
   fontWeight: 400,
+  fontFamily: 'var(--font-heading)',
   letterSpacing: '0.02em',
   lineHeight: '18px',
   textTransform: 'uppercase',
@@ -102,6 +103,7 @@ function PlaygroundPreview({
               color: '#7A7A7A',
               fontSize: 'var(--type-l1)',
               fontWeight: 600,
+              fontFamily: 'var(--font-heading)',
               letterSpacing: 'var(--type-track-caps)',
               textTransform: 'uppercase'
             }}
@@ -129,6 +131,7 @@ function PlaygroundPreview({
                 color: '#FFFFFF',
                 fontSize: 'var(--type-l2)',
                 fontWeight: 700,
+                fontFamily: 'var(--font-heading)',
                 letterSpacing: 'var(--type-track-caps)',
                 textTransform: 'uppercase',
                 textShadow: '0 2px 4px rgba(0,0,0,0.35)',
@@ -177,6 +180,7 @@ function PlaygroundSlideContent({
             color: 'var(--ds-text-primary)',
             fontSize: 'var(--type-l4)',
             fontWeight: 400,
+            fontFamily: 'var(--font-heading)',
             lineHeight: 'var(--type-l4-lh)',
             letterSpacing: 'var(--type-track-body)',
             margin: 0,
@@ -201,6 +205,7 @@ function PlaygroundSlideContent({
             color: 'var(--ds-text-secondary)',
             fontSize: 'var(--type-l3)',
             fontWeight: 400,
+            fontFamily: 'var(--font-heading)',
             lineHeight: 'var(--type-l3-lh)',
             letterSpacing: 'var(--type-track-body)',
             margin: 0,
@@ -216,7 +221,7 @@ function PlaygroundSlideContent({
             target="_blank"
             rel="noopener noreferrer"
             className="mt-5 inline-flex items-center gap-2 font-medium transition-opacity hover:opacity-80"
-            style={{ color: 'var(--ds-accent-case)', fontSize: 'var(--type-l3)', lineHeight: 'var(--type-l3-lh)' }}
+            style={{ color: 'var(--ds-accent-case)', fontSize: 'var(--type-l3)', lineHeight: 'var(--type-l3-lh)', fontFamily: 'var(--font-heading)' }}
           >
             Open live demo
             <ExternalLink size={16} strokeWidth={2} aria-hidden />
@@ -327,6 +332,7 @@ function PlaygroundSlide({
                     color: '#FFFFFF',
                     fontSize: 'var(--type-l1)',
                     fontWeight: 700,
+                    fontFamily: 'var(--font-heading)',
                     letterSpacing: 'var(--type-track-caps)',
                     textTransform: 'uppercase'
                   }}
@@ -399,6 +405,7 @@ export function PlaygroundPage() {
               color: 'var(--ds-text-primary)',
               fontSize: 'var(--ds-text-display)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: 'var(--type-l6-lh)',
               letterSpacing: 'var(--type-track-tight)',
               margin: 0
@@ -435,6 +442,7 @@ export function PlaygroundPage() {
               color: 'var(--ds-text-secondary)',
               fontSize: 'var(--type-l3)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: 'var(--type-l3-lh)',
               letterSpacing: 'var(--type-track-body)',
               margin: 0,
@@ -452,6 +460,7 @@ export function PlaygroundPage() {
               color: 'var(--ds-text-secondary)',
               fontSize: 'var(--type-l3)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: 'var(--type-l3-lh)',
               letterSpacing: 'var(--type-track-body)',
               margin: 0,
@@ -469,6 +478,7 @@ export function PlaygroundPage() {
               color: 'var(--ds-text-secondary)',
               fontSize: 'var(--type-l3)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: 'var(--type-l3-lh)',
               letterSpacing: 'var(--type-track-body)',
               margin: 0,

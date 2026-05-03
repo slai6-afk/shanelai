@@ -63,8 +63,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'Temu: Fixing the "Leaky Bucket" of AI Support',
     slideAccent: 'temu',
-    year: '2024',
-    category: 'Product Design',
+    year: '2026',
+    category: 'Product Designer Intern',
     description: (
       <Fragment>
         How I redesigned Temu&apos;s AI support ecosystem, dropping manual agent escalation from{' '}
@@ -85,8 +85,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
     slideAccent: 'vibe',
-    year: '2024',
-    category: 'Social & Discovery',
+    year: '2026',
+    category: 'Client Project',
     description: (
       <Fragment>
         How I led product strategy in a{' '}
@@ -107,8 +107,8 @@ const homeProjects: HomeProject[] = [
   {
     title: 'NYC Tourism: Discover the Big Apple & Making It Your Home',
     slideAccent: 'nyc',
-    year: '2023',
-    category: 'UX Research & Strategy',
+    year: '2025',
+    category: 'Client Project',
     description: (
       <Fragment>
         How I re-engineered NYC tourism IA to reduce cognitive load for students by{' '}
@@ -130,7 +130,7 @@ const homeProjects: HomeProject[] = [
     title: 'FunFitLand: Making Fitness Accessible to Everyone In Immersive World',
     slideAccent: 'funfit',
     year: '2023',
-    category: 'Accessibility & VR',
+    category: 'HCI Product Intern',
     description: (
       <Fragment>
         Designing for the extremes: How I built an{' '}
@@ -169,6 +169,10 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const mediaVideoRef = useRef<HTMLVideoElement | null>(null);
   const mediaPositionAtMdUp = index % 2 === 0 ? 'right' : 'left';
   const needsEdgeCrop = project.slideAccent === 'temu';
+
+  // Alternating tilt direction: even cards tilt left (-), odd cards tilt right (+)
+  const tiltDirection = index % 2 === 0 ? -1 : 1;
+  const dramaticRotation = 12 * tiltDirection; // ±12° for dramatic effect
 
   useEffect(() => {
     const target = mediaContainerRef.current;
@@ -416,26 +420,41 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
     <section
       className={`home-selected-work home-selected-work--${project.slideAccent}`}
       style={{
-        height: '100dvh',
+        minHeight: '85vh',
+        maxHeight: '85vh',
         position: 'sticky',
         top: 0,
         zIndex: 10 + index,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 'clamp(96px, 11vh, 128px)',
-        paddingBottom: '32px',
+        paddingTop: 'clamp(80px, 10vh, 120px)',
+        paddingBottom: 'clamp(60px, 8vh, 100px)',
         paddingLeft: 'clamp(16px, 3vw, 40px)',
         paddingRight: 'clamp(16px, 3vw, 40px)',
+        scrollSnapAlign: 'center',
+        scrollSnapStop: 'always',
       }}
     >
-      <div
+      <motion.div
         className={`home-selected-work__card home-selected-work__card--${project.slideAccent} mx-auto w-full`}
+        initial={{ opacity: 0, y: 80, rotateZ: dramaticRotation }}
+        whileInView={{ opacity: 1, y: 0, rotateZ: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{
+          duration: 0.85,
+          ease: [0.25, 0.1, 0.25, 1],
+          opacity: { duration: 0.5 },
+          y: { duration: 0.85, ease: [0.34, 1.56, 0.64, 1] },
+          rotateZ: { duration: 1, ease: [0.34, 1.56, 0.64, 1] }
+        }}
         style={{
           maxWidth: '1400px',
           borderRadius: '28px',
           padding: 'clamp(20px, 3.5vw, 52px) clamp(18px, 3vw, 52px)',
           boxShadow: '0 8px 56px rgba(15,23,42,0.10), 0 2px 8px rgba(15,23,42,0.04)',
+          transformStyle: 'preserve-3d',
+          perspective: '1200px',
         }}
       >
         {project.link ? (
@@ -449,7 +468,7 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
         ) : (
           cardInner
         )}
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -475,7 +494,7 @@ export function HomePage() {
         overflowY: 'auto',
         overflowX: 'hidden',
         backgroundColor: 'var(--ds-bg-surface)',
-        scrollSnapType: 'y proximity',
+        scrollSnapType: 'y mandatory',
         scrollBehavior: 'smooth',
         scrollPaddingTop: '88px',
       }}
@@ -584,7 +603,7 @@ export function HomePage() {
                     paddingTop: '12px',
                     paddingBottom: '12px',
                     width: '100%',
-                    maxWidth: 'min(1040px, 94vw)',
+                    maxWidth: '713px',
                     marginLeft: 'auto',
                     marginRight: 'auto',
                   }}
@@ -612,7 +631,7 @@ export function HomePage() {
                           color: 'var(--ds-text-tertiary)',
                           fontSize: 'clamp(12px, 1.1vw, 15px)',
                           lineHeight: 1.4,
-                          fontWeight: 600,
+                          fontWeight: 700,
                           fontFamily: 'var(--font-heading)',
                           letterSpacing: '0.1em',
                           textTransform: 'uppercase',
@@ -627,10 +646,10 @@ export function HomePage() {
                           color: 'var(--ds-text-primary)',
                           fontSize: 'clamp(22px, 3.2vw, 48px)',
                           lineHeight: 1.1,
-                          fontWeight: 700,
+                          fontWeight: 900,
                           fontFamily: 'var(--font-heading)',
                           letterSpacing: '-0.03em',
-                          maxWidth: 'min(980px, 92vw)',
+                          maxWidth: '820px',
                         }}
                       >
                         I design AI and consumer products that turn human behavior into better interactions — 3 years strong.
@@ -1043,14 +1062,14 @@ export function HomePage() {
       <section
         className="px-4 sm:px-6 md:px-12 lg:px-16"
         style={{
-          minHeight: '100vh',
+          minHeight: '90vh',
           scrollSnapAlign: 'center',
           scrollSnapStop: 'always',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           paddingTop: 'max(48px, 6vh)',
-          paddingBottom: 'max(48px, 6vh)',
+          paddingBottom: 'max(80px, 10vh)',
           backgroundColor: 'var(--ds-bg-page)',
         }}
       >
@@ -1083,6 +1102,20 @@ export function HomePage() {
           >
             CONTACT
           </h2>
+
+          <p
+            style={{
+              margin: 0,
+              color: 'var(--ds-text-tertiary)',
+              fontSize: 'clamp(16px, 1.6vw, 20px)',
+              lineHeight: 1.4,
+              fontWeight: 500,
+              fontFamily: 'var(--font-heading)',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            Glad You Made It Here :)
+          </p>
 
           <p
             style={{
@@ -1185,61 +1218,6 @@ export function HomePage() {
             >
               <Linkedin size={13} strokeWidth={2.5} />
               LinkedIn
-            </motion.a>
-
-            {/* Row 2: brand badges (credential / work) */}
-            <motion.a
-              href="/case-study/temu-ai-support"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 480, damping: 26 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '5px',
-                height: 'var(--ds-badge-h)',
-                borderRadius: 'var(--ds-badge-radius)',
-                backgroundColor: 'var(--ds-badge-temu-bg)',
-                color: 'var(--ds-badge-temu-fg)',
-                fontSize: 'var(--ds-badge-fz)',
-                fontWeight: 'var(--ds-badge-weight)' as never,
-                fontFamily: 'var(--ds-badge-font)',
-                letterSpacing: 'var(--ds-badge-track)',
-                textTransform: 'uppercase',
-                textDecoration: 'none',
-              }}
-            >
-              Temu
-              <span style={{ opacity: 0.7, fontSize: '10px' }}>↗</span>
-            </motion.a>
-
-            <motion.a
-              href="https://www.minimaxi.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 480, damping: 26 }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '5px',
-                height: 'var(--ds-badge-h)',
-                borderRadius: 'var(--ds-badge-radius)',
-                backgroundColor: 'var(--ds-badge-minimax-bg)',
-                color: 'var(--ds-badge-minimax-fg)',
-                fontSize: 'var(--ds-badge-fz)',
-                fontWeight: 'var(--ds-badge-weight)' as never,
-                fontFamily: 'var(--ds-badge-font)',
-                letterSpacing: 'var(--ds-badge-track)',
-                textTransform: 'uppercase',
-                textDecoration: 'none',
-              }}
-            >
-              MiniMax
-              <span style={{ opacity: 0.7, fontSize: '10px' }}>↗</span>
             </motion.a>
           </div>
 

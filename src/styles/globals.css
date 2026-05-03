@@ -2227,6 +2227,72 @@ html {
   border: none;
 }
 
+/* ── Temu body: Block B — 2-column responsive grid ── */
+.temu-body-section {
+  padding-top: 96px;
+  padding-bottom: 128px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .temu-body-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .temu-body-section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .temu-body-section {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+.temu-body-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .temu-body-grid {
+    grid-template-columns: 30% 1fr;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .temu-body-grid {
+    grid-template-columns: 20% 1fr;
+    align-items: start;
+  }
+}
+
+/* TOC column — hidden on mobile, visible md+ */
+.temu-toc-col {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .temu-toc-col {
+    display: block;
+  }
+}
+
+/* Sticky TOC wrapper — no overflow on any parent may block this */
+.temu-toc-sticky {
+  position: sticky;
+  top: 100px;
+}
+
 .temu-page #tldr .vector-word-backdrop {
   --vector-tint: #fb7701;
 }

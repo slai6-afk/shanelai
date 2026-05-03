@@ -20,6 +20,11 @@ const VibeSyncCaseStudy = lazy(() => import('./pages/case-studies/VibeSyncCaseSt
 const TemuCaseStudy = lazy(() => import('./pages/case-studies/TemuCaseStudy').then(m => ({ default: m.TemuCaseStudy })));
 
 // Loading component for Suspense fallback
+/** Wrap pages that share marketing typography (not case studies). See `.ds-marketing-shell` in globals.css. */
+function MarketingPageShell({ children }: { children: React.ReactNode }) {
+  return <div className="ds-marketing-shell min-h-[100vh]">{children}</div>;
+}
+
 function PageLoader() {
   return (
     <div style={{
@@ -61,12 +66,12 @@ function AnimatedRoutes() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-        <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
-        <Route path="/projects" element={<PageWrapper><ProjectsPage /></PageWrapper>} />
-        <Route path="/playground" element={<PageWrapper><PlaygroundPage /></PageWrapper>} />
-        <Route path="/design-engineering-workflow" element={<PageWrapper><DesignEngineeringWorkflowPage /></PageWrapper>} />
-        <Route path="/previous-work" element={<PageWrapper><PreviousWorkPage /></PageWrapper>} />
+        <Route path="/" element={<PageWrapper><MarketingPageShell><HomePage /></MarketingPageShell></PageWrapper>} />
+        <Route path="/about" element={<PageWrapper><MarketingPageShell><AboutPage /></MarketingPageShell></PageWrapper>} />
+        <Route path="/projects" element={<PageWrapper><MarketingPageShell><ProjectsPage /></MarketingPageShell></PageWrapper>} />
+        <Route path="/playground" element={<PageWrapper><MarketingPageShell><PlaygroundPage /></MarketingPageShell></PageWrapper>} />
+        <Route path="/design-engineering-workflow" element={<PageWrapper><MarketingPageShell><DesignEngineeringWorkflowPage /></MarketingPageShell></PageWrapper>} />
+        <Route path="/previous-work" element={<PageWrapper><MarketingPageShell><PreviousWorkPage /></MarketingPageShell></PageWrapper>} />
         <Route path="/case-study/nyc-tourism" element={<PageWrapper><NYCTourismCaseStudy /></PageWrapper>} />
         <Route path="/case-study/funfitland" element={<PageWrapper><FunFitLandCaseStudy /></PageWrapper>} />
         <Route path="/case-study/memory-navigator" element={<PageWrapper><MemoryNavigatorCaseStudy /></PageWrapper>} />

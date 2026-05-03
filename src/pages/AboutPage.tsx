@@ -61,6 +61,7 @@ const heroTextStyle: CSSProperties = {
   color: 'var(--ds-text-primary)',
   fontSize: 'clamp(var(--type-l2), 1.35vw, var(--type-l4))',
   fontWeight: 400,
+  fontFamily: 'var(--font-heading)',
   lineHeight: heroLineHeight,
   letterSpacing: 'var(--type-track-tight)'
 };
@@ -112,6 +113,7 @@ const heroMyPathStyle: CSSProperties = {
   color: 'var(--ds-text-secondary)',
   fontSize: 'clamp(var(--type-l2), 1.2vw, var(--type-l3))',
   fontWeight: 500,
+  fontFamily: 'var(--font-heading)',
   letterSpacing: 'var(--type-track-body)',
   lineHeight: 1.25,
   textAlign: 'center'
@@ -158,6 +160,7 @@ const heroLinkCardStyle: CSSProperties = {
 const heroLinkCardLabelStyle: CSSProperties = {
   margin: 0,
   fontWeight: 400,
+  fontFamily: 'var(--font-heading)',
   lineHeight: 'var(--type-l2-lh)',
   letterSpacing: 'var(--type-track-body)',
   fontSize: 'clamp(var(--type-l2), 3.2vw, var(--type-l3))'
@@ -171,6 +174,7 @@ const storyTextStyle: CSSProperties = {
   color: 'var(--ds-text-primary)',
   fontSize: 'clamp(var(--type-l2), 1.25vw, var(--type-l3))',
   fontWeight: 400,
+  fontFamily: 'var(--font-heading)',
   lineHeight: 'var(--type-l3-lh)',
   letterSpacing: 'var(--type-track-body)'
 };

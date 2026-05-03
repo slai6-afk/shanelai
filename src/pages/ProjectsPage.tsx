@@ -96,10 +96,11 @@ export function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="mb-24 text-center"
-            style={{ 
-              color: 'var(--ds-text-primary)', 
+            style={{
+              color: 'var(--ds-text-primary)',
               fontSize: 'var(--ds-text-display)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: 'var(--type-l6-lh)',
               letterSpacing: 'var(--type-track-tight)'
             }}
@@ -143,10 +144,11 @@ export function ProjectsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-center max-w-2xl mx-auto"
-            style={{ 
-              color: 'var(--ds-text-secondary)', 
+            style={{
+              color: 'var(--ds-text-secondary)',
               fontSize: 'var(--type-l3)',
               fontWeight: 400,
+              fontFamily: 'var(--font-heading)',
               lineHeight: '1.8'
             }}
           >
