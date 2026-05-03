@@ -1217,10 +1217,14 @@ html {
   }
 
   #selected-works .home-selected-work {
+    position: relative !important;
+    height: auto !important;
+    top: auto !important;
+    z-index: auto !important;
     min-height: auto !important;
     padding-top: 96px !important;
     padding-bottom: 32px !important;
-    scroll-snap-stop: normal !important;
+    transform: none !important;
   }
 
   #selected-works .home-selected-work.home-selected-work--stack {
