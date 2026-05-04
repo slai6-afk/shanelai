@@ -527,6 +527,7 @@ export function HomePage() {
               justifyContent: 'center',
               gap: '10px',
               textAlign: 'center',
+              paddingBottom: '80px',
             }}
           >
             <div
