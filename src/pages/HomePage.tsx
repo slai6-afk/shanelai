@@ -511,8 +511,8 @@ export function HomePage() {
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          paddingTop: 'max(84px, 8vh)',
-          paddingBottom: 'max(80px, 8vh)',
+          paddingTop: 'max(72px, 7vh)',
+          paddingBottom: 'max(64px, 7vh)',
         }}
       >
         <div className="max-w-[1280px] mx-auto w-full">
@@ -542,8 +542,8 @@ export function HomePage() {
                 style={{
                   position: 'relative',
                   width: '100%',
-                  height: 'min(580px, calc(100dvh - 320px))',
-                  minHeight: '360px'
+                  height: 'min(440px, calc(100dvh - 420px))',
+                  minHeight: '280px'
                 }}
               >
                 <div
@@ -558,8 +558,8 @@ export function HomePage() {
                   <motion.div
                     style={{
                       display: 'flex',
-                      width: 'min(92vw, 760px, calc(100dvh - 320px))',
-                      height: 'min(92vw, 760px, calc(100dvh - 320px))',
+                      width: 'min(92vw, 580px, calc(100dvh - 420px))',
+                      height: 'min(92vw, 580px, calc(100dvh - 420px))',
                       opacity: spiralOpacity,
                       scale: spiralScale,
                       filter: 'saturate(1.22) contrast(1.06)',
@@ -595,9 +595,9 @@ export function HomePage() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '18px',
-                    minHeight: 'min(580px, calc(100dvh - 320px))',
-                    marginTop: 'clamp(16px, 3vh, 38px)',
-                    marginBottom: 'clamp(16px, 3vh, 38px)',
+                    minHeight: 'min(440px, calc(100dvh - 420px))',
+                    marginTop: 'clamp(8px, 1.5vh, 20px)',
+                    marginBottom: 'clamp(8px, 1.5vh, 20px)',
                     paddingTop: '12px',
                     paddingBottom: '12px',
                     width: '100%',
@@ -614,14 +614,14 @@ export function HomePage() {
                       src={titleImage}
                       alt="Shane Lai"
                       style={{
-                        width: 'clamp(108px, 14vw, 216px)',
+                        width: 'clamp(88px, 11vw, 172px)',
                         height: 'auto',
                         display: 'block'
                       }}
                     />
                   </SketchCursorHint>
 
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', width: '100%', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%', alignItems: 'center' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%', alignItems: 'center' }}>
                       <p
                         style={{
@@ -654,7 +654,7 @@ export function HomePage() {
                       </p>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                       {/* Credentials */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
                         <p style={{ margin: 0, color: 'var(--ds-text-tertiary)', fontSize: 'var(--ds-badge-fz)', fontWeight: 'var(--ds-badge-weight)' as never, letterSpacing: '0.12em', textTransform: 'uppercase', fontFamily: 'var(--ds-badge-font)' }}>
