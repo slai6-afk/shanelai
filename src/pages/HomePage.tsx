@@ -508,10 +508,11 @@ export function HomePage() {
           minHeight: '100vh',
           scrollSnapAlign: 'start',
           scrollSnapStop: 'always',
+          position: 'relative',
           display: 'flex',
           alignItems: 'center',
           paddingTop: 'max(84px, 8vh)',
-          paddingBottom: 'max(20px, 2.5vh)',
+          paddingBottom: 'max(80px, 8vh)',
         }}
       >
         <div className="max-w-[1280px] mx-auto w-full">
@@ -523,12 +524,9 @@ export function HomePage() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
               gap: '10px',
               textAlign: 'center',
-              minHeight: 'calc(100dvh - 140px)',
-              paddingTop: '10px',
-              paddingBottom: '10px'
             }}
           >
             <div
@@ -790,36 +788,41 @@ export function HomePage() {
 
             </div>
 
-            <button
-              type="button"
-              onClick={() => selectedWorksRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '10px',
-                textDecoration: 'none',
-                border: 'none',
-                background: 'transparent',
-                cursor: 'pointer'
-              }}
-            >
-              <ArrowDown size={24} color="var(--ds-text-subtle)" strokeWidth={1.5} />
-              <p
-                style={{
-                  margin: 0,
-                  color: 'var(--ds-text-subtle)',
-                  fontSize: 'var(--type-l3)',
-                  lineHeight: 'var(--type-l3-lh)',
-                  fontWeight: 400,
-                  letterSpacing: 'var(--type-track-body)'
-                }}
-              >
-                Works that I love most
-              </p>
-            </button>
           </motion.div>
         </div>
+        <button
+          type="button"
+          onClick={() => selectedWorksRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          style={{
+            position: 'absolute',
+            bottom: 'max(24px, 3vh)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px',
+            textDecoration: 'none',
+            border: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <ArrowDown size={24} color="var(--ds-text-subtle)" strokeWidth={1.5} />
+          <p
+            style={{
+              margin: 0,
+              color: 'var(--ds-text-subtle)',
+              fontSize: 'var(--type-l3)',
+              lineHeight: 'var(--type-l3-lh)',
+              fontWeight: 400,
+              letterSpacing: 'var(--type-track-body)'
+            }}
+          >
+            Works that I love most
+          </p>
+        </button>
       </section>
 
       <div ref={selectedWorksRef} id="selected-works">
