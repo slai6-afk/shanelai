@@ -431,9 +431,13 @@ export function MemoryNavigatorCaseStudy() {
         <div className="max-w-[1600px] mx-auto">
           {/* Reduced left column width from 280px to 160px (~60% of original) */}
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-8">
-            <div className="hidden lg:block"><StickyTOC items={tocItems} isFixed={tocFixed} /></div>
+            <div className="hidden lg:block">
+              <div style={{ position: 'sticky', top: '100px', height: 'fit-content' }}>
+                <StickyTOC items={tocItems} isFixed={tocFixed} />
+              </div>
+            </div>
 
-            <div className="case-study-content-wrapper max-w-[900px] w-full" style={{ position: 'relative' }}>
+            <div className="case-study-content-wrapper w-full max-w-none min-w-0 flex flex-col" style={{ position: 'relative' }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               <div id="background" style={{ marginBottom: '200px', position: 'relative' }}>

@@ -170,10 +170,12 @@ export function HuuuuuCaseStudy() {
         <div className="max-w-[1200px] mx-auto"> {/* Matched max-width */}
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-8"> {/* Matched gap */}
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} isFixed={tocFixed} />
-                </div>
+              <div style={{ position: 'sticky', top: '100px', height: 'fit-content' }}>
+                <StickyTOC items={tocItems} isFixed={tocFixed} />
+              </div>
+            </div>
 
-            <div className="case-study-content-wrapper max-w-[900px] w-full" style={{ position: 'relative' }}>
+            <div className="case-study-content-wrapper w-full max-w-none min-w-0 flex flex-col" style={{ position: 'relative' }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
               
               {/* TL;DR - Adjusted spacing and layout */}

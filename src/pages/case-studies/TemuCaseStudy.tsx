@@ -119,7 +119,7 @@ function TemuAccentCard({
 }) {
   return (
     <div
-      className={`rounded-[var(--temu-radius-card)] ${noFill ? 'border-0 bg-transparent px-12 py-5 shadow-none md:px-14 lg:px-16' : 'p-12 md:p-14 lg:px-16 lg:py-16'} ${noFill ? '' : `${TEMU_ACCENT_CARD_FILL_CLASS} shadow-[0_4px_32px_rgba(251,119,1,0.14)] ${interactive ? TEMU_HOVER_ACCENT : ''}`} ${className}`.trim()}
+      className={`rounded-[var(--temu-radius-card)] ${noFill ? 'border-0 bg-transparent px-0 py-5 shadow-none' : 'p-12 md:p-14 lg:px-16 lg:py-16'} ${noFill ? '' : `${TEMU_ACCENT_CARD_FILL_CLASS} shadow-[0_4px_32px_rgba(251,119,1,0.14)] ${interactive ? TEMU_HOVER_ACCENT : ''}`} ${className}`.trim()}
     >
       {children}
     </div>
@@ -139,19 +139,20 @@ function TemuLoopAndResearchViz() {
 
   return (
     <div className="flex flex-col gap-14 md:gap-20">
-      <TemuAccentCard noFill className="!ml-[30px] !flex !flex-col !items-center !justify-start">
-        <div className="mb-12 flex flex-col items-center justify-start gap-8 text-center md:mb-14 md:flex-row md:text-left">
-          <div className="flex max-w-[42ch] flex-col items-center justify-start">
-            <TemuVizTitle className="!mt-5">Why People Left The Bot</TemuVizTitle>
+      <TemuAccentCard noFill className="!flex !flex-col !items-start !justify-start !text-left">
+        <div className="mb-12 flex w-full flex-col items-start justify-start gap-8 text-left md:mb-14">
+          <div className="flex max-w-[42ch] flex-col items-start justify-start">
+            <TemuVizTitle className="!mt-5 !text-left">Why People Left The Bot</TemuVizTitle>
           </div>
         </div>
-        <div className="mb-2.5 mt-2.5 grid gap-6 md:grid-cols-2 md:gap-8">
+        <div className="mb-2.5 mt-2.5 grid w-full gap-6 md:grid-cols-2 md:gap-8">
           {researchBars.map((r) => (
-            <figure key={r.label} className="temu-research-quote-card">
+            <figure key={r.label} className="temu-research-quote-card !text-left">
+              {/* 1. Percentage — top, large, orange */}
+              <div className="temu-research-quote-card__value">{r.value}%</div>
+              {/* 2. Description — below the number, left-aligned */}
               <blockquote className="temu-research-quote-card__bubble">&quot;{r.label}&quot;</blockquote>
-              <div className="temu-research-quote-card__meta">
-                <span className="temu-research-quote-card__value">{r.value}%</span>
-              </div>
+              {/* 3. Progress bar */}
               <div className="h-[12px] w-full overflow-hidden rounded-full bg-white/70">
                 <div
                   className="h-full rounded-full"
@@ -253,7 +254,7 @@ function TemuTriageArchitectureMap() {
 
   return (
     <div className="relative overflow-hidden rounded-[28px] border-2 border-[#0a0a0a] bg-white p-6 shadow-[0_16px_52px_rgba(0,0,0,0.08)] md:p-10">
-      <div className="relative z-[1] mx-auto grid max-w-4xl grid-cols-1 gap-8 pb-10 lg:grid-cols-2 lg:gap-x-0 lg:gap-y-10">
+      <div className="relative z-[1] grid w-full grid-cols-1 gap-8 pb-10 lg:grid-cols-2 lg:gap-x-0 lg:gap-y-10">
         {/* Path A — 65% */}
         <article className="temu-triage-path-card flex flex-col gap-6 py-[30px]">
           <div className="flex items-center justify-between gap-3">
@@ -423,9 +424,9 @@ function TemuPhoneMockups() {
         return (
           <TemuSoftSurface
             key={c.tier}
-            className="group/mockcap w-full !max-w-none !rounded-[var(--temu-radius-inner)] !p-0 text-center"
+            className="group/mockcap w-full !max-w-none !rounded-[var(--temu-radius-inner)] !p-0"
           >
-            <div className="mb-0 flex flex-col items-center gap-2 md:gap-4">
+            <div className="mb-0 flex flex-col items-start gap-2 md:gap-4">
               <div
                 className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--temu-radius-pill)] transition-transform duration-300 motion-safe:group-hover/mockcap:scale-105"
                 style={{ background: TEMU_ORANGE_SOFT }}
@@ -556,7 +557,7 @@ function TemuVisionTimeline() {
           </TemuSoftSurface>
         ))}
       </div>
-      <p className="funfit-body-text mx-auto mt-12 max-w-[52ch] text-center text-[var(--ds-text-secondary)] md:text-left">
+      <p className="funfit-body-text mt-12 text-[var(--ds-text-secondary)]">
         Behavioral signals flag delayed logistics; compensation credits can surface before Support is opened — anticipatory resolution.
       </p>
     </div>
@@ -771,7 +772,7 @@ export function TemuCaseStudy() {
 
       {/* ── Block B: 2-col grid — TOC left, content right ── */}
       <section className="temu-body-section">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="w-full">
           {/* Grid: mobile=1col · iPad(≥768)=30/70 · Desktop(≥1024)=20/80 */}
           <div className="temu-body-grid">
 
@@ -858,18 +859,18 @@ export function TemuCaseStudy() {
 
               <div id="leaky" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">1 · Business Problem: The &quot;Leaky&quot; Bot</h2>
-                <p className="funfit-body-text funfit-body-text--spaced-md max-w-[820px]">
+                <p className="funfit-body-text funfit-body-text--spaced-md w-full">
                   Temu&apos;s legacy AI bot was failing deflection. <span className="marker-highlight marker-highlight--temu">81%</span> of users
                   bypassed the AI and clicked &quot;Talk to Human&quot; — unsustainable ops and bottlenecked agents.
                 </p>
-                <div className="mt-8 w-full max-w-[820px] overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+                <div className="mt-8 w-full overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
                   <img
                     src={temu1}
                     alt="Legacy bot deflection and escalation context"
-                    className="h-auto w-full max-w-full object-contain"
+                    className="block h-auto w-full max-w-full object-contain"
                     loading="lazy"
                     decoding="async"
-                    sizes="(max-width: 848px) 100vw, 820px"
+                    sizes="(max-width: 1024px) 100vw, 1000px"
                   />
                 </div>
                 <div className="funfit-zone-grid mt-10">
@@ -894,7 +895,7 @@ export function TemuCaseStudy() {
                   label="Design intent"
                   text="From chat-heavy recovery to tap-first resolution, with semantic handoff only when confidence and sentiment fail."
                 />
-                <div className="mt-8 w-full max-w-[min(100%,820px)] overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+                <div className="mt-8 w-full overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
                   <img
                     src={temu2}
                     alt="Tap-first resolution and semantic handoff design direction"
@@ -933,11 +934,7 @@ export function TemuCaseStudy() {
               <div id="impact" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">6 · Impact: Quantifying Intelligence</h2>
                 <div className={TEMU_SECTION_BLOCK_MT}>
-                  <TemuSoftSurface className="!px-6 !py-5 md:!px-10 md:!py-5">
-                    <div className="mt-10">
-                      <TemuImpactQuantification />
-                    </div>
-                  </TemuSoftSurface>
+                  <TemuImpactQuantification />
                 </div>
               </div>
 
@@ -959,7 +956,7 @@ export function TemuCaseStudy() {
 
               <div id="sprint" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">8 · Design at the Speed of Business: The 15-Day Sprint</h2>
-                <p className="funfit-body-text funfit-body-text--spaced-md max-w-[820px]">
+                <p className="funfit-body-text funfit-body-text--spaced-md w-full">
                   We didn&apos;t just design; we iterated at a relentless pace. Operating in 5-day sprints, I was integrated into the core team
                   from Sprint 1 and took immediate ownership of the P0/P1 architecture.
                 </p>
@@ -1001,7 +998,7 @@ export function TemuCaseStudy() {
                 <div className={TEMU_SECTION_BLOCK_MT}>
                   <TemuAnticipatoryRadar />
                 </div>
-                <p className="funfit-body-text funfit-body-text--spaced-md max-w-[820px]">
+                <p className="funfit-body-text funfit-body-text--spaced-md w-full">
                   The ultimate support experience is the one the user never has to start. The long-term direction is to flip the
                   script from reactive support to proactive resolution.
                 </p>

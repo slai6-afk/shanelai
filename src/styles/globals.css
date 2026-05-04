@@ -1100,7 +1100,12 @@ html {
   padding-left: 12px;
   cursor: pointer;
   display: block;
-  transition: color 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  /* Smooth scrollspy transitions: color + border accent + x-nudge */
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .toc-item[data-active="true"],
@@ -1108,25 +1113,48 @@ html {
   color: var(--case-text);
   font-weight: 500;
   border-left-color: var(--case-accent);
+  /* Subtle rightward nudge signals "you are here" */
+  transform: translateX(3px);
 }
 
-.toc-item:hover {
+.toc-item:not(.active):not([data-active="true"]):hover {
   transform: translateX(2px);
   color: var(--case-text);
 }
 
-/* Case study content layout */
+/* ── Universal strict left-edge baseline for ALL case study content columns ──
+   Transparent elements (headings, paragraphs, images) must flush exactly to
+   the left boundary of the column. Cards keep their internal padding but their
+   outer edge must also align to this same line. */
 .case-study-content-wrapper {
   margin-left: 0;
+  padding-left: 0;
+}
+
+/* Seamless elements: zero out any inherited left offset */
+.case-study-content-wrapper h1,
+.case-study-content-wrapper h2,
+.case-study-content-wrapper h3,
+.case-study-content-wrapper h4,
+.case-study-content-wrapper h5,
+.case-study-content-wrapper h6,
+.case-study-content-wrapper p,
+.case-study-content-wrapper > img,
+.case-study-content-wrapper .funfit-section,
+.case-study-content-wrapper .funfit-section > * {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Lists need bullet indent preserved */
+.case-study-content-wrapper ul,
+.case-study-content-wrapper ol {
+  padding-left: 1.25rem !important;
+  margin-left: 0 !important;
 }
 
 @media (min-width: 1024px) {
   .case-study-content-wrapper {
-    margin-left: 0;
-  }
-
-  /* Temu page should align with viewport container (no desktop left offset). */
-  .temu-page .case-study-content-wrapper {
     margin-left: 0;
   }
 }
@@ -1818,6 +1846,8 @@ html {
   --temu-type-body-sm: clamp(13px, 1.05vw, 15px);
   --temu-leading-title: 1.22;
   --temu-leading-body: 1.68;
+  /* Scrollspy accent: override shared token so active TOC item uses Temu orange */
+  --case-accent: #fb7701;
 }
 
 /* #prototype video: bundled CSS has no `aspect-video` utility — without a real height the box collapses (only abs children). */
@@ -2227,6 +2257,18 @@ html {
   border: none;
 }
 
+/* ── Strict Left Baseline: enforce flush-left on all structural wrappers.
+   Cards (bg/border) keep their own internal padding — this only zeroes
+   accidental left offsets on non-card container divs. ── */
+.temu-page .case-study-content-wrapper .funfit-section {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.temu-page .case-study-content-wrapper .funfit-section > *:not(h1):not(h2):not(h3):not(h4):not(p):not(ul):not(ol) {
+  margin-left: 0;
+}
+
 /* ── Temu body: Block B — 2-column responsive grid ── */
 .temu-body-section {
   padding-top: 96px;
@@ -2260,19 +2302,28 @@ html {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
+  align-items: stretch !important; /* Step 2: aside must match content column height */
+  justify-items: start; /* Right column hugs left edge of its track — no centering */
+}
+
+/* Right column inside the grid: align hard-left, no auto centering */
+.temu-body-grid > .case-study-content-wrapper {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  justify-self: start;
 }
 
 @media (min-width: 768px) {
   .temu-body-grid {
     grid-template-columns: 30% 1fr;
-    align-items: start;
+    align-items: stretch !important;
   }
 }
 
 @media (min-width: 1024px) {
   .temu-body-grid {
     grid-template-columns: 20% 1fr;
-    align-items: start;
+    align-items: stretch !important;
   }
 }
 
@@ -2287,10 +2338,67 @@ html {
   }
 }
 
-/* Sticky TOC wrapper — no overflow on any parent may block this */
+/* Step 1 (visual test) + Step 3 (nuclear option) */
 .temu-toc-sticky {
-  position: sticky;
-  top: 100px;
+  position: -webkit-sticky; /* Safari */
+  position: sticky !important;
+  top: 60px !important;
+  height: fit-content !important;
+  align-self: start;
+}
+
+/* Strict left-alignment for ALL headings + paragraphs inside the Temu content column */
+.temu-page .case-study-content-wrapper,
+.temu-page .case-study-content-wrapper h1,
+.temu-page .case-study-content-wrapper h2,
+.temu-page .case-study-content-wrapper h3,
+.temu-page .case-study-content-wrapper h4,
+.temu-page .case-study-content-wrapper h5,
+.temu-page .case-study-content-wrapper h6,
+.temu-page .case-study-content-wrapper p,
+.temu-page .case-study-content-wrapper li {
+  text-align: left;
+}
+
+/* ── Absolute Left-Edge Alignment ──
+   Zero out every nested padding-left / margin-left so content flushes to the
+   left boundary of the main column. Card *internal* padding is preserved
+   below by re-permitting it on known card classes. */
+.temu-page .case-study-content-wrapper,
+.temu-page .case-study-content-wrapper > *,
+.temu-page .case-study-content-wrapper > * > *,
+.temu-page .case-study-content-wrapper .funfit-section,
+.temu-page .case-study-content-wrapper .funfit-section > *,
+.temu-page .case-study-content-wrapper .funfit-section-title,
+.temu-page .case-study-content-wrapper .funfit-body-text,
+.temu-page .case-study-content-wrapper h1,
+.temu-page .case-study-content-wrapper h2,
+.temu-page .case-study-content-wrapper h3,
+.temu-page .case-study-content-wrapper h4,
+.temu-page .case-study-content-wrapper p,
+.temu-page .case-study-content-wrapper ul,
+.temu-page .case-study-content-wrapper ol {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Re-permit list bullet indent — without padding-left bullets get clipped */
+.temu-page .case-study-content-wrapper ul,
+.temu-page .case-study-content-wrapper ol {
+  padding-left: 1.25rem !important;
+}
+
+/* Card components keep their own internal padding (intrinsic to card design).
+   This selector wins on specificity because it's more specific than the
+   universal-child reset above. */
+.temu-page .case-study-content-wrapper .temu-soft-surface,
+.temu-page .case-study-content-wrapper .temu-accent-card,
+.temu-page .case-study-content-wrapper .temu-research-quote-card,
+.temu-page .case-study-content-wrapper .temu-ribbon-card,
+.temu-page .case-study-content-wrapper .temu-radar-card,
+.temu-page .case-study-content-wrapper .temu-vision-pillar {
+  padding-left: revert !important;
+  margin-left: 0 !important;
 }
 
 .temu-page #tldr .vector-word-backdrop {
@@ -2948,13 +3056,29 @@ html {
   min-height: 220px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Hard-left within card */
+  text-align: left;
   gap: 16px;
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
+/* Percentage now sits at the TOP of each card — large, bold, orange */
+.temu-page .temu-research-quote-card__value {
+  display: block;
+  margin: 0;
+  color: #fb7701;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(40px, 5.6vw, 56px);
+  line-height: 1;
+  letter-spacing: var(--type-track-tight);
+  text-align: left;
+}
+
+/* Description sits BELOW the number */
 .temu-page .temu-research-quote-card__bubble {
   margin: 0;
-  padding: 16px 16px 16px 14px;
+  padding: 14px 16px;
   border-radius: 14px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-left: 4px solid #fb7701;
@@ -2963,21 +3087,17 @@ html {
   font-size: var(--type-l3);
   line-height: var(--type-l3-lh);
   font-style: italic;
+  text-align: left;
+  align-self: stretch; /* Bubble spans full card width */
 }
 
-.temu-page .temu-research-quote-card__value {
-  color: #fb7701;
-  font-size: clamp(var(--type-l4), 5vw, var(--type-l5));
-  line-height: 1;
-  letter-spacing: var(--type-track-tight);
-}
-
+/* Legacy meta wrapper (kept harmless for any stray usages) */
 .temu-page .temu-research-quote-card__meta {
   margin-top: auto;
   margin-bottom: 2px;
   display: flex;
-  align-items: end;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: flex-start;
   gap: 14px;
 }
 
@@ -3169,13 +3289,11 @@ html {
   font-family: var(--font-heading);
 }
 
-/* Vibe Sync: constrain flex/grid children so Chrome/Atlas respect max-width (not just Safari). */
-.vibesync-page {
-  overflow-x: clip;
-}
-
+/* Vibe Sync: clip horizontal overflow only inside the content column.
+   Putting overflow-x:clip on the page root breaks position:sticky on the TOC. */
 .vibesync-page .case-study-content-wrapper {
   min-width: 0;
+  overflow-x: clip;
 }
 
 .vibesync-page .funfit-section {

@@ -263,10 +263,12 @@ export function VibeSyncCaseStudy() {
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block">
-              <StickyTOC items={tocItems} isFixed={tocFixed} />
+              <div style={{ position: 'sticky', top: '100px', height: 'fit-content' }}>
+                <StickyTOC items={tocItems} isFixed={tocFixed} />
+              </div>
             </div>
 
-            <div className="case-study-content-wrapper max-w-[848px] w-full">
+            <div className="case-study-content-wrapper w-full max-w-none min-w-0 flex flex-col">
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               <div id="tldr" className="funfit-section">
@@ -458,7 +460,7 @@ export function VibeSyncCaseStudy() {
 
               <div id="goal" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">Goal: Move the Metrics That Matter</h2>
-                <p className="funfit-body-text funfit-body-text--spaced-md max-w-[820px]">
+                <p className="funfit-body-text funfit-body-text--spaced-md">
                   The sprint aligned the team on one measurable north star: grow meaningful engagement inside Amazon Music by closing the discovery-to-retention loop for Gen Z — not just more plays, but more reasons to return and share.
                 </p>
                 <div className="vibesync-goal-metrics-frame relative">
@@ -687,7 +689,7 @@ export function VibeSyncCaseStudy() {
                 <h2 className="funfit-section-title funfit-section-title--standard">The Ecosystem: Introducing Vibe Sync</h2>
                 <div className="funfit-subsection">
                   <h3 className="funfit-section-subtitle-accent funfit-section-subtitle-accent--lg">Iterating for Intuitive Expression (Low-Fi to High-Fi)</h3>
-                  <p className="funfit-body-text funfit-body-text--spaced-lg max-w-[820px]">
+                  <p className="funfit-body-text funfit-body-text--spaced-lg">
                     We started with rapid wireframing to test the core mental model of &apos;Moment -&gt; Music -&gt; Share.&apos; Early user feedback (v1) revealed that the sharing flow felt too heavy. In our High-Fi iterations (v2), we stripped away secondary actions, prioritizing a one-tap contextual sharing experience and rich visual customizability.
                   </p>
                   <div className="mx-auto w-full max-w-[1169px] overflow-hidden">

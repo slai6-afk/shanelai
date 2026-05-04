@@ -46,8 +46,12 @@ export function TalkieCaseStudy() {
       <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
-            <div className="hidden lg:block"><StickyTOC items={tocItems} /></div>
-            <div className="case-study-content-wrapper max-w-[900px] w-full">
+            <div className="hidden lg:block">
+              <div style={{ position: 'sticky', top: '100px', height: 'fit-content' }}>
+                <StickyTOC items={tocItems} />
+              </div>
+            </div>
+            <div className="case-study-content-wrapper w-full max-w-none min-w-0 flex flex-col">
               <div id="tldr" style={{ marginBottom: '80px' }}>
                 <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '32px' }}>TL;DR</motion.h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
