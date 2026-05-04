@@ -726,7 +726,7 @@ export function HomePage() {
                       {/* Divider */}
                       <div style={{ width: '32px', height: '1px', backgroundColor: 'var(--ds-border-subtle)' }} />
                       {/* Action CTAs */}
-                      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center' }}>
                         <motion.a
                           href="mailto:shanshanlai160402@gmail.com"
                           aria-label="Email"
