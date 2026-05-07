@@ -10,6 +10,7 @@ import {
   Sparkles,
   Target,
   TrendingDown,
+  TrendingUp,
   UserRound,
   Zap,
 } from 'lucide-react';
@@ -821,37 +822,31 @@ export function TemuCaseStudy() {
 
                   <div className="temu-tldr-outcome">
                     <h3 className="temu-tldr-subhead">The Outcome at a Glance</h3>
-                    <div className="temu-outcome-table-wrap">
-                      <table className="temu-outcome-table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Metric</th>
-                            <th scope="col">Before</th>
-                            <th scope="col">After</th>
-                            <th scope="col">Delta</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">Agent Escalation</th>
-                            <td>81%</td>
-                            <td>20%</td>
-                            <td className="temu-outcome-table__delta">-61%</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Resolution Time</th>
-                            <td>280s</td>
-                            <td>140s</td>
-                            <td className="temu-outcome-table__delta">-50%</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">User CSAT</th>
-                            <td>Baseline</td>
-                            <td>+24%</td>
-                            <td className="temu-outcome-table__delta">Significant Lift</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <div className="temu-outcome-stats">
+                      <div className="temu-outcome-stat">
+                        <p className="temu-outcome-stat__value">
+                          <TrendingDown size={28} strokeWidth={2.5} aria-hidden />
+                          <span>61%</span>
+                        </p>
+                        <p className="temu-outcome-stat__label">Agent Escalation</p>
+                        <p className="temu-outcome-stat__detail">81% → 20%</p>
+                      </div>
+                      <div className="temu-outcome-stat">
+                        <p className="temu-outcome-stat__value">
+                          <TrendingDown size={28} strokeWidth={2.5} aria-hidden />
+                          <span>50%</span>
+                        </p>
+                        <p className="temu-outcome-stat__label">Resolution Time</p>
+                        <p className="temu-outcome-stat__detail">280s → 140s</p>
+                      </div>
+                      <div className="temu-outcome-stat">
+                        <p className="temu-outcome-stat__value">
+                          <TrendingUp size={28} strokeWidth={2.5} aria-hidden />
+                          <span>24%</span>
+                        </p>
+                        <p className="temu-outcome-stat__label">User CSAT</p>
+                        <p className="temu-outcome-stat__detail">Baseline → Significant Lift</p>
+                      </div>
                     </div>
                   </div>
                 </TemuSoftSurface>

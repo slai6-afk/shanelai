@@ -2570,80 +2570,63 @@ html {
   letter-spacing: var(--type-track-body);
 }
 
-.temu-page .temu-outcome-table-wrap {
-  overflow-x: auto;
-  border-radius: 14px;
-  border: 1px solid color-mix(in srgb, var(--ds-text-primary) 10%, transparent);
-  background: var(--ds-bg-surface);
+/* Outcome at a Glance — minimal stat blocks, no card/borders, theme-color data */
+.temu-page .temu-outcome-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+  padding: 4px 0 0;
 }
 
-.temu-page .temu-outcome-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  min-width: 560px;
+.temu-page .temu-outcome-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
 }
 
-.temu-page .temu-outcome-table thead th {
-  background: color-mix(in srgb, #fb7701 12%, white);
-  color: var(--ds-text-primary);
-  font-size: var(--type-l1);
-  line-height: var(--type-l1-lh);
-  letter-spacing: var(--type-track-caps);
-  text-transform: uppercase;
-  text-align: left;
-  padding: 12px 14px;
+.temu-page .temu-outcome-stat__value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: #fb7701;
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4.4vw, 48px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.temu-page .temu-outcome-table thead th:first-child {
-  border-top-left-radius: 13px;
+.temu-page .temu-outcome-stat__value svg {
+  flex-shrink: 0;
+  stroke: #fb7701;
 }
 
-.temu-page .temu-outcome-table thead th:last-child {
-  border-top-right-radius: 13px;
-}
-
-.temu-page .temu-outcome-table tbody th,
-.temu-page .temu-outcome-table tbody td {
-  padding: 14px;
-  border-top: 1px solid color-mix(in srgb, var(--ds-text-primary) 8%, transparent);
+.temu-page .temu-outcome-stat__label {
+  margin: 0;
   color: var(--ds-text-primary);
   font-size: var(--type-l2);
-  line-height: var(--type-l2-lh);
-}
-
-.temu-page .temu-outcome-table tbody th {
+  line-height: 1.4;
   font-weight: 600;
-  text-align: left;
 }
 
-.temu-page .temu-outcome-table tbody td {
-  text-align: left;
-}
-
-.temu-page .temu-outcome-table__delta {
-  color: #fb7701 !important;
-  font-weight: 700;
+.temu-page .temu-outcome-stat__detail {
+  margin: 0;
+  color: var(--ds-text-tertiary);
+  font-size: var(--type-l1);
+  line-height: 1.4;
 }
 
 @media (max-width: 767px) {
-  .temu-page .temu-outcome-table {
-    min-width: 0;
-    table-layout: fixed;
+  .temu-page .temu-outcome-stats {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .temu-page .temu-outcome-table thead th {
-    padding: 8px 6px;
-    font-size: 11px;
-    line-height: 1.3;
-  }
-
-  .temu-page .temu-outcome-table tbody th,
-  .temu-page .temu-outcome-table tbody td {
-    padding: 10px 6px;
-    font-size: 12px;
-    line-height: 1.35;
-    word-break: break-word;
+  .temu-page .temu-outcome-stat__value {
+    font-size: 36px;
   }
 }
 
