@@ -2524,8 +2524,8 @@ html {
 
 .temu-page .temu-tldr-info-item {
   border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--ds-text-primary) 10%, transparent);
-  background: color-mix(in srgb, var(--ds-bg-surface) 94%, #fb7701);
+  border: none;
+  background: transparent;
   padding: 14px 16px;
 }
 
