@@ -2541,8 +2541,8 @@ html {
 .temu-page .temu-tldr-info-item__value {
   margin: 6px 0 0;
   color: var(--ds-text-primary);
-  font-size: var(--temu-type-body-sm);
-  line-height: 1.55;
+  font-size: var(--temu-type-body);
+  line-height: var(--temu-leading-body);
   letter-spacing: var(--type-track-body);
 }
 
@@ -2607,8 +2607,8 @@ html {
 .temu-page .temu-outcome-stat__label {
   margin: 0;
   color: var(--ds-text-primary);
-  font-size: var(--type-l2);
-  line-height: 1.4;
+  font-size: var(--temu-type-body);
+  line-height: var(--temu-leading-body);
   font-weight: 600;
 }
 
@@ -2616,7 +2616,9 @@ html {
   margin: 0;
   color: var(--ds-text-tertiary);
   font-size: var(--type-l1);
-  line-height: 1.4;
+  letter-spacing: var(--type-track-caps);
+  text-transform: uppercase;
+  line-height: var(--type-l1-lh);
 }
 
 @media (max-width: 767px) {
@@ -2778,10 +2780,10 @@ html {
   margin: 0;
   padding: 0 18px 14px;
   color: #111111;
-  font-family: var(--font-heading);
-  font-size: clamp(22px, 2.7vw, var(--type-l4));
-  line-height: var(--type-l4-lh);
-  letter-spacing: 0;
+  font-size: var(--temu-type-body);
+  line-height: var(--temu-leading-body);
+  letter-spacing: var(--type-track-body);
+  font-weight: 500;
 }
 
 .temu-page .temu-impact-note-card {
