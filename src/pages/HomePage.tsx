@@ -13,12 +13,13 @@ import { Navigation } from '../components/Navigation';
 import { SketchCursorHint } from '../components/SketchCursorHint';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import ammVideo from '../assets/AMM_video.mp4';
-import memoryNavigatorPoster from '../assets/Gemini_Generated_Image_c23ldzc23ldzc23l.png';
+import memoryNavigatorPoster from '../assets/vibes1.png';
 import nycHeroVideo from '../assets/herovideo_NYC.mov';
-import funFitLandPoster from '../assets/bebbc88443fdebed4e56ae9980488dadc3739961.png';
+import funFitLandPoster from '../assets/89118d14ba53305ac06c41d50a99f512aef426bd.png';
 import titleImage from '../assets/title.png';
-import nycCover from '../assets/cover.png';
+import nycCover from '../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
 import homeVideo from '../assets/home video.mp4';
+import temuHomePoster from '../assets/temucase1.png';
 import workIcon from '../assets/work.png';
 import happyPlaygroundIcon from '../assets/happyplayground.png';
 import playOneImage from '../assets/play1.png';
@@ -77,6 +78,7 @@ const homeProjects: HomeProject[] = [
     link: '/case-study/temu-ai-support',
     mediaType: 'video',
     mediaSrc: homeVideo,
+    mediaPoster: temuHomePoster,
     mediaAlt: 'Temu AI support case study preview video',
     mediaPosition: 'left',
     contentLayout: 'distributed',
@@ -165,10 +167,19 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
   const [mediaFailed, setMediaFailed] = useState(false);
   const [shouldLoadMedia, setShouldLoadMedia] = useState(index < 3);
   const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const mediaContainerRef = useRef<HTMLDivElement | null>(null);
   const mediaVideoRef = useRef<HTMLVideoElement | null>(null);
   const mediaPositionAtMdUp = index % 2 === 0 ? 'right' : 'left';
   const needsEdgeCrop = project.slideAccent === 'temu';
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const handler = () => setIsMobile(mq.matches);
+    handler();
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   // Alternating tilt direction: even cards tilt left (-), odd cards tilt right (+)
   const tiltDirection = index % 2 === 0 ? -1 : 1;
@@ -319,10 +330,11 @@ function SelectedWorkSlide({ project, index }: SelectedWorkSlideProps) {
             position: 'relative',
           }}
         >
-          {project.mediaType === 'video' && !mediaFailed ? (
+          {project.mediaType === 'video' && !mediaFailed && !isMobile ? (
             <video
               ref={mediaVideoRef}
               src={shouldLoadMedia ? project.mediaSrc : undefined}
+              poster={project.mediaPoster}
               autoPlay={isInView}
               loop
               muted
@@ -527,6 +539,7 @@ export function HomePage() {
               justifyContent: 'center',
               gap: '10px',
               textAlign: 'center',
+              marginTop: '-10px',
               paddingBottom: '80px',
             }}
           >
@@ -643,7 +656,7 @@ export function HomePage() {
                         style={{
                           margin: 0,
                           color: 'var(--ds-text-primary)',
-                          fontSize: 'clamp(22px, 3.2vw, 48px)',
+                          fontSize: 'clamp(20px, 3vw, 44px)',
                           lineHeight: 1.1,
                           fontWeight: 900,
                           fontFamily: 'var(--font-heading)',

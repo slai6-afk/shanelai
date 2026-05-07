@@ -391,13 +391,24 @@ body.site-cursor-eyes * {
   background: transparent;
 }
 
+.ds-site-nav .nav-brand-mark {
+  width: 62px;
+  height: 62px;
+}
+
 .ds-site-nav .nav-inner {
   position: relative;
   background: var(--ds-nav-glass-fallback);
   border: none;
   box-shadow: var(--ds-nav-glass-shadow);
-  margin-top: 10px;
+  margin: 10px 28px 0;
   overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .ds-site-nav .nav-inner {
+    margin: 8px 12px 0;
+  }
 }
 
 /* Layer 2 — vibrancy + blur (CSS fallback, all browsers) */
@@ -1372,9 +1383,18 @@ html {
   }
 
   .ds-site-nav .nav-inner {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 8px !important;
+    padding-right: 12px !important;
     min-height: 44px !important;
+  }
+
+  .ds-site-nav .nav-brand-mark {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .ds-site-nav .ds-nav-link {
+    font-size: 13px !important;
   }
 
   .case-study-page > section,

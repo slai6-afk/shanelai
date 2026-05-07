@@ -50,8 +50,8 @@ export const Navigation = memo(function Navigation() {
         className="ds-site-nav fixed top-0 left-0 right-0 z-50"
       >
         <div
-          className="nav-inner flex items-center justify-between px-5 md:px-8"
-          style={{ minHeight: '48px', marginLeft: 28, marginRight: 28, width: 'calc(100% - 56px)', borderRadius: 100 }}
+          className="nav-inner flex items-center justify-between px-3 sm:px-5 md:px-8"
+          style={{ minHeight: '44px', borderRadius: 100 }}
         >
           <NavLink to="/" end>
             <SketchCursorHint label="Home — hi again" className="block">
@@ -62,13 +62,12 @@ export const Navigation = memo(function Navigation() {
               >
                 <div
                   className="nav-brand-mark relative shrink-0 overflow-hidden rounded-full"
-                  style={{ width: 62, height: 62 }}
                 >
                   <img
                     src={brandImage}
                     alt="Shane Lai"
-                    width={68}
-                    height={68}
+                    width={62}
+                    height={62}
                     style={{
                       width: '100%',
                       height: '100%',
@@ -82,7 +81,7 @@ export const Navigation = memo(function Navigation() {
           </NavLink>
 
           <div
-            className="scrollbar-hide flex items-center gap-4 overflow-x-auto sm:gap-5 md:gap-7"
+            className="scrollbar-hide flex items-center gap-3 overflow-x-auto sm:gap-5 md:gap-7"
           >
             {navItems.map((item) => (
               <NavLink key={item.path} to={item.path} style={linkStyle}>
