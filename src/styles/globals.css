@@ -2523,10 +2523,10 @@ html {
 }
 
 .temu-page .temu-tldr-info-item {
-  border-radius: 12px;
+  border-radius: 0;
   border: none;
   background: transparent;
-  padding: 14px 16px;
+  padding: 14px 0;
 }
 
 .temu-page .temu-tldr-info-item__label {
