@@ -72,14 +72,31 @@ function TemuVizTitle({ children, className = '' }: { children: ReactNode; class
   );
 }
 
-function TemuOrangeCallout({ label, text }: { label: string; text: string }) {
+function TemuOrangeCallout({
+  label,
+  text,
+  inline = false,
+}: {
+  label?: string;
+  text: string;
+  inline?: boolean;
+}) {
   return (
-    <div className="temu-orange-callout">
-      <div className="temu-orange-callout__label-row">
-        <span className="temu-orange-callout__dot" />
-        <p className="temu-orange-callout__label">{label}</p>
-      </div>
-      <p className="temu-orange-callout__text">{text}</p>
+    <div className={`temu-orange-callout${inline ? ' temu-orange-callout--inline' : ''}`}>
+      {inline ? (
+        <div className="temu-orange-callout__inline-row">
+          <span className="temu-orange-callout__dot" />
+          <p className="temu-orange-callout__inline-text">{text}</p>
+        </div>
+      ) : (
+        <>
+          <div className="temu-orange-callout__label-row">
+            <span className="temu-orange-callout__dot" />
+            {label ? <p className="temu-orange-callout__label">{label}</p> : null}
+          </div>
+          <p className="temu-orange-callout__text">{text}</p>
+        </>
+      )}
     </div>
   );
 }
@@ -89,14 +106,17 @@ function TemuSoftSurface({
   children,
   className = '',
   interactive = true,
+  noPadding = false,
 }: {
   children: ReactNode;
   className?: string;
   interactive?: boolean;
+  noPadding?: boolean;
 }) {
+  const paddingClasses = noPadding ? 'p-0 md:p-0 lg:p-0' : 'p-12 md:p-14 lg:px-16 lg:py-16';
   return (
     <div
-      className={`rounded-[var(--temu-radius-card)] bg-[var(--ds-bg-surface)] p-12 shadow-[0_4px_28px_rgba(0,0,0,0.07)] md:p-14 lg:px-16 lg:py-16 ${interactive ? TEMU_HOVER_SOFT : ''} ${className}`.trim()}
+      className={`rounded-[var(--temu-radius-card)] bg-[var(--ds-bg-surface)] ${paddingClasses} shadow-[0_4px_28px_rgba(0,0,0,0.07)] ${interactive ? TEMU_HOVER_SOFT : ''} ${className}`.trim()}
     >
       {children}
     </div>
@@ -248,31 +268,31 @@ function TemuBentoMetrics() {
   );
 }
 
-/** Modular triage map: white field, orange dashed paths, obsidian-bordered bento nodes */
+/** Triage map: clean surfaces, single orange accent per path */
 function TemuTriageArchitectureMap() {
   const node =
-    'temu-triage-node rounded-2xl bg-white border-2 border-[#0a0a0a] shadow-[0_10px_36px_rgba(0,0,0,0.09)] transition-[transform,box-shadow] duration-300 motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_18px_48px_rgba(0,0,0,0.12)]';
+    'temu-triage-node rounded-2xl bg-white transition-colors duration-300';
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] border-2 border-[#0a0a0a] bg-white p-6 shadow-[0_16px_52px_rgba(0,0,0,0.08)] md:p-10">
+    <div className="relative overflow-hidden rounded-[28px] bg-white p-6 md:p-10">
       <div className="relative z-[1] grid w-full grid-cols-1 gap-8 pb-10 lg:grid-cols-2 lg:gap-x-0 lg:gap-y-10">
         {/* Path A — 65% */}
         <article className="temu-triage-path-card flex flex-col gap-6 py-[30px]">
           <div className="flex items-center justify-between gap-3">
-            <div className="temu-triage-path-label flex items-center gap-2 text-[var(--ds-text-tertiary)]">
+            <div className="temu-triage-path-label flex items-center gap-2 text-[var(--ds-text-primary)]">
               <Route className="h-4 w-4 shrink-0" strokeWidth={1.65} aria-hidden />
               <span className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
                 Path A
               </span>
             </div>
-            <span className="temu-triage-traffic-badge ml-0 rounded-full border border-black bg-[#ff6f07] px-5 py-0.5 text-[11px] font-medium tabular-nums text-[var(--ds-text-primary)]">
+            <span className="temu-triage-traffic-badge ml-0 rounded-full px-5 py-0.5 text-[11px] font-medium tabular-nums text-white">
               <span>65%</span>
               <span>traffic</span>
             </span>
           </div>
           <div className={`${node} temu-triage-node--p0 flex flex-1 flex-col p-6 md:p-7`}>
             <div className="flex items-start gap-4">
-              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0a0a0a] bg-white">
+              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
                 <Layers className="h-5 w-5 text-[var(--ds-text-primary)]" strokeWidth={1.65} aria-hidden />
               </div>
               <div className="min-w-0">
@@ -294,20 +314,20 @@ function TemuTriageArchitectureMap() {
         {/* Path B — 35% + P1.2 stack */}
         <article className="temu-triage-path-card my-5 flex flex-col gap-6">
           <div className="flex items-center justify-between gap-3">
-            <div className="temu-triage-path-label flex items-center gap-2 text-[var(--ds-text-tertiary)]">
+            <div className="temu-triage-path-label flex items-center gap-2 text-[var(--ds-text-primary)]">
               <Route className="h-4 w-4 shrink-0" strokeWidth={1.65} aria-hidden />
               <span className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
                 Path B
               </span>
             </div>
-            <span className="temu-triage-traffic-badge ml-0 rounded-full border border-black bg-[#ff6f07] px-5 py-0.5 text-[11px] font-medium tabular-nums text-[var(--ds-text-primary)]">
+            <span className="temu-triage-traffic-badge ml-0 rounded-full px-5 py-0.5 text-[11px] font-medium tabular-nums text-white">
               <span>35%</span>
               <span>traffic</span>
             </span>
           </div>
           <div className={`${node} temu-triage-node--p11 p-6 md:p-7`}>
             <div className="flex items-start gap-4">
-              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0a0a0a] bg-white">
+              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
                 <MessageSquare className="h-5 w-5 text-[var(--ds-text-primary)]" strokeWidth={1.65} aria-hidden />
               </div>
               <div className="min-w-0">
@@ -324,9 +344,9 @@ function TemuTriageArchitectureMap() {
             </div>
           </div>
 
-          <div className={`${node} temu-triage-node--p12 border-dashed p-6 md:p-7`}>
+          <div className={`${node} temu-triage-node--p12 p-6 md:p-7`}>
             <div className="flex items-start gap-4">
-              <div className="temu-triage-icon-shell temu-triage-icon-shell--dark flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-2 border-[#0a0a0a] bg-[color-mix(in_srgb,var(--ds-bg-page)_92%,#0a0a0a)]">
+              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
                 <Headphones className="h-5 w-5 text-[var(--ds-text-primary)]" strokeWidth={1.65} aria-hidden />
               </div>
               <div className="min-w-0">
@@ -426,6 +446,7 @@ function TemuPhoneMockups() {
           <TemuSoftSurface
             key={c.tier}
             className="group/mockcap w-full !max-w-none !rounded-[var(--temu-radius-inner)] !p-0"
+            noPadding
           >
             <div className="mb-0 flex flex-col items-start gap-2 md:gap-4">
               <div
@@ -789,7 +810,7 @@ export function TemuCaseStudy() {
 
               <div id="tldr" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">TL;DR</h2>
-                <TemuSoftSurface className="!px-3 !py-2 sm:!px-4 md:!px-10 md:!py-[10px]" interactive={false}>
+                <TemuSoftSurface className="!px-0 !py-2 md:!py-[10px]" interactive={false} noPadding>
                   <div className="temu-tldr-info">
                     <h3 className="temu-tldr-subhead">Project Information</h3>
                     <div className="temu-tldr-info-grid">
@@ -815,8 +836,8 @@ export function TemuCaseStudy() {
                   <div className="temu-tldr-why">
                     <h3 className="temu-tldr-subhead">The Why (Strategic Alignment)</h3>
                     <TemuOrangeCallout
-                      label="Strategic thesis"
-                      text="Users didn’t want to chat — they wanted resolution. Shift from Conversational UI to Actionable UI."
+                      inline
+                      text="Users didn’t want to chat, they wanted resolution instead. Shift from Conversational UI to Actionable UI."
                     />
                   </div>
 
@@ -868,26 +889,12 @@ export function TemuCaseStudy() {
                     sizes="(max-width: 1024px) 100vw, 1000px"
                   />
                 </div>
-                <div className="funfit-zone-grid mt-10">
-                  <div className="funfit-zone-card temu-hover-tile">
-                    <h4 className="funfit-zone-title">Support intent</h4>
-                    <p className="funfit-zone-text">Most sessions were simple asks (refund ETA, logistics, return status), not complex support tickets.</p>
-                  </div>
-                  <div className="funfit-zone-card temu-hover-tile">
-                    <h4 className="funfit-zone-title">Experience mismatch</h4>
-                    <p className="funfit-zone-text">Text-first chat forced users to type through deterministic paths better handled by structured UI.</p>
-                  </div>
-                  <div className="funfit-zone-card temu-hover-tile">
-                    <h4 className="funfit-zone-title">Operational impact</h4>
-                    <p className="funfit-zone-text">Escalation overloaded live agents and slowed resolution for truly complex support issues.</p>
-                  </div>
-                </div>
               </div>
 
               <div id="loop" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">2 · User Problem: The &quot;Dumb Bot&quot; Trap</h2>
                 <TemuOrangeCallout
-                  label="Design intent"
+                  inline
                   text="From chat-heavy recovery to tap-first resolution, with semantic handoff only when confidence and sentiment fail."
                 />
                 <div className="mt-8 w-full overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">

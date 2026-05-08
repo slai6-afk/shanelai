@@ -1201,8 +1201,7 @@ html {
 .case-study-content-wrapper h6,
 .case-study-content-wrapper p,
 .case-study-content-wrapper > img,
-.case-study-content-wrapper .funfit-section,
-.case-study-content-wrapper .funfit-section > * {
+.case-study-content-wrapper .funfit-section {
   margin-left: 0 !important;
   padding-left: 0 !important;
 }
@@ -1910,6 +1909,7 @@ html {
   --temu-radius-card: 20px;
   --temu-radius-inner: 20px;
   --temu-radius-pill: 14px;
+  --temu-card-pad-inline: var(--case-card-pad-inline, clamp(16px, 2.2vw, 20px));
   --temu-type-section-title: clamp(26px, 3.2vw, 36px);
   --temu-type-subhead: clamp(20px, 2.2vw, 24px);
   --temu-type-body: clamp(15px, 1.25vw, 17px);
@@ -1939,14 +1939,14 @@ html {
 
 .temu-page .temu-triage-path-card {
   border-radius: 20px;
-  border: 1px solid color-mix(in srgb, #fb7701 24%, transparent);
-  background: color-mix(in srgb, #fb7701 7%, #ffffff);
+  border: 0;
+  background: #ffffff;
   padding: 14px;
-  box-shadow: 0 10px 32px rgba(251, 119, 1, 0.1);
+  box-shadow: none;
 }
 
 .temu-page .temu-triage-path-label {
-  color: color-mix(in srgb, #fb7701 72%, #5a2a00);
+  color: var(--ds-text-primary);
 }
 
 .temu-page .temu-triage-traffic-badge {
@@ -1956,35 +1956,35 @@ html {
   padding-inline: 12px;
   white-space: nowrap;
   background: #fb7701;
-  border-color: color-mix(in srgb, #fb7701 70%, #000);
   color: #fff;
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  border: 0;
+  box-shadow: none;
 }
 
 .temu-page .temu-triage-node {
-  border-color: color-mix(in srgb, #fb7701 40%, #1b1b1b);
+  border: 0;
+  background: #ffffff;
 }
 
 .temu-page .temu-triage-node--p0 {
-  background: color-mix(in srgb, #fb7701 11%, #fff);
+  background: #ffffff;
 }
 
 .temu-page .temu-triage-node--p11 {
-  background: color-mix(in srgb, #fb7701 8%, #fff);
+  background: #ffffff;
 }
 
 .temu-page .temu-triage-node--p12 {
-  background: color-mix(in srgb, #fb7701 5%, #fff);
-  border-style: dashed;
+  background: #ffffff;
 }
 
 .temu-page .temu-triage-icon-shell {
-  border-color: color-mix(in srgb, #fb7701 52%, #1b1b1b);
-  background: color-mix(in srgb, #fb7701 12%, #fff);
+  border: 0;
+  background: color-mix(in srgb, #111 6%, #fff);
 }
 
 .temu-page .temu-triage-icon-shell--dark {
-  background: color-mix(in srgb, #fb7701 18%, #f6f6f6);
+  background: color-mix(in srgb, #111 6%, #fff);
 }
 
 .temu-page .temu-ribbon-card {
@@ -1998,7 +1998,7 @@ html {
 .temu-page .temu-ribbon-svg-wrap {
   width: 100%;
   background: linear-gradient(160deg, rgba(251, 119, 1, 0.08) 0%, rgba(0, 0, 0, 0.04) 100%);
-  padding: 20px 18px 12px;
+  padding: 20px var(--temu-card-pad-inline) 12px;
 }
 
 .temu-page .temu-ribbon-svg-wrap svg {
@@ -2050,7 +2050,7 @@ html {
 .temu-page .temu-ribbon-legend {
   display: grid;
   gap: 8px;
-  padding: 16px 18px 18px;
+  padding: 16px var(--temu-card-pad-inline) 18px;
 }
 
 .temu-page .temu-ribbon-legend__item {
@@ -2082,7 +2082,7 @@ html {
   border-radius: 16px;
   border: 1px solid color-mix(in srgb, #fb7701 30%, transparent);
   background: color-mix(in srgb, #fb7701 6%, var(--ds-bg-surface));
-  padding: 16px 16px 18px;
+  padding: 16px var(--temu-card-pad-inline) 18px;
 }
 
 .temu-page .temu-sprint-step-card__day {
@@ -2221,7 +2221,7 @@ html {
 .temu-page .temu-radar-result {
   background: #fb7701;
   color: #fff;
-  padding: 14px 16px 16px;
+  padding: 14px var(--temu-card-pad-inline) 16px;
 }
 
 .temu-page .temu-radar-result__kicker {
@@ -2257,7 +2257,7 @@ html {
   border-radius: 16px;
   border: 1px solid color-mix(in srgb, #fb7701 18%, transparent);
   background: #fff;
-  padding: 14px 14px 16px;
+  padding: 14px var(--temu-card-pad-inline) 16px;
 }
 
 .temu-page .temu-vision-pillar__title {
@@ -2341,7 +2341,7 @@ html {
 
 /* ── Temu body: Block B — 2-column responsive grid ── */
 .temu-body-section {
-  padding-top: 96px;
+  padding-top: 32px;
   padding-bottom: 128px;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -2435,10 +2435,7 @@ html {
    left boundary of the main column. Card *internal* padding is preserved
    below by re-permitting it on known card classes. */
 .temu-page .case-study-content-wrapper,
-.temu-page .case-study-content-wrapper > *,
-.temu-page .case-study-content-wrapper > * > *,
 .temu-page .case-study-content-wrapper .funfit-section,
-.temu-page .case-study-content-wrapper .funfit-section > *,
 .temu-page .case-study-content-wrapper .funfit-section-title,
 .temu-page .case-study-content-wrapper .funfit-body-text,
 .temu-page .case-study-content-wrapper h1,
@@ -2456,19 +2453,6 @@ html {
 .temu-page .case-study-content-wrapper ul,
 .temu-page .case-study-content-wrapper ol {
   padding-left: 1.25rem !important;
-}
-
-/* Card components keep their own internal padding (intrinsic to card design).
-   This selector wins on specificity because it's more specific than the
-   universal-child reset above. */
-.temu-page .case-study-content-wrapper .temu-soft-surface,
-.temu-page .case-study-content-wrapper .temu-accent-card,
-.temu-page .case-study-content-wrapper .temu-research-quote-card,
-.temu-page .case-study-content-wrapper .temu-ribbon-card,
-.temu-page .case-study-content-wrapper .temu-radar-card,
-.temu-page .case-study-content-wrapper .temu-vision-pillar {
-  padding-left: revert !important;
-  margin-left: 0 !important;
 }
 
 .temu-page #tldr .vector-word-backdrop {
@@ -2746,9 +2730,9 @@ html {
   overflow: hidden;
   border-radius: 14px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 6px;
+  padding: 6px var(--temu-card-pad-inline);
   background-color: #fb7701;
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  transition: transform 220ms ease;
 }
 
 .temu-page .temu-orange-callout__label-row {
@@ -2756,7 +2740,7 @@ html {
   align-items: center;
   gap: 12px;
   min-height: 44px;
-  padding: 0 18px;
+  padding: 0;
 }
 
 .temu-page .temu-orange-callout__dot {
@@ -2778,7 +2762,7 @@ html {
 
 .temu-page .temu-orange-callout__text {
   margin: 0;
-  padding: 0 18px 14px;
+  padding: 0 0 14px;
   color: #111111;
   font-size: var(--temu-type-body);
   line-height: var(--temu-leading-body);
@@ -2786,11 +2770,37 @@ html {
   font-weight: 500;
 }
 
+.temu-page .temu-orange-callout--inline {
+  display: flex;
+  align-items: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.temu-page .temu-orange-callout__inline-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.temu-page .temu-orange-callout__inline-text {
+  margin: 0;
+  color: #111111;
+  font-size: var(--temu-type-body);
+  line-height: var(--temu-leading-body);
+  letter-spacing: var(--type-track-body);
+  font-weight: 500;
+}
+
+.temu-page .temu-orange-callout--inline .temu-orange-callout__dot {
+  margin-top: 0;
+}
+
 .temu-page .temu-impact-note-card {
   border-radius: var(--temu-radius-inner);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: color-mix(in srgb, var(--ds-bg-page) 88%, white);
-  padding: clamp(22px, 2.8vw, 30px);
+  padding: clamp(22px, 2.8vw, 30px) var(--temu-card-pad-inline);
   min-height: 220px;
   display: flex;
   flex-direction: column;
@@ -2886,7 +2896,7 @@ html {
   border-radius: 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
-  padding: 22px 20px 24px;
+  padding: 22px var(--temu-card-pad-inline) 24px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
@@ -2998,7 +3008,7 @@ html {
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, #fb7701 24%, transparent);
   background: #fff;
-  padding: 12px 12px 14px;
+  padding: 12px var(--temu-card-pad-inline) 14px;
 }
 
 .temu-page .temu-impact-instrument-card__head {
@@ -3058,7 +3068,7 @@ html {
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, #111 10%, transparent);
   background: color-mix(in srgb, #fb7701 5%, white);
-  padding: 14px 14px 16px;
+  padding: 14px var(--temu-card-pad-inline) 16px;
 }
 
 .temu-page .temu-impact-metric-card__name {
@@ -3107,7 +3117,7 @@ html {
   border-radius: var(--temu-radius-inner);
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: rgba(255, 255, 255, 0.78);
-  padding: clamp(20px, 2.8vw, 28px);
+  padding: clamp(20px, 2.8vw, 28px) var(--temu-card-pad-inline);
   min-height: 220px;
   display: flex;
   flex-direction: column;
