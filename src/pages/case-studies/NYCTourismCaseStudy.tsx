@@ -86,7 +86,7 @@ export function NYCTourismCaseStudy() {
     <div className="case-study-page case-study-page--nyc min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
 
-      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-16" id="hero" ref={heroRef}>
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-6 md:px-8 lg:px-16" id="hero" ref={heroRef}>
         <div className="max-w-[1200px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={simpleTransition}>
             <div className="mb-8 rounded-lg overflow-hidden w-full sm:w-11/12 md:w-4/5 lg:w-[70%] mx-auto">

@@ -20,7 +20,7 @@ export function TalkieCaseStudy() {
   return (
     <div className="case-study-page case-study-page--talkie min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
-      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 lg:px-16">
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-4 sm:pb-5 md:pb-6 px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="max-w-[1200px] mx-auto">
           <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <h1 style={{ color: '#000000', fontSize: 'var(--ds-text-display)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>Talkie</h1>

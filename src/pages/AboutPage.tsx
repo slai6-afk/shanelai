@@ -1,9 +1,10 @@
-import { ChevronLeft, ChevronRight, ExternalLink, FileText, Linkedin } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink, FileText, Instagram, Linkedin } from 'lucide-react';
 import { useEffect, useState, type CSSProperties } from 'react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { SketchCursorHint } from '../components/SketchCursorHint';
 import { AboutStickerSpan } from '../components/about/AboutStickerSpan';
+import { InteractiveTravelGlobe } from '../components/about/InteractiveTravelGlobe';
 import { VectorDecor } from '../components/vector-decor/VectorDecor';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
 import thuSticker from '../assets/vector/thu.png';
@@ -13,7 +14,6 @@ import temuSticker from '../assets/vector/temu.png';
 import panelDecorLeft from '../assets/image-CrDLMiGNAyHrCsQX75c3gL7TzC1GWq.png';
 import panelDecorRight from '../assets/image-gmk0F4W4z2vJwgUc2gaMTvltLfo3Dg.png';
 import { LINKEDIN_PROFILE_URL, RESUME_PDF_URL } from '../constants/links';
-import heroPhoto from '../assets/about/about-hero.jpg';
 import storyCenterOne from '../assets/about/about-story-center-1.jpg';
 import storyCenterTwo from '../assets/about/about-story-center-2.jpg';
 import storyLeftOne from '../assets/about/about-story-left-1.jpg';
@@ -42,13 +42,13 @@ const heroLines = [
 const ABOUT_MINIMAX_STICKER_WIDTH = 'min(240px, 64vw)';
 
 const heroSectionStyle: CSSProperties = {
-  paddingTop: 'clamp(130px, 9.86vw, 142px)',
-  paddingBottom: 'clamp(70px, 8.61vw, 124px)'
+  paddingTop: 'clamp(90px, 7.2vw, 112px)',
+  paddingBottom: 'clamp(34px, 4.4vw, 64px)'
 };
 
 const heroContainerStyle: CSSProperties = {
   width: '100%',
-  maxWidth: '392px',
+  maxWidth: '1280px',
   gap: 'clamp(24px, 2.08vw, 30px)',
   padding: '12px 20px',
   alignItems: 'center'
@@ -80,11 +80,12 @@ const heroTypewriterLineStyle: CSSProperties = {
 };
 
 const heroImageFrameStyle: CSSProperties = {
-  width: '100%',
-  maxWidth: '360px',
-  aspectRatio: '360 / 270',
+  width: 'min(100%, calc(100vh - 150px))',
+  maxWidth: '100%',
+  maxHeight: 'calc(100vh - 150px)',
+  aspectRatio: '1 / 1',
   overflow: 'hidden',
-  borderRadius: '20px'
+  borderRadius: '24px'
 };
 
 const panelSectionStyle: CSSProperties = {
@@ -125,33 +126,28 @@ const heroMyPathClusterStyle: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   gap: 'clamp(8px, 1.2vw, 14px)',
-  marginTop: 'clamp(4px, 0.8vw, 10px)',
+  marginTop: 'clamp(22px, 2.5vw, 34px)',
   ['--vector-tint' as string]: 'var(--ds-text-primary)'
 };
 
 const heroLinkRowStyle: CSSProperties = {
-  marginTop: '4px',
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'nowrap',
-  alignItems: 'stretch',
-  justifyContent: 'center',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   width: '100%',
-  maxWidth: '360px',
-  gap: 'clamp(6px, 2.8vw, 40px)'
+  maxWidth: '420px',
+  gap: 'clamp(12px, 2vw, 22px)',
+  marginInline: 'auto',
 };
 
 const heroLinkCardStyle: CSSProperties = {
   display: 'flex',
-  flex: '1 1 0',
-  minWidth: 0,
-  maxWidth: '160px',
-  height: 'clamp(86px, 28vw, 115px)',
+  width: '100%',
+  height: 'clamp(70px, 18vw, 84px)',
   flexDirection: 'column',
   justifyContent: 'space-between',
   borderRadius: 'clamp(12px, 3.5vw, 20px)',
   backgroundColor: 'var(--ds-bg-muted)',
-  padding: 'clamp(10px, 4.2vw, 33px)',
+  padding: 'clamp(6px, 1.6vw, 11px)',
   boxShadow: 'var(--ds-shadow-soft)',
   textDecoration: 'none',
   color: 'var(--ds-text-primary)'
@@ -161,9 +157,10 @@ const heroLinkCardLabelStyle: CSSProperties = {
   margin: 0,
   fontWeight: 400,
   fontFamily: 'var(--font-heading)',
-  lineHeight: 'var(--type-l2-lh)',
+  lineHeight: 1.15,
   letterSpacing: 'var(--type-track-body)',
-  fontSize: 'clamp(var(--type-l2), 3.2vw, var(--type-l3))'
+  fontSize: 'clamp(var(--type-l1), 1.3vw, 22px)',
+  textAlign: 'center',
 };
 
 const greetingStyle: CSSProperties = {
@@ -518,9 +515,6 @@ function StoryTriptych({ slides }: StoryTriptychProps) {
 }
 
 export function AboutPage() {
-  const { renderedLines, currentLineIndex, isComplete } =
-    useTypewriterLines(heroLines);
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -528,89 +522,120 @@ export function AboutPage() {
       <main>
         <section className="px-5" style={heroSectionStyle}>
           <div className="mx-auto flex flex-col" style={heroContainerStyle}>
-            <h1 className="text-center" style={heroTypewriterBlockStyle}>
-              {heroLines.map((line, index) => (
-                <span key={line} style={heroTypewriterLineStyle}>
-                  {renderedLines[index]}
-                  {(index === currentLineIndex || (isComplete && index === heroLines.length - 1)) && (
-                    <span aria-hidden="true" style={typingCursorStyle} />
-                  )}
-                </span>
-              ))}
-            </h1>
+            <div className="flex w-full flex-col items-center gap-8 md:flex-row md:items-start md:justify-start md:gap-5 lg:gap-6">
+              <SketchCursorHint
+                label="World Explorer, Click to see"
+                className="w-full max-w-[980px] md:order-1 md:w-[min(70vw,calc(100vh-150px))] md:max-w-none md:flex-none"
+              >
+                <div style={heroImageFrameStyle}>
+                  <InteractiveTravelGlobe />
+                </div>
+              </SketchCursorHint>
 
-            <SketchCursorHint
-              label="Yep — that's me (real human, not stock)"
-              className="w-full max-w-[360px]"
-            >
-              <div style={heroImageFrameStyle}>
-                <ImageWithFallback
-                  src={heroPhoto}
-                  alt="Shane Lai portrait"
-                  className="h-full w-full object-cover"
-                  loading="eager"
-                />
+              <div className="w-full max-w-[420px] md:order-2 md:max-w-[420px] md:flex-1">
+                <div className="flex w-full flex-col gap-12 md:gap-14">
+                  <h1
+                    className="text-center"
+                    style={{
+                      margin: 0,
+                      color: 'var(--ds-text-primary)',
+                      fontSize: 'clamp(18px, 2.35vw, 34px)',
+                      lineHeight: 1.18,
+                      fontWeight: 700,
+                      fontFamily: 'var(--font-heading)',
+                      letterSpacing: '-0.015em',
+                    }}
+                  >
+                    Shane Lai:  PM / UX Designer / Artist / World Traveler
+                  </h1>
+
+                  <div style={heroLinkRowStyle}>
+                  <SketchCursorHint
+                    label="Keep connected!"
+                    className="min-w-0 w-full"
+                  >
+                    <a
+                      href={LINKEDIN_PROFILE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ds-tile-hit ds-focus-ring w-full min-w-0 rounded-[clamp(12px,3.5vw,20px)] outline-none"
+                      style={heroLinkCardStyle}
+                    >
+                      <div className="flex w-full min-w-0 items-start justify-between gap-1">
+                        <Linkedin
+                          className="h-[clamp(14px,4.2vw,24px)] w-[clamp(14px,4.2vw,24px)] shrink-0"
+                          strokeWidth={1.5}
+                          aria-hidden
+                        />
+                        <ExternalLink
+                          className="h-[clamp(12px,3.4vw,18px)] w-[clamp(12px,3.4vw,18px)] shrink-0"
+                          strokeWidth={1.75}
+                          aria-hidden
+                        />
+                      </div>
+                      <p style={heroLinkCardLabelStyle}>LinkedIn</p>
+                    </a>
+                  </SketchCursorHint>
+                  <SketchCursorHint
+                    label="See my career path?"
+                    className="min-w-0 w-full"
+                  >
+                    <a
+                      href={RESUME_PDF_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ds-tile-hit ds-focus-ring w-full min-w-0 rounded-[clamp(12px,3.5vw,20px)] outline-none"
+                      style={heroLinkCardStyle}
+                    >
+                      <div className="flex w-full min-w-0 items-start justify-between gap-1">
+                        <FileText
+                          className="h-[clamp(14px,4.2vw,24px)] w-[clamp(14px,4.2vw,24px)] shrink-0"
+                          strokeWidth={1.5}
+                          aria-hidden
+                        />
+                        <ExternalLink
+                          className="h-[clamp(12px,3.4vw,18px)] w-[clamp(12px,3.4vw,18px)] shrink-0"
+                          strokeWidth={1.75}
+                          aria-hidden
+                        />
+                      </div>
+                      <p style={heroLinkCardLabelStyle}>Resume</p>
+                    </a>
+                  </SketchCursorHint>
+                  <SketchCursorHint
+                    label="Follow my daily updates?"
+                    className="min-w-0 w-full"
+                  >
+                    <a
+                      href="https://www.instagram.com/laishanshan51/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ds-tile-hit ds-focus-ring w-full min-w-0 rounded-[clamp(12px,3.5vw,20px)] outline-none"
+                      style={heroLinkCardStyle}
+                    >
+                      <div className="flex w-full min-w-0 items-start justify-between gap-1">
+                        <Instagram
+                          className="h-[clamp(14px,4.2vw,24px)] w-[clamp(14px,4.2vw,24px)] shrink-0"
+                          strokeWidth={1.5}
+                          aria-hidden
+                        />
+                        <ExternalLink
+                          className="h-[clamp(12px,3.4vw,18px)] w-[clamp(12px,3.4vw,18px)] shrink-0"
+                          strokeWidth={1.75}
+                          aria-hidden
+                        />
+                      </div>
+                      <p style={heroLinkCardLabelStyle}>Instagram</p>
+                    </a>
+                  </SketchCursorHint>
+                </div>
+
+                <div className="items-center" style={heroMyPathClusterStyle}>
+                  <VectorDecor name="down1" className="vector-decor--connector" alt="" />
+                  <p style={heroMyPathStyle}>My path</p>
+                </div>
+                </div>
               </div>
-            </SketchCursorHint>
-
-            <div style={heroLinkRowStyle}>
-              <SketchCursorHint
-                label="Keep connected!"
-                className="flex min-w-0 max-w-[160px] flex-1 basis-0"
-              >
-                <a
-                  href={LINKEDIN_PROFILE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ds-tile-hit ds-focus-ring w-full min-w-0 rounded-[clamp(12px,3.5vw,20px)] outline-none"
-                  style={heroLinkCardStyle}
-                >
-                  <div className="flex w-full min-w-0 items-start justify-between gap-1">
-                    <Linkedin
-                      className="h-[clamp(14px,4.2vw,24px)] w-[clamp(14px,4.2vw,24px)] shrink-0"
-                      strokeWidth={1.5}
-                      aria-hidden
-                    />
-                    <ExternalLink
-                      className="h-[clamp(12px,3.4vw,18px)] w-[clamp(12px,3.4vw,18px)] shrink-0"
-                      strokeWidth={1.75}
-                      aria-hidden
-                    />
-                  </div>
-                  <p style={heroLinkCardLabelStyle}>LinkedIn</p>
-                </a>
-              </SketchCursorHint>
-              <SketchCursorHint
-                label="See my career path?"
-                className="flex min-w-0 max-w-[160px] flex-1 basis-0"
-              >
-                <a
-                  href={RESUME_PDF_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ds-tile-hit ds-focus-ring w-full min-w-0 rounded-[clamp(12px,3.5vw,20px)] outline-none"
-                  style={heroLinkCardStyle}
-                >
-                  <div className="flex w-full min-w-0 items-start justify-between gap-1">
-                    <FileText
-                      className="h-[clamp(14px,4.2vw,24px)] w-[clamp(14px,4.2vw,24px)] shrink-0"
-                      strokeWidth={1.5}
-                      aria-hidden
-                    />
-                    <ExternalLink
-                      className="h-[clamp(12px,3.4vw,18px)] w-[clamp(12px,3.4vw,18px)] shrink-0"
-                      strokeWidth={1.75}
-                      aria-hidden
-                    />
-                  </div>
-                  <p style={heroLinkCardLabelStyle}>Resume</p>
-                </a>
-              </SketchCursorHint>
-            </div>
-
-            <div style={heroMyPathClusterStyle}>
-              <VectorDecor name="down1" className="vector-decor--connector" alt="" />
-              <p style={heroMyPathStyle}>My path</p>
             </div>
           </div>
         </section>

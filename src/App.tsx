@@ -18,6 +18,7 @@ const HuuuuuCaseStudy = lazy(() => import('./pages/case-studies/HuuuuuCaseStudy'
 const TalkieCaseStudy = lazy(() => import('./pages/case-studies/TalkieCaseStudy').then(m => ({ default: m.TalkieCaseStudy })));
 const VibeSyncCaseStudy = lazy(() => import('./pages/case-studies/VibeSyncCaseStudy').then(m => ({ default: m.VibeSyncCaseStudy })));
 const TemuCaseStudy = lazy(() => import('./pages/case-studies/TemuCaseStudy').then(m => ({ default: m.TemuCaseStudy })));
+const BoatwrightLibraryCaseStudy = lazy(() => import('./pages/case-studies/BoatwrightLibraryCaseStudy').then(m => ({ default: m.BoatwrightLibraryCaseStudy })));
 
 // Loading component for Suspense fallback
 /** Wrap pages that share marketing typography (not case studies). See `.ds-marketing-shell` in globals.css. */
@@ -79,6 +80,7 @@ function AnimatedRoutes() {
         <Route path="/case-study/talkie" element={<PageWrapper><TalkieCaseStudy /></PageWrapper>} />
         <Route path="/case-study/vibe-sync" element={<PageWrapper><VibeSyncCaseStudy /></PageWrapper>} />
         <Route path="/case-study/temu-ai-support" element={<PageWrapper><TemuCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/boatwright-library" element={<PageWrapper><BoatwrightLibraryCaseStudy /></PageWrapper>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>

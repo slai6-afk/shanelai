@@ -1,12 +1,14 @@
-import { useInView } from 'motion/react';
+import { useInView, motion } from 'motion/react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   BarChart3,
+  ExternalLink,
   Headphones,
   Layers,
   MessageCircle,
   MessageSquare,
-  Route,
+  Presentation,
+  Rocket,
   Sparkles,
   Target,
   TrendingDown,
@@ -22,7 +24,14 @@ import temuCase3 from '../../assets/temucase3.png';
 import temuVideo1 from '../../assets/temuvideo1.mp4';
 import temuVideo2 from '../../assets/temuvideo2.mp4';
 import temuVideo3 from '../../assets/temuvideo3.mp4';
-import homeVideo from '../../assets/home video.mp4';
+import homeVideo from '../../assets/0420.mp4';
+import temuPainQuotes from '../../assets/temupainquotes.png';
+import temuDiagramBefore from '../../assets/temudiagram-before.png';
+import temuDiagramAfter from '../../assets/temudiagram-after.png';
+import temuWireframe from '../../assets/temuwireframe.png';
+import temuAbTest from '../../assets/temuabtest.png';
+import temuKpi1 from '../../assets/temukpi1.png';
+import temuKpi2 from '../../assets/temukpi2.png';
 import { Navigation } from '../../components/Navigation';
 import { Footer } from '../../components/Footer';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
@@ -152,38 +161,21 @@ function easeOutCubic(t: number) {
 }
 
 function TemuLoopAndResearchViz() {
-  const researchBars: { label: string; value: number }[] = [
-    { label: '“Doesn’t understand my question”', value: 64 },
-    { label: 'Repeated “try again” with no progress', value: 51 },
-    { label: 'Wanted order status without typing', value: 47 },
-  ];
-
   return (
-    <div className="flex flex-col gap-14 md:gap-20">
-      <TemuAccentCard noFill className="!flex !flex-col !items-start !justify-start !text-left">
-        <div className="mb-12 flex w-full flex-col items-start justify-start gap-8 text-left md:mb-14">
-          <div className="flex max-w-[42ch] flex-col items-start justify-start">
-            <TemuVizTitle className="!mt-5 !text-left">Why People Left The Bot</TemuVizTitle>
-          </div>
-        </div>
-        <div className="mb-2.5 mt-2.5 grid w-full gap-6 md:grid-cols-2 md:gap-8">
-          {researchBars.map((r) => (
-            <figure key={r.label} className="temu-research-quote-card !text-left">
-              {/* 1. Percentage — top, large, orange */}
-              <div className="temu-research-quote-card__value">{r.value}%</div>
-              {/* 2. Description — below the number, left-aligned */}
-              <blockquote className="temu-research-quote-card__bubble">&quot;{r.label}&quot;</blockquote>
-              {/* 3. Progress bar */}
-              <div className="h-[12px] w-full overflow-hidden rounded-full bg-white/70">
-                <div
-                  className="h-full rounded-full"
-                  style={{ width: `${r.value}%`, background: `linear-gradient(90deg, ${TEMU_ORANGE} 0%, #ffb04d 100%)` }}
-                />
-              </div>
-            </figure>
-          ))}
-        </div>
-      </TemuAccentCard>
+    <div className="flex w-full flex-col items-center gap-6">
+      <p className="temu-outcome-stat__label text-center">What do users tell us?</p>
+      <div
+        className="overflow-hidden rounded-[var(--temu-radius-card)]"
+        style={{ width: '60%', maxWidth: '60%', marginInline: 'auto' }}
+      >
+        <img
+          src={temuPainQuotes}
+          alt="User pain points: speech bubbles showing reasons users left the bot"
+          className="h-auto w-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
     </div>
   );
 }
@@ -270,101 +262,122 @@ function TemuBentoMetrics() {
 
 /** Triage map: clean surfaces, single orange accent per path */
 function TemuTriageArchitectureMap() {
-  const node =
-    'temu-triage-node rounded-2xl bg-white transition-colors duration-300';
+  const [revealed, setRevealed] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const revealedRef = useRef(false);
+  const animatingRef = useRef(false);
+  const accDeltaRef = useRef(0);
+  const touchStartYRef = useRef(0);
+
+  useEffect(() => {
+    const isInFocus = () => {
+      const el = containerRef.current;
+      if (!el) return false;
+      const { top, bottom } = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      return top < vh * 0.75 && bottom > vh * 0.25;
+    };
+
+    const triggerReveal = () => {
+      animatingRef.current = true;
+      revealedRef.current = true;
+      setRevealed(true);
+      accDeltaRef.current = 0;
+      setTimeout(() => { animatingRef.current = false; }, 700);
+    };
+
+    const triggerHide = () => {
+      animatingRef.current = true;
+      revealedRef.current = false;
+      setRevealed(false);
+      accDeltaRef.current = 0;
+      setTimeout(() => { animatingRef.current = false; }, 700);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (animatingRef.current) { e.preventDefault(); return; }
+      if (!isInFocus()) { accDeltaRef.current = 0; return; }
+      if (!revealedRef.current && e.deltaY > 0) {
+        e.preventDefault();
+        accDeltaRef.current += e.deltaY;
+        if (accDeltaRef.current > 80) triggerReveal();
+      } else if (revealedRef.current && e.deltaY < 0) {
+        e.preventDefault();
+        accDeltaRef.current += e.deltaY;
+        if (accDeltaRef.current < -80) triggerHide();
+      } else {
+        accDeltaRef.current = 0;
+      }
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartYRef.current = e.touches[0].clientY;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isInFocus()) return;
+      if (animatingRef.current) { e.preventDefault(); return; }
+      const dy = touchStartYRef.current - e.touches[0].clientY;
+      if (!revealedRef.current && dy > 40) {
+        e.preventDefault();
+        triggerReveal();
+        touchStartYRef.current = e.touches[0].clientY;
+      } else if (revealedRef.current && dy < -40) {
+        e.preventDefault();
+        triggerHide();
+        touchStartYRef.current = e.touches[0].clientY;
+      }
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: false });
+    return () => {
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+    };
+  }, []);
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] bg-white p-6 md:p-10">
-      <div className="relative z-[1] grid w-full grid-cols-1 gap-8 pb-10 lg:grid-cols-2 lg:gap-x-0 lg:gap-y-10">
-        {/* Path A — 65% */}
-        <article className="temu-triage-path-card flex flex-col gap-6 py-[30px]">
-          <div className="flex items-center justify-between gap-3">
-            <div className="temu-triage-path-label flex items-center gap-2 text-[var(--ds-text-primary)]">
-              <Route className="h-4 w-4 shrink-0" strokeWidth={1.65} aria-hidden />
-              <span className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
-                Path A
-              </span>
-            </div>
-            <span className="temu-triage-traffic-badge ml-0 rounded-full px-5 py-0.5 text-[11px] font-medium tabular-nums text-white">
-              <span>65%</span>
-              <span>traffic</span>
-            </span>
-          </div>
-          <div className={`${node} temu-triage-node--p0 flex flex-1 flex-col p-6 md:p-7`}>
-            <div className="flex items-start gap-4">
-              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
-                <Layers className="h-5 w-5 text-[var(--ds-text-primary)]" strokeWidth={1.65} aria-hidden />
-              </div>
-              <div className="min-w-0">
-                <p className={`${TEMU_KICKER_CAPS} text-[var(--ds-text-tertiary)] ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
-                  P0
-                </p>
-                <p className="mt-1 text-[length:var(--type-l3)] font-normal leading-[var(--type-l3-lh)] text-[var(--ds-text-primary)]">
-                  Self-service dashboard
-                </p>
-                <p className="mt-3 text-[length:var(--type-l2)] font-normal leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
-                  Redirects quick fixers to a tap-first menu — <span className="text-[var(--ds-text-primary)]">Return / Refund</span> and{' '}
-                  <span className="text-[var(--ds-text-primary)]">Logistics</span>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        {/* Path B — 35% + P1.2 stack */}
-        <article className="temu-triage-path-card my-5 flex flex-col gap-6">
-          <div className="flex items-center justify-between gap-3">
-            <div className="temu-triage-path-label flex items-center gap-2 text-[var(--ds-text-primary)]">
-              <Route className="h-4 w-4 shrink-0" strokeWidth={1.65} aria-hidden />
-              <span className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
-                Path B
-              </span>
-            </div>
-            <span className="temu-triage-traffic-badge ml-0 rounded-full px-5 py-0.5 text-[11px] font-medium tabular-nums text-white">
-              <span>35%</span>
-              <span>traffic</span>
-            </span>
-          </div>
-          <div className={`${node} temu-triage-node--p11 p-6 md:p-7`}>
-            <div className="flex items-start gap-4">
-              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
-                <MessageSquare className="h-5 w-5 text-[var(--ds-text-primary)]" strokeWidth={1.65} aria-hidden />
-              </div>
-              <div className="min-w-0">
-                <p className={`${TEMU_KICKER_CAPS} text-[var(--ds-text-tertiary)] ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
-                  P1.1
-                </p>
-                <p className="mt-1 text-[length:var(--type-l3)] font-normal leading-[var(--type-l3-lh)] text-[var(--ds-text-primary)]">
-                  Hybrid CUI
-                </p>
-                <p className="mt-3 text-[length:var(--type-l2)] font-normal leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
-                  For complex utterances — trigger the <span className="text-[var(--ds-text-primary)]">Order Selector</span> bottom sheet.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className={`${node} temu-triage-node--p12 p-6 md:p-7`}>
-            <div className="flex items-start gap-4">
-              <div className="temu-triage-icon-shell flex h-11 w-11 shrink-0 items-center justify-center rounded-xl">
-                <Headphones className="h-5 w-5 text-[var(--ds-text-primary)]" strokeWidth={1.65} aria-hidden />
-              </div>
-              <div className="min-w-0">
-                <p className={`${TEMU_KICKER_CAPS} text-[var(--ds-text-tertiary)] ${TEMU_EMBER_BOLD}`} style={TEMU_KICKER_STYLE}>
-                  Safety Net · P1.2
-                </p>
-                <p className="mt-1 text-[length:var(--type-l3)] font-normal leading-[var(--type-l3-lh)] text-[var(--ds-text-primary)]">
-                  Semantic handoff
-                </p>
-                <p className="mt-3 text-[length:var(--type-l2)] font-normal leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
-                  Hidden agent link — only when{' '}
-                  <span className="text-[var(--ds-text-primary)]">sentiment score {'<'} 0.4</span>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
+    <div ref={containerRef} className="relative overflow-hidden rounded-[28px] bg-[var(--ds-bg-surface)] shadow-[0_4px_28px_rgba(0,0,0,0.07)]">
+      {/* Bottom layer: proposed structure */}
+      <img
+        src={temuDiagramAfter}
+        alt="Proposed 3-layer structure: Pre-Agent self service, AI ChatBot, Human Agent"
+        className="h-auto w-full object-contain"
+        loading="lazy"
+        decoding="async"
+      />
+      {/* Top card: original structure — flies away on scroll */}
+      <motion.div
+        className="absolute inset-0 overflow-hidden rounded-[28px] bg-white"
+        animate={revealed
+          ? { y: '-115%', rotate: -4, opacity: 0 }
+          : { y: '0%', rotate: 0, opacity: 1 }
+        }
+        transition={{ duration: 0.6, ease: [0.55, 0, 1, 0.45] }}
+        style={{ transformOrigin: '50% 0%' }}
+      >
+        <img
+          src={temuDiagramBefore}
+          alt="Original 2-layer structure: AI Chatbot → 18%, Human Agent → 82%"
+          className="h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+      </motion.div>
+      {/* Scroll hint */}
+      <motion.div
+        className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2"
+        animate={{ opacity: revealed ? 0 : 1 }}
+        transition={{ duration: 0.3 }}
+      >
+        <p className="flex items-center gap-1.5 rounded-full bg-black/10 px-3 py-1 text-[11px] text-[var(--ds-text-secondary)] backdrop-blur-sm">
+          <span>↓</span>
+          <span>Scroll to reveal proposed structure</span>
+        </p>
+      </motion.div>
     </div>
   );
 }
@@ -665,7 +678,7 @@ function TemuImpactQuantification() {
           </article>
           <article className="temu-impact-metric-card">
             <p className="temu-impact-metric-card__name">ART · Average Resolution Time</p>
-            <p className="temu-impact-metric-card__formula">Time from entry to “Issue Resolved”</p>
+            <p className="temu-impact-metric-card__formula">Time from entry to "Issue Resolved"</p>
             <p className="temu-impact-metric-card__desc">Validates &quot;Tap &gt; Type&quot; operational efficiency.</p>
           </article>
         </div>
@@ -812,6 +825,32 @@ export function TemuCaseStudy() {
                 <h2 className="funfit-section-title funfit-section-title--standard">TL;DR</h2>
                 <TemuSoftSurface className="!px-0 !py-2 md:!py-[10px]" interactive={false} noPadding>
                   <div className="temu-tldr-info">
+                    <div className="temu-tldr-cta-row">
+                      <a
+                        href="https://www.figma.com/deck/VsACf6NpwHBxybYrijgZfp/Temu?node-id=85-150&t=y0lma2qKoeikQQqC-1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="temu-tldr-cta temu-tldr-cta--slides"
+                      >
+                        <span className="temu-tldr-cta__left">
+                          <Presentation size={20} strokeWidth={1.9} aria-hidden />
+                          <span className="temu-tldr-cta__text">View Slides</span>
+                        </span>
+                        <ExternalLink size={18} strokeWidth={1.9} aria-hidden />
+                      </a>
+                      <a
+                        href="https://slai6-afk.github.io/temu-customer-service/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="temu-tldr-cta temu-tldr-cta--prototype"
+                      >
+                        <span className="temu-tldr-cta__left">
+                          <Rocket size={20} strokeWidth={1.9} aria-hidden />
+                          <span className="temu-tldr-cta__text">View Prototype</span>
+                        </span>
+                        <ExternalLink size={18} strokeWidth={1.9} aria-hidden />
+                      </a>
+                    </div>
                     <h3 className="temu-tldr-subhead">Project Information</h3>
                     <div className="temu-tldr-info-grid">
                       <div className="temu-tldr-info-item">
@@ -837,7 +876,7 @@ export function TemuCaseStudy() {
                     <h3 className="temu-tldr-subhead">The Why (Strategic Alignment)</h3>
                     <TemuOrangeCallout
                       inline
-                      text="Users didn’t want to chat, they wanted resolution instead. Shift from Conversational UI to Actionable UI."
+                      text="Users didn't want to chat, they wanted resolution instead. Shift from Conversational UI to Actionable UI."
                     />
                   </div>
 
@@ -927,9 +966,96 @@ export function TemuCaseStudy() {
               </div>
 
               <div id="mockups" className="funfit-section">
-                <h2 className="funfit-section-title funfit-section-title--standard">5 · Mockup: The 3-Tiered Deflection Engine</h2>
+                <h2 className="funfit-section-title funfit-section-title--standard">5 · Design: Sketch, Build &amp; Validate</h2>
+
+                {/* Lo-Fi Wireframe */}
                 <div className={TEMU_SECTION_BLOCK_MT}>
-                  <TemuPhoneMockups />
+                  <p
+                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
+                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
+                  >
+                    Lo-Fi Wireframe
+                  </p>
+                  <p className="mt-2 text-[length:var(--type-l2)] leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
+                    Mapped decision logic across 3 tiers before any visual execution.
+                  </p>
+                  <div className="mt-6 w-full overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+                    <img
+                      src={temuWireframe}
+                      alt="Lo-fi wireframe of the 3-tier deflection engine"
+                      className="h-auto w-full max-w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+
+                {/* Hi-Fi Mockups */}
+                <div className={TEMU_SECTION_BLOCK_MT}>
+                  <p
+                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
+                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
+                  >
+                    High-Fidelity Mockups
+                  </p>
+                  <div className="mt-6">
+                    <TemuPhoneMockups />
+                  </div>
+                </div>
+
+                {/* A/B Testing */}
+                <div className={TEMU_SECTION_BLOCK_MT}>
+                  <p
+                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
+                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
+                  >
+                    A/B Testing
+                  </p>
+                  <p className="mt-2 text-[length:var(--type-l2)] leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
+                    Tap-first model tested against the existing chat interface on task resolution rate.
+                  </p>
+                  <div className="mt-6 w-full overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+                    <img
+                      src={temuAbTest}
+                      alt="A/B test comparing tap-first vs. chat interface"
+                      className="h-auto w-full max-w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                </div>
+
+                {/* Performance Results */}
+                <div className={TEMU_SECTION_BLOCK_MT}>
+                  <p
+                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
+                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
+                  >
+                    Performance Results
+                  </p>
+                  <p className="mt-2 text-[length:var(--type-l2)] leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
+                    Post-launch KPIs confirmed the deflection hypothesis at scale.
+                  </p>
+                  <div className="mt-6 grid grid-cols-1 gap-4">
+                    <div className="overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+                      <img
+                        src={temuKpi1}
+                        alt="KPI: agent escalation rate and deflection results"
+                        className="h-auto w-full object-contain"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
+                      <img
+                        src={temuKpi2}
+                        alt="KPI: task completion and satisfaction metrics"
+                        className="h-auto w-full object-contain"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 

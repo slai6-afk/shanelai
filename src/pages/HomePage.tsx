@@ -18,7 +18,7 @@ import nycHeroVideo from '../assets/herovideo_NYC.mov';
 import funFitLandPoster from '../assets/89118d14ba53305ac06c41d50a99f512aef426bd.png';
 import titleImage from '../assets/title.png';
 import nycCover from '../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
-import homeVideo from '../assets/home video.mp4';
+import homeVideo from '../assets/0420.mp4';
 import temuHomePoster from '../assets/temucase1.png';
 import workIcon from '../assets/work.png';
 import happyPlaygroundIcon from '../assets/happyplayground.png';
@@ -664,7 +664,7 @@ export function HomePage() {
                           maxWidth: '820px',
                         }}
                       >
-                        I design AI and consumer products that turn human behavior into better interactions — 3 years strong.
+                        Behavior driven. AI native. Human centered.
                       </p>
                     </div>
 

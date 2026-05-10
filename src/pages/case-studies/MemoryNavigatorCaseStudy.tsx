@@ -158,7 +158,7 @@ export function MemoryNavigatorCaseStudy() {
     <div className="case-study-page case-study-page--memory min-h-screen bg-[var(--ds-bg-page)]">
       <Navigation />
 
-      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-24 md:pb-32 px-4 sm:px-6 md:px-8 lg:px-16">
+      <section className="case-study-hero-section pt-24 sm:pt-32 md:pt-40 pb-7 sm:pb-8 md:pb-10 px-4 sm:px-6 md:px-8 lg:px-16">
         <div className="max-w-[1200px] mx-auto">
           <div>
             {/* Hero Image */}

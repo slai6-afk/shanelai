@@ -185,8 +185,9 @@ build: {
   cssCodeSplit: true
 },
     server: {
-      port: 3000,
-      open: true,
+      port: 9000,
+      strictPort: true,
+      open: false,
     },
   });
 
