@@ -10,6 +10,18 @@ import temuCover from '../assets/cover.png';
 export function ProjectsPage() {
   const projects = [
     {
+      title: 'Neo: Conversational Stylist & Support Agent for New York or Nowhere',
+      description:
+        'Architecting systemic fluidity in post-purchase CUI — turning a 4.5-min email loop into a 45-second brand moment with 100% resolution rate and zero human escalations.',
+      image: '/neo-hero.png',
+      tags: ['Conversational AI', 'CUI', 'Voiceflow'],
+      type: 'design' as const,
+      link: '/case-study/neo',
+      hoverHint: "Click to see Neo — NYON's AI stylist",
+      imageFit: 'cover' as const,
+      mediaBackground: '#000000'
+    },
+    {
       title: 'Amazon Music: Bridging the "Gen-Z Discovery Gap" through expressive social ecosystems',
       description:
         'How I led product strategy in a 4-week sprint to transform Amazon Music into a Gen Z social hub, bridging the discovery-to-retention gap.',
