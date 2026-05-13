@@ -2283,17 +2283,20 @@ html {
 
 /* ── Neo hero: full-viewport section, image bleeds to edges, content aligns to section rail ── */
 .neo-page .case-study-hero-section {
-  height: 100vh;
-  min-height: 100vh;
+  box-sizing: border-box;
+  padding-top: 92px;
+  min-height: calc(100vh + 92px);
+  min-height: calc(100svh + 92px);
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
+  padding-bottom: 24px;
 }
 
 /* Bleed image out of section's horizontal padding */
 .neo-page .case-study-hero-section > .media-box-container {
   flex: 1 1 0;
   min-height: 0;
+  background-color: #000;
   margin-left: -1rem;
   margin-right: -1rem;
   width: calc(100% + 2rem);
@@ -2324,23 +2327,55 @@ html {
 .neo-page .media-box-inner {
   width: 100%;
   height: 100%;
+  background-color: #000;
 }
 
 .neo-page .media-box-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center;
+  background-color: #000;
   border-radius: 0;
 }
 
 /* Content sits at section-rail width — no extra padding, no constrained max-width */
 .neo-page .case-study-hero-content-wrapper {
   flex-shrink: 0;
-  margin-top: 40px;
+  margin-top: 20px;
   max-width: none;
   padding-left: 0;
   padding-right: 0;
+}
+
+.neo-page .case-hero-visit-link-wrapper {
+  gap: 12px !important;
+  margin-bottom: 28px;
+}
+
+.neo-page .case-hero-visit-link-wrapper .case-hero-visit-link {
+  min-height: 42px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  font-size: var(--type-l2);
+  font-weight: 600;
+  line-height: 1.2;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.neo-page .case-hero-visit-link-wrapper .case-hero-visit-link:first-child {
+  background: #000;
+  color: #fff;
+}
+
+.neo-page .case-hero-visit-link-wrapper .case-hero-visit-link:last-child {
+  background: #fff;
+  color: #000;
+}
+
+.neo-page .case-hero-visit-link-wrapper .case-hero-visit-link:hover {
+  opacity: 0.9;
 }
 
 /* ── Neo demo: stack on mobile ── */

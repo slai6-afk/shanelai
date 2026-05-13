@@ -75,22 +75,6 @@ function NyonImage({ src, alt, style }: { src: string; alt: string; style?: CSSP
   );
 }
 
-function MetricCard({ stat, label, sub, index = 0 }: {
-  stat: string; label: string; sub: string; index?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} transition={{ duration: 0.45, delay: index * 0.1 }}
-      style={INV}
-    >
-      <p style={{ color: W, fontSize: 'var(--type-l6)', fontWeight: 700, lineHeight: 1, marginBottom: '10px' }}>{stat}</p>
-      <p style={{ color: W, fontSize: 'var(--type-l3)', fontWeight: 500, marginBottom: '6px' }}>{label}</p>
-      <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 'var(--type-l2)', fontWeight: 400, lineHeight: '1.6' }}>{sub}</p>
-    </motion.div>
-  );
-}
-
 function InsightBlock({ number, title, body, index = 0 }: {
   number: string; title: string; body: string; index?: number;
 }) {
@@ -188,8 +172,8 @@ export function NeoCaseStudy() {
       <Navigation />
 
       <CaseStudyHero
-        title="Neo"
-        description="A conversational stylist & support agent for NYON — turning post-purchase anxiety into a 45-second brand moment."
+        title="How I Turned NYON's Post-Purchase Support Into a Brand Moment"
+        description="A conversational stylist & support agent for NYON"
         mediaType="image"
         mediaSrc={NYON_HERO}
         visitLink={{ href: 'https://newyorkornowhere.com', label: 'Visit newyorkornowhere.com' }}
@@ -232,18 +216,6 @@ export function NeoCaseStudy() {
                     content="Order modification time: 4.5 min → 45 sec. 85% of beta testers rated Neo as distinctly NYON even in error states." />
                   <TLDRCard icon={MessageCircle} title="My Role" index={2}
                     content="UX Design & Systems. Architected intent logic, tone guidelines, and edge-case guardrails in Voiceflow." />
-                </div>
-
-                {/* Metrics — inverted */}
-                <Label>Beta Testing & Heuristic Evaluation</Label>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
-                  gap: '4px', marginBottom: '48px' }}>
-                  <MetricCard stat="100%" label="Resolution Rate"
-                    sub="Zero human escalations during beta" index={0} />
-                  <MetricCard stat="45s" label="Avg. Modification Time"
-                    sub="Down from 4.5 min — 6× faster" index={1} />
-                  <MetricCard stat="85%" label="Brand-Voice Continuity"
-                    sub={'Testers confirmed Neo stayed "distinctly NYON" even in error states'} index={2} />
                 </div>
 
                 {/* Credits */}
@@ -438,11 +410,6 @@ export function NeoCaseStudy() {
                     body="85% of testers confirmed Neo felt distinctly NYON even in high-friction error states." />
                 </div>
 
-                <NyonImage
-                  src={nyonImg2}
-                  alt="NYON — New York City street culture"
-                  style={{ marginBottom: '0' }}
-                />
               </div>
 
               {/* ── Design Strategy ────────────────── */}
