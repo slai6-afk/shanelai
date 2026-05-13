@@ -19,6 +19,7 @@ import { TLDRCard } from '../../components/case-study/TLDRCard';
 import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { DecisionPill } from '../../components/case-study/DecisionPill';
+import heroPng from '../../assets/hero.png';
 
 /* ─── Brand tokens ──────────────────────────────────────────── */
 const B = '#000000';
@@ -29,7 +30,7 @@ const MUTED = '#999999';
 const SURFACE = '#F5F5F5';
 
 /* ─── NYON CDN assets ───────────────────────────────────────── */
-const NYON_HERO = '/neo-hero.png';
+const NYON_HERO = heroPng;
 const NYON_LOGO = 'https://newyorkornowhere.com/cdn/shop/files/NYON-Signature-Reg-Black_686a0dfd-2368-4468-a10f-76966c951734.png?v=1763567184&width=500';
 const NYON_KNICKS = 'https://newyorkornowhere.com/cdn/shop/files/Knicks_Site_1_updated.png?v=1775844886&width=2048';
 const NEO_MOBILE_WATCH = '/neo-mobile-watch.png';
@@ -279,53 +280,77 @@ export function NeoCaseStudy() {
                 </motion.div>
               </div>
 
-              {/* ── Demo Video ─────────────────────── */}
+              {/* ── Demo Videos ────────────────────── */}
               <div className="funfit-section">
-                <motion.div
-                  initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }} transition={{ duration: 0.6 }}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
-                    gap: '48px',
-                    alignItems: 'center',
-                  }}
-                  className="neo-demo-grid"
-                >
-                  {/* Left — copy */}
-                  <div>
-                    <Label>Prototype Demo</Label>
-                    <h2 style={{ ...T_H2, marginBottom: '20px' }}>Neo in Action</h2>
-                    <p style={{ ...T_BODY, marginBottom: '24px' }}>
-                      Watch Neo handle a real post-purchase flow — from order lookup to color swap
-                      confirmation — in under 45 seconds, entirely in brand voice.
-                    </p>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                      {[
-                        'Sub-intent detection mid-flow',
-                        'Real-time order card rendering',
-                        'Contextual tone — casual → authoritative',
-                      ].map((item, i) => (
-                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <div style={{ width: 6, height: 6, backgroundColor: B, flexShrink: 0 }} />
-                          <p style={{ color: G, fontSize: 'var(--type-l3)', fontWeight: 400 }}>{item}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <Label>Prototype Demo</Label>
+                <h2 style={{ ...T_H2, marginBottom: '48px' }}>Neo in Action</h2>
 
-                  {/* Right — video */}
-                  <div style={{ overflow: 'hidden', borderRadius: '4px' }}>
-                    <video
-                      src="/neo-demo.mp4"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      style={{ width: '100%', height: 'auto', display: 'block' }}
-                    />
-                  </div>
-                </motion.div>
+                {[
+                  {
+                    num: '01',
+                    title: 'Intent Recognition',
+                    body: 'Neo identifies what the user needs from the very first message — no menu trees, no keyword matching. Even ambiguous inputs like "I need to change something" route correctly.',
+                    src: '/neo-demo-1.mp4',
+                    flip: false,
+                  },
+                  {
+                    num: '02',
+                    title: 'Error Path Handling',
+                    body: "When a user hits a dead end — out-of-stock, invalid order, unclear input — Neo doesn't apologize and stall. It pivots: offers alternatives, captures intent, and keeps the conversation moving.",
+                    src: '/neo-demo-2.mp4',
+                    flip: true,
+                  },
+                  {
+                    num: '03',
+                    title: 'Size Change Flow',
+                    body: 'Mid-flow pivots are handled without restarting the conversation. The user switches from one modification intent to another and Neo holds context the entire time.',
+                    src: '/neo-demo-3.mp4',
+                    flip: false,
+                  },
+                  {
+                    num: '04',
+                    title: 'Confirmation & Closure',
+                    body: "Order confirmed, change logged, tone shifted — Neo wraps each flow with a brand-voice sign-off that feels like a text from a friend at the warehouse, not an automated receipt.",
+                    src: '/neo-demo-4.mp4',
+                    flip: true,
+                  },
+                ].map(({ num, title, body, src, flip }, i) => (
+                  <motion.div
+                    key={num}
+                    initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.05 }}
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '48px',
+                      alignItems: 'center',
+                      marginBottom: '80px',
+                      direction: flip ? 'rtl' : 'ltr',
+                    }}
+                    className="neo-demo-grid"
+                  >
+                    {/* Copy */}
+                    <div style={{ direction: 'ltr' }}>
+                      <p style={{ color: MED, fontSize: 'var(--type-l5)', fontWeight: 700,
+                        lineHeight: 1, marginBottom: '16px' }}>{num}</p>
+                      <h3 style={{ ...T_H3, fontSize: 'var(--type-l4)', marginBottom: '16px' }}>{title}</h3>
+                      <p style={T_BODY}>{body}</p>
+                    </div>
+
+                    {/* Video */}
+                    <div style={{ direction: 'ltr', display: 'flex',
+                      justifyContent: flip ? 'flex-start' : 'flex-end' }}>
+                      <div style={{ width: '60%', overflow: 'hidden', borderRadius: '4px',
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}>
+                        <video
+                          src={src}
+                          autoPlay muted loop playsInline
+                          style={{ width: '100%', height: 'auto', display: 'block' }}
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
 
               {/* ── Brand Context ───────────────────── */}
@@ -379,6 +404,12 @@ export function NeoCaseStudy() {
                     that lets the system pivot mid-transaction without breaking backend data integrity.
                   </p>
                 </motion.div>
+
+                <NyonImage
+                  src={NYON_KNICKS}
+                  alt="New York or Nowhere homepage — Knicks collaboration campaign"
+                  style={{ marginTop: '32px', marginBottom: '0' }}
+                />
               </div>
 
               {/* ── Persona ────────────────────────── */}
@@ -391,7 +422,7 @@ export function NeoCaseStudy() {
                   NYON's NYC attitude.
                 </p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '40px', marginBottom: '40px' }}>
                   <PersonaItem icon={Mic2} title="Voice" index={0}
                     body="Loud, Unapologetic, Effortlessly Reliable. Neo redirects confusion with the confidence of a New York local — never apologizes, always moves forward." />
                   <PersonaItem icon={Sparkles} title="Tone Shift" index={1}
@@ -399,6 +430,12 @@ export function NeoCaseStudy() {
                   <PersonaItem icon={ShieldCheck} title="Brand Continuity" index={2}
                     body="85% of testers confirmed Neo felt distinctly NYON even in high-friction error states." />
                 </div>
+
+                <NyonImage
+                  src={NYON_KNICKS}
+                  alt="NYON — New York City street culture"
+                  style={{ marginBottom: '0' }}
+                />
               </div>
 
               {/* ── Design Strategy ────────────────── */}
@@ -464,7 +501,7 @@ export function NeoCaseStudy() {
                 <motion.blockquote
                   initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }} transition={{ duration: 0.5 }}
-                  style={{ borderLeft: `3px solid ${B}`, paddingLeft: '24px', margin: '0 0 40px' }}>
+                  style={{ borderLeft: `3px solid ${B}`, paddingLeft: '24px', margin: '48px 0 40px' }}>
                   <p style={{ color: B, fontSize: 'var(--type-l4)', fontWeight: 400,
                     fontStyle: 'italic', lineHeight: '1.6', marginBottom: '12px' }}>
                     "I expected a boring form. Instead I had a 30-second chat that felt like texting a
