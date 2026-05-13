@@ -20,6 +20,8 @@ import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { DecisionPill } from '../../components/case-study/DecisionPill';
 import heroPng from '../../assets/hero.png';
+import nyonImg1 from '../../assets/8_33fe4c47-fa56-4ffe-994d-03148f0fabb0.png';
+import nyonImg2 from '../../assets/18_d05aea45-ea5a-437f-986a-095715026358.png';
 
 /* ─── Brand tokens ──────────────────────────────────────────── */
 const B = '#000000';
@@ -405,11 +407,16 @@ export function NeoCaseStudy() {
                   </p>
                 </motion.div>
 
-                <NyonImage
-                  src={NYON_KNICKS}
-                  alt="New York or Nowhere homepage — Knicks collaboration campaign"
-                  style={{ marginTop: '32px', marginBottom: '0' }}
-                />
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', marginTop: '32px', marginBottom: '0' }}>
+                  {[
+                    { src: nyonImg1, alt: 'NYON — It will Always be New York or Nowhere' },
+                    { src: nyonImg2, alt: 'NYON — New York or Nowhere store sign' },
+                  ].map(({ src, alt }) => (
+                    <div key={alt} style={{ overflow: 'hidden' }}>
+                      <img src={src} alt={alt} style={{ width: '100%', height: '400px', display: 'block', objectFit: 'cover', objectPosition: 'center' }} />
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* ── Persona ────────────────────────── */}
@@ -432,7 +439,7 @@ export function NeoCaseStudy() {
                 </div>
 
                 <NyonImage
-                  src={NYON_KNICKS}
+                  src={nyonImg2}
                   alt="NYON — New York City street culture"
                   style={{ marginBottom: '0' }}
                 />
