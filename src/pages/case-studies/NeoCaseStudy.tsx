@@ -279,6 +279,55 @@ export function NeoCaseStudy() {
                 </motion.div>
               </div>
 
+              {/* ── Demo Video ─────────────────────── */}
+              <div className="funfit-section">
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.6 }}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: '48px',
+                    alignItems: 'center',
+                  }}
+                  className="neo-demo-grid"
+                >
+                  {/* Left — copy */}
+                  <div>
+                    <Label>Prototype Demo</Label>
+                    <h2 style={{ ...T_H2, marginBottom: '20px' }}>Neo in Action</h2>
+                    <p style={{ ...T_BODY, marginBottom: '24px' }}>
+                      Watch Neo handle a real post-purchase flow — from order lookup to color swap
+                      confirmation — in under 45 seconds, entirely in brand voice.
+                    </p>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      {[
+                        'Sub-intent detection mid-flow',
+                        'Real-time order card rendering',
+                        'Contextual tone — casual → authoritative',
+                      ].map((item, i) => (
+                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <div style={{ width: 6, height: 6, backgroundColor: B, flexShrink: 0 }} />
+                          <p style={{ color: G, fontSize: 'var(--type-l3)', fontWeight: 400 }}>{item}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right — video */}
+                  <div style={{ overflow: 'hidden', borderRadius: '4px' }}>
+                    <video
+                      src="/neo-demo.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{ width: '100%', height: 'auto', display: 'block' }}
+                    />
+                  </div>
+                </motion.div>
+              </div>
+
               {/* ── Brand Context ───────────────────── */}
               <div id="brand" className="funfit-section">
                 <Label>The Brand</Label>

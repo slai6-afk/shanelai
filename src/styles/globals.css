@@ -2343,6 +2343,13 @@ html {
   padding-right: 0;
 }
 
+/* ── Neo demo: stack on mobile ── */
+@media (max-width: 767px) {
+  .neo-demo-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* ── Temu hero: Block A ── clear full-width section, well separated from the grid below */
 .temu-page .case-study-hero-section {
   padding-bottom: clamp(32px, 5vw, 72px);
