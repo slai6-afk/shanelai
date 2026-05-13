@@ -24,6 +24,7 @@ interface CaseStudyHeroProps {
   videoSurfaceMask?: boolean;
   descriptionLink?: Link;
   visitLink?: Link;
+  secondaryLink?: Link;
   tags?: Tag[];
 }
 
@@ -38,6 +39,7 @@ export function CaseStudyHero({
   videoSurfaceMask,
   descriptionLink,
   visitLink,
+  secondaryLink,
   tags = []
 }: CaseStudyHeroProps) {
   const getTagVariantClass = (variant?: Tag['variant']) => {
@@ -82,16 +84,29 @@ export function CaseStudyHero({
             )}
           </div>
 
-          {visitLink && (
-            <div className="case-hero-visit-link-wrapper">
-              <a
-                href={visitLink.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="case-hero-visit-link"
-              >
-                {visitLink.label} →
-              </a>
+          {(visitLink || secondaryLink) && (
+            <div className="case-hero-visit-link-wrapper" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'center' }}>
+              {visitLink && (
+                <a
+                  href={visitLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-hero-visit-link"
+                >
+                  {visitLink.label} →
+                </a>
+              )}
+              {secondaryLink && (
+                <a
+                  href={secondaryLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="case-hero-visit-link"
+                  style={{ fontWeight: 600 }}
+                >
+                  {secondaryLink.label} →
+                </a>
+              )}
             </div>
           )}
 

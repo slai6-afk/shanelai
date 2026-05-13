@@ -58,7 +58,7 @@
 .sketch-cursor-hint,
 .sketch-cursor-hint .sketch-cursor-hint__inner,
 .sketch-cursor-hint .sketch-cursor-hint__text {
-  font-family: 'Caveat', cursive !important;
+  font-family: var(--font-accent) !important;
   font-style: normal;
   font-synthesis: none;
 }
@@ -111,6 +111,8 @@ body.site-cursor-eyes * {
 :root {
   --font-size: 16px;
   --font-heading: 'Montserrat', 'Ember Modern Display Standard', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', 'Montserrat', 'Ember Modern Display Standard', ui-sans-serif, system-ui, sans-serif;
+  --font-accent: 'Caveat', cursive;
   --background: #ffffff;
   --foreground: #000000;
   --card: #ffffff;
@@ -180,15 +182,18 @@ body.site-cursor-eyes * {
   --vector-tint: #9b78eb;
 
   /*
-   * Global 6-level type scale (desktop baseline; responsive via clamp where noted).
-   * L1–L6: 12 / 14 / 16 / 22 / 32 / 48 px
+   * Typography normalization:
+   * Keep visual hierarchy while limiting site-wide font sizes to 3 levels.
    */
-  --type-l1: 12px;
-  --type-l2: 14px;
-  --type-l3: 16px;
-  --type-l4: 22px;
-  --type-l5: 32px;
-  --type-l6: 48px;
+  --type-size-sm: 12px;
+  --type-size-md: 16px;
+  --type-size-lg: clamp(28px, 4vw, 40px);
+  --type-l1: var(--type-size-sm);
+  --type-l2: var(--type-size-sm);
+  --type-l3: var(--type-size-md);
+  --type-l4: var(--type-size-md);
+  --type-l5: var(--type-size-lg);
+  --type-l6: var(--type-size-lg);
   --type-l1-lh: 1.35;
   --type-l2-lh: 1.45;
   --type-l3-lh: 1.6;
@@ -200,7 +205,7 @@ body.site-cursor-eyes * {
   --type-track-caps: 0.08em;
 
   /* Semantic aliases → same six sizes everywhere */
-  --case-type-hero: clamp(36px, 4.5vw, var(--type-l6));
+  --case-type-hero: var(--type-l6);
   --case-type-body-lg: var(--type-l3);
   --case-type-h2: var(--type-l5);
   --case-type-h3: var(--type-l4);
@@ -227,13 +232,13 @@ body.site-cursor-eyes * {
   --ds-accent-warm: #ff7300;
   --ds-accent-case: var(--case-accent);
 
-  --ds-text-display: clamp(36px, 5vw, var(--type-l6));
-  --ds-text-title-lg: clamp(28px, 4vw, var(--type-l6));
-  --ds-text-title: clamp(24px, 3.2vw, var(--type-l5));
+  --ds-text-display: var(--type-l6);
+  --ds-text-title-lg: var(--type-l6);
+  --ds-text-title: var(--type-l5);
   --ds-text-body: var(--type-l3);
-  --ds-text-body-sm: var(--type-l2);
+  --ds-text-body-sm: var(--type-l3);
   --ds-text-caption: var(--type-l1);
-  --ds-text-nav: var(--type-l2);
+  --ds-text-nav: var(--type-l3);
   --ds-nav-text: #363636;
   /** Top nav — iOS glass pill */
   --ds-nav-glass-bg: rgba(255, 255, 255, 0.04);
@@ -284,15 +289,15 @@ body.site-cursor-eyes * {
   /* Sizes */
   --ds-cta-lg-h:   56px;
   --ds-cta-lg-px:  52px;
-  --ds-cta-lg-fz:  clamp(15px, 1.4vw, 19px);
+  --ds-cta-lg-fz:  var(--type-l3);
 
   --ds-cta-md-h:   44px;
   --ds-cta-md-px:  28px;
-  --ds-cta-md-fz:  clamp(13px, 1.2vw, 15px);
+  --ds-cta-md-fz:  var(--type-l3);
 
   --ds-cta-sm-h:   36px;
   --ds-cta-sm-px:  20px;
-  --ds-cta-sm-fz:  13px;
+  --ds-cta-sm-fz:  var(--type-l1);
 
   /* Colour variants */
   --ds-cta-primary-bg:  #000000;
@@ -306,7 +311,7 @@ body.site-cursor-eyes * {
   --ds-cta-rect-radius: 14px;
   --ds-cta-rect-h:      clamp(52px, 6vw, 64px);
   --ds-cta-rect-px:     56px;
-  --ds-cta-rect-fz:     clamp(16px, 1.6vw, 22px);
+  --ds-cta-rect-fz:     var(--type-l3);
 
   /*
    * ── Company Badge System ─────────────────────────────────────────────────
@@ -871,6 +876,7 @@ body.site-cursor-eyes * {
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
+    font-family: var(--font-body);
   }
   
   /* Prevent horizontal scroll */
@@ -892,49 +898,49 @@ body.site-cursor-eyes * {
 @layer base {
   :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
     h1 {
-      font-size: var(--text-2xl);
+      font-size: var(--type-l5);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     h2 {
-      font-size: var(--text-xl);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     h3 {
-      font-size: var(--text-lg);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     h4 {
-      font-size: var(--text-base);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     p {
-      font-size: var(--text-base);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-normal);
       line-height: 1.5;
     }
 
     label {
-      font-size: var(--text-base);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     button {
-      font-size: var(--text-base);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
     }
 
     input {
-      font-size: var(--text-base);
+      font-size: var(--type-l3);
       font-weight: var(--font-weight-normal);
       line-height: 1.5;
     }
@@ -2273,6 +2279,68 @@ html {
   color: var(--ds-text-secondary);
   font-size: var(--temu-type-body-sm);
   line-height: 1.58;
+}
+
+/* ── Neo hero: full-viewport section, image bleeds to edges, content aligns to section rail ── */
+.neo-page .case-study-hero-section {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+/* Bleed image out of section's horizontal padding */
+.neo-page .case-study-hero-section > .media-box-container {
+  flex: 1 1 0;
+  min-height: 0;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  width: calc(100% + 2rem);
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .neo-page .case-study-hero-section > .media-box-container {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    width: calc(100% + 3rem);
+  }
+}
+@media (min-width: 768px) {
+  .neo-page .case-study-hero-section > .media-box-container {
+    margin-left: -3rem;
+    margin-right: -3rem;
+    width: calc(100% + 6rem);
+  }
+}
+@media (min-width: 1024px) {
+  .neo-page .case-study-hero-section > .media-box-container {
+    margin-left: -4rem;
+    margin-right: -4rem;
+    width: calc(100% + 8rem);
+  }
+}
+
+.neo-page .media-box-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.neo-page .media-box-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0;
+}
+
+/* Content sits at section-rail width — no extra padding, no constrained max-width */
+.neo-page .case-study-hero-content-wrapper {
+  flex-shrink: 0;
+  margin-top: 40px;
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* ── Temu hero: Block A ── clear full-width section, well separated from the grid below */
