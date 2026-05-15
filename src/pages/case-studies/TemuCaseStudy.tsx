@@ -46,13 +46,12 @@ const TEMU_ORANGE_SOFT = 'color-mix(in srgb, #FB7701 14%, white)';
 const TEMU_TRACK = 'color-mix(in srgb, var(--ds-text-primary) 8%, transparent)';
 const TEMU_SECTION_BLOCK_MT = 'mt-10 md:mt-10';
 
-/** Ember @font-face only registers 400 + 700; use real Bold + this stack so caps match zone titles */
-const TEMU_EMBER_BOLD =
-  "font-['Ember_Modern_Display_Standard','Inter',sans-serif] font-bold";
+/** Keep headings on the shared site heading family */
+const TEMU_EMBER_BOLD = 'font-bold';
 const TEMU_KICKER_SIZE = 'text-[length:var(--type-l4)] leading-[var(--type-l4-lh)]';
 const TEMU_KICKER_CAPS = `tracking-[var(--type-track-caps)] ${TEMU_KICKER_SIZE}`;
 const TEMU_KICKER_STYLE = {
-  fontFamily: "'Ember Modern Display Standard', 'Inter', sans-serif",
+  fontFamily: 'var(--font-heading)',
   fontSize: 'var(--type-l4)',
   fontWeight: 700,
   lineHeight: 'var(--type-l4-lh)',
@@ -181,81 +180,13 @@ function TemuLoopAndResearchViz() {
 }
 
 function TemuBentoMetrics() {
-  const items: {
-    icon: typeof TrendingDown;
-    label: string;
-    value: string;
-    sub: string;
-    tint: 'white' | 'orange';
-  }[] = [
-    {
-      icon: TrendingDown,
-      label: 'Agent Escalation',
-      value: '<25%',
-      sub: 'Target vs. 81% baseline — primary deflection KPI.',
-      tint: 'orange',
-    },
-    {
-      icon: Target,
-      label: 'Drop-Off In Complex Flows',
-      value: '−18%',
-      sub: 'Structured hybrid CUI vs. text-wall baseline (prototype).',
-      tint: 'white',
-    },
-    {
-      icon: Zap,
-      label: 'Engineering Speed',
-      value: '+28%',
-      sub: 'Reusable interaction primitives shipped per sprint.',
-      tint: 'white',
-    },
-  ];
-
+  const metrics = ['Human Handoff Rate', 'Average Resolution Time', 'Customer Satisfaction Score'];
   return (
-    <div className="grid gap-10 md:grid-cols-3 md:gap-12">
-      {items.map(({ icon: Icon, label, value, sub, tint }) =>
-        tint === 'orange' ? (
-          <TemuAccentCard key={label} className="!flex min-h-[260px] flex-col justify-between">
-            <div className="flex items-start justify-between gap-3">
-              <Icon className="h-7 w-7 shrink-0" strokeWidth={1.5} style={{ color: TEMU_ORANGE }} />
-            </div>
-            <div>
-              <p
-                className={`text-[length:var(--type-l4)] leading-[var(--type-l4-lh)] tracking-[0.2em] text-[var(--ds-text-tertiary)] ${TEMU_EMBER_BOLD}`}
-              >
-                {label}
-              </p>
-              <p
-                className="mt-4 tabular-nums font-normal leading-none tracking-[var(--type-track-tight)] text-[var(--ds-text-primary)]"
-                style={{ fontSize: 'clamp(2rem, 4.5vw, var(--type-l5))' }}
-              >
-                {value}
-              </p>
-              <p className="mt-6 text-[length:var(--type-l2)] font-normal leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">{sub}</p>
-            </div>
-          </TemuAccentCard>
-        ) : (
-          <TemuSoftSurface key={label} className="!flex min-h-[260px] flex-col justify-between">
-            <div className="flex items-start justify-between gap-3">
-              <Icon className="h-7 w-7 shrink-0 text-[var(--ds-text-tertiary)]" strokeWidth={1.5} />
-            </div>
-            <div>
-              <p
-                className={`text-[length:var(--type-l4)] leading-[var(--type-l4-lh)] tracking-[0.2em] text-[var(--ds-text-tertiary)] ${TEMU_EMBER_BOLD}`}
-              >
-                {label}
-              </p>
-              <p
-                className="mt-4 tabular-nums font-normal leading-none tracking-[var(--type-track-tight)]"
-                style={{ color: TEMU_ORANGE, fontSize: 'clamp(2rem, 4.5vw, var(--type-l5))' }}
-              >
-                {value}
-              </p>
-              <p className="mt-6 text-[length:var(--type-l2)] font-normal leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">{sub}</p>
-            </div>
-          </TemuSoftSurface>
-        )
-      )}
+    <div className="temu-metrics-banner">
+      <p className="temu-metrics-banner__label">Metrics</p>
+      <div className="temu-metrics-banner__grid">
+        {metrics.map(m => <p key={m} className="temu-metrics-banner__item">{m}</p>)}
+      </div>
     </div>
   );
 }
@@ -340,7 +271,7 @@ function TemuTriageArchitectureMap() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative overflow-hidden rounded-[28px] bg-[var(--ds-bg-surface)] shadow-[0_4px_28px_rgba(0,0,0,0.07)]">
+    <div ref={containerRef} className="relative overflow-hidden rounded-[28px] bg-[var(--ds-bg-surface)] shadow-[0_8px_48px_rgba(0,0,0,0.13),0_2px_12px_rgba(0,0,0,0.06)]">
       {/* Bottom layer: proposed structure */}
       <img
         src={temuDiagramAfter}
@@ -373,7 +304,7 @@ function TemuTriageArchitectureMap() {
         animate={{ opacity: revealed ? 0 : 1 }}
         transition={{ duration: 0.3 }}
       >
-        <p className="flex items-center gap-1.5 rounded-full bg-black/10 px-3 py-1 text-[11px] text-[var(--ds-text-secondary)] backdrop-blur-sm">
+        <p className="flex items-center gap-1.5 rounded-full bg-black/10 px-3 py-1 text-[length:var(--type-l1)] text-[var(--ds-text-secondary)] backdrop-blur-sm">
           <span>↓</span>
           <span>Scroll to reveal proposed structure</span>
         </p>
@@ -423,6 +354,7 @@ function TemuMockupLoopVideo({ src, ariaLabel }: { src: string; ariaLabel: strin
 function TemuPhoneMockups() {
   const items: {
     tier: string;
+    version: string;
     icon: typeof Layers;
     image: string;
     imageAlt: string;
@@ -430,6 +362,7 @@ function TemuPhoneMockups() {
   }[] = [
     {
       tier: 'P0 · Pre-Chat Triage',
+      version: 'Version 1',
       icon: Layers,
       image: temuCase1,
       imageAlt: 'Pre-chat triage screen',
@@ -437,6 +370,7 @@ function TemuPhoneMockups() {
     },
     {
       tier: 'P1.1 · Hybrid Cui',
+      version: 'Version 1',
       icon: MessageSquare,
       image: temuCase2,
       imageAlt: 'Hybrid CUI screen',
@@ -444,6 +378,7 @@ function TemuPhoneMockups() {
     },
     {
       tier: 'P1.2 · Semantic Handoff',
+      version: 'Version 1',
       icon: Headphones,
       image: temuCase3,
       imageAlt: 'Semantic handoff screen',
@@ -461,18 +396,12 @@ function TemuPhoneMockups() {
             className="group/mockcap w-full !max-w-none !rounded-[var(--temu-radius-inner)] !p-0"
             noPadding
           >
-            <div className="mb-0 flex flex-col items-start gap-2 md:gap-4">
-              <div
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--temu-radius-pill)] transition-transform duration-300 motion-safe:group-hover/mockcap:scale-105"
-                style={{ background: TEMU_ORANGE_SOFT }}
-              >
-                <TierIcon className="h-5 w-5" strokeWidth={1.65} style={{ color: TEMU_ORANGE }} aria-hidden />
-              </div>
-              <p
-                className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD} max-w-[40ch]`}
-                style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
-              >
+            <div className="mb-0 flex items-baseline gap-3">
+              <p className="temu-tldr-subhead max-w-[40ch]">
                 {c.tier}
+              </p>
+              <p className="temu-tldr-subhead text-[var(--ds-text-tertiary)]">
+                {c.version}
               </p>
             </div>
 
@@ -750,6 +679,73 @@ function TemuAnticipatoryRadar() {
   );
 }
 
+const UPSTREAM_BARS = [
+  { pct: 100, color: '#FB7701', label: '23% users returned the product in 3 days' },
+  { pct: 65,  color: '#111111', label: '' },
+  { pct: 50,  color: '#FB7701', label: '' },
+  { pct: 30,  color: '#FB7701', label: '' },
+  { pct: 15,  color: '#111111', label: '' },
+];
+const LOW_RISK_PCT = 83;
+
+function TemuFutureVision() {
+  return (
+    <div className="temu-fvision-wrap">
+      {/* Row 1 — Upstream Impact */}
+      <div className="temu-fvision-row">
+        <div className="temu-fvision-text">
+          <p className="temu-fvision-heading"><strong>Upstream Impact:</strong></p>
+          <p className="temu-fvision-sub">Transforming customer friction into actionable product insights for suppliers.</p>
+        </div>
+        <div className="temu-fvision-bars">
+          {UPSTREAM_BARS.map((bar, i) => (
+            <div key={i} className="temu-fvision-bar-row">
+              <span className="temu-fvision-bar-num">{i + 1}</span>
+              <div className="temu-fvision-bar-track">
+                <div className="temu-fvision-bar-fill" style={{ width: `${bar.pct}%`, background: bar.color }}>
+                  {bar.label && <span className="temu-fvision-bar-inner-label">{bar.label}</span>}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Row 2 — Dynamic Trust Logic */}
+      <div className="temu-fvision-row temu-fvision-row--mt">
+        <div className="temu-fvision-text">
+          <p className="temu-fvision-heading"><strong>Dynamic Trust Logic:</strong></p>
+          <p className="temu-fvision-sub">Personalizing the &quot;Human Handoff&quot; threshold using behavioral analytics and risk scores.</p>
+        </div>
+        <div className="temu-fvision-gauge-wrap">
+          {/* Annotation arrow */}
+          <div className="temu-fvision-gauge-anno-row">
+            <div className="temu-fvision-gauge-anno" style={{ left: `${LOW_RISK_PCT}%` }}>
+              <span className="temu-fvision-gauge-anno-text">More access to refund and replace</span>
+              <div className="temu-fvision-gauge-anno-line" />
+              <div className="temu-fvision-gauge-anno-head" />
+            </div>
+          </div>
+          {/* Bar */}
+          <div className="temu-fvision-gauge-bar">
+            <div style={{ flex: `0 0 ${LOW_RISK_PCT}%`, background: '#FB7701', height: '100%' }} />
+            <div style={{ flex: `0 0 ${100 - LOW_RISK_PCT}%`, background: '#111111', height: '100%' }} />
+          </div>
+          {/* Bracket labels */}
+          <div className="temu-fvision-gauge-brackets">
+            <div className="temu-fvision-gauge-bracket" style={{ flex: `0 0 ${LOW_RISK_PCT}%` }}>
+              <span className="temu-fvision-gauge-label">Low-risk user</span>
+            </div>
+            <div className="temu-fvision-gauge-bracket temu-fvision-gauge-bracket--r" style={{ flex: `0 0 ${100 - LOW_RISK_PCT}%` }}>
+              <span className="temu-fvision-gauge-label">high-risk user</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function TemuCaseStudy() {
   const tocTriggerRef = useRef<HTMLDivElement>(null);
   const [tocFixed, setTocFixed] = useState(false);
@@ -761,10 +757,9 @@ export function TemuCaseStudy() {
     { id: 'metrics', label: '3. Success Metrics' },
     { id: 'process', label: '4. AI Triage Brain' },
     { id: 'mockups', label: '5. 3-Tier Engine' },
-    { id: 'impact', label: '6. Impact' },
-    { id: 'prototype', label: '7. Prototype Demo' },
-    { id: 'sprint', label: '8. 15-Day Sprint' },
-    { id: 'vision', label: '9. Future Vision' },
+    { id: 'prototype', label: '6. Prototype Demo' },
+    { id: 'impact', label: '7. Impact' },
+    { id: 'vision', label: '8. Future Vision' },
   ];
 
   useEffect(() => {
@@ -794,7 +789,6 @@ export function TemuCaseStudy() {
         mediaType="video"
         mediaSrc={homeVideo}
         showVideoCaption={false}
-        videoSurfaceMask
         tags={[
           { label: 'Product Design', variant: 'primary' },
           { label: 'AI & NLP', variant: 'secondary' },
@@ -968,46 +962,15 @@ export function TemuCaseStudy() {
               <div id="mockups" className="funfit-section">
                 <h2 className="funfit-section-title funfit-section-title--standard">5 · Design: Sketch, Build &amp; Validate</h2>
 
-                {/* Lo-Fi Wireframe */}
-                <div className={TEMU_SECTION_BLOCK_MT}>
-                  <p
-                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
-                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
-                  >
-                    Lo-Fi Wireframe
-                  </p>
-                  <p className="mt-2 text-[length:var(--type-l2)] leading-[var(--type-l2-lh)] text-[var(--ds-text-secondary)]">
-                    Mapped decision logic across 3 tiers before any visual execution.
-                  </p>
-                  <div className="mt-6 w-full overflow-hidden rounded-[var(--temu-radius-inner)] shadow-[0_4px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]">
-                    <img
-                      src={temuWireframe}
-                      alt="Lo-fi wireframe of the 3-tier deflection engine"
-                      className="h-auto w-full max-w-full object-contain"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-
                 {/* Hi-Fi Mockups */}
                 <div className={TEMU_SECTION_BLOCK_MT}>
-                  <p
-                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
-                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
-                  >
-                    High-Fidelity Mockups
-                  </p>
-                  <div className="mt-6">
-                    <TemuPhoneMockups />
-                  </div>
+                  <TemuPhoneMockups />
                 </div>
 
                 {/* A/B Testing */}
                 <div className={TEMU_SECTION_BLOCK_MT}>
                   <p
-                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
-                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
+                    className="temu-tldr-subhead"
                   >
                     A/B Testing
                   </p>
@@ -1028,8 +991,7 @@ export function TemuCaseStudy() {
                 {/* Performance Results */}
                 <div className={TEMU_SECTION_BLOCK_MT}>
                   <p
-                    className={`${TEMU_KICKER_CAPS} ${TEMU_EMBER_BOLD}`}
-                    style={{ ...TEMU_KICKER_STYLE, color: TEMU_ORANGE }}
+                    className="temu-tldr-subhead"
                   >
                     Performance Results
                   </p>
@@ -1059,15 +1021,8 @@ export function TemuCaseStudy() {
                 </div>
               </div>
 
-              <div id="impact" className="funfit-section">
-                <h2 className="funfit-section-title funfit-section-title--standard">6 · Impact: Quantifying Intelligence</h2>
-                <div className={TEMU_SECTION_BLOCK_MT}>
-                  <TemuImpactQuantification />
-                </div>
-              </div>
-
               <div id="prototype" className="funfit-section">
-                <h2 className="funfit-section-title funfit-section-title--standard">7 · Prototype: Semantic Handoff In Action</h2>
+                <h2 className="funfit-section-title funfit-section-title--standard">6 · Prototype: Semantic Handoff In Action</h2>
                 <div className="temu-prototype-video-shell mt-10">
                   <video
                     className="absolute inset-0 z-[1] w-full"
@@ -1082,75 +1037,20 @@ export function TemuCaseStudy() {
                 </div>
               </div>
 
-              <div id="sprint" className="funfit-section">
-                <h2 className="funfit-section-title funfit-section-title--standard">8 · Design at the Speed of Business: The 15-Day Sprint</h2>
-                <p className="funfit-body-text funfit-body-text--spaced-md w-full">
-                  We didn&apos;t just design; we iterated at a relentless pace. Operating in 5-day sprints, I was integrated into the core team
-                  from Sprint 1 and took immediate ownership of the P0/P1 architecture.
-                </p>
+              <div id="impact" className="funfit-section">
+                <h2 className="funfit-section-title funfit-section-title--standard">7 · Impact: Quantifying Intelligence</h2>
                 <div className={TEMU_SECTION_BLOCK_MT}>
-                  <TemuAgileRibbonViz />
-                </div>
-                <div className="temu-sprint-step-grid">
-                  <article className="temu-sprint-step-card">
-                    <p className="temu-sprint-step-card__day">Days 1-2</p>
-                    <h3 className="temu-sprint-step-card__title">Strategic Ideation</h3>
-                    <p className="temu-sprint-step-card__body">Intent mapping and user flow stratification based on 200K logs.</p>
-                  </article>
-                  <article className="temu-sprint-step-card">
-                    <p className="temu-sprint-step-card__day">Day 3</p>
-                    <h3 className="temu-sprint-step-card__title">AI Prototyping</h3>
-                    <p className="temu-sprint-step-card__body">
-                      Claude Code prototypes pressure-tested conversational logic with real variables static Figma couldn&apos;t simulate.
-                    </p>
-                  </article>
-                  <article className="temu-sprint-step-card">
-                    <p className="temu-sprint-step-card__day">Day 4</p>
-                    <h3 className="temu-sprint-step-card__title">High-Fi &amp; DS Compliance</h3>
-                    <p className="temu-sprint-step-card__body">
-                      iOS-native UI polish in Figma with full adherence to Temu&apos;s Design System and Apple HIG.
-                    </p>
-                  </article>
-                  <article className="temu-sprint-step-card">
-                    <p className="temu-sprint-step-card__day">Day 5</p>
-                    <h3 className="temu-sprint-step-card__title">Launch &amp; Data Loop</h3>
-                    <p className="temu-sprint-step-card__body">
-                      Hand-off to engineering for release, then immediate analytics review to feed the next sprint.
-                    </p>
-                  </article>
+                  <TemuImpactQuantification />
                 </div>
               </div>
 
               <div id="vision" className="funfit-section">
-                <h2 className="funfit-section-title funfit-section-title--standard">9 · Vision: From Reactive Support to Anticipatory Delight</h2>
+                <h2 className="funfit-section-title funfit-section-title--standard">8 · Future Vision</h2>
                 <div className={TEMU_SECTION_BLOCK_MT}>
-                  <TemuAnticipatoryRadar />
-                </div>
-                <p className="funfit-body-text funfit-body-text--spaced-md w-full">
-                  The ultimate support experience is the one the user never has to start. The long-term direction is to flip the
-                  script from reactive support to proactive resolution.
-                </p>
-                <div className="temu-vision-pillars">
-                  <article className="temu-vision-pillar">
-                    <h3 className="temu-vision-pillar__title">The Logic</h3>
-                    <p className="temu-vision-pillar__body">
-                      Behavioral logs + live logistics APIs flag anomalies early, such as a package stuck for more than 48 hours.
-                    </p>
-                  </article>
-                  <article className="temu-vision-pillar">
-                    <h3 className="temu-vision-pillar__title">The Resolution</h3>
-                    <p className="temu-vision-pillar__body">
-                      The system proactively sends compensation credit or a one-tap &quot;Reship&quot; option before users open Support.
-                    </p>
-                  </article>
-                  <article className="temu-vision-pillar">
-                    <h3 className="temu-vision-pillar__title">The Impact</h3>
-                    <p className="temu-vision-pillar__body">
-                      Potential complaints become trust moments, reducing support dependency and increasing loyalty.
-                    </p>
-                  </article>
+                  <TemuFutureVision />
                 </div>
               </div>
+
             </div>
           </div>
         </div>
