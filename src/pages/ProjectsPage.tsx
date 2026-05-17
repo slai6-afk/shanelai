@@ -6,9 +6,22 @@ import { TextVectorMark } from '../components/vector-decor';
 import homepageCover from '../assets/homepage.png';
 import nycTourismCover from '../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
 import temuCover from '../assets/cover.png';
+import pennyCover from '../assets/penny_hero.png';
 
 export function ProjectsPage() {
   const projects = [
+    {
+      title: 'penny. — Mindful Money for the Non-Accountant Generation',
+      description:
+        'Flipping the paradigm from financial shame to intentional lifestyle design — using behavioral science to turn budgeting into a gamified joy you can pace.',
+      image: pennyCover,
+      tags: ['FinTech', 'Behavioral Design', 'Gen Z'],
+      type: 'design' as const,
+      link: '/case-study/penny',
+      hoverHint: 'Click to see penny. — mindful money app',
+      imageFit: 'cover' as const,
+      mediaBackground: '#F8B2BD'
+    },
     {
       title: 'Neo: Conversational Stylist & Support Agent for New York or Nowhere',
       description:
