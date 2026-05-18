@@ -6935,11 +6935,9 @@ a.about-sticker-span {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .rb-page {
-  --rb-navy: #0D1B36;
-  --rb-blue: #1A4F9C;
-  --rb-light: #C5D7F0;
-  --rb-red: #C0392B;
-  --rb-green: #1E7A4A;
+  --rb-red: #8B1A1A;
+  --rb-black: #111111;
+  --rb-red-light: #F5EDED;
 }
 
 /* Hero */
@@ -6973,7 +6971,7 @@ a.about-sticker-span {
   cursor: pointer;
 }
 .rb-cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-.rb-cta-btn--primary { background: var(--rb-navy); color: #fff; }
+.rb-cta-btn--primary { background: var(--rb-red); color: #fff; }
 .rb-final-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
 
 /* Meta card */
@@ -6989,9 +6987,9 @@ a.about-sticker-span {
 /* Alert banner */
 .rb-alert-banner {
   display: flex; align-items: flex-start; gap: 12px;
-  background: rgba(192,57,43,0.06);
-  border: 1px solid rgba(192,57,43,0.2);
-  border-left: 4px solid #C0392B;
+  background: #F5EDED;
+  border: 1px solid #D9A8A8;
+  border-left: 4px solid #8B1A1A;
   border-radius: 12px;
   padding: 16px 20px;
   margin-bottom: 28px;
@@ -7091,7 +7089,7 @@ a.about-sticker-span {
 .rb-stat-bar-row { display: grid; grid-template-columns: 160px 1fr 52px; align-items: center; gap: 12px; }
 @media (max-width: 500px) { .rb-stat-bar-row { grid-template-columns: 1fr; gap: 4px; } }
 .rb-stat-bar-label { font-size: 13px; font-weight: 600; color: var(--ds-text-secondary); }
-.rb-stat-bar-track { height: 10px; background: rgba(0,0,0,0.06); border-radius: 100px; overflow: hidden; }
+.rb-stat-bar-track { height: 10px; background: #E5E5E5; border-radius: 100px; overflow: hidden; }
 .rb-stat-bar-fill { height: 100%; border-radius: 100px; }
 .rb-stat-bar-val { font-size: 14px; font-weight: 800; text-align: right; }
 
@@ -7103,8 +7101,8 @@ a.about-sticker-span {
   border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
   display: flex; flex-direction: column; gap: 8px;
 }
-.rb-verdict-card--success { background: rgba(30,122,74,0.04); }
-.rb-verdict-card--fail { background: rgba(192,57,43,0.04); }
+.rb-verdict-card--success { background: #F5EDED; }
+.rb-verdict-card--fail { background: #F5EDED; }
 .rb-verdict-card__icon-wrap { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
 .rb-verdict-card__title { font-size: 18px; font-weight: 800; }
 .rb-verdict-card__sub { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ds-text-secondary); }

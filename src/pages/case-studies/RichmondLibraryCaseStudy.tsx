@@ -34,13 +34,9 @@ import recommend3 from '../../assets/recommend3.png';
 import recommend4 from '../../assets/recommend4.png';
 import recommend5 from '../../assets/recommend5.png';
 
-const RB_NAVY = '#0D1B36';
-const RB_BLUE = '#1A4F9C';
-const RB_LIGHT = '#C5D7F0';
-const RB_LIGHT_SOFT = 'rgba(197,215,240,0.25)';
-const RB_RED = '#C0392B';
-const RB_GREEN = '#1E7A4A';
-const RB_AMBER = '#D97706';
+const RB_RED = '#8B1A1A';
+const RB_BLACK = '#111111';
+const RB_RED_LIGHT = '#F5EDED';
 const DECK_HREF = 'https://www.figma.com/deck/88L6s053ifnw9OL1xyH35f/University-of-Richmond?node-id=1-580&t=Rn0U3pyibxU0jctV-1';
 
 // ─── Animated counter ────────────────────────────────────────────────────────
@@ -117,7 +113,7 @@ export function RichmondLibraryCaseStudy() {
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="rb-hero">
-        <div className="rb-hero__img-band" style={{ background: RB_LIGHT }}>
+        <div className="rb-hero__img-band" style={{ background: RB_RED_LIGHT }}>
           <motion.img src={richmondHero} alt="Boatwright Memorial Library Information Architecture Evaluation"
             className="rb-hero__img"
             initial={{ opacity: 0, scale: 1.03 }}
@@ -221,11 +217,11 @@ export function RichmondLibraryCaseStudy() {
                     </div>
                     <div className="rb-task-results-grid">
                       {[
-                        { task: 'Room Booking', direct: 71, indirect: 14, skip: 14, color: RB_GREEN },
+                        { task: 'Room Booking', direct: 71, indirect: 14, skip: 14, color: RB_BLACK },
                         { task: 'Research Guides', direct: 0, indirect: 14, skip: 86, color: RB_RED },
-                        { task: 'Book Retrieval', direct: 14, indirect: 43, skip: 43, color: RB_AMBER },
-                        { task: 'Public Events', direct: 43, indirect: 14, skip: 43, color: RB_AMBER },
-                        { task: 'Overall', direct: 34, indirect: 28, skip: 38, color: RB_BLUE },
+                        { task: 'Book Retrieval', direct: 14, indirect: 43, skip: 43, color: RB_RED },
+                        { task: 'Public Events', direct: 43, indirect: 14, skip: 43, color: RB_RED },
+                        { task: 'Overall', direct: 34, indirect: 28, skip: 38, color: RB_BLACK },
                       ].map(({ task, direct, color }) => (
                         <div key={task} className="rb-task-result-item">
                           <span className="rb-task-result-label">{task}</span>
@@ -261,13 +257,13 @@ export function RichmondLibraryCaseStudy() {
                 <div className="rb-method-cards mt-10">
                   {[
                     {
-                      icon: Users, num: 'Track 1', color: RB_NAVY, bg: RB_LIGHT_SOFT,
+                      icon: Users, num: 'Track 1', color: RB_BLACK, bg: RB_RED_LIGHT,
                       title: 'Legacy IA Diagnostic',
                       sub: 'Moderated Usability Testing · N=8',
                       body: 'Conducted think-aloud protocols across 5 baseline academic and administrative tasks to map systemic cognitive friction, semantic overlapping, and behavioral drop-off vectors in the live environment.',
                     },
                     {
-                      icon: BarChart2, num: 'Track 2', color: RB_BLUE, bg: 'rgba(26,79,156,0.08)',
+                      icon: BarChart2, num: 'Track 2', color: RB_RED, bg: RB_RED_LIGHT,
                       title: 'Proposed IA Validation',
                       sub: 'Quantitative Tree Testing · N=8',
                       body: 'Stripped away the UI layer to benchmark the textual hierarchy alone. We tracked raw, unforgiving user behavioral data: Direct Success, Indirect Success, and Time-to-Task.',
@@ -304,7 +300,7 @@ export function RichmondLibraryCaseStudy() {
                 <div className="rb-traps-grid">
                   {[
                     {
-                      num: '01', icon: Search, color: RB_RED, bg: 'rgba(192,57,43,0.08)',
+                      num: '01', icon: Search, color: RB_RED, bg: RB_RED_LIGHT,
                       title: 'The OneSearch Mirage',
                       sub: 'Search Cannibalization',
                       evidence: 'Users overwhelmingly defaulted to brute-force keyword matching instead of systemic categorization.',
@@ -312,7 +308,7 @@ export function RichmondLibraryCaseStudy() {
                       insight: 'The omnipotent global search engine acted as a cognitive crutch, completely masking highly-curated Subject Research Guides.',
                     },
                     {
-                      num: '02', icon: FileSearch, color: RB_AMBER, bg: 'rgba(217,119,6,0.08)',
+                      num: '02', icon: FileSearch, color: RB_RED, bg: RB_RED_LIGHT,
                       title: 'Legalistic Policy Walls',
                       sub: 'Service Utility Blocked',
                       evidence: 'The book retrieval sequence forced users into dead-ends of administrative rules rather than offering functional deployment pathways.',
@@ -320,7 +316,7 @@ export function RichmondLibraryCaseStudy() {
                       insight: 'The explicit transactional path was absent, turning a utility-seeking user into an alienated reader.',
                     },
                     {
-                      num: '03', icon: Layers, color: RB_BLUE, bg: 'rgba(26,79,156,0.08)',
+                      num: '03', icon: Layers, color: RB_BLACK, bg: RB_RED_LIGHT,
                       title: 'Semantic Choice Paralysis',
                       sub: 'Overlapping Taxonomies',
                       evidence: 'Users exhibited visible hesitation when confronted with closely related terminologies.',
@@ -328,7 +324,7 @@ export function RichmondLibraryCaseStudy() {
                       insight: 'Synonymous labeling heavily inflated the user\'s cognitive load and visual processing metrics.',
                     },
                     {
-                      num: '04', icon: Brain, color: RB_NAVY, bg: RB_LIGHT_SOFT,
+                      num: '04', icon: Brain, color: RB_BLACK, bg: RB_RED_LIGHT,
                       title: 'Administrative Isolation',
                       sub: 'Public Artifacts Buried',
                       evidence: 'Prominent public events, such as the Peple Lecture, were completely obscured within internal corporate metadata.',
@@ -372,11 +368,11 @@ export function RichmondLibraryCaseStudy() {
                 <div className="rb-results-block">
                   <h3 className="funfit-section-subtitle-neutral">Task-by-Task Direct Success</h3>
                   <div className="rb-bars-list">
-                    <StatBar value={71} color={RB_GREEN} label="Room Booking" />
-                    <StatBar value={43} color={RB_AMBER} label="Public Events (Peple Lecture)" />
-                    <StatBar value={14} color={RB_AMBER} label="Book Retrieval" />
+                    <StatBar value={71} color={RB_BLACK} label="Room Booking" />
+                    <StatBar value={43} color={RB_RED} label="Public Events (Peple Lecture)" />
+                    <StatBar value={14} color={RB_RED} label="Book Retrieval" />
                     <StatBar value={0} color={RB_RED} label="Research Guides (Find & Borrow)" />
-                    <StatBar value={34} color={RB_BLUE} label="Global Average" />
+                    <StatBar value={34} color={RB_BLACK} label="Global Average" />
                   </div>
                 </div>
 
@@ -384,10 +380,10 @@ export function RichmondLibraryCaseStudy() {
                   <motion.div className="rb-verdict-card rb-verdict-card--success"
                     initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }} transition={{ duration: 0.5 }}>
-                    <div className="rb-verdict-card__icon-wrap" style={{ background: 'rgba(30,122,74,0.1)' }}>
-                      <CheckCircle2 className="h-6 w-6" style={{ color: RB_GREEN }} strokeWidth={2} />
+                    <div className="rb-verdict-card__icon-wrap" style={{ background: RB_RED_LIGHT }}>
+                      <CheckCircle2 className="h-6 w-6" style={{ color: RB_BLACK }} strokeWidth={2} />
                     </div>
-                    <h3 className="rb-verdict-card__title" style={{ color: RB_GREEN }}>The Success: 71%</h3>
+                    <h3 className="rb-verdict-card__title" style={{ color: RB_BLACK }}>The Success: 71%</h3>
                     <p className="rb-verdict-card__sub">Spatial Consolidation</p>
                     <p className="rb-verdict-card__body">Unifying all physical environments under the comprehensive "Libraries & Spaces" parent taxonomy eliminated prior locational confusion. Strong, distinct entry points streamlined wayfinding and room booking pipelines.</p>
                   </motion.div>
@@ -395,7 +391,7 @@ export function RichmondLibraryCaseStudy() {
                   <motion.div className="rb-verdict-card rb-verdict-card--fail"
                     initial={{ opacity: 0, x: 16 }} whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
-                    <div className="rb-verdict-card__icon-wrap" style={{ background: 'rgba(192,57,43,0.1)' }}>
+                    <div className="rb-verdict-card__icon-wrap" style={{ background: RB_RED_LIGHT }}>
                       <TrendingDown className="h-6 w-6" style={{ color: RB_RED }} strokeWidth={2} />
                     </div>
                     <h3 className="rb-verdict-card__title" style={{ color: RB_RED }}>The Catastrophe: 0%</h3>
@@ -415,31 +411,31 @@ export function RichmondLibraryCaseStudy() {
                 <div className="rb-strategy-cards">
                   {[
                     {
-                      num: '01', icon: Zap, color: RB_BLUE, bg: 'rgba(26,79,156,0.08)',
+                      num: '01', icon: Zap, color: RB_RED, bg: RB_RED_LIGHT,
                       title: 'Forge a Unified "Research & Study" Pipeline',
                       body: 'Dissolve the artificial semantic boundary between "Find & Borrow" and "Help & Support". Coalesce research literature, transactional borrowing facilities, and subject-matter expert support into a singular, cohesive domain centered on student workflow optimization.',
                       img: recommend1, alt: 'Research & Study column added to Find & Borrow — before/after',
                     },
                     {
-                      num: '02', icon: BookOpen, color: RB_GREEN, bg: 'rgba(30,122,74,0.08)',
+                      num: '02', icon: BookOpen, color: RB_BLACK, bg: RB_RED_LIGHT,
                       title: 'Surface Transactional Book-Retrieval Pathways',
                       body: 'Expose explicit action items — Borrow a Book, Request a Book, Item Retrieval, Interlibrary Loan — directly within the Borrow & Request column. Replace policy-first pages with utility-first pathways so students reach the transaction, not the rules.',
                       img: recommend2, alt: 'Borrow & Request action items surfaced — before/after',
                     },
                     {
-                      num: '03', icon: Users, color: RB_NAVY, bg: RB_LIGHT_SOFT,
+                      num: '03', icon: Users, color: RB_BLACK, bg: RB_RED_LIGHT,
                       title: 'Consolidate Libraries & Spaces Around User Intent',
                       body: 'Restructure the "Libraries & Spaces" taxonomy with a "Plan Your Visit" task lane and an "Our Locations" hub — each location exposing Maps, Hours, Floors, and Contact inline. Eliminate ambiguous synonyms like "Our Spaces" and "Facilities & Classrooms".',
                       img: recommend3, alt: 'Libraries & Spaces restructured with Plan Your Visit — before/after',
                     },
                     {
-                      num: '04', icon: TrendingUp, color: RB_AMBER, bg: 'rgba(217,119,6,0.08)',
+                      num: '04', icon: TrendingUp, color: RB_RED, bg: RB_RED_LIGHT,
                       title: 'Rehome Community Programming into Accessible Hubs',
                       body: 'Extract active, community-facing programming like the Peple Lecture from institutional metadata ("About Us"). Transition these elements into "Libraries & Spaces" where community-oriented users naturally browse — turning buried events into prominent discoveries.',
                       img: recommend4, alt: 'Peple Lecture moved from About to Libraries & Spaces — before/after',
                     },
                     {
-                      num: '05', icon: Search, color: RB_BLUE, bg: 'rgba(26,79,156,0.08)',
+                      num: '05', icon: Search, color: RB_RED, bg: RB_RED_LIGHT,
                       title: 'Establish Search Scaffolding and Context Boundaries',
                       body: 'Introduce contextual scope controls and explicit category filters within the OneSearch interface. Re-design the homepage around a mission-driven headline and scoped search entry to naturally guide students from broad keyword queries into targeted database discovery.',
                       img: recommend5, alt: 'OneSearch with contextual filters and scoped search — before/after',
@@ -471,7 +467,7 @@ export function RichmondLibraryCaseStudy() {
                 <motion.div className="rb-quote-block"
                   initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }} transition={{ duration: 0.7 }}>
-                  <div className="rb-quote-block__bar" style={{ background: RB_BLUE }} />
+                  <div className="rb-quote-block__bar" style={{ background: RB_RED }} />
                   <blockquote className="rb-quote-block__text">
                     "Digital systems routinely fail when their navigation models mirror internal administrative charts rather than the end-user's mental map. The true value of this design intervention was not the cosmetic shifting of navigation labels, but the <strong>deliberate dismantling of the institutional silos</strong> that stood between students and their academic objectives."
                   </blockquote>
