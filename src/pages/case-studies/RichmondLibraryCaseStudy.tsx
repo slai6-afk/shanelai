@@ -161,6 +161,12 @@ export function RichmondLibraryCaseStudy() {
 
               {/* ── TL;DR ──────────────────────────────────────────────── */}
               <div id="tldr" className="funfit-section">
+                {/* Context — campus / project overview */}
+                <div className="mb-8 overflow-hidden rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
+                  <img src={richmondOverview} alt="Boatwright Memorial Library — University of Richmond campus aerial view"
+                    className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
+                </div>
+
                 <div className="funfit-overview-meta-card rb-meta-card relative">
                   <CardCornerVector name="highlight1" />
                   <div className="grid gap-6 md:grid-cols-3">
@@ -356,12 +362,6 @@ export function RichmondLibraryCaseStudy() {
                 <p className="funfit-body-text funfit-body-text--spaced-md">
                   The quantitative testing of the proposed IA shattered the assumption that an aesthetic cleanup equates to functional optimization. It unveiled a <strong>stark polarization in user performance</strong>.
                 </p>
-
-                {/* Overview slide */}
-                <div className="mt-6 mb-10 overflow-hidden rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-                  <img src={richmondOverview} alt="Overview — Evaluating the Boatwright Library Website Redesign"
-                    className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
-                </div>
 
                 {/* Task performance bars */}
                 <div className="rb-results-block">
