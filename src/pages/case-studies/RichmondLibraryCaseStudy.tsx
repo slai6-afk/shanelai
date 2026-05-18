@@ -28,6 +28,11 @@ import richmondOverview from '../../assets/richmond_overview.png';
 import richmondWhy from '../../assets/richmond_why.png';
 import richmondMethods from '../../assets/richmond_methods.png';
 import richmondTasks from '../../assets/richmond_tasks.png';
+import recommend1 from '../../assets/recommend1.png';
+import recommend2 from '../../assets/recommend2.png';
+import recommend3 from '../../assets/recommend3.png';
+import recommend4 from '../../assets/recommend4.png';
+import recommend5 from '../../assets/recommend5.png';
 
 const RB_NAVY = '#0D1B36';
 const RB_BLUE = '#1A4F9C';
@@ -413,18 +418,33 @@ export function RichmondLibraryCaseStudy() {
                       num: '01', icon: Zap, color: RB_BLUE, bg: 'rgba(26,79,156,0.08)',
                       title: 'Forge a Unified "Research & Study" Pipeline',
                       body: 'Dissolve the artificial semantic boundary between "Find & Borrow" and "Help & Support". Coalesce research literature, transactional borrowing facilities, and subject-matter expert support into a singular, cohesive domain centered on student workflow optimization.',
+                      img: recommend1, alt: 'Research & Study column added to Find & Borrow — before/after',
                     },
                     {
-                      num: '02', icon: TrendingUp, color: RB_GREEN, bg: 'rgba(30,122,74,0.08)',
-                      title: 'Rehome Institutional Content into Intent-Driven Hubs',
-                      body: 'Extract active, community-facing programming like the Peple Lecture from historical corporate metadata ("About Us"). Transition these elements into a prominent, dynamic "Events & Programs" ecosystem.',
+                      num: '02', icon: BookOpen, color: RB_GREEN, bg: 'rgba(30,122,74,0.08)',
+                      title: 'Surface Transactional Book-Retrieval Pathways',
+                      body: 'Expose explicit action items — Borrow a Book, Request a Book, Item Retrieval, Interlibrary Loan — directly within the Borrow & Request column. Replace policy-first pages with utility-first pathways so students reach the transaction, not the rules.',
+                      img: recommend2, alt: 'Borrow & Request action items surfaced — before/after',
                     },
                     {
-                      num: '03', icon: Search, color: RB_NAVY, bg: RB_LIGHT_SOFT,
+                      num: '03', icon: Users, color: RB_NAVY, bg: RB_LIGHT_SOFT,
+                      title: 'Consolidate Libraries & Spaces Around User Intent',
+                      body: 'Restructure the "Libraries & Spaces" taxonomy with a "Plan Your Visit" task lane and an "Our Locations" hub — each location exposing Maps, Hours, Floors, and Contact inline. Eliminate ambiguous synonyms like "Our Spaces" and "Facilities & Classrooms".',
+                      img: recommend3, alt: 'Libraries & Spaces restructured with Plan Your Visit — before/after',
+                    },
+                    {
+                      num: '04', icon: TrendingUp, color: RB_AMBER, bg: 'rgba(217,119,6,0.08)',
+                      title: 'Rehome Community Programming into Accessible Hubs',
+                      body: 'Extract active, community-facing programming like the Peple Lecture from institutional metadata ("About Us"). Transition these elements into "Libraries & Spaces" where community-oriented users naturally browse — turning buried events into prominent discoveries.',
+                      img: recommend4, alt: 'Peple Lecture moved from About to Libraries & Spaces — before/after',
+                    },
+                    {
+                      num: '05', icon: Search, color: RB_BLUE, bg: 'rgba(26,79,156,0.08)',
                       title: 'Establish Search Scaffolding and Context Boundaries',
-                      body: 'Introduce contextual controls and explicit scope markers within the OneSearch interface. Educate users on system parameters to naturally transition them from lazy indexing queries into structured database discovery.',
+                      body: 'Introduce contextual scope controls and explicit category filters within the OneSearch interface. Re-design the homepage around a mission-driven headline and scoped search entry to naturally guide students from broad keyword queries into targeted database discovery.',
+                      img: recommend5, alt: 'OneSearch with contextual filters and scoped search — before/after',
                     },
-                  ].map(({ num, icon: Icon, color, bg, title, body }, i) => (
+                  ].map(({ num, icon: Icon, color, bg, title, body, img, alt }, i) => (
                     <motion.div key={num} className="rb-strategy-card"
                       initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}>
@@ -436,6 +456,9 @@ export function RichmondLibraryCaseStudy() {
                       </div>
                       <h3 className="rb-strategy-card__title">{title}</h3>
                       <p className="rb-strategy-card__body">{body}</p>
+                      <div className="mt-5 overflow-hidden rounded-[12px] shadow-[0_2px_16px_rgba(0,0,0,0.08)]">
+                        <img src={img} alt={alt} className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
+                      </div>
                     </motion.div>
                   ))}
                 </div>
