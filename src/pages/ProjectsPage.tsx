@@ -7,6 +7,7 @@ import homepageCover from '../assets/homepage.png';
 import nycTourismCover from '../assets/Gemini_Generated_Image_2e1a482e1a482e1a 1.png';
 import temuCover from '../assets/cover.png';
 import pennyCover from '../assets/penny_hero.png';
+import richmondCover from '../assets/richmond_overview.png';
 
 export function ProjectsPage() {
   const projects = [
@@ -21,6 +22,17 @@ export function ProjectsPage() {
       hoverHint: 'Click to see penny. — mindful money app',
       imageFit: 'cover' as const,
       mediaBackground: '#F8B2BD'
+    },
+    {
+      title: '0% Direct Success: A Data-Driven Post-Mortem of a Library Website Redesign',
+      description: 'Dual-track IA audit that exposed how a "redesign" boosted room booking to 71% while crashing research discovery to 0% direct success — then re-architected it.',
+      image: richmondCover,
+      tags: ['UX Research', 'IA', 'Tree Testing'],
+      type: 'research' as const,
+      link: '/case-study/richmond-library',
+      hoverHint: 'Click to see Boatwright Library IA evaluation',
+      imageFit: 'cover' as const,
+      mediaBackground: '#C5D7F0'
     },
     {
       title: 'Neo: Conversational Stylist & Support Agent for New York or Nowhere',

@@ -6929,3 +6929,203 @@ a.about-sticker-span {
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RICHMOND LIBRARY / BOATWRIGHT IA CASE STUDY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.rb-page {
+  --rb-navy: #0D1B36;
+  --rb-blue: #1A4F9C;
+  --rb-light: #C5D7F0;
+  --rb-red: #C0392B;
+  --rb-green: #1E7A4A;
+}
+
+/* Hero */
+.rb-hero { display: flex; flex-direction: column; }
+.rb-hero__img-band {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 340px;
+}
+.rb-hero__img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: center;
+}
+.rb-hero__content {
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+/* CTA */
+.rb-cta-block { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px 0 8px; }
+.rb-cta-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.rb-cta-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.rb-cta-btn--primary { background: var(--rb-navy); color: #fff; }
+.rb-final-cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+
+/* Meta card */
+.rb-meta-card {
+  background: var(--ds-surface-raised, #fff);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 32px;
+  border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
+  overflow: hidden;
+}
+
+/* Alert banner */
+.rb-alert-banner {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(192,57,43,0.06);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-left: 4px solid #C0392B;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+.rb-alert-banner__text { font-size: 15px; line-height: 1.6; color: var(--ds-text-primary); }
+
+/* TL;DR layout reuse */
+.rb-tldr-layout { display: flex; flex-direction: column; gap: 20px; }
+.rb-page .vibesync-tldr-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+@media (max-width: 767px) {
+  .rb-page .vibesync-tldr-row { grid-template-columns: 1fr; }
+}
+
+/* Data card */
+.rb-data-card {
+  background: var(--ds-surface-raised, #fff);
+  border-radius: 18px;
+  padding: 28px 32px;
+  border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.rb-data-card__header { margin-bottom: 24px; }
+.rb-task-results-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+@media (max-width: 767px) {
+  .rb-task-results-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.rb-task-result-item { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.rb-task-result-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ds-text-secondary); }
+.rb-task-result-num { font-size: 32px; font-weight: 800; line-height: 1; }
+.rb-task-result-sub { font-size: 11px; color: var(--ds-text-tertiary, #999); }
+
+/* Method cards */
+.rb-method-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+@media (max-width: 767px) { .rb-method-cards { grid-template-columns: 1fr; } }
+.rb-method-card {
+  background: var(--ds-surface-raised, #fff);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rb-method-card__icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 4px;
+}
+.rb-method-card__tag {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  width: fit-content;
+}
+.rb-method-card__title { font-size: 16px; font-weight: 700; color: var(--ds-text-primary); }
+.rb-method-card__sub { font-size: 12px; font-weight: 600; color: var(--ds-text-secondary); }
+.rb-method-card__body { font-size: 14px; line-height: 1.65; color: var(--ds-text-secondary); }
+
+/* Trap cards */
+.rb-traps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 8px; }
+@media (max-width: 767px) { .rb-traps-grid { grid-template-columns: 1fr; } }
+.rb-trap-card {
+  background: var(--ds-surface-raised, #fff);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
+  display: flex; flex-direction: column; gap: 10px;
+}
+.rb-trap-card__top { display: flex; align-items: center; justify-content: space-between; }
+.rb-trap-card__icon-wrap {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.rb-trap-card__num { font-size: 28px; font-weight: 800; opacity: 0.15; }
+.rb-trap-card__title { font-size: 15px; font-weight: 700; color: var(--ds-text-primary); }
+.rb-trap-card__sub { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ds-text-secondary); margin-top: -6px; }
+.rb-trap-card__section { display: flex; flex-direction: column; gap: 4px; }
+.rb-trap-card__section-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-text-tertiary, #999); }
+.rb-trap-card__body { font-size: 13px; line-height: 1.6; color: var(--ds-text-secondary); }
+.rb-trap-card__quote {
+  font-size: 13px; font-style: italic; line-height: 1.6;
+  color: var(--ds-text-primary);
+  border-left: 3px solid;
+  padding-left: 12px;
+  margin: 0;
+}
+
+/* Results / bars */
+.rb-results-block { background: var(--ds-surface-raised, #fff); border-radius: 16px; padding: 28px; border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06)); }
+.rb-bars-list { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+.rb-stat-bar-row { display: grid; grid-template-columns: 160px 1fr 52px; align-items: center; gap: 12px; }
+@media (max-width: 500px) { .rb-stat-bar-row { grid-template-columns: 1fr; gap: 4px; } }
+.rb-stat-bar-label { font-size: 13px; font-weight: 600; color: var(--ds-text-secondary); }
+.rb-stat-bar-track { height: 10px; background: rgba(0,0,0,0.06); border-radius: 100px; overflow: hidden; }
+.rb-stat-bar-fill { height: 100%; border-radius: 100px; }
+.rb-stat-bar-val { font-size: 14px; font-weight: 800; text-align: right; }
+
+/* Verdict cards */
+.rb-verdict-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+@media (max-width: 767px) { .rb-verdict-cards { grid-template-columns: 1fr; } }
+.rb-verdict-card {
+  border-radius: 16px; padding: 24px;
+  border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rb-verdict-card--success { background: rgba(30,122,74,0.04); }
+.rb-verdict-card--fail { background: rgba(192,57,43,0.04); }
+.rb-verdict-card__icon-wrap { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.rb-verdict-card__title { font-size: 18px; font-weight: 800; }
+.rb-verdict-card__sub { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ds-text-secondary); }
+.rb-verdict-card__body { font-size: 14px; line-height: 1.65; color: var(--ds-text-secondary); }
+
+/* Strategy cards */
+.rb-strategy-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.rb-strategy-card {
+  background: var(--ds-surface-raised, #fff);
+  border-radius: 16px; padding: 24px;
+  border: 1px solid var(--ds-border-subtle, rgba(0,0,0,0.06));
+  display: flex; flex-direction: column; gap: 10px;
+}
+.rb-strategy-card__header { display: flex; align-items: center; gap: 12px; }
+.rb-strategy-card__icon-wrap { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+.rb-strategy-card__num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 100px; }
+.rb-strategy-card__title { font-size: 16px; font-weight: 700; color: var(--ds-text-primary); }
+.rb-strategy-card__body { font-size: 14px; line-height: 1.65; color: var(--ds-text-secondary); }
+
+/* Quote block */
+.rb-quote-block { display: flex; gap: 0; margin: 8px 0; }
+.rb-quote-block__bar { width: 4px; min-height: 100%; border-radius: 4px; flex-shrink: 0; margin-right: 20px; }
+.rb-quote-block__text { font-size: 18px; font-style: italic; line-height: 1.75; color: var(--ds-text-primary); font-family: var(--font-heading, serif); }
+@media (max-width: 767px) { .rb-quote-block__text { font-size: 15px; } }

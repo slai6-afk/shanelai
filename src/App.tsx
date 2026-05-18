@@ -21,6 +21,7 @@ const TemuCaseStudy = lazy(() => import('./pages/case-studies/TemuCaseStudy').th
 const BoatwrightLibraryCaseStudy = lazy(() => import('./pages/case-studies/BoatwrightLibraryCaseStudy').then(m => ({ default: m.BoatwrightLibraryCaseStudy })));
 const NeoCaseStudy = lazy(() => import('./pages/case-studies/NeoCaseStudy').then(m => ({ default: m.NeoCaseStudy })));
 const PennyCaseStudy = lazy(() => import('./pages/case-studies/PennyCaseStudy').then(m => ({ default: m.PennyCaseStudy })));
+const RichmondLibraryCaseStudy = lazy(() => import('./pages/case-studies/RichmondLibraryCaseStudy').then(m => ({ default: m.RichmondLibraryCaseStudy })));
 
 // Loading component for Suspense fallback
 /** Wrap pages that share marketing typography (not case studies). See `.ds-marketing-shell` in globals.css. */
@@ -85,6 +86,7 @@ function AnimatedRoutes() {
         <Route path="/case-study/boatwright-library" element={<PageWrapper><BoatwrightLibraryCaseStudy /></PageWrapper>} />
         <Route path="/case-study/neo" element={<PageWrapper><NeoCaseStudy /></PageWrapper>} />
         <Route path="/case-study/penny" element={<PageWrapper><PennyCaseStudy /></PageWrapper>} />
+        <Route path="/case-study/richmond-library" element={<PageWrapper><RichmondLibraryCaseStudy /></PageWrapper>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
