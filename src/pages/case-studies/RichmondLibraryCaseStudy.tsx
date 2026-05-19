@@ -109,8 +109,14 @@ export function RichmondLibraryCaseStudy() {
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="rb-hero rb-hero--fullscreen">
+        <motion.div className="rb-hero__img-band"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: 'easeOut' }}>
+          <img src={richmondHero} alt="Boatwright Memorial Library redesigned homepage"
+            className="rb-hero__img" loading="eager" decoding="async" />
+        </motion.div>
         <div className="rb-hero__content px-4 sm:px-6 md:px-12 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.35 }}>
             <h1 className="case-hero-title">0% Direct Success: A Data-Driven Post-Mortem and Pivot of a Library Website Redesign</h1>
             <p className="case-hero-description-text">
               Boatwright Memorial Library · University of Richmond — A dual-track IA audit that exposed how a "redesign" traded legacy chaos for modern fragmentation.
@@ -122,12 +128,6 @@ export function RichmondLibraryCaseStudy() {
             </div>
           </motion.div>
         </div>
-        <motion.div className="rb-hero__img-band"
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4, ease: 'easeOut' }}>
-          <img src={richmondHero} alt="Boatwright Memorial Library redesigned homepage"
-            className="rb-hero__img" loading="eager" decoding="async" />
-        </motion.div>
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}

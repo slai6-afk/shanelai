@@ -7140,5 +7140,5 @@ a.about-sticker-span {
 .rb-page .case-hero-tag--primary { background-color: #8B1A1A; color: #fff; }
 .rb-page .case-hero-tag--secondary { background-color: transparent; color: var(--ds-text-primary); border: 1px solid #111111; }
 .rb-page .case-hero-tag-list { margin-top: 24px; }
-.rb-page .rb-hero__content { padding-top: 80px; padding-bottom: 32px; }
+.rb-page .rb-hero__content { padding-top: 28px; padding-bottom: 32px; }
 .rb-page .rb-cta-block { padding-top: 32px; }
