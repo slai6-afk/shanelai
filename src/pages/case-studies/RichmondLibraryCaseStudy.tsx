@@ -23,6 +23,7 @@ import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { CardCornerVector } from '../../components/vector-decor';
 
+import richmondHero from '../../assets/Screenshot 2026-05-19 at 2.05.02 PM.png';
 import recommend1 from '../../assets/recommend1.png';
 import recommend2 from '../../assets/recommend2.png';
 import recommend3 from '../../assets/recommend3.png';
@@ -107,7 +108,7 @@ export function RichmondLibraryCaseStudy() {
       <Navigation />
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="rb-hero">
+      <section className="rb-hero rb-hero--fullscreen">
         <div className="rb-hero__content px-4 sm:px-6 md:px-12 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}>
             <h1 className="case-hero-title">0% Direct Success: A Data-Driven Post-Mortem and Pivot of a Library Website Redesign</h1>
@@ -121,6 +122,12 @@ export function RichmondLibraryCaseStudy() {
             </div>
           </motion.div>
         </div>
+        <motion.div className="rb-hero__img-band"
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.4, ease: 'easeOut' }}>
+          <img src={richmondHero} alt="Boatwright Memorial Library redesigned homepage"
+            className="rb-hero__img" loading="eager" decoding="async" />
+        </motion.div>
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}

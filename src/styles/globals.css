@@ -6942,19 +6942,18 @@ a.about-sticker-span {
 
 /* Hero */
 .rb-hero { display: flex; flex-direction: column; }
+.rb-hero--fullscreen { min-height: 100vh; }
 .rb-hero__img-band {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 1;
   overflow: hidden;
-  min-height: 340px;
+  min-height: 0;
 }
 .rb-hero__img {
   width: 100%;
-  max-height: 520px;
-  object-fit: contain;
-  object-position: center;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 .rb-hero__content {
   padding-top: 40px;

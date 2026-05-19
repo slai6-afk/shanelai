@@ -1736,3 +1736,19 @@ html {
   syntax: "*";
   inherits: false
 }
+
+/* Tailwind text utility normalization: cap to 3 size levels site-wide. */
+:root, :host {
+  --text-xs: var(--type-l1);
+  --text-sm: var(--type-l1);
+  --text-base: var(--type-l3);
+  --text-lg: var(--type-l3);
+  --text-xl: var(--type-l3);
+  --text-2xl: var(--type-l5);
+  --text-3xl: var(--type-l5);
+  --text-4xl: var(--type-l5);
+  --text-5xl: var(--type-l5);
+  --text-6xl: var(--type-l5);
+  --text-7xl: var(--type-l5);
+  --text-8xl: var(--type-l5);
+}
