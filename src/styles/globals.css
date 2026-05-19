@@ -6996,6 +6996,15 @@ a.about-sticker-span {
 }
 .rb-alert-banner__text { font-size: 15px; line-height: 1.6; color: var(--ds-text-primary); }
 
+/* Why this study row */
+.rb-why-row { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+.rb-why-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ds-text-tertiary, #999); }
+.rb-why-stats { display: flex; gap: 40px; flex-wrap: wrap; }
+.rb-why-stat { display: flex; flex-direction: column; gap: 4px; }
+.rb-why-stat__num { font-size: 48px; font-weight: 800; line-height: 1; }
+.rb-why-stat__label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ds-text-secondary); white-space: pre-line; }
+.rb-why-body { font-size: 14px; line-height: 1.7; color: var(--ds-text-secondary); max-width: 520px; }
+
 /* TL;DR layout reuse */
 .rb-tldr-layout { display: flex; flex-direction: column; gap: 20px; }
 .rb-page .vibesync-tldr-row {
@@ -7127,3 +7136,10 @@ a.about-sticker-span {
 .rb-quote-block__bar { width: 4px; min-height: 100%; border-radius: 4px; flex-shrink: 0; margin-right: 20px; }
 .rb-quote-block__text { font-size: 18px; font-style: italic; line-height: 1.75; color: var(--ds-text-primary); font-family: var(--font-heading, serif); }
 @media (max-width: 767px) { .rb-quote-block__text { font-size: 15px; } }
+
+/* Tag + hero spacing overrides */
+.rb-page .case-hero-tag--primary { background-color: #8B1A1A; color: #fff; }
+.rb-page .case-hero-tag--secondary { background-color: transparent; color: var(--ds-text-primary); border: 1px solid #111111; }
+.rb-page .case-hero-tag-list { margin-top: 24px; }
+.rb-page .rb-hero__content { padding-top: 80px; padding-bottom: 32px; }
+.rb-page .rb-cta-block { padding-top: 32px; }

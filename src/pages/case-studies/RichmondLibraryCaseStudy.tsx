@@ -23,11 +23,6 @@ import { StickyTOC } from '../../components/case-study/StickyTOC';
 import { MobileTOC } from '../../components/case-study/MobileTOC';
 import { CardCornerVector } from '../../components/vector-decor';
 
-import richmondHero from '../../assets/richmond_hero.png';
-import richmondOverview from '../../assets/richmond_overview.png';
-import richmondWhy from '../../assets/richmond_why.png';
-import richmondMethods from '../../assets/richmond_methods.png';
-import richmondTasks from '../../assets/richmond_tasks.png';
 import recommend1 from '../../assets/recommend1.png';
 import recommend2 from '../../assets/recommend2.png';
 import recommend3 from '../../assets/recommend3.png';
@@ -113,13 +108,6 @@ export function RichmondLibraryCaseStudy() {
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="rb-hero">
-        <div className="rb-hero__img-band" style={{ background: RB_RED_LIGHT }}>
-          <motion.img src={richmondHero} alt="Boatwright Memorial Library Information Architecture Evaluation"
-            className="rb-hero__img"
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }} />
-        </div>
         <div className="rb-hero__content px-4 sm:px-6 md:px-12 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.25 }}>
             <h1 className="case-hero-title">0% Direct Success: A Data-Driven Post-Mortem and Pivot of a Library Website Redesign</h1>
@@ -162,12 +150,6 @@ export function RichmondLibraryCaseStudy() {
 
               {/* ── TL;DR ──────────────────────────────────────────────── */}
               <div id="tldr" className="funfit-section">
-                {/* Context — campus / project overview */}
-                <div className="mb-8 overflow-hidden rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-                  <img src={richmondOverview} alt="Boatwright Memorial Library — University of Richmond campus aerial view"
-                    className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
-                </div>
-
                 <div className="funfit-overview-meta-card rb-meta-card relative">
                   <CardCornerVector name="highlight1" />
                   <div className="grid gap-6 md:grid-cols-3">
@@ -235,11 +217,24 @@ export function RichmondLibraryCaseStudy() {
                   </motion.div>
                 </div>
 
-                {/* Why this study */}
-                <div className="mt-10 overflow-hidden rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-                  <img src={richmondWhy} alt="Why This Study — 8 usability participants, 8 tree test participants, 5 core tasks"
-                    className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
-                </div>
+                {/* Why this study — coded stat row */}
+                <motion.div className="rb-why-row" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }} transition={{ duration: 0.6 }}>
+                  <p className="rb-why-label">Why This Study</p>
+                  <div className="rb-why-stats">
+                    {[
+                      { num: 8, label: 'Usability Test\nParticipants' },
+                      { num: 8, label: 'Tree Testing\nParticipants' },
+                      { num: 5, label: 'Core Tasks\nTested' },
+                    ].map(({ num, label }) => (
+                      <div key={label} className="rb-why-stat">
+                        <span className="rb-why-stat__num" style={{ color: RB_RED }}>{num}</span>
+                        <span className="rb-why-stat__label">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="rb-why-body">The library proposed a new information architecture. We evaluated both the old and new IA to measure whether usability actually improved.</p>
+                </motion.div>
               </div>
 
               {/* ── 01 METHODOLOGY ─────────────────────────────────────── */}
@@ -248,11 +243,6 @@ export function RichmondLibraryCaseStudy() {
                 <p className="funfit-body-text funfit-body-text--spaced-md">
                   To critically validate the university library's proposed restructuring, we <strong>decoupled content semantics from interface aesthetics</strong> through a rigorous, two-phased investigative framework — isolating semantic hierarchy from visual bias.
                 </p>
-
-                <div className="mt-8 overflow-hidden rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-                  <img src={richmondMethods} alt="Two methods, one question: Moderated Usability Test + Tree Test"
-                    className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
-                </div>
 
                 <div className="rb-method-cards mt-10">
                   {[
@@ -284,10 +274,6 @@ export function RichmondLibraryCaseStudy() {
                   ))}
                 </div>
 
-                <div className="mt-8 overflow-hidden rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-                  <img src={richmondTasks} alt="5 Core Tasks Tested"
-                    className="block h-auto w-full object-contain" loading="lazy" decoding="async" />
-                </div>
               </div>
 
               {/* ── 02 DIAGNOSTICS ─────────────────────────────────────── */}
