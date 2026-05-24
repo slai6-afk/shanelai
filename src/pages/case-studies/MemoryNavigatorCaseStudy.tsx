@@ -427,17 +427,16 @@ export function MemoryNavigatorCaseStudy() {
       {/* Mobile TOC */}
       <MobileTOC items={tocItems} />
 
-      <section className="pb-32 px-4 sm:px-6 md:px-16 lg:px-24">
+      <section className="pb-32 px-4 sm:px-6 md:px-12 lg:px-16">
         <div className="max-w-[1600px] mx-auto">
-          {/* Reduced left column width from 280px to 160px (~60% of original) */}
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4 lg:gap-4">
             <div className="hidden lg:block">
               <div style={{ position: 'sticky', top: '100px', height: 'fit-content' }}>
                 <StickyTOC items={tocItems} isFixed={tocFixed} />
               </div>
             </div>
 
-            <div className="case-study-content-wrapper w-full max-w-none min-w-0 flex flex-col" style={{ position: 'relative' }}>
+            <div className="case-study-content-wrapper w-full max-w-none flex flex-col" style={{ position: 'relative', minWidth: 0, overflow: 'hidden' }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
               <div id="background" style={{ marginBottom: '200px', position: 'relative' }}>
@@ -694,8 +693,8 @@ export function MemoryNavigatorCaseStudy() {
                               </div>
                               
                               <div className="text-center" style={{ opacity: activePersona === idx ? 1 : 0.5, transition: 'opacity 0.3s ease' }}>
-                                <div className="text-gray-900 font-medium text-[15px] leading-tight">{p.name}</div>
-                                <div className="text-neutral-500 text-[12px] leading-none mt-1">{p.role}</div>
+                                <div className="text-gray-900 font-medium text-[length:var(--type-l3)] leading-tight">{p.name}</div>
+                                <div className="text-neutral-500 text-[length:var(--type-l1)] leading-none mt-1">{p.role}</div>
                               </div>
                             </button>
                           ))}
