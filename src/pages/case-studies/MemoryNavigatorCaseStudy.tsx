@@ -182,7 +182,7 @@ export function MemoryNavigatorCaseStudy() {
               />
             </div>
 
-            <h1 style={{ color: '#000000', fontSize: 'var(--ds-text-display)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
+            <h1 style={{ color: '#000000', fontSize: 'var(--type-l6)', fontWeight: 400, lineHeight: '1.2', marginBottom: '16px' }}>
               Memory Navigator
             </h1>
 
@@ -211,7 +211,7 @@ export function MemoryNavigatorCaseStudy() {
             position: 'relative',
             height: '80vh',
             minHeight: '700px',
-            marginBottom: '120px',
+            marginBottom: '80px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -258,7 +258,7 @@ export function MemoryNavigatorCaseStudy() {
               transition={{ duration: 0.7, ease: 'easeOut' }}
               style={{ 
                 color: '#FFFFFF', 
-                fontSize: 'var(--ds-text-title-lg)', 
+                fontSize: 'var(--type-l5)', 
                 fontWeight: 400, 
                 marginBottom: '32px',
                 textAlign: 'center'
@@ -320,7 +320,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'var(--ds-text-display)',
+                  fontSize: 'var(--type-l6)',
                   fontWeight: 700,
                   color: '#FF7A00',
                   lineHeight: '1',
@@ -347,7 +347,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'var(--ds-text-display)',
+                  fontSize: 'var(--type-l6)',
                   fontWeight: 700,
                   color: '#FF7A00',
                   lineHeight: '1',
@@ -374,7 +374,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'var(--ds-text-display)',
+                  fontSize: 'var(--type-l6)',
                   fontWeight: 700,
                   color: '#FF7A00',
                   lineHeight: '1',
@@ -401,7 +401,7 @@ export function MemoryNavigatorCaseStudy() {
                 className="tldr-stat-card"
               >
                 <div style={{
-                  fontSize: 'var(--ds-text-title)',
+                  fontSize: 'var(--type-l4)',
                   fontWeight: 600,
                   color: '#FFFFFF',
                   lineHeight: '1.2',
@@ -436,11 +436,11 @@ export function MemoryNavigatorCaseStudy() {
               </div>
             </div>
 
-            <div className="case-study-content-wrapper w-full max-w-none flex flex-col" style={{ position: 'relative', minWidth: 0, overflow: 'hidden' }}>
+            <div className="case-study-content-wrapper w-full max-w-none flex flex-col" style={{ position: 'relative', minWidth: 0 }}>
               <div ref={tocTriggerRef} style={{ height: 1 }} />
 
-              <div id="background" style={{ marginBottom: '200px', position: 'relative' }}>
-                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '60px' }}>Background</motion.h2>
+              <div id="background" style={{ marginBottom: '80px', position: 'relative' }}>
+                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '32px' }}>Background</motion.h2>
                 
                 <motion.div 
                   style={{ 
@@ -450,7 +450,7 @@ export function MemoryNavigatorCaseStudy() {
                     minHeight: '600px',
                     borderRadius: '12px', 
                     overflow: 'hidden',
-                    marginBottom: '160px' // Spacing after
+                    marginBottom: '80px' // Spacing after
                   }}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
@@ -499,8 +499,8 @@ export function MemoryNavigatorCaseStudy() {
                   >
                     <p style={{
                               color: '#FFFFFF',
-                              fontSize: 'var(--ds-text-title)',
-                              fontWeight: 300, // Light
+                              fontSize: 'var(--type-l4)',
+                              fontWeight: 400,
                               lineHeight: '1.6',
                               letterSpacing: '0.02em'
                           }}>
@@ -523,8 +523,8 @@ export function MemoryNavigatorCaseStudy() {
                       >
                           <div style={{
                               color: '#FFFFFF',
-                              fontSize: 'var(--ds-text-display)',
-                              fontWeight: 200, // Ultra light/thin
+                              fontSize: 'var(--type-l6)',
+                              fontWeight: 600,
                               letterSpacing: '-0.02em',
                               marginBottom: '8px',
                               lineHeight: 1
@@ -545,8 +545,8 @@ export function MemoryNavigatorCaseStudy() {
                 </motion.div>
               </div>
 
-              <div id="discover" style={{ marginBottom: '200px' }}>
-                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '60px' }}>Discover</motion.h2>
+              <div id="discover" style={{ marginBottom: '80px' }}>
+                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '32px' }}>Discover</motion.h2>
                 
                 <motion.p
                   initial={{ opacity: 0 }}
@@ -568,7 +568,7 @@ export function MemoryNavigatorCaseStudy() {
                   display: 'grid', 
                   gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
                   gap: '24px', 
-                  marginBottom: '120px' 
+                  marginBottom: '80px' 
                 }}>
                   {[
                     { icon: '🧠', text: '9 of 12 secretly masked memory lapses.' },
@@ -607,7 +607,7 @@ export function MemoryNavigatorCaseStudy() {
                   style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 40px' }}
                 >
                   <p style={{ 
-                    fontSize: 'var(--ds-text-title)', 
+                    fontSize: 'var(--type-l4)', 
                     fontWeight: 500, 
                     lineHeight: '1.4', 
                     color: '#000' 
@@ -631,7 +631,7 @@ export function MemoryNavigatorCaseStudy() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 1.0, delay: 0.5 }}
-                  style={{ marginBottom: '60px', maxWidth: '80%', margin: '0 auto 60px' }}
+                  style={{ marginBottom: '32px', maxWidth: '80%', margin: '0 auto 60px' }}
                 >
                       <ImageWithFallback
                         src={medicalWorkflowDiagram}
@@ -651,7 +651,7 @@ export function MemoryNavigatorCaseStudy() {
                 />
 
                 {/* REFACTORED PERSONA SECTION */}
-                <div style={{ margin: '160px 0' }}>
+                <div style={{ margin: '80px 0' }}>
                    <motion.h2 
                      initial={{ opacity: 0 }} 
                      whileInView={{ opacity: 1 }} 
@@ -660,7 +660,7 @@ export function MemoryNavigatorCaseStudy() {
                        color: '#000000', 
                        fontSize: 'var(--type-l5)', 
                        fontWeight: 400, 
-                       marginBottom: '60px' 
+                       marginBottom: '32px' 
                      }}
                    >
                      Personas: Understanding Who We Design For
@@ -726,7 +726,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
                 </div>
 
-              <div id="define" style={{ marginBottom: '120px' }}>
+              <div id="define" style={{ marginBottom: '80px' }}>
                 <motion.h2 
                   initial={{ opacity: 0 }} 
                   whileInView={{ opacity: 1 }} 
@@ -735,14 +735,14 @@ export function MemoryNavigatorCaseStudy() {
                     color: '#000000', 
                     fontSize: 'var(--type-l5)', 
                     fontWeight: 400, 
-                    marginBottom: '60px' 
+                    marginBottom: '32px' 
                   }}
                 >
                   Define
                 </motion.h2>
 
                 {/* BLOCK 1: DEFINE - Dark Section */}
-                <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', marginBottom: '160px', color: '#F5F5F5' }}>
+                <div style={{ position: 'relative', borderRadius: '24px', overflow: 'hidden', marginBottom: '80px', color: '#F5F5F5' }}>
                   {/* Background Image & Overlay */}
                   <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
                     <img
@@ -812,7 +812,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
 
                 {/* BLOCK 2: SYSTEM PROBLEM */}
-                <div style={{ marginBottom: '160px', textAlign: 'center' }}>
+                <div style={{ marginBottom: '80px', textAlign: 'center' }}>
                   <motion.div
                     initial={{ opacity: 0, scale: 0.96 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -836,7 +836,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
 
                 {/* BLOCK 3: DESIGN FOUNDATIONS */}
-                <div style={{ marginBottom: '160px' }}>
+                <div style={{ marginBottom: '80px' }}>
                   <div style={{ 
                     display: 'grid', 
                     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
@@ -875,7 +875,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
               </div>
 
-              <div id="design" style={{ marginBottom: '120px' }}>
+              <div id="design" style={{ marginBottom: '80px' }}>
                 <motion.h2 
                   initial={{ opacity: 0 }} 
                   whileInView={{ opacity: 1 }} 
@@ -884,14 +884,14 @@ export function MemoryNavigatorCaseStudy() {
                     color: '#000000', 
                     fontSize: 'var(--type-l5)', 
                     fontWeight: 400, 
-                    marginBottom: '60px' 
+                    marginBottom: '32px' 
                   }}
                 >
                   Design
                 </motion.h2>
 
                 {/* BLOCK 4: SOLUTION OVERVIEW */}
-                <div style={{ marginBottom: '160px', textAlign: 'center' }}>
+                <div style={{ marginBottom: '80px', textAlign: 'center' }}>
                   <motion.div
                     initial={{ opacity: 0, y: 30, scale: 0.98 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -912,7 +912,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
 
                 {/* BLOCK 5: SYSTEM FLOW */}
-                <div style={{ marginBottom: '160px', textAlign: 'center' }}>
+                <div style={{ marginBottom: '80px', textAlign: 'center' }}>
                   <h3 style={{ fontSize: 'var(--type-l4)', fontWeight: 500, marginBottom: '24px', color: '#000' }}>
                     How it works
                   </h3>
@@ -952,13 +952,11 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
 
                 {/* BLOCK 6: SENIOR MR TASKS - Redesigned Minimal Section */}
-                <div style={{ 
-                  marginBottom: '160px', 
-                  backgroundColor: '#FBFAFF', // Requested background
-                  padding: '80px 40px',
-                  borderRadius: '32px',
-                  marginLeft: '-40px',
-                  marginRight: '-40px'
+                <div style={{
+                  marginBottom: '80px',
+                  backgroundColor: '#FBFAFF',
+                  padding: '64px 40px',
+                  borderRadius: '24px',
                 }}>
                   {/* SECTION 1 — HERO */}
                   <div style={{ maxWidth: '1280px', margin: '0 auto 160px' }}>
@@ -969,8 +967,8 @@ export function MemoryNavigatorCaseStudy() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                   style={{
-                          fontSize: 'var(--ds-text-title-lg)',
-                          fontWeight: 300, // 300-400
+                          fontSize: 'var(--type-l5)',
+                          fontWeight: 400,
                           color: '#000',
                           lineHeight: '1.1',
                           marginBottom: '24px'
@@ -1043,7 +1041,7 @@ export function MemoryNavigatorCaseStudy() {
                   </div>
 
                   {/* SECTION 2 — TASKS */}
-                  <div style={{ maxWidth: '1180px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '160px' }}>
+                  <div style={{ maxWidth: '1180px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '80px' }}>
                     {/* TASK 1 - SCANNING */}
                 <motion.div
                       initial={{ opacity: 0, y: 16 }}
@@ -1052,8 +1050,8 @@ export function MemoryNavigatorCaseStudy() {
                   transition={{ duration: 0.6 }}
                     >
                       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Scanning</h4>
-                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 300 }}>Put on the headset → Enter Memory Navigator → Locate by QR code</p>
+                        <h4 style={{ fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '8px', color: '#000' }}>Scanning</h4>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 400 }}>Put on the headset → Enter Memory Navigator → Locate by QR code</p>
                 </div>
 
                       <motion.div
@@ -1082,8 +1080,8 @@ export function MemoryNavigatorCaseStudy() {
                       transition={{ duration: 0.6 }}
                     >
                       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Friend Hunt</h4>
-                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 300 }}>Try to find friends’ addresses → Guided hints → Celebrate small wins</p>
+                        <h4 style={{ fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '8px', color: '#000' }}>Friend Hunt</h4>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 400 }}>Try to find friends’ addresses → Guided hints → Celebrate small wins</p>
                       </div>
                       
                       <motion.div
@@ -1112,8 +1110,8 @@ export function MemoryNavigatorCaseStudy() {
                   transition={{ duration: 0.6 }}
                     >
                       <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-                        <h4 style={{ fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '12px', color: '#000' }}>Essential Explorer</h4>
-                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 300 }}>Tap on locations → Learn what they offer → Build daily confidence</p>
+                        <h4 style={{ fontSize: 'var(--type-l4)', fontWeight: 600, marginBottom: '8px', color: '#000' }}>Essential Explorer</h4>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#888', fontWeight: 400 }}>Tap on locations → Learn what they offer → Build daily confidence</p>
                       </div>
                       
                       <motion.div
@@ -1136,7 +1134,7 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
 
                   {/* SECTION 3 — CLOSING BLOCK */}
-                  <div style={{ textAlign: 'center', marginTop: '160px', position: 'relative' }}>
+                  <div style={{ textAlign: 'center', marginTop: '80px', position: 'relative' }}>
                     {/* Dotted pattern hint */}
                     <div style={{ 
                       position: 'absolute', 
@@ -1155,7 +1153,7 @@ export function MemoryNavigatorCaseStudy() {
                       viewport={{ once: true }}
                       transition={{ duration: 1.0 }}
                     >
-                      <h3 style={{ fontSize: 'var(--type-l6)', fontWeight: 400, marginBottom: '32px', color: '#000' }}>
+                      <h3 style={{ fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '24px', color: '#000' }}>
                         Designed to support — not overwhelm.
                   </h3>
                       <p style={{ fontSize: 'var(--type-l4)', lineHeight: '1.6', color: '#555', maxWidth: '700px', margin: '0 auto 48px' }}>
@@ -1184,18 +1182,16 @@ export function MemoryNavigatorCaseStudy() {
                 </div>
 
                 {/* BLOCK 7: CAREGIVER MOBILE VIEW */}
-                  <div style={{ 
-                  marginBottom: '160px',
-                  backgroundColor: '#F8F5FF', // Soft lavender-white
-                  padding: '120px 40px',
-                  borderRadius: '32px',
-                  marginLeft: '-40px',
-                  marginRight: '-40px'
+                  <div style={{
+                  marginBottom: '80px',
+                  backgroundColor: '#F8F5FF',
+                  padding: '64px 40px',
+                  borderRadius: '24px',
                 }}>
                   <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
                     
                     {/* 1. Transition */}
-                    <div style={{ textAlign: 'center', marginBottom: '120px' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '80px' }}>
                       <motion.h3 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -1231,7 +1227,7 @@ export function MemoryNavigatorCaseStudy() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                       transition={{ duration: 0.8 }}
-                      style={{ marginBottom: '120px', textAlign: 'center' }}
+                      style={{ marginBottom: '80px', textAlign: 'center' }}
                     >
                       <motion.div
                         whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
@@ -1260,13 +1256,13 @@ export function MemoryNavigatorCaseStudy() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8 }}
-                      style={{ marginBottom: '120px', textAlign: 'center' }}
+                      style={{ marginBottom: '80px', textAlign: 'center' }}
                     >
                       <div style={{ marginBottom: '48px' }}>
                         <h4 style={{ fontSize: 'var(--type-l6)', fontWeight: 500, marginBottom: '12px', color: '#000' }}>
                           Understanding each person’s rhythm
                         </h4>
-                        <p style={{ fontSize: 'var(--type-l4)', color: '#666', fontWeight: 300 }}>
+                        <p style={{ fontSize: 'var(--type-l4)', color: '#666', fontWeight: 400 }}>
                           Subtle shifts in movement, clarity, and memory — shown gently.
                         </p>
                       </div>
@@ -1539,7 +1535,7 @@ export function MemoryNavigatorCaseStudy() {
               </div>
 
               <div id="outcomes" style={{ marginBottom: '80px' }}>
-                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 400, marginBottom: '24px' }}>Outcomes</motion.h2>
+                <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ color: '#000000', fontSize: 'var(--type-l5)', fontWeight: 500, marginBottom: '32px' }}>Outcomes</motion.h2>
                 <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} style={{ backgroundColor: '#FFFFFF', border: '1px solid rgba(0, 0, 0, 0.08)', padding: '32px', marginBottom: '24px' }}>
                   <p style={{ color: '#666666', fontSize: 'var(--type-l3)', lineHeight: '1.8', marginBottom: '16px' }}>
                     <strong style={{ color: '#000000' }}>Validation:</strong> Pilot study with 6 MCI patients showed 68% reduction in navigation errors and 40% faster task completion compared to baseline.
